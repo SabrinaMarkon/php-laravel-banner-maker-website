@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Sadie's Banner Creator</a>
+            <a class="navbar-brand" href="{{ URL::route('admin') }}">Sadie's Banner Creator</a>
         </div>
         <!-- navbar-collapse -->
     </div>

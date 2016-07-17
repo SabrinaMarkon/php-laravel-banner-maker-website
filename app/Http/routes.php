@@ -41,7 +41,10 @@ Route::get('account', 'PagesController@account');
 /*
  Routes for Admin
  */
-Route::get('admin', 'PagesController@adminindex');
+Route::get('admin', array('as' => 'admin', function() {
+    // naming the view with as allows us to use {{ URL::route('admin') }} to create links in the admin area.
+    return View::make('pages.admin.index');
+}));
 
 Route::get('admin/{page}', 'PagesController@showadminpage');
 

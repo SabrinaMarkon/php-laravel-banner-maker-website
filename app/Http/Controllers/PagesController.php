@@ -63,10 +63,6 @@ class PagesController extends Controller
     /*
      *  Admin pages
      */
-    public function adminindex() {
-        return view('pages.admin.index');
-    }
-
     public function showadminpage($page) {
         return view("pages.admin." . $page);
     }
