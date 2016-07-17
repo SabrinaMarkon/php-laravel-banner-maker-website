@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 6rem;
+    width: 100%;
+    min-height: 100%;
+    display: table;
+    font-weight: 100;
+    font-family: 'Lato', sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+    padding-top: 5em;
+}
+
+.fa {
+    padding: 3px;
+}
+
+.navbar-nav {
+    float: none;
+    text-align: center;
+}
+
+.navbar-default .navbar-brand {
+    font-family: 'Luckiest Guy', cursive;
+    color: #FFC125;
+}
+
+.navbar-nav li {
+    float: none;
+    display: inline-block;
+}
+
+.navbar-nav li:hover {
+    box-shadow: 0 0 2px #d3d3d3;
+}
+
+.title {
+    font-size: 36px;
+    font-family: 'Luckiest Guy', cursive;
+    color: #FFC125;
+    padding-bottom: 0.5em;
+}
+
+.title-big {
+    font-size: 72px;
+    padding-top: -40px;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+#sidebar {
+    margin-top: 55px;
+    background-color: #eeeeee;
+    height: 100%;
+}
+
+#sidebar a {
+    color: #989898;
+}
