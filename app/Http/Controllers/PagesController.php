@@ -67,37 +67,8 @@ class PagesController extends Controller
         return view('pages.admin.index');
     }
 
-    public function adminsettings() {
-        return view('pages.admin.settings');
+    public function showadminpage($page) {
+        return view("pages.admin." . $page);
     }
-
-    public function admincontent() {
-        return view('pages.admin.content');
-    }
-
-    public function admindlb() {
-        return view('pages.admin.dlb');
-    }
-
-    public function adminfaqs() {
-        return view('pages.admin.faqs');
-    }
-
-    public function adminproducts() {
-        return view('pages.admin.products');
-    }
-
-    public function adminbanners() {
-        return view('pages.admin.banners');
-    }
-
-    public function adminmembers() {
-        return view('pages.admin.members');
-    }
-
-    public function adminmailout() {
-        return view('pages.admin.mailout');
-    }
-    
 
 }

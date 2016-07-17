@@ -25,11 +25,29 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+@media (min-width: 821px) { body { padding-top: 60px; } }
+@media (min-width: 1291px) { body { padding-top: 0; } }
+
 .content {
     margin: 0 auto;
     text-align: center;
     display: inline-block;
     padding-top: 5em;
+}
+
+.admincontent {
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+    padding-top: 5em;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10em;
+    right: 0;
+}
+#main {
+    background-color: #ffffff;
 }
 
 .fa {
@@ -78,11 +96,21 @@ body {
 }
 
 #sidebar {
-    margin-top: 55px;
-    background-color: #eeeeee;
-    height: 100%;
+    margin-top: 52px;
+    background-color: #F3F3F3;
+    padding: 0;
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; width: 10em;
 }
 
 #sidebar a {
-    color: #989898;
+    color: #333333;
+}
+
+.nav-stacked li a:hover {
+    background-color: #FFC125;
+    color: #333333;
+    margin: 0;
 }
