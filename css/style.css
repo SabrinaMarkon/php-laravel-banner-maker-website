@@ -22,11 +22,11 @@ body {
     min-height: 100%;
     display: table;
     font-weight: 100;
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-
-@media (min-width: 821px) { body { padding-top: 60px; } }
-@media (min-width: 1291px) { body { padding-top: 0; } }
 
 .content {
     margin: 0 auto;
@@ -64,6 +64,10 @@ body {
     color: #FFC125;
 }
 
+.navbar-default .navbar-brand:hover {
+    color: #FF7256;
+}
+
 .navbar-nav li {
     float: none;
     display: inline-block;
@@ -80,10 +84,30 @@ body {
     padding-bottom: 0.5em;
 }
 
+.title:hover {
+    color: #FF7256;
+}
+
+.title-home {
+    font-size: 36px;
+    font-family: 'Luckiest Guy', cursive;
+    color: #FFC125;
+    padding-bottom: 0.5em;
+}
+
+.title-home:hover {
+    color: #FFC125;
+}
+
 .title-big {
     font-size: 72px;
     padding-top: -40px;
 }
+
+.title-big:hover {
+    color: #FFC125;
+}
+
 
 .footer {
     position: absolute;
@@ -114,3 +138,96 @@ body {
     color: #333333;
     margin: 0;
 }
+
+/*
+#pagecontent {
+    position: relative;
+    left: 10em;
+}
+*/
+
+#tiny {
+    width: 75%;
+    position: relative;
+    left: 10px;
+    padding-bottom: 20px;
+    margin: auto;
+    z-index: 1000;
+}
+
+/* form styles */
+
+.login-page {
+    width: 360px;
+    padding: 1% 0 0;
+    margin: auto;
+}
+
+.form {
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: auto;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #FF7256;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+    background: #FFC125;
+}
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.form .message a {
+    color: #FF7256;
+    text-decoration: none;
+}
+.form .message a:hover {
+    color: #FFC125;
+}
+.thisistheloginpage .form .register-form {
+    display: none;
+}
+.thisistheregisterpage .form .login-form {
+    display: none;
+}
+
+
+/* media */
+@media (min-width: 0px) { body { padding-top: 60px; } }
+@media (min-width: 0px) { #sidebar { padding-top: 70px; } }
+@media (min-width: 0px) { .thisistheloginpage { width: 100px; } }
+@media (min-width: 0px) { .thisistheregisterpage { width: 100px; } }
+@media (min-width: 308px) { body { padding-top: 0px; } }
+@media (min-width: 308px) { #sidebar { padding-top: 0px; } }
+@media (min-width: 0px) { .thisistheloginpage { width: 360px; } }
+@media (min-width: 0px) { .thisistheregisterpage { width: 360px; } }
+@media (min-width: 761px) { body { padding-top: 60px; } }
+@media (min-width: 761px) { #sidebar { padding-top: 0px; } }
+@media (min-width: 1200px) { body { padding-top: 0; } }

@@ -15,9 +15,9 @@
 
 @section('content')
 
-
-Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing  Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing
-
+    <div style="width: 800px;">
+        Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing  Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing
+     </div>
 
     @stop
 
