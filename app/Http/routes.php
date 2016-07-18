@@ -38,6 +38,8 @@ Route::get('forgot', 'PagesController@forgot');
 
 Route::get('account', 'PagesController@account');
 
+Route::get('logout', 'PagesController@home');
+
 /*
  Routes for Admin
  */
@@ -47,5 +49,50 @@ Route::get('admin', array('as' => 'admin', function() {
 }));
 
 Route::get('admin/{page}', 'PagesController@showadminpage');
+
+/*
+ *  Member
+ */
+Route::get('members', 'MembersController@index');
+
+/*
+ *  Downline Builder
+ */
+Route::get('builders', 'BuildersController@index');
+
+/*
+ *  Mail
+ */
+Route::get('mails', 'MailsController@index');
+
+/*
+ *  Settings
+ */
+Route::get('settings', 'SettingsController@index');
+
+/*
+ *  Banners
+ */
+Route::get('banners', 'BannersController@index');
+
+/*
+ *  Pages - this is the same PagesController used above. - this is for the admin area though.
+ */
+Route::get('pages', 'PagesController@index');
+
+/*
+ *  Products
+ */
+Route::get('products', 'ProductsController@index');
+
+/*
+ *  Transactions
+ */
+Route::get('transactions', 'TransactionsController@index');
+
+/*
+ *  Promotional
+ */
+Route::get('promotionals', 'PromotionalsController@index');
 
 

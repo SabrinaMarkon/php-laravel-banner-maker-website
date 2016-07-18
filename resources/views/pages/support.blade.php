@@ -22,7 +22,7 @@
 
 @section('content')
 
-<a href="helpdesk" class="btn btn-danger btn-helpdesk" role="button" target="_blank">Open Helpdesk</a>
+        <a href="helpdesk" class="btn btn-custom" role="button" target="_blank">Open Helpdesk</a>
 
 @stop
 

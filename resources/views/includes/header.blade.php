@@ -19,8 +19,10 @@
                 <li><a href="/privacy">privacy</a></li>
                 <li><a href="/faqs">faqs</a></li>
                 <li><a href="/support">support</a></li>
+                <li><a href="/account">account</a></li>
                 <li><a href="/join">join</a></li>
                 <li><a href="/login">login</a></li>
+                <li><a href="/logout">logout</a></li>
             </ul>
         </div> <!-- navbar-collapse -->
     </div>

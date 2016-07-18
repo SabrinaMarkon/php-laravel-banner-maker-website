@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class PagesController extends Controller
 {
+    // list all pages - for admin area editing
+    public function index() {
+        return view('pages.index');
+    }
+
     public function home() {
         return view('pages.home');
     }

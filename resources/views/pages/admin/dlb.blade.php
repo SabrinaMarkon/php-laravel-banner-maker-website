@@ -15,7 +15,8 @@
 
 @section('content')
 
-    Stuff
+    {{--}} include the downline builder file that gets all builders from the db. --}}
+    @include('builders.index')
 
 @stop
 

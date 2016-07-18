@@ -15,7 +15,8 @@
 
 @section('content')
 
-    Stuff
+    {{--}} include the member file that gets all members from the db. --}}
+    @include('members.index')
 
 @stop
 

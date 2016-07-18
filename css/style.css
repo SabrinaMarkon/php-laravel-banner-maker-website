@@ -218,6 +218,26 @@ body {
     display: none;
 }
 
+.btn-custom {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #FF7256;
+    border: 0;
+    border-radius: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btn-custom:hover {
+    background: #FFC125;
+    color: #FFFFFF;
+}
+.btn-custom:visited {
+    color: #FFFFFF;
+}
+
 
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
