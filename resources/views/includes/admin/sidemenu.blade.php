@@ -10,6 +10,7 @@
         <li><a href="{{ URL::route('admin') }}/banners">Banners</a></li>
         <li><a href="{{ URL::route('admin') }}/members">Members</a></li>
         <li><a href="{{ URL::route('admin') }}/mailout">Email Members</a></li>
+        <li><a href="{{ URL::route('admin') }}/promotionals">Promotional</a></li>
         <li><a href="../helpdesk" target="_blank">Helpdesk</a></li>
     </ul>
 </nav>

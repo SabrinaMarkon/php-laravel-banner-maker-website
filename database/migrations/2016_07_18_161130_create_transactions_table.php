@@ -21,7 +21,6 @@ class CreateTransactionsTable extends Migration
             $table->dateTime('datepaid');
             $table->decimal('amount', 9, 2);
             $table->foreign('userid')->references('userid')->on('members');
-            $table->timestamps();
         });
     }
 

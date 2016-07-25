@@ -10,6 +10,6 @@ class TransactionsController extends Controller
 {
     // list all financial transactions
     public function index() {
-        return view('transactions.index');
+        return view('pages.admin.transactions');
     }
 }

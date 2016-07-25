@@ -10,6 +10,6 @@ class PromotionalsController extends Controller
 {
     // list all promotional materials
     public function index() {
-        return view('promotionals.index');
+        return view('pages.admin.promotionals');
     }
 }

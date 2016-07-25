@@ -10,7 +10,7 @@ class CreateMembersTable extends Migration
      *
      * @return void
      */
-    public function up()
+     public function up()
     {
         // Site members.
         Schema::create('members', function (Blueprint $table) {
@@ -31,8 +31,20 @@ class CreateMembersTable extends Migration
             $table->dateTime('vacationdate');
             $table->decimal('commission', 9, 2);
             $table->unique('userid');
-            $table->timestamps(); // created_at and updated_at attributes for the table.
         });
+
+             $now = new \DateTime();
+
+            DB::table('members')->insert(array(
+                'userid'    =>    'sabrina',
+                'password'    =>     'testtest',
+                'firstname'    =>    'Sabrina',
+                'lastname'    =>    'Markon',
+                'email'    =>    'phpsitescripts@outlook.com',
+                'verified'    =>    1,
+                'signupdate'    => $now,
+                'ip'    =>    '127.0.0.1',
+            ));
     }
 
     /**

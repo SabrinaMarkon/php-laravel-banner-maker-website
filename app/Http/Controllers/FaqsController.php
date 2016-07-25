@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class MailsController extends Controller
+class FaqsController extends Controller
 {
-    // list all emails
+    // list all faqs
     public function index() {
-        return view('pages.admin.mailout');
+        return view('pages.admin.faqs');
     }
 }

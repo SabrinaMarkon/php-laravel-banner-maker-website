@@ -10,6 +10,6 @@ class ProductsController extends Controller
 {
     // list all products for sale
     public function index() {
-        return view('products.index');
+        return view('pages.admin.products');
     }
 }

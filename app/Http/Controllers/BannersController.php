@@ -10,6 +10,6 @@ class BannersController extends Controller
 {
     // list all banners
     public function index() {
-        return view('banners.index');
+        return view('pages.admin.banners');
     }
 }

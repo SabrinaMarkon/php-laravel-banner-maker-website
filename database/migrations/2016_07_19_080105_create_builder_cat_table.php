@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBuilderSitesTable extends Migration
+class CreateBuilderCatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,10 @@ class CreateBuilderSitesTable extends Migration
      */
     public function up()
     {
-        // Admin programs to add to the downline builder system
-        Schema::create('builder_sites', function(Blueprint $table) {
+        Schema::create('builder_cat', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->text('desc');
-            $table->string('url', 255);
             $table->integer('order');
-            $table->integer('category');
-            $table->foreign('category')->references('id')->on('builder_cat');
         });
     }
 
@@ -31,7 +26,6 @@ class CreateBuilderSitesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('builder_sites');
+        Schema::drop('builder_cat');
     }
 }
-

@@ -15,7 +15,14 @@
 
 @section('content')
 
-    Stuff
+    <div class="form-page-small">
+        <div class="form">
+            <form class="small-form" role="form">
+                <input type="text" placeholder="your email"/>
+                <button>email login</button>
+            </form>
+        </div>
+    </div>
 
 @stop
 

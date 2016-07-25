@@ -48,51 +48,60 @@ Route::get('admin', array('as' => 'admin', function() {
     return View::make('pages.admin.index');
 }));
 
-Route::get('admin/{page}', 'PagesController@showadminpage');
+//Route::get('admin/{page}', 'PagesController@showadminpage');
 
 /*
- *  Member
+ *  Members
  */
-Route::get('members', 'MembersController@index');
+Route::get('admin/members', 'MembersController@index');
 
 /*
  *  Downline Builder
  */
-Route::get('builders', 'BuildersController@index');
+Route::get('admin/dlb', 'BuildersController@index');
+
+/*
+ *  FAQ
+ */
+Route::get('admin/faqs', 'FaqsController@index');
 
 /*
  *  Mail
  */
-Route::get('mails', 'MailsController@index');
+Route::get('admin/mailout', 'MailsController@index');
 
 /*
  *  Settings
  */
-Route::get('settings', 'SettingsController@index');
+Route::get('admin/settings', 'SettingsController@index');
 
 /*
  *  Banners
  */
-Route::get('banners', 'BannersController@index');
+Route::get('admin/banners', 'BannersController@index');
 
 /*
  *  Pages - this is the same PagesController used above. - this is for the admin area though.
  */
-Route::get('pages', 'PagesController@index');
+Route::get('admin/content', 'PagesController@admincontent');
 
 /*
  *  Products
  */
-Route::get('products', 'ProductsController@index');
+Route::get('admin/products', 'ProductsController@index');
 
 /*
  *  Transactions
  */
-Route::get('transactions', 'TransactionsController@index');
+Route::get('admin/transactions', 'TransactionsController@index');
 
 /*
  *  Promotional
  */
-Route::get('promotionals', 'PromotionalsController@index');
+Route::get('admin/promotionals', 'PromotionalsController@index');
 
+/*
+ * Admin forgot login
+ */
+Route::get('admin/forgot', 'PagesController@adminforgot');
 

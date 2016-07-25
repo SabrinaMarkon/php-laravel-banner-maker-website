@@ -8,14 +8,14 @@
 
 @section('pagetitle')
 
-    Downline Builder
+    Promotional Material
 
 @stop
 
 
 @section('content')
 
-
+    Stuff
 
 @stop
 

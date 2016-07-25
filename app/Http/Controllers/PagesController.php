@@ -66,10 +66,25 @@ class PagesController extends Controller
     }
 
     /*
-     *  Admin pages
+     *  Admin page for editing content
      */
+    public function admincontent() {
+        return view("pages.admin.content");
+    }
+
+    /*
+ *  Admin forgot password page
+ */
+    public function adminforgot() {
+        return view("pages.admin.forgot");
+    }
+
+    /*
+     *  Admin pages
+
     public function showadminpage($page) {
         return view("pages.admin." . $page);
     }
+    */
 
 }

@@ -4,15 +4,12 @@
 html, body {
     height: 100%;
 }
-
 html {
     box-sizing: border-box;
 }
-
 *, *:before, *:after {
     box-sizing: inherit;
 }
-
 body {
     position: relative;
     margin: 0;
@@ -27,19 +24,18 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .content {
     margin: 0 auto;
     text-align: center;
     display: inline-block;
     padding-top: 5em;
 }
-
 .admincontent {
     margin: 0 auto;
     text-align: center;
     display: inline-block;
     padding-top: 5em;
+    padding-left: 50px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -49,68 +45,60 @@ body {
 #main {
     background-color: #ffffff;
 }
-
 .fa {
     padding: 3px;
 }
 
+/* Top Navbar */
 .navbar-nav {
     float: none;
     text-align: center;
 }
-
 .navbar-default .navbar-brand {
     font-family: 'Luckiest Guy', cursive;
     color: #FFC125;
 }
-
 .navbar-default .navbar-brand:hover {
     color: #FF7256;
 }
-
 .navbar-nav li {
     float: none;
     display: inline-block;
 }
-
 .navbar-nav li:hover {
     box-shadow: 0 0 2px #d3d3d3;
 }
 
+/* Page headings */
 .title {
     font-size: 36px;
     font-family: 'Luckiest Guy', cursive;
     color: #FFC125;
     padding-bottom: 0.5em;
 }
-
 .title:hover {
     color: #FF7256;
 }
-
 .title-home {
     font-size: 36px;
     font-family: 'Luckiest Guy', cursive;
     color: #FFC125;
     padding-bottom: 0.5em;
 }
-
 .title-home:hover {
     color: #FFC125;
 }
-
 .title-big {
     font-size: 72px;
     padding-top: -40px;
 }
-
 .title-big:hover {
     color: #FFC125;
 }
 
-
+/* Footer */
 .footer {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
@@ -118,7 +106,15 @@ body {
     background-color: #efefef;
     text-align: center;
 }
+.footer a {
+    color: #FF7256;
+    text-decoration: none;
+}
+.footer a:hover {
+    color: #FFC125;
+}
 
+/* Admin Area Sidebar Menu */
 #sidebar {
     margin-top: 52px;
     background-color: #F3F3F3;
@@ -128,24 +124,16 @@ body {
     bottom: 0;
     left: 0; width: 10em;
 }
-
 #sidebar a {
     color: #333333;
 }
-
 .nav-stacked li a:hover {
     background-color: #FFC125;
     color: #333333;
     margin: 0;
 }
 
-/*
-#pagecontent {
-    position: relative;
-    left: 10em;
-}
-*/
-
+/* TinyMCE interface */
 #tiny {
     width: 75%;
     position: relative;
@@ -155,14 +143,34 @@ body {
     z-index: 1000;
 }
 
-/* form styles */
-
-.login-page {
+/* Form Styles */
+.form-page-small {
     width: 360px;
     padding: 1% 0 0;
     margin: auto;
 }
-
+.form-page-medium {
+    max-width: 800px;
+    padding: 45px;
+    margin: auto;
+    background: #FFFFFF;
+    margin: auto;
+    margin-top: 5px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form-page-large {
+    padding: 45px;
+    margin: auto;
+    background: #FFFFFF;
+    margin: auto;
+    margin-top: 5px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form-page-medium .form-control {
+    max-width: 400px;
+}
 .form {
     background: #FFFFFF;
     max-width: 360px;
@@ -189,6 +197,7 @@ body {
     background: #FF7256;
     width: 100%;
     border: 0;
+    border-radius:6px;
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
@@ -199,10 +208,25 @@ body {
 .form button:hover,.form button:active,.form button:focus {
     background: #FFC125;
 }
-.form .message {
+.form .message,.forgotlogin {
     margin: 15px 0 0;
     color: #b3b3b3;
     font-size: 12px;
+}
+.checkbox {
+    width: 96%;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+#rememberme {
+    margin-top: 4px;
+}
+.form .forgotlogin a {
+    color: #FF7256;
+    text-decoration: none;
+}
+.form .forgotlogin a:hover {
+    color: #FFC125;
 }
 .form .message a {
     color: #FF7256;
@@ -217,14 +241,13 @@ body {
 .thisistheregisterpage .form .login-form {
     display: none;
 }
-
 .btn-custom {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background: #FF7256;
     border: 0;
-    border-radius: 0;
+    order-radius:6px;
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
@@ -237,8 +260,15 @@ body {
 .btn-custom:visited {
     color: #FFFFFF;
 }
+.form-group .row  {
+    padding: 10px;
+}
 
-
+.table {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000;
+}
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
 @media (min-width: 0px) { #sidebar { padding-top: 70px; } }

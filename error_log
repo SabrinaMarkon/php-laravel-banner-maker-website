@@ -1,3 +1,7 @@
 [11-Jul-2016 07:16:47 UTC] PHP Warning:  require(/home/sadiesbc/public_html/../bootstrap/autoload.php): failed to open stream: No such file or directory in /home/sadiesbc/public_html/index.php on line 22
 [11-Jul-2016 07:16:47 UTC] PHP Warning:  require(/home/sadiesbc/public_html/../bootstrap/autoload.php): failed to open stream: No such file or directory in /home/sadiesbc/public_html/index.php on line 22
 [11-Jul-2016 07:16:47 UTC] PHP Fatal error:  require(): Failed opening required '/home/sadiesbc/public_html/../bootstrap/autoload.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/sadiesbc/public_html/index.php on line 22
+[18-Jul-2016 18:49:49 UTC] PHP Fatal error:  Class 'App\DB' not found in /home/sadiesbc/public_html/app/Http/Controllers/SettingsController.php on line 15
+[19-Jul-2016 04:41:53 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\PagesController::forgot() in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 78
+[19-Jul-2016 07:41:29 UTC] PHP Fatal error:  Call to undefined function NOW() in /home/sadiesbc/public_html/database/migrations/2016_07_18_150551_create_members_table.php on line 44
+[19-Jul-2016 07:58:32 UTC] PHP Fatal error:  Class 'CreateBuilderCatTable' not found in /home/sadiesbc/public_html/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php on line 335
