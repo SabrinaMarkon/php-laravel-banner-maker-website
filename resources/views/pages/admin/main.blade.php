@@ -1,0 +1,27 @@
+@extends('layouts.admin.main')
+
+@section('heading')
+
+
+@stop
+
+
+@section('pagetitle')
+
+    Your Admin Area
+
+@stop
+
+
+@section('content')
+
+    Stuff
+
+@stop
+
+
+@section('footer')
+
+
+
+@stop

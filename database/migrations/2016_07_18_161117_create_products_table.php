@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('max')->default(100);
             $table->decimal('price', 9, 2);
             $table->decimal('commission', 9, 2);
+            $table->timestamps();
         });
     }
 

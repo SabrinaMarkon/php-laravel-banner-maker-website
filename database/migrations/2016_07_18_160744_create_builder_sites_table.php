@@ -21,6 +21,7 @@ class CreateBuilderSitesTable extends Migration
             $table->integer('order');
             $table->integer('category');
             $table->foreign('category')->references('id')->on('builder_cat');
+            $table->timestamps();
         });
     }
 

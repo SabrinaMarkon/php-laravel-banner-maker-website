@@ -24,6 +24,7 @@ class CreateMailTable extends Migration
             $table->integer('clicks');
             $table->char('save', 1)->default(0);
             $table->foreign('userid')->references('userid')->on('members');
+            $table->timestamps();
         });
     }
 

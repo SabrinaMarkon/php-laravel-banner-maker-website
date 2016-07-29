@@ -30,14 +30,18 @@ class CreateMembersTable extends Migration
             $table->char('vacation', 1)->default(0);
             $table->dateTime('vacationdate');
             $table->decimal('commission', 9, 2);
+            $table->char('admin', 1)->default(0);
             $table->unique('userid');
+            $table->timestamps();
         });
 
              $now = new \DateTime();
+             $password = 'testtest';
+             $hashedPassword = Hash::make($password);
 
             DB::table('members')->insert(array(
                 'userid'    =>    'sabrina',
-                'password'    =>     'testtest',
+                'password'    =>    $hashedPassword,
                 'firstname'    =>    'Sabrina',
                 'lastname'    =>    'Markon',
                 'email'    =>    'phpsitescripts@outlook.com',

@@ -20,6 +20,7 @@ class CreatePromotionalTable extends Migration
             $table->string('p_image', 255);
             $table->string('p_subject', 255);
             $table->longText('p_message');
+            $table->timestamps();
         });
     }
 

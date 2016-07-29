@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->string('name', 255)->unique();
             $table->longText('htmlcode');
+            $table->timestamps();
         });
 
         DB::table('pages')->insert(array(

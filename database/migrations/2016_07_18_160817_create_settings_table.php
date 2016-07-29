@@ -18,6 +18,7 @@ class CreateSettingsTable extends Migration
             $table->string('setting', 255);
             $table->string('description', 400);
             $table->primary('name');
+            $table->timestamps();
         });
 
         // Populate with initial settings.

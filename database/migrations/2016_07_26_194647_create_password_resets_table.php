@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBuilderCatTable extends Migration
+class CreatePasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateBuilderCatTable extends Migration
      */
     public function up()
     {
-        Schema::create('builder_cat', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 255);
-            $table->integer('order');
-            $table->timestamps();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token')->index();
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ class CreateBuilderCatTable extends Migration
      */
     public function down()
     {
-        Schema::drop('builder_cat');
+        Schema::drop('password_resets');
     }
 }

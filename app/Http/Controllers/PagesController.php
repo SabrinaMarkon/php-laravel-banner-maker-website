@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 class PagesController extends Controller
 {
-    // list all pages - for admin area editing
+
     public function index() {
         return view('pages.index');
     }
@@ -63,20 +63,6 @@ class PagesController extends Controller
 
     public function account() {
         return view('pages.account');
-    }
-
-    /*
-     *  Admin page for editing content
-     */
-    public function admincontent() {
-        return view("pages.admin.content");
-    }
-
-    /*
- *  Admin forgot password page
- */
-    public function adminforgot() {
-        return view("pages.admin.forgot");
     }
 
     /*

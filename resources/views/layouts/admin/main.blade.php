@@ -9,6 +9,8 @@
 
 <body>
 
+<!-- layout for admin pages with sidebar -->
+
 <div class="container-fluid">
 
     <div  class="row">

@@ -32,6 +32,7 @@ class CreateBuilderTable extends Migration
             $table->string('fav3_color', 255);
             $table->primary('userid');
             $table->foreign('userid')->references('userid')->on('members');
+            $table->timestamps();
         });
     }
 

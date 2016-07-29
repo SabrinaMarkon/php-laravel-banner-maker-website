@@ -218,7 +218,7 @@ body {
     margin-left: -5px;
     margin-top: -5px;
 }
-#rememberme {
+#remember {
     margin-top: 4px;
 }
 .form .forgotlogin a {
@@ -269,6 +269,7 @@ body {
     margin: 0;
     border: 1px solid #000;
 }
+
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
 @media (min-width: 0px) { #sidebar { padding-top: 70px; } }

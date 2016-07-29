@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.login')
 
 @section('heading')
 
@@ -8,31 +8,51 @@
 
 @section('pagetitle')
 
-    Admin Area
+    Admin Login
 
 @stop
 
 
 @section('content')
 
-    Show Login if Not Logged In
 
-        <div class="form-page-small">
-            <div class="form">
-                <form class="login-form" role="form">
-                    <input type="text" placeholder="username" name="username" id="username"/>
+    <div class="form-page-small">
+        <div class="form">
+            <!-- Login Form -->
+            <form class="login-form" role="form" id="login-form" method="post" action="{{ url('admin') }}">
+                <input type="hidden" name="whichform" id="whichform" value="login">
+                {{ csrf_field() }}
+                <div class="form-group{{ $errors->has('userid') ? ' has-error' : '' }}">
+                    <input type="text" placeholder="username" name="userid" id="userid"  value="{{ old('userid') }}"/>
+                    @if ($errors->has('userid'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('userid') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <input type="password" placeholder="password" name="password" id="password"/>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+                <div class="form-group">
                     <div class="checkbox">
                         <label class="checkbox inline">
-                            <input type="checkbox" aria-label="Remember me" id="rememberme">Remember me
+                            <input type="checkbox" aria-label="Remember me" id="remember">Remember me
                         </label>
                     </div>
+                </div>
+                <div class="form-group">
                     <div class="g-recaptcha" data-sitekey="6LcVZSUTAAAAADj1oPlJCHUNyNAysciB8RhVJoJk"></div>
                     <button>login</button>
-                    <p class="forgotlogin"><a href="admin/forgot">Forgot your login?</a></p>
-                </form>
-            </div>
+                    <p class="forgotlogin"><a href="{{ url('admin/forgot') }}">Forgot your login?</a></p>
+                </div>
+            </form>
         </div>
+    </div>
 
 @stop
 
