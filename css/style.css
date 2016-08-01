@@ -147,6 +147,7 @@ body {
 .form-page-small {
     width: 360px;
     padding: 1% 0 0;
+    padding-bottom: 35px;
     margin: auto;
 }
 .form-page-medium {
@@ -263,6 +264,10 @@ body {
 .btn-custom:visited {
     color: #FFFFFF;
 }
+.btn-custom:active {
+    color: #FFFFFF;
+}
+
 .form-group .row  {
     padding: 10px;
 }
@@ -274,6 +279,10 @@ body {
 }
 table th {
     text-align: center;
+}
+
+.table-responsive {
+    padding-bottom: 30px;
 }
 
 /* media */

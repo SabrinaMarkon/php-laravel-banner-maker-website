@@ -55,7 +55,7 @@
                         $datepaid = $date->format('Y-m-d');
                      ?>
                     <tr>
-                        {{ Form::open(array('route' => array('admin.transactions.update', $transaction->id), 'method' => 'PUT', 'class' => 'form-horizontal')) }}
+                        {{ Form::open(array('route' => array('admin.transactions.update', $transaction->id), 'method' => 'PATCH', 'class' => 'form-horizontal')) }}
                         <td>{{ $transaction->id }} </td>
                         <td>{{ Form::text('userid', $transaction->userid) }} </td>
                         <td>{{ Form::text('transaction', $transaction->transaction) }} </td>

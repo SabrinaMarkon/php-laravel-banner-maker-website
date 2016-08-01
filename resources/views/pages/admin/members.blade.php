@@ -33,30 +33,43 @@
         @endif
 
         <div class="table-responsive">
-            <!-- Registration Form -->
-            {{ Form::open(array('route' => array('admin.members.store'), 'method' => 'POST', 'class' => 'form-horizontal')) }}
-            <div class="form-group">
-                {{ Form::label('userid', 'UserID') }}
-                {{ Form::text('userid', NULL, array('placeholder' => 'username')) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('password', 'Password') }}
-                {{ Form::text('password', NULL, array('placeholder' => 'password')) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('firstname', 'First Name') }}
-                {{ Form::text('firstname', NULL, array('placeholder' => 'firstname')) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('lastname', 'Last Name') }}
-                {{ Form::text('lastname', NULL, array('placeholder' => 'lastname')) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('email', 'Email') }}
-                {{ Form::text('email', NULL, array('placeholder' => 'email')) }}
-            </div>
-            {{ Form::submit('Add New Member', array('class' => 'btn btn-custom')) }}
-            {{ Form::close() }}
+                <!-- Registration Form -->
+                {{ Form::open(array('route' => array('admin.members.store'), 'method' => 'POST', 'class' => 'form-horizontal form-page-small')) }}
+                    <div class="form-group">
+                         {{ Form::label('userid', 'UserID', array('class' => 'col-sm-2 control-label')) }}
+                          <div class="col-sm-10">
+                         {{ Form::text('userid', '', array('placeholder' => 'username')) }}
+                         </div>
+                     </div>
+                    <div class="form-group">
+                        {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label')) }}
+                         <div class="col-sm-10">
+                        {{ Form::text('password', '', array('placeholder' => 'password')) }}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        {{ Form::label('firstname', 'First&nbsp;Name', array('class' => 'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                        {{ Form::text('firstname', '', array('placeholder' => 'firstname')) }}
+                        </div>
+                     </div>
+                    <div class="form-group">
+                        {{ Form::label('lastname', 'Last&nbsp;Name', array('class' => 'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                        {{ Form::text('lastname', '', array('placeholder' => 'lastname')) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('email', 'Email', array('class' => 'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                        {{ Form::text('email', '', array('placeholder' => 'email')) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                        {{ Form::submit('Add New Member', array('class' => 'btn btn-custom skinny')) }}
+                        {{ Form::close() }}
+                        </div>
         </div>
 
         <div class="table-responsive">
@@ -92,7 +105,7 @@
                     $lastlogin = $lastlogin->format('Y-m-d');
                     ?>
                     <tr>
-                        {{ Form::open(array('route' => array('admin.members.update', $member->id), 'method' => 'PUT', 'class' => 'form-horizontal')) }}
+                        {{ Form::open(array('route' => array('admin.members.update', $member->id), 'method' => 'PATCH', 'class' => 'form-horizontal')) }}
                         <td>{{ $member->id }} </td>
                         <td>{{ $member->userid }} </td>
                         <td>{{ Form::text('password', NULL) }} </td>

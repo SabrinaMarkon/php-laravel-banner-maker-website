@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
+use DateTime;
 
 class MembersController extends Controller
 {
@@ -24,6 +25,47 @@ class MembersController extends Controller
     }
 
     /**
+     * Save record for a new member.
+     *
+     * @return Response
+     */
+     public function store(Request $request) {
+         // form validation.
+         $rules = array(
+             'firstname' => 'required|max:255',
+             'lastname' => 'required|max:255',
+             'userid' => 'required|max:255|unique:members',
+             'password' => 'required|min:6|max:255',
+             'email' => 'required|email|max:255|unique:members',
+             'referid' => 'exists:members,userid, NULL',
+         );
+         $validator = Validator::make($request->all(), $rules);
+
+         if ($validator->fails()) {
+            Session::flash('errors', $validator->errors());
+            return Redirect::to('admin/members');
+         } else {
+            // create new member.
+            $member = new Member;
+            $member->userid = $request->get('userid');
+            $member->password = bcrypt($request->get('password'));
+            $member->firstname = $request->get('firstname');
+            $member->lastname = $request->get('lastname');
+             $member->email = $request->get('email');
+            $member->referid = $request->get('referid');
+             $signupdate = new DateTime();
+             $signupdate = $signupdate->format('Y-m-d H:i:sP');
+             $member->signupdate = $signupdate;
+             $member->ip = $_SERVER['REMOTE_ADDR'];
+             $member->referringsite = $_SERVER['HTTP_REFERER'];
+             $member->save();
+             Session::flash('message', 'Successfully created new member with UserID ' . $member->userid);
+             return Redirect::to('admin/members');
+         }
+
+     }
+
+    /**
      * Update member info.
      *
      * @param  int  $id
@@ -36,6 +78,7 @@ class MembersController extends Controller
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255',
+            'referid' => 'exists:members,userid, NULL',
             'verified' => 'required',
             'signupdate' => 'required|date_format:Y-m-d',
             'vacation' => 'required',
@@ -78,9 +121,10 @@ class MembersController extends Controller
      */
     public function destroy($id, Request $request) {
 
-        $member = Transaction::find($id);
+        $member = Member::find($id);
+        $userid = $member->userid;
         $member->delete();
-        Session::flash('message', 'Successfully deleted transaction ID #' . $id);
+        Session::flash('message', 'Successfully deleted Member ID #' . $id);
         return Redirect::to('admin/transactions');
 
     }

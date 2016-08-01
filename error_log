@@ -35,3 +35,13 @@
 [01-Aug-2016 04:33:17 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\DateTime' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/TransactionsController.php on line 23
 [01-Aug-2016 07:24:02 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 42
 [01-Aug-2016 07:28:44 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 42
+[01-Aug-2016 20:01:59 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 42
+[01-Aug-2016 22:01:03 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 28
+[01-Aug-2016 22:02:48 UTC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 39
+[01-Aug-2016 22:03:03 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 39
+[01-Aug-2016 22:03:14 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 28
+[01-Aug-2016 22:03:55 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 28
+[01-Aug-2016 22:04:58 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 28
+[01-Aug-2016 22:15:35 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Input' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 43
+[01-Aug-2016 22:15:56 UTC] PHP Fatal error:  Class 'Input' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 44
+[01-Aug-2016 22:16:32 UTC] PHP Parse error:  syntax error, unexpected '::' (T_PAAMAYIM_NEKUDOTAYIM) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 43
