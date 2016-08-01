@@ -44,8 +44,26 @@
 @section('content')
 
     <div id="tiny">
-        <textarea  name="pagecontent" id="pagecontent" cols="65" rows="30"></textarea>
-    </div>
+        <form role="form" method="post" action="{{ url('admin/content') }}">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <textarea  name="pagecontent" id="pagecontent" cols="65" rows="30">{{ old('pagecontent') }}</textarea>
+                     </div>
+                    <div class="col-sm-1"></div>
+            </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-custom">Save</button>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+        </form>
 
 @stop
 

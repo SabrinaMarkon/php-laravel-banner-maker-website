@@ -17,33 +17,98 @@
 
     <div class="form-page-large">
 
-            @foreach ($members as $member)
+        <!-- will be used to show any messages -->
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
-                <form class="form-horizontal" role="form">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-                    <div class="form-group">
-                        <div class="table">
-                            <div class="row">
-                                <div class="col-sm-1">{{ $member->userid }}</div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="passwordp" id="passwordp" placeholder="password" value="{{ $member->password }}"></div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="firstnamep" id="firstnamep" placeholder="first name" value="{{ $member->firstname }}"></div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="lastnamep" id="lastnamep" placeholder="last name" value="{{ $member->password }}"></div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="emailp" id="emailp" placeholder="email" value="{{ $member->email }}"></div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="verifiedp" id="verifiedp" placeholder="verified" value="{{ $member->verified }}"></div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="referidp" id="referidp" placeholder="sponsor userid" value="{{ $member->referid }}"></div>
-                                <div class="col-sm-1">{{ $member->ip }}</div>
-                                <div class="col-sm-1">{{ $member->signupdate }}</div>
-                                <div class="col-sm-1">{{ $member->lastlogin }}</div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="vacationp" id="vacationp" placeholder="vacation mode" value="{{ $member->vacation }}"></div>
-                                <div class="col-sm-1"><input type="text" class="form-control" name="commissionp" id="commissionp" placeholder="commissions owing" value="{{ $member->commission }}"></div>
-                                <input type="hidden" class="form-control" name="idp" id="idp" value="{{ $member->id }}">
-                            </div>
-                        </div>
-                    </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed table-bordered text-center">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>UserID</th>
+                    <th>Password</th>
+                    <th>Account</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Verified</th>
+                    <th>Sponsor</th>
+                    <th>IP</th>
+                    <th>Signup Date</th>
+                    <th>Last Login</th>
+                    <th>Vacation</th>
+                    <th>Commission</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
 
-                </form>
-            @endforeach
+                @foreach ($members as $member)
 
+                    <?php
+                    $signupdate = new DateTime($member->signupdate);
+                    $signupdate = $signupdate->format('Y-m-d');
+                    $lastlogin = new DateTime($member->lastlogin);
+                    $lastlogin = $lastlogin->format('Y-m-d');
+                    ?>
+                    <tr>
+                        {{ Form::open(array('route' => array('admin.members.update', $member->id), 'method' => 'PUT', 'class' => 'form-horizontal')) }}
+                        <td>{{ $member->id }} </td>
+                        <td>{{ $member->userid }} </td>
+                        <td>{{ Form::text('password', NULL) }} </td>
+                        <td>
+                            <select name="admin">
+                                <option value="1" @if($member->admin == 1) selected @endif>Admin</option>
+                                <option value="0" @if($member->admin != 1) selected @endif>Member</option>
+                             </select>
+                         </td>
+                        <td>{{ Form::text('firstname', $member->firstname) }} </td>
+                        <td>{{ Form::text('lastname', $member->lastname) }} </td>
+                        <td>{{ Form::text('email', $member->email) }} </td>
+                        <td>
+                            <select name="verified">
+                                <option value="1" @if($member->verified == 1) selected @endif>Yes</option>
+                                <option value="0" @if($member->verified != 1) selected @endif>No</option>
+                            </select>
+                        </td>
+                        <td>{{ Form::text('referid', $member->referid) }} </td>
+                        <td>{{ Form::text('ip', $member->ip) }} </td>
+                        <td>{{ Form::text('signupdate', $signupdate) }} </td>
+                        <td>{{ Form::text('lastlogin', $lastlogin) }} </td>
+                        <td>
+                            <select name="vacation">
+                                <option value="1" @if($member->vacation == 1) selected @endif>Yes</option>
+                                <option value="0" @if($member->vacation != 1) selected @endif>No</option>
+                            </select>
+                        </td>
+                        <td>{{ Form::text('commission', $member->commission) }} </td>
+                        <td>{{ Form::submit('Save', array('class' => 'btn btn-custom skinny')) }}</td>
+                        {{ Form::close() }}
+                        <td>
+                            {{ Form::open(array('route' => array('admin.members.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal')) }}
+                            {{ Form::submit('Delete', array('class' => 'btn btn-custom skinny')) }}
+                            {{ Form::close() }}
+                        </td>
+                    </tr>
+
+                @endforeach
+
+                </tbody>
+            </table>
+        </div>
     </div>
 
 @stop

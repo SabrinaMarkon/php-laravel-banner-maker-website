@@ -49,91 +49,72 @@ Route::get('logout', 'PagesController@home');
 
 
 ////////////////////////// ADMIN //////////////////////
-/*
- * Admin login page
- */
-Route::match(['get', 'post'], 'admin', array('uses' => 'Admin\AdminLoginController@home'));
-
-/*
- * Admin forgot login
- */
-Route::get('admin/forgot', 'Admin\AdminLoginController@forgot');
-
-/*
-Routes for Authenticated Admin Area
-*/
-Route::group(array('middleware' => 'auth'), function() {
-
-    // make sure button links are good.
     /*
-    Route::get('admin', array('as' => 'admin', function() {
-        // naming the view with as allows us to use {{ URL::route('admin') }} to create links in the admin area.
-        return View::make('pages.admin.main');
-    }));
+     * Admin login page
+     */
+    Route::match(['get', 'post'], 'admin', array('uses' => 'Admin\AdminLoginController@home'));
+
+    /*
+     * Admin forgot login
+     */
+    Route::get('admin/forgot', 'Admin\AdminLoginController@forgot');
+
+    /*
+    Routes for Authenticated Admin Area
     */
+    // Route::group(array('middleware' => 'admin'), function() {
+    //Route::group(array('middleware' => 'auth'), function() {
 
     /*
- *  Main Admin Area
- */
+     *  Main Admin Area
+     */
     Route::get('admin/main', array('uses' => 'Admin\MainAdminController@index'));
-
-    /*
-  *  Members
-  */
-    Route::get('admin/members', array('uses' => 'Admin\MembersController@index'));
-
+   /*
+    *  Members
+    */
+      Route::resource('admin/members', 'Admin\MembersController');
     /*
      *  Downline Builder
      */
-    Route::get('admin/dlb', array('uses' => 'Admin\BuildersController@index'));
-
+       Route::resource('admin/dlb', 'Admin\BuildersController');
     /*
      *  FAQ
      */
-//Route::get('admin/faqs', 'FaqsController@index');
-    Route::get('admin/faqs', array('uses' => 'Admin\FaqsController@index'));
-
+       Route::resource('admin/faqs', 'Admin\FaqsController');
     /*
      *  Mail
      */
-    Route::get('admin/mailout', array('uses' => 'Admin\MailsController@index'));
-
+       Route::resource('admin/mailout', 'Admin\MailsController');
     /*
      *  Settings
      */
-    Route::get('admin/settings', array('uses' => 'Admin\SettingsController@index'));
-
+        Route::resource('admin/settings', 'Admin\SettingsController');
     /*
      *  Banners
      */
-    Route::get('admin/banners', array('uses' => 'Admin\BannersController@index'));
-
+        Route::resource('admin/banners', 'Admin\BannersController');
     /*
      *  Edit Pages
      */
-    Route::get('admin/content', array('uses' => 'Admin\ContentController@index'));
-
+        Route::resource('admin/content', 'Admin\ContentController');
     /*
      *  Products
      */
-    Route::get('admin/products', array('uses' => 'Admin\ProductsController@index'));
-
+        Route::resource('admin/products', 'Admin\ProductsController');
     /*
      *  Transactions
      */
-    Route::get('admin/transactions', array('uses' => 'Admin\TransactionsControllers@index'));
-
-    /*
-     *  Promotional
-     */
-    Route::get('admin/promotionals', array('uses' => 'Admin\PromotionalsController@index'));
-
+        Route::resource('admin/transactions', 'Admin\TransactionsController');
+        /*
+         *  Promotional
+         */
+        Route::resource('admin/promotionals', 'Admin\PromotionalsController');
     /*
      *  Logout
      */
     Route::get('admin/logout', 'Admin\AdminLoginController@home');
 
-});
+//});
 
 Route::auth();
 

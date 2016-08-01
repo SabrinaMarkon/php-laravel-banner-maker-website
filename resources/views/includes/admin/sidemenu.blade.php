@@ -7,6 +7,7 @@
         <li><a href="{{ url('admin/dlb') }}">Downline Builder</a></li>
         <li><a href="{{ url('admin/faqs') }}">FAQ Editor</a></li>
         <li><a href="{{ url('admin/products') }}">Products</a></li>
+        <li><a href="{{ url('admin/transactions') }}">Transactions</a></li>
         <li><a href="{{ url('admin/banners') }}">Banners</a></li>
         <li><a href="{{ url('admin/members') }}">Members</a></li>
         <li><a href="{{ url('admin/mailout') }}">Email Members</a></li>

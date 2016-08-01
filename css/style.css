@@ -253,6 +253,9 @@ body {
     font-size: 14px;
     cursor: pointer;
 }
+.skinny {
+    padding: 4px;
+}
 .btn-custom:hover {
     background: #FFC125;
     color: #FFFFFF;
@@ -268,6 +271,9 @@ body {
     padding: 0;
     margin: 0;
     border: 1px solid #000;
+}
+table th {
+    text-align: center;
 }
 
 /* media */

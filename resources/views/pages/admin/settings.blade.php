@@ -16,8 +16,8 @@
 @section('content')
 
     <div class="form-page-medium">
-        <form class="form-horizontal" role="form">
-
+        <form class="form-horizontal" role="form" method="post" action="{{ url('admin/settings') }}">
+            {{ csrf_field() }}
                 @foreach ($settings as $setting)
 
                 <div class="form-group">

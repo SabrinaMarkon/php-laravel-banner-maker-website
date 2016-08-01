@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->string('userid', 255);
             $table->string('password', 255);
             $table->rememberToken();
-            $table->string('referid', 255);
+            $table->string('referid', 255)->nullable();
             $table->string('firstname', 255);
             $table->string('lastname', 255);
             $table->string('email', 255)->unique();
@@ -26,7 +26,7 @@ class CreateMembersTable extends Migration
             $table->dateTime('signupdate');
             $table->string('ip', 255);
             $table->string('referringsite', 255);
-            $table->dateTime('lastlogin');
+            $table->dateTime('lastlogin')->nullable();
             $table->char('vacation', 1)->default(0);
             $table->dateTime('vacationdate');
             $table->decimal('commission', 9, 2);
@@ -34,7 +34,7 @@ class CreateMembersTable extends Migration
             $table->unique('userid');
             $table->timestamps();
         });
-
+             //$2y$10$xYPBLs.4tSRSu6iV3IODb.dM0RJu.Nz45er5n47IPuUefSgL5APTe
              $now = new \DateTime();
              $password = 'testtest';
              $hashedPassword = Hash::make($password);
