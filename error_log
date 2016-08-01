@@ -33,3 +33,5 @@
 [01-Aug-2016 03:04:55 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Input' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/TransactionsController.php on line 51
 [01-Aug-2016 03:07:12 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\Admin\withErrors() in /home/sadiesbc/public_html/app/Http/Controllers/Admin/TransactionsController.php on line 47
 [01-Aug-2016 04:33:17 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\DateTime' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/TransactionsController.php on line 23
+[01-Aug-2016 07:24:02 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 42
+[01-Aug-2016 07:28:44 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 42

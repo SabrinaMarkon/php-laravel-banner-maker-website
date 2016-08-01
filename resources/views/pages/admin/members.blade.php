@@ -33,6 +33,33 @@
         @endif
 
         <div class="table-responsive">
+            <!-- Registration Form -->
+            {{ Form::open(array('route' => array('admin.members.store'), 'method' => 'POST', 'class' => 'form-horizontal')) }}
+            <div class="form-group">
+                {{ Form::label('userid', 'UserID') }}
+                {{ Form::text('userid', NULL, array('placeholder' => 'username')) }}
+            </div>
+            <div class="form-group">
+                {{ Form::label('password', 'Password') }}
+                {{ Form::text('password', NULL, array('placeholder' => 'password')) }}
+            </div>
+            <div class="form-group">
+                {{ Form::label('firstname', 'First Name') }}
+                {{ Form::text('firstname', NULL, array('placeholder' => 'firstname')) }}
+            </div>
+            <div class="form-group">
+                {{ Form::label('lastname', 'Last Name') }}
+                {{ Form::text('lastname', NULL, array('placeholder' => 'lastname')) }}
+            </div>
+            <div class="form-group">
+                {{ Form::label('email', 'Email') }}
+                {{ Form::text('email', NULL, array('placeholder' => 'email')) }}
+            </div>
+            {{ Form::submit('Add New Member', array('class' => 'btn btn-custom')) }}
+            {{ Form::close() }}
+        </div>
+
+        <div class="table-responsive">
             <table class="table table-hover table-condensed table-bordered text-center">
                 <thead>
                 <tr>
