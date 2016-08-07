@@ -285,6 +285,11 @@ table th {
     padding-bottom: 30px;
 }
 
+#bannercanvas {
+    background: transparent url('/images/canvasbg.gif');
+    border: 1px solid #000;
+}
+
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
 @media (min-width: 0px) { #sidebar { padding-top: 70px; } }

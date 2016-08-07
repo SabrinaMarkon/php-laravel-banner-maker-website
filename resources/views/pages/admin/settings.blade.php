@@ -16,6 +16,12 @@
 @section('content')
 
     <div class="form-page-medium">
+
+        <!-- will be used to show any messages -->
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+        
         <form class="form-horizontal" role="form" method="post" action="{{ url('admin/settings') }}">
             {{ csrf_field() }}
                 @foreach ($settings as $setting)

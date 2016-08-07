@@ -43,7 +43,7 @@ class MembersController extends Controller
 
          if ($validator->fails()) {
             Session::flash('errors', $validator->errors());
-            return Redirect::to('admin/members');
+             return Redirect::route('admin/members/index');
          } else {
             // create new member.
             $member = new Member;
@@ -60,7 +60,7 @@ class MembersController extends Controller
              $member->referringsite = $_SERVER['HTTP_REFERER'];
              $member->save();
              Session::flash('message', 'Successfully created new member with UserID ' . $member->userid);
-             return Redirect::to('admin/members');
+             return Redirect::route('admin/members/index');
          }
 
      }
@@ -88,7 +88,7 @@ class MembersController extends Controller
 
         if ($validator->fails()) {
             Session::flash('errors', $validator->errors());
-            return Redirect::to('admin/members');
+            return Redirect::route('admin/members/index');
         } else {
             // update record.
             $member = Member::find($id);
@@ -108,7 +108,7 @@ class MembersController extends Controller
             $member->commission = $request->get('commission');
             $member->save();
             Session::flash('message', 'Successfully updated UserID ' . $member->userid);
-            return Redirect::to('admin/members');
+            return Redirect::route('admin/members/index');
         }
 
     }
@@ -125,7 +125,7 @@ class MembersController extends Controller
         $userid = $member->userid;
         $member->delete();
         Session::flash('message', 'Successfully deleted Member ID #' . $id);
-        return Redirect::to('admin/transactions');
+        return Redirect::route('admin/members/index');
 
     }
 

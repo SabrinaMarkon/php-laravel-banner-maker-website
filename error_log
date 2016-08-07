@@ -45,3 +45,6 @@
 [01-Aug-2016 22:15:35 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Input' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 43
 [01-Aug-2016 22:15:56 UTC] PHP Fatal error:  Class 'Input' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 44
 [01-Aug-2016 22:16:32 UTC] PHP Parse error:  syntax error, unexpected '::' (T_PAAMAYIM_NEKUDOTAYIM) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 43
+[07-Aug-2016 06:00:12 UTC] PHP Fatal error:  Class 'HTML' not found in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 18
+[07-Aug-2016 08:04:11 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 25427968 bytes) in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 62
+[07-Aug-2016 08:04:20 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 25427968 bytes) in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 62

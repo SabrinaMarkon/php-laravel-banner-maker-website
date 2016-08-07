@@ -52,7 +52,8 @@ class TransactionsController extends Controller
             $transaction->amount = $request->get('amount');
             $transaction->save();
             Session::flash('message', 'Successfully updated transaction ID #' . $id);
-            return Redirect::to('admin/transactions');
+            //return Redirect::to('admin/transactions');
+            return Redirect::route('admin/transactions/index');
         }
 
     }
@@ -68,7 +69,7 @@ class TransactionsController extends Controller
         $transaction = Transaction::find($id);
         $transaction->delete();
         Session::flash('message', 'Successfully deleted transaction ID #' . $id);
-        return Redirect::to('admin/transactions');
+        return Redirect::route('admin/transactions/index');
 
     }
 

@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Models\Setting;
-
 use App\Http\Controllers\Controller;
-
+use Session;
+use Redirect;
 use DB;
 
 class SettingsController extends Controller
@@ -26,7 +24,8 @@ class SettingsController extends Controller
         foreach ($input as $key => $val) {
            // echo $key . "-" . $val ."<br>";
             DB::table('settings')->where('name', $key)->update(['setting' => $val]);
-            // show settings page with updated message
+            Session::flash('message', 'Successfully updated the site settings!');
+            return Redirect::route('admin/settings/index');
         }
     }
 
