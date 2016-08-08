@@ -27,6 +27,12 @@
 
 <br><br>
 
+Banner Width: <input type="text" id="bannerwidth">
+
+Banner Height: <input type="text" id="bannerheight">
+
+<br><br>
+
 Background Color: <select id="pickbgcolor">
     <option value="#ff0000">Red</option>
     <option value="#00ff00">Green</option>
@@ -131,8 +137,8 @@ Text Color: <select id="picktextcolor">
     // preview canvas image
     $("#btn-Preview-Image").on('click', function () {
         document.getElementById("previewImage").innerHTML = "";
-        var elem = $("#canvascontainer");
-        html2canvas([elem.get(0)], {
+        var datafrom = $("#canvascontainer").get(0);
+        html2canvas(datafrom, {
             onrendered: function (canvas) {
                 $("#previewImage").append(canvas);
                 getCanvas = canvas;
@@ -155,6 +161,11 @@ Text Color: <select id="picktextcolor">
     });
     // end ready function
     */
+
+        // banner width and height //
+        $('#bannerwidth').on('change', function() {
+
+        });
 
         // background //
         $('#pickbgcolor').on('change', function() {
@@ -305,8 +316,8 @@ Text Color: <select id="picktextcolor">
         $('#undo').on('click', function() {
             if (canvascontainer.lastChild.id != 'bannercanvas') {
                 canvascontainer.removeChild(canvascontainer.lastChild);
-                document.getElementById("previewImage").innerHTML = '';
-                document.getElementById("textcount").innerHTML = '';
+                $('#previewImage').innerHTML = '';
+                $('#textcount').innerHTML = '';
             }
             position--;
             canvasnumber--;
@@ -314,8 +325,8 @@ Text Color: <select id="picktextcolor">
 
         // undo all
         $('#clear').on('click', function() {
-            document.getElementById("previewImage").innerHTML = '';
-            document.getElementById("textcount").innerHTML = '';
+            $('#previewImage').innerHTML = '';
+            $('#textcount').innerHTML = '';
             while (canvascontainer.lastChild.id != 'bannercanvas') {
                 canvascontainer.removeChild(canvascontainer.lastChild);
             }
