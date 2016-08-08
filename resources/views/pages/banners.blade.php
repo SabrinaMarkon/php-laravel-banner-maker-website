@@ -17,9 +17,11 @@
 
 @section('content')
 
+    <p id="textcount" style="position:absolute; left: 0px;"></p>
+    <div id="container" style="float:left; margin-right:40px;margin-top:10px;"> </div>
+
 <div class="canvasrow text-center" id="canvascontainer">
         <canvas id="bannercanvas" class="canvasclass" width="600" height="300">
-            Sadly, your browser does not support HTML5 Canvas. You should get Chrome.
         </canvas>
 </div>
 
@@ -112,20 +114,53 @@ Text Color: <select id="picktextcolor">
 <button id="italic"><em>I</em></button>
 <button id="underline"><u>U</u></button>
 <button id="textadd">ADD</button>
-
+<button id="undo">UNDO</button>
 <button id="clear">CLEAR ALL</button>
 
+    <br><br>
+    <input id="btn-Preview-Image" type="button" value="Preview" />
+    <br><br>
+    <div id="previewImage">
+    </div>
+
 <script>
+
+    // for previewing final image - this smaller image should be pasted to the canvas too instead of full size canvas. We also need widthxheight choice for banners.
+    var element = $("#textcount"); // global variable <- I'll use this one to get the smaller image from the textcount div for resizing.
+    var getCanvas; // global variable
+    // preview canvas image
+    $("#btn-Preview-Image").on('click', function () {
+        document.getElementById("previewImage").innerHTML = "";
+        var elem = $("#canvascontainer");
+        html2canvas([elem.get(0)], {
+            onrendered: function (canvas) {
+                $("#previewImage").append(canvas);
+                getCanvas = canvas;
+            }
+        });
+    });
 
     var position = 20;
     var canvasnumber = 2;
 
+    /*
     $(document).ready(function() {
+        $("#spinner").bind("ajaxSend", function() {
+            $(this).show();
+        }).bind("ajaxStop", function() {
+            $(this).hide();
+        }).bind("ajaxError", function() {
+            $(this).hide();
+        });
+    });
+    // end ready function
+    */
 
         // background //
         $('#pickbgcolor').on('change', function() {
            $('#bannercanvas').css('background', this.value);
         });
+
         // border //
         $('#pickborderwidth').on('change', function() {
             $('#bannercanvas').css('border-width', this.value + 'px');
@@ -136,6 +171,7 @@ Text Color: <select id="picktextcolor">
         $('#pickborderstyle').on('change', function() {
             $('#bannercanvas').css('border-style', this.value);
         });
+
         // text //
         $('#textadd').on('click', function() {
             var canvasID = "canvas" + canvasnumber;
@@ -159,7 +195,7 @@ Text Color: <select id="picktextcolor">
                 bold = "bold";
             }
             if ($( "#texttoadd" ).hasClass( "italic" )) {
-                italic = "italic";
+                italic = "Italic";
             }
             var x = canvas.width / 2 - 90;
             var y = canvas.height / 2;
@@ -167,35 +203,119 @@ Text Color: <select id="picktextcolor">
             var textFont = document.getElementById("picktextfont").value;
             var textAlign = 'left';
             context.fillStyle = textColor;
-            context.font = bold + " " + italic + " " + fontSize + " " + textFont;
+            context.font = italic + " " + bold + " " + fontSize + " " + textFont;
+            //alert(context.font); test that the above line is ok
             context.fillText(text, x, y);
             if ($("#texttoadd").hasClass("underline")) {
                 textUnderline(context, text, x, y, textColor, fontSize, textAlign);
             }
+            $("p#textcount").text(text);
+
+
             position = position + 20;
             canvasnumber++;
         });
 
+        // font choice
         $('#picktextfont').on('change', function() {
             $('#texttoadd').css('font-family', this.value);
-        });
+            // update hidden p
+            var value = $('#texttoadd').val();
+            $("p#textcount").text(value);
+            var fontid =  $('#picktextfont').val();
+            $("p#textcount").css("font-family", fontid);
+            var color =  $('#picktextcolor').val();
+            $("p#textcount").css("color", color);
+            var size =  $('#picktextsize').val();
+            $("p#textcount").css("font-size", size);
+        }).keyup();
+
+        // font size
         $('#picktextsize').on('change', function() {
-            //$('#texttoadd').css('font-size', this.value);
-        });
+            //$('#texttoadd').css('font-size', this.value); // commented out so the input doesn't get huge...
+            var value = $('#texttoadd').val();
+            $("p#textcount").text(value);
+            var fontid =  $('#picktextfont').val();
+            $("p#textcount").css("font-family", fontid);
+            var color =  $('#picktextcolor').val();
+            $("p#textcount").css("color", color);
+            var size =  $('#picktextsize').val();
+            $("p#textcount").css("font-size", size);
+        }).keyup();
+
+        // font  color
         $('#picktextcolor').on('change', function() {
             $('#texttoadd').css('color', this.value);
-        });
+            var value = $('#texttoadd').val();
+            $("p#textcount").text(value);
+            var fontid =  $('#picktextfont').val();
+            $("p#textcount").css("font-family", fontid);
+            var color =  $('#picktextcolor').val();
+            $("p#textcount").css("color", color);
+            var size =  $('#picktextsize').val();
+            $("p#textcount").css("font-size", size);
+        }).keyup();
+
+        // bold
         $('#bold').click(function(){
             $('#texttoadd').toggleClass('bold');
-        });
-        $('#italic').click(function(){
-            $('#texttoadd').toggleClass('italic');
-        });
-        $('#underline').click(function(){
-            $('#texttoadd').toggleClass('underline');
+            $("#textcount").toggleClass('bold');
+            if($('#textcount').hasClass('bold')) {
+                $('#textcount').css('font-weight', 'bold');
+            } else {
+                $('#textcount').css('font-weight', 'normal');
+            }
         });
 
+        // italic
+        $('#italic').click(function(){
+            $('#texttoadd').toggleClass('italic');
+            $("#textcount").toggleClass('italic');
+            if($('#textcount').hasClass('italic')) {
+                $('#textcount').css('font-style', 'italic');
+            } else {
+                $('#textcount').css('font-style', 'normal');
+            }
+        });
+
+        // underline
+        $('#underline').click(function(){
+            $('#texttoadd').toggleClass('underline');
+            $("#textcount").toggleClass('underline');
+            if($('#textcount').hasClass('underline')) {
+                $('#textcount').css('text-decoration', 'underline');
+            } else {
+                $('#textcount').css('text-decoration', 'none');
+            }
+        });
+
+        // typing in text input
+        $("#texttoadd").keyup(function () {
+            var value = $(this).val();
+            $("p#textcount").text(value);
+            var fontid =  $('#picktextfont').val();
+            $("p#textcount").css("font-family", fontid);
+            var color =  $('#picktextcolor').val();
+            $("p#textcount").css("color", color);
+            var size =  $('#picktextsize').val();
+            $("p#textcount").css("font-size", size);
+        }).keyup();
+
+        // undo one at a time
+        $('#undo').on('click', function() {
+            if (canvascontainer.lastChild.id != 'bannercanvas') {
+                canvascontainer.removeChild(canvascontainer.lastChild);
+                document.getElementById("previewImage").innerHTML = '';
+                document.getElementById("textcount").innerHTML = '';
+            }
+            position--;
+            canvasnumber--;
+        });
+
+        // undo all
         $('#clear').on('click', function() {
+            document.getElementById("previewImage").innerHTML = '';
+            document.getElementById("textcount").innerHTML = '';
             while (canvascontainer.lastChild.id != 'bannercanvas') {
                 canvascontainer.removeChild(canvascontainer.lastChild);
             }
@@ -204,7 +324,8 @@ Text Color: <select id="picktextcolor">
         });
 
 
-    });
+
+
 
     // simulate underlining text as html canvas does not support it.
     // Function: https://scriptstock.wordpress.com/2012/06/12/html5-canvas-text-underline-workaround/
@@ -239,6 +360,10 @@ Text Color: <select id="picktextcolor">
         context.lineTo(endX,endY);context.strokeStyle = color;
         context.stroke();
     }
+
+
+
+    /////
 
 
 </script>
