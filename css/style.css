@@ -285,10 +285,36 @@ table th {
     padding-bottom: 30px;
 }
 
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
+.underline {
+    text-decoration: underline;
+}
+
+.canvasrow {
+    position: relative;
+    left: 80px;
+    width: 600px;
+}
 #bannercanvas {
+    position: relative;
+    left: 0px;
+    top: 0px;
     background: transparent url('/images/canvasbg.gif');
     border: 1px solid #000;
+    z-index: 1;
 }
+.overlay {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+   /*border: 3px solid #f00; // to see that the overlays are stacked properly */
+}
+
 
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
