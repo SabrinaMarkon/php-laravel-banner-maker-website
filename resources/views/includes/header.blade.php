@@ -11,11 +11,11 @@
         <div class="navbar-collapse collapse text-center" id="main_navbar">
             <ul class="nav navbar-nav">
                 <li><a href="/"><i class="fa fa-home"></i>home</a></li>
-                <!--<li><a href="/about">about</a></li>
                 <li><a href="/banners">banners</a></li>
-                <li><a href="/dlb">dlb</a></li>-->
+                <!--<li><a href="/about">about</a></li>
+                <li><a href="/dlb">dlb</a></li>
                 <li><a href="/license">license</a></li>
-                <li><a href="/terms">terms</a></li>
+                <li><a href="/terms">terms</a></li>-->
                 <li><a href="/privacy">privacy</a></li>
                 <li><a href="/faqs">faqs</a></li>
                 <li><a href="/support">support</a></li>

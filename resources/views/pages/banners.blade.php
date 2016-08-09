@@ -18,22 +18,25 @@
 @section('content')
 
     <p id="textcount" style="position:absolute; left: 0px;"></p>
-    <div id="container" style="float:left; margin-right:40px;margin-top:10px;"> </div>
 
-<div class="canvasrow text-center" id="canvascontainer">
-        <canvas id="bannercanvas" class="canvasclass" width="600" height="300">
-        </canvas>
+<div  id="canvascontainer">
+        <canvas id="bannercanvas" class="canvasclass text-center" width="600" height="300"></canvas>
 </div>
 
 <br><br>
 
-Banner Width: <input type="text" id="bannerwidth">
-
-Banner Height: <input type="text" id="bannerheight">
+Banner Width: <input type="text" id="bannerwidth" value="600"><span id="bannerwidtherror">
+        <span class="glyphicon glyphicon-exclamation-sign has-error" aria-hidden="true"></span><span class="has-error">Please enter an integer between 1 and 1000</span></span>
+<br><br>
+Banner Height: <input type="text" id="bannerheight" value="300"><span id="bannerheighterror">
+        <span class="glyphicon glyphicon-exclamation-sign has-error" aria-hidden="true"></span><span class="has-error">Please enter an integer between 1 and 1000</span></span>
 
 <br><br>
 
 Background Color: <select id="pickbgcolor">
+    <option value="transparent" selected="selected">none</option>
+    <option value="#000000">Black</option>
+    <option value="#ffffff">White</option>
     <option value="#ff0000">Red</option>
     <option value="#00ff00">Green</option>
     <option value="#0000ff">Blue</option>
@@ -44,16 +47,21 @@ Background Image: <select id="pickbgimage">
 
 Border Width: <select id="pickborderwidth">
     @for($i = 0; $i <= 20; $i++)
-        <option value="{{ $i }}">{{ $i }}</option>
+        @if ($i == 0)
+            <option value="{{ $i }}" selected="selected">{{ $i }}</option>
+         @else
+            <option value="{{ $i }}">{{ $i }}</option>
+        @endif
     @endfor
 </select>
 Border Color: <select id="pickbordercolor">
+     <option value="transparent" selected="selected">none</option>
     <option value="#ff0000">Red</option>
     <option value="#00ff00">Green</option>
     <option value="#0000ff">Blue</option>
 </select>
 Border Style: <select id="pickborderstyle">
-    <option value="none">none</option>
+    <option value="none" selected="selected">none</option>
     <option value="solid">solid</option>
     <option value="dotted">dotted</option>
     <option value="dashed">dashed</option>
@@ -71,7 +79,7 @@ Text to Add: <input type="text" id="texttoadd" size="25">
 {{--Text to Add: <div id="texttoadd" contenteditable="true">Write here</div>--}}
 
 Text Font: <select id="picktextfont">
-    <option value="Arial" style="font-family: Arial;">Arial</option>
+    <option value="Arial" style="font-family: Arial;" selected="selected">Arial</option>
     <option value="Arial Black" style="font-family: Arial Black;">Arial Black</option>
     <option value="Arial Narrow" style="font-family: Arial Narrow;">Arial Narrow</option>
     <option value="Bebas Neue" style="font-family: Bebas Neue;">Bebas Neue</option>
@@ -105,11 +113,15 @@ Text Font: <select id="picktextfont">
 </select>
 Text Size: <select id="picktextsize">
     @for($i = 8; $i <= 200; $i+=2)
-        <option value="{{ $i }}px">{{ $i }}px</option>
+        @if($i == 16)
+            <option value="{{ $i }}px" selected="selected">{{ $i }}px</option>
+        @else
+            <option value="{{ $i }}px">{{ $i }}px</option>
+        @endif
     @endfor
 </select><br>
 Text Color: <select id="picktextcolor">
-    <option value="#000000">Black</option>
+    <option value="#000000" selected="selected">Black</option>
     <option value="#ffffff">White</option>
     <option value="#ff0000">Red</option>
     <option value="#00ff00">Green</option>
@@ -131,12 +143,15 @@ Text Color: <select id="picktextcolor">
 
 <script>
 
-    // for previewing final image - this smaller image should be pasted to the canvas too instead of full size canvas. We also need widthxheight choice for banners.
+
+    // for previewing final image - this smaller image should be pasted to the canvas too instead of full size canvas.
     var element = $("#textcount"); // global variable <- I'll use this one to get the smaller image from the textcount div for resizing.
     var getCanvas; // global variable
     // preview canvas image
     $("#btn-Preview-Image").on('click', function () {
         document.getElementById("previewImage").innerHTML = "";
+        $('#previewImage').css({'margin': '-3px', 'overflow': 'hidden'});
+
         var datafrom = $("#canvascontainer").get(0);
         html2canvas(datafrom, {
             onrendered: function (canvas) {
@@ -146,7 +161,7 @@ Text Color: <select id="picktextcolor">
         });
     });
 
-    var position = 20;
+
     var canvasnumber = 2;
 
     /*
@@ -162,10 +177,40 @@ Text Color: <select id="picktextcolor">
     // end ready function
     */
 
-        // banner width and height //
-        $('#bannerwidth').on('change', function() {
+        // banner width and height // PROBLEM STILL - text added shows outside if banner is smaller.
+        $('#bannerwidth').on('keyup', function() {
+            var value = $(this).val();
+             if ($.isNumeric(value) && Math.floor(value) == +value && (value > 0 && value < 1001 && value != null)) {
+                $('#bannerwidtherror').css('visibility', 'hidden');
+                 var canvascontainer = document.getElementById("canvascontainer");
+                 //canvascontainer.width = value;
+                 $(canvascontainer).css('width', value);
+                 var nodelist = canvascontainer.getElementsByTagName("canvas");
+                 var i;
+                 for (i = 0; i < nodelist.length; i++) {
+                     nodelist[i].width = value;
+                 }
+            } else {
+                $('#bannerwidtherror').css('visibility', 'visible');
+            }
+        }).keyup();
 
-        });
+        $('#bannerheight').on('keyup', function() {
+            var value = $(this).val();
+            if ($.isNumeric(value) && Math.floor(value) == +value && (value > 0 && value < 1001 && value != null)) {
+                $('#bannerheighterror').css('visibility', 'hidden');
+                var canvascontainer = document.getElementById("canvascontainer");
+                //canvascontainer.height = value;
+                $(canvascontainer).css('height', value);
+                var nodelist = canvascontainer.getElementsByTagName("canvas");
+                var i;
+                for (i = 0; i < nodelist.length; i++) {
+                    nodelist[i].height = value;
+                }
+            } else {
+                $('#bannerheighterror').css('visibility', 'visible');
+            }
+        }).keyup();
 
         // background //
         $('#pickbgcolor').on('change', function() {
@@ -174,7 +219,7 @@ Text Color: <select id="picktextcolor">
 
         // border //
         $('#pickborderwidth').on('change', function() {
-            $('#bannercanvas').css('border-width', this.value + 'px');
+            $('#bannercanvas').css({'border-width': this.value, 'margin': '-3px', 'overflow': 'hidden'});
         });
         $('#pickbordercolor').on('change', function() {
             $('#bannercanvas').css('border-color', this.value);
@@ -190,8 +235,8 @@ Text Color: <select id="picktextcolor">
             document.getElementById("canvascontainer").appendChild(node);
             node.setAttribute("id", canvasID);
             node.setAttribute("class", "overlay");
-            node.setAttribute("width", "600");
-            node.setAttribute("height", "300");
+            node.setAttribute("width", $('#bannerwidth').val()-6);
+            node.setAttribute("height", $('#bannerheight').val()-6);
             node.setAttribute("draggable", true);
             $('#' + canvasID).css("z-index", canvasnumber);
             //$('#' + canvasID).css("background-color", "pink"); // check to make sure the new node was created.
@@ -208,11 +253,16 @@ Text Color: <select id="picktextcolor">
             if ($( "#texttoadd" ).hasClass( "italic" )) {
                 italic = "Italic";
             }
-            var x = canvas.width / 2 - 90;
-            var y = canvas.height / 2;
+            var x = canvas.width/2;
+            var y = canvas.height/2;
             var fontSize = document.getElementById("picktextsize").value;
             var textFont = document.getElementById("picktextfont").value;
             var textAlign = 'left';
+            context.imageSmoothingEnabled = false;  /* standard - these help make preview text less blurry */
+            context.mozImageSmoothingEnabled = false;   /* Firefox */
+            context.oImageSmoothingEnabled = false;   /* Opera */
+            context.webkitImageSmoothingEnabled = false;   /* Safari */
+            context.msImageSmoothingEnabled = false;   /* IE */
             context.fillStyle = textColor;
             context.font = italic + " " + bold + " " + fontSize + " " + textFont;
             //alert(context.font); test that the above line is ok
@@ -222,8 +272,6 @@ Text Color: <select id="picktextcolor">
             }
             $("p#textcount").text(text);
 
-
-            position = position + 20;
             canvasnumber++;
         });
 
@@ -316,21 +364,19 @@ Text Color: <select id="picktextcolor">
         $('#undo').on('click', function() {
             if (canvascontainer.lastChild.id != 'bannercanvas') {
                 canvascontainer.removeChild(canvascontainer.lastChild);
-                $('#previewImage').innerHTML = '';
-                $('#textcount').innerHTML = '';
+                $('#previewImage').empty();
+                //$('#textcount').empty();
             }
-            position--;
             canvasnumber--;
         });
 
         // undo all
         $('#clear').on('click', function() {
-            $('#previewImage').innerHTML = '';
-            $('#textcount').innerHTML = '';
+            $('#previewImage').empty();
+            $('#textcount').empty();
             while (canvascontainer.lastChild.id != 'bannercanvas') {
                 canvascontainer.removeChild(canvascontainer.lastChild);
             }
-            position = 20;
             canvasnumber = 2;
         });
 
@@ -378,7 +424,6 @@ Text Color: <select id="picktextcolor">
 
 
 </script>
-
 
 @stop
 
