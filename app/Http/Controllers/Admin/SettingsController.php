@@ -25,7 +25,7 @@ class SettingsController extends Controller
            // echo $key . "-" . $val ."<br>";
             DB::table('settings')->where('name', $key)->update(['setting' => $val]);
             Session::flash('message', 'Successfully updated the site settings!');
-            return Redirect::route('admin/settings/index');
+            return Redirect::to('admin/settings');
         }
     }
 

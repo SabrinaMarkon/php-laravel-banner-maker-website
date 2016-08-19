@@ -43,7 +43,7 @@ class MembersController extends Controller
 
          if ($validator->fails()) {
             Session::flash('errors', $validator->errors());
-             return Redirect::route('admin/members/index');
+             return Redirect::to('admin/members')->withInput($request->all()); // "withInput" sends the "old" values back on error to prepopulate the form.
          } else {
             // create new member.
             $member = new Member;
@@ -60,7 +60,7 @@ class MembersController extends Controller
              $member->referringsite = $_SERVER['HTTP_REFERER'];
              $member->save();
              Session::flash('message', 'Successfully created new member with UserID ' . $member->userid);
-             return Redirect::route('admin/members/index');
+             return Redirect::to('admin/members');
          }
 
      }
@@ -75,40 +75,40 @@ class MembersController extends Controller
 
         // form validation.
         $rules = array(
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'referid' => 'exists:members,userid, NULL',
-            'verified' => 'required',
-            'signupdate' => 'required|date_format:Y-m-d',
-            'vacation' => 'required',
-            'commission' => 'required|regex:/^\d*(\.\d{1,2})?$/',
+            'savefirstname' => 'required|max:255',
+            'savelastname' => 'required|max:255',
+            'saveemail' => 'required|email|max:255',
+            'savereferid' => 'exists:members,userid',
+            'saveverified' => 'required',
+            'savesignupdate' => 'required|date_format:Y-m-d',
+            'savevacation' => 'required',
+            'savecommission' => 'required|regex:/^\d*(\.\d{1,2})?$/',
         );
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             Session::flash('errors', $validator->errors());
-            return Redirect::route('admin/members/index');
+            return Redirect::to('admin/members');
         } else {
             // update record.
             $member = Member::find($id);
-            if ($request->get('password') != "") {
-                $member->password = bcrypt($request->get('password'));
+            if ($request->get('savepassword') != "") {
+                $member->password = bcrypt($request->get('savepassword'));
             }
-            $member->admin = $request->get('admin');
-            $member->firstname = $request->get('firstname');
-            $member->lastname = $request->get('lastname');
-            $member->email = $request->get('email');
-            $member->verified = $request->get('verified');
-            $member->referid = $request->get('referid');
-            $member->ip = $request->get('ip');
-            $member->signupdate = $request->get('signupdate');
-            $member->lastlogin = $request->get('lastlogin');
-            $member->vacation = $request->get('vacation');
-            $member->commission = $request->get('commission');
+            $member->admin = $request->get('saveadmin');
+            $member->firstname = $request->get('savefirstname');
+            $member->lastname = $request->get('savelastname');
+            $member->email = $request->get('saveemail');
+            $member->verified = $request->get('saveverified');
+            $member->referid = $request->get('savereferid');
+            $member->ip = $request->get('saveip');
+            $member->signupdate = $request->get('savesignupdate');
+            $member->lastlogin = $request->get('savelastlogin');
+            $member->vacation = $request->get('savevacation');
+            $member->commission = $request->get('savecommission');
             $member->save();
             Session::flash('message', 'Successfully updated UserID ' . $member->userid);
-            return Redirect::route('admin/members/index');
+            return Redirect::to('admin/members');
         }
 
     }
@@ -125,7 +125,7 @@ class MembersController extends Controller
         $userid = $member->userid;
         $member->delete();
         Session::flash('message', 'Successfully deleted Member ID #' . $id);
-        return Redirect::route('admin/members/index');
+        return Redirect::to('admin/members');
 
     }
 

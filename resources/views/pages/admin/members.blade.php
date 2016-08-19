@@ -38,31 +38,31 @@
                     <div class="form-group">
                          {{ Form::label('userid', 'UserID', array('class' => 'col-sm-2 control-label')) }}
                           <div class="col-sm-10">
-                         {{ Form::text('userid', '', array('placeholder' => 'username')) }}
+                         {{ Form::text('userid', old('userid'), array('placeholder' => 'username')) }}
                          </div>
                      </div>
                     <div class="form-group">
                         {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label')) }}
                          <div class="col-sm-10">
-                        {{ Form::text('password', '', array('placeholder' => 'password')) }}
+                        {{ Form::text('password', old('password'), array('placeholder' => 'password')) }}
                         </div>
                     </div>
                      <div class="form-group">
                         {{ Form::label('firstname', 'First&nbsp;Name', array('class' => 'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                        {{ Form::text('firstname', '', array('placeholder' => 'firstname')) }}
+                        {{ Form::text('firstname', old('firstname'), array('placeholder' => 'firstname')) }}
                         </div>
                      </div>
                     <div class="form-group">
                         {{ Form::label('lastname', 'Last&nbsp;Name', array('class' => 'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                        {{ Form::text('lastname', '', array('placeholder' => 'lastname')) }}
+                        {{ Form::text('lastname', old('lastname'), array('placeholder' => 'lastname')) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('email', 'Email', array('class' => 'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                        {{ Form::text('email', '', array('placeholder' => 'email')) }}
+                        {{ Form::text('email', old('email'), array('placeholder' => 'email')) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,33 +108,33 @@
                         {{ Form::open(array('route' => array('admin.members.update', $member->id), 'method' => 'PATCH', 'class' => 'form-horizontal')) }}
                         <td>{{ $member->id }} </td>
                         <td>{{ $member->userid }} </td>
-                        <td>{{ Form::text('password', NULL) }} </td>
+                        <td>{{ Form::text('savepassword', NULL) }} </td>
                         <td>
-                            <select name="admin">
+                            <select name="saveadmin">
                                 <option value="1" @if($member->admin == 1) selected @endif>Admin</option>
                                 <option value="0" @if($member->admin != 1) selected @endif>Member</option>
                              </select>
                          </td>
-                        <td>{{ Form::text('firstname', $member->firstname) }} </td>
-                        <td>{{ Form::text('lastname', $member->lastname) }} </td>
-                        <td>{{ Form::text('email', $member->email) }} </td>
+                        <td>{{ Form::text('savefirstname', $member->firstname) }} </td>
+                        <td>{{ Form::text('savelastname', $member->lastname) }} </td>
+                        <td>{{ Form::text('saveemail', $member->email) }} </td>
                         <td>
-                            <select name="verified">
+                            <select name="saveverified">
                                 <option value="1" @if($member->verified == 1) selected @endif>Yes</option>
                                 <option value="0" @if($member->verified != 1) selected @endif>No</option>
                             </select>
                         </td>
-                        <td>{{ Form::text('referid', $member->referid) }} </td>
-                        <td>{{ Form::text('ip', $member->ip) }} </td>
-                        <td>{{ Form::text('signupdate', $signupdate) }} </td>
-                        <td>{{ Form::text('lastlogin', $lastlogin) }} </td>
+                        <td>{{ Form::text('savereferid', $member->referid) }} </td>
+                        <td>{{ Form::text('saveip', $member->ip) }} </td>
+                        <td>{{ Form::text('savesignupdate', $signupdate) }} </td>
+                        <td>{{ Form::text('savelastlogin', $lastlogin) }} </td>
                         <td>
-                            <select name="vacation">
+                            <select name="savevacation">
                                 <option value="1" @if($member->vacation == 1) selected @endif>Yes</option>
                                 <option value="0" @if($member->vacation != 1) selected @endif>No</option>
                             </select>
                         </td>
-                        <td>{{ Form::text('commission', $member->commission) }} </td>
+                        <td>{{ Form::text('savecommission', $member->commission) }} </td>
                         <td>{{ Form::submit('Save', array('class' => 'btn btn-custom skinny')) }}</td>
                         {{ Form::close() }}
                         <td>

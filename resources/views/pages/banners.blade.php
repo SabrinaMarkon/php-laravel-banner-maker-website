@@ -134,6 +134,7 @@ Text Color: <select id="picktextcolor">
 <button id="textadd">ADD</button>
 <button id="undo">UNDO</button>
 <button id="clear">CLEAR ALL</button>
+<button id="btn-Convert-Html2Image">SAVE</button>
 
     <br><br>
     <input id="btn-Preview-Image" type="button" value="Preview" />
@@ -161,6 +162,13 @@ Text Color: <select id="picktextcolor">
         });
     });
 
+    // save as image
+    $("#btn-Convert-Html2Image").on('click', function () {
+        var imgageData = getCanvas.toDataURL("image/png");
+        // Now browser starts downloading it instead of just showing it
+        var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+        $("#btn-Convert-Html2Image").attr("download", "banner.png").attr("href", newData);
+    });
 
     var canvasnumber = 2;
 

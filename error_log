@@ -48,3 +48,9 @@
 [07-Aug-2016 06:00:12 UTC] PHP Fatal error:  Class 'HTML' not found in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 18
 [07-Aug-2016 08:04:11 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 25427968 bytes) in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 62
 [07-Aug-2016 08:04:20 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 25427968 bytes) in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 62
+[19-Aug-2016 05:37:02 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 37
+[19-Aug-2016 05:58:47 UTC] PHP Fatal error:  Class 'Input' not found in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 43
+[19-Aug-2016 06:09:10 UTC] PHP Fatal error:  Call to undefined function post() in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 59
+[19-Aug-2016 06:09:27 UTC] PHP Fatal error:  Call to undefined function get() in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 59
+[19-Aug-2016 07:38:47 UTC] PHP Warning:  Unterminated comment starting line 113 in /home/sadiesbc/public_html/resources/lang/en/validation.php on line 113
+[19-Aug-2016 07:38:47 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ']' in /home/sadiesbc/public_html/resources/lang/en/validation.php on line 132

@@ -110,6 +110,22 @@ return [
     |
     */
 
-    'attributes' => [],
+    /* Sabrina - added so validation errors wouldn't say things like "The savefirstname field is required" and also look nicer. */
+    'attributes' => [
+        'savefirstname' => 'First Name',
+        'savelastname' => 'Last Name',
+        'saveemail' => 'Email',
+        'savereferid' => 'Sponsor',
+        'saveverified' => 'Verified',
+        'savesignupdate' => 'Signup Date',
+        'savevacation' => 'Vacation Mode',
+        'savecommission' => 'Commission',
+        'userid' => 'Username',
+        'password' => 'Password',
+        'firstname' => 'First Name',
+        'lastname' => 'Last Name',
+        'email' => 'Email',
+        'referid' => 'Sponsor',
+    ],
 
 ];
