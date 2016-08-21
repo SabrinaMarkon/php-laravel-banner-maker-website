@@ -47,6 +47,7 @@ class ContentController extends Controller
             $page = new Page;
             $page->name = $request->get('pagename');
             $page->slug = str_slug($request->get('pagename'));
+            $page->core = false;
             $page->htmlcode = $request->get('pagecontent');
             $page->save();
             Session::flash('message', 'Successfully created new page!');
@@ -96,11 +97,13 @@ class ContentController extends Controller
             // update the page content in the database.
             $page = Page::find($id);
             $page->name = $request->get('pagename');
-            $page->slug = str_slug($request->get('pagename'));
+            if ($page->core == false) {
+                $page->slug = str_slug($request->get('pagename'));
+            }
             $page->htmlcode = $request->get('pagecontent');
             $page->save();
             Session::flash('message', 'Successfully saved the ' . $page->name . ' page!');
-            return Redirect::to('admin/content');
+            return Redirect::to('admin/content')->withInput($request->all());
         }
 
     }
@@ -115,9 +118,13 @@ class ContentController extends Controller
     public function destroy($id, Request $request) {
 
         $page = Page::find($id);
-        $pagename = $page->pagename;
-        $page->delete();
-        Session::flash('message', 'Successfully deleted Page: ' . $pagename);
+        $pagename = $page->name;
+        if ($page->core == false) {
+            $page->delete();
+            Session::flash('message', 'Successfully deleted Page: ' . $pagename);
+        } else {
+            Session::flash('message', 'The page ' . $pagename . ' is a core file of your website and cannot be deleted');
+        }
         return Redirect::to('admin/content');
 
     }
