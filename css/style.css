@@ -142,6 +142,9 @@ body {
     margin: auto;
     z-index: 1000;
 }
+#tiny .textfield {
+    margin-bottom: -10px;
+}
 
 /* Form Styles */
 .form-page-small {

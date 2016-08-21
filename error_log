@@ -54,3 +54,12 @@
 [19-Aug-2016 06:09:27 UTC] PHP Fatal error:  Call to undefined function get() in /home/sadiesbc/public_html/storage/framework/views/85ff99ccd58591d43c2e56b0642fcb69937702c4.php on line 59
 [19-Aug-2016 07:38:47 UTC] PHP Warning:  Unterminated comment starting line 113 in /home/sadiesbc/public_html/resources/lang/en/validation.php on line 113
 [19-Aug-2016 07:38:47 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ']' in /home/sadiesbc/public_html/resources/lang/en/validation.php on line 132
+[21-Aug-2016 07:58:20 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 64
+[21-Aug-2016 08:05:40 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 64
+[21-Aug-2016 08:10:21 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 64
+[21-Aug-2016 08:44:53 UTC] PHP Fatal error:  Undefined class constant 'close' in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 81
+[21-Aug-2016 08:45:20 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\View' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/ContentController.php on line 68
+[21-Aug-2016 10:14:25 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\View' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/ContentController.php on line 71
+[21-Aug-2016 10:35:11 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/ContentController.php on line 74
+[21-Aug-2016 10:41:42 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\View' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/ContentController.php on line 93
+[21-Aug-2016 11:42:44 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\html_decode() in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 77

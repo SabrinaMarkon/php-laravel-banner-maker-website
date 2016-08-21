@@ -40,8 +40,14 @@ Route::get('forgot', 'PagesController@forgot');
 
 Route::get('account', 'PagesController@account');
 
+Route::get('maildownline', 'PagesController@maildownline');
+
 Route::get('logout', 'PagesController@home');
 
+/*
+ * Custom pages added by the admin
+ */
+Route::get('{page}', 'PagesController@custompage');
 
 ////////////////////////// MEMBERS //////////////////////
 

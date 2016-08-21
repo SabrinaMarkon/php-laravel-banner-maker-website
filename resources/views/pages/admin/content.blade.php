@@ -36,7 +36,7 @@
 
 @section('pagetitle')
 
-    Edit Pages
+              Edit Pages
 
 @stop
 
@@ -44,26 +44,127 @@
 @section('content')
 
     <div id="tiny">
-        <form role="form" method="post" action="{{ url('admin/content') }}">
-            {{ csrf_field() }}
+
+        <!-- will be used to show any messages -->
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        {{-- SELECT PAGE TO EDIT FORM --}}
+        {{ Form::open(array('url' => 'admin/content/show', 'method' => 'GET', 'class' => 'form-horizontal')) }}
+        <div class="form-group textfield">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">{{ Form::label('id', 'Edit Page: ', array('class' => 'control-label')) }}</div>
+                <div class="col-sm-6">
+                    <select name="id" class="form-control">
+                        <option value="" disabled selected>Select page to edit</option>
+                        @foreach($contents as $content)
+                            @if (Session::has('page') && Session::get('page')->id == $content->id)
+                                <option value="{{ $content->id }}" selected>{{ $content->name }}</option>
+                            @else
+                                <option value="{{ $content->id }}">{{ $content->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-sm-2">{{ Form::submit('Edit Page', array('class' => 'btn btn-custom skinny')) }}</div>
+                <div class="col-sm-1"></div>
+             </div>
+         </div>
+         {{ Form::close() }}
+
+        @if (Session::has('page'))
+            {{-- EDIT PAGE FORM --}}
+            {{ Form::open(array('route' => array('admin.content.update', Session::get('page')->id), 'method' => 'PATCH')) }}
+            <div class="form-group textfield">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-2">{{ Form::label('pagename', 'Page Name: ', array('class' => 'control-label')) }}</div>
+                    <div class="col-sm-8">
+                        {{ Form::text('pagename', Session::get('page')->name, array('placeholder' => 'page name', 'class' => 'form-control')) }}
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="form-group textfield">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-2">{{ Form::label('', 'Page Tag/Slug: ', array('class' => 'control-label')) }}</div>
+                    <div class="col-sm-8"><a href="{{ Request::root() . '/' . Session::get('page')->slug }}" target="_blank">{{ Request::root() . '/' . Session::get('page')->slug }}</a></div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10">
-                        <textarea  name="pagecontent" id="pagecontent" cols="65" rows="30">{{ old('pagecontent') }}</textarea>
-                     </div>
-                    <div class="col-sm-1"></div>
-            </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-custom">Save</button>
-                        </div>
-                        <div class="col-sm-1"></div>
+                        {{ Form::textarea('pagecontent', Session::get('page')->htmlcode, ['size' => '65x30']) }}
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
-        </form>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2">
+                        {{ Form::submit('Save Page', array('class' => 'btn btn-custom')) }}
+                        {{ Form::close() }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ Form::open(array('route' => array('admin.content.destroy', Session::get('page')->id), 'method' => 'DELETE')) }}
+                        {{ Form::submit('Delete Page', array('class' => 'btn btn-custom')) }}
+                        {{ Form::close() }}
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+            </div>
+        @else
+            {{-- CREATE NEW PAGE FORM --}}
+            {{ Form::open(array('route' => array('admin.content.store'), 'method' => 'POST')) }}
+            <div class="form-group textfield">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-2">{{ Form::label('pagename', 'Page Name: ', array('class' => 'control-label')) }}</div>
+                    <div class="col-sm-8">
+                        {{ Form::text('pagename', old('pagename'), array('placeholder' => 'page name', 'class' => 'form-control')) }}
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        {{ Form::textarea('pagecontent', old('pagecontent'), ['size' => '65x30']) }}
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        {{ Form::submit('Create Page', array('class' => 'btn btn-custom')) }}
+                        {{ Form::close() }}
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        @endif
+
+    </div>
+
 
 @stop
 

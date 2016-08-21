@@ -126,6 +126,7 @@ return [
         'lastname' => 'Last Name',
         'email' => 'Email',
         'referid' => 'Sponsor',
+        'pagename' => 'Page Name',
     ],
 
 ];

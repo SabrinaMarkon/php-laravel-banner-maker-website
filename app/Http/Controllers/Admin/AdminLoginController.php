@@ -20,4 +20,8 @@ class AdminLoginController extends Controller
     public function forgot() {
         return view('pages.admin.forgot');
     }
+    public function emaillogin() {
+        // CODE TO EMAIL LOGIN?!?!
+        return view('pages.admin.forgot');
+    }
 }

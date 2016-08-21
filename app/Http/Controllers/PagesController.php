@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Models\Page;
+use App\Http\Controllers\Controller;
+use Session;
+use Redirect;
+use View;
 
 class PagesController extends Controller
 {
@@ -65,6 +69,15 @@ class PagesController extends Controller
         return view('pages.account');
     }
 
+    public function maildownline() {
+        return view('pages.maildownline');
+    }
+
+    public function custompage($page) {
+        $content = Page::where('slug', '=', $page)->first();
+        Session::flash('page', $content);
+        return view("pages.custompage");
+    }
     /*
      *  Admin pages
 

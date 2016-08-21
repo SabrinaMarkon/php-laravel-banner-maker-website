@@ -124,7 +124,7 @@ class MembersController extends Controller
         $member = Member::find($id);
         $userid = $member->userid;
         $member->delete();
-        Session::flash('message', 'Successfully deleted Member ID #' . $id);
+        Session::flash('message', 'Successfully deleted member UserID: ' . $userid);
         return Redirect::to('admin/members');
 
     }
