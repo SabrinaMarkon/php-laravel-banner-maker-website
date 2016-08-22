@@ -72,7 +72,7 @@
                         <label for="subject" class="control-label">Subject:</label>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" value="">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" value="{{ old('subject') }}">
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -83,7 +83,7 @@
                         <label for="url" class="control-label">URL:</label>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" value="">
+                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" value="{{ old('url') }}">
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -96,7 +96,7 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <textarea  name="message" id="message"></textarea>
+                        <textarea  name="message" id="message">{{ old('message') }}</textarea>
                     </div>
                 </div>
 
