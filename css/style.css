@@ -334,7 +334,9 @@ table th {
     color: #FF7256;
     margin-left: 5px;
 }
-
+.border1px {
+    border: 1px solid #000;
+}
 
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
