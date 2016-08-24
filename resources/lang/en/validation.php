@@ -127,6 +127,7 @@ return [
         'email' => 'Email',
         'referid' => 'Sponsor',
         'pagename' => 'Page Name',
+        'promotionalname' => 'Promotional Ad Name',
     ],
 
 ];
