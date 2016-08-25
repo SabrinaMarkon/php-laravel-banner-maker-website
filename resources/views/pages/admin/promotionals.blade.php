@@ -43,7 +43,7 @@
 
 @section('content')
 
-    <div id="tiny">
+    <div class="form-page-medium">
 
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -152,7 +152,11 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-2">
+                            {{ Form::button('Return', array('class' => 'btn btn-custom', 'onclick' => "parent.location = 'promotionals'")) }}
+                            {{ Form::close() }}
+                        </div>
                         <div class="col-sm-2">
                             {{ Form::submit('Save Ad', array('class' => 'btn btn-custom')) }}
                             {{ Form::close() }}
@@ -162,7 +166,7 @@
                             {{ Form::submit('Delete Ad', array('class' => 'btn btn-custom')) }}
                             {{ Form::close() }}
                         </div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-3"></div>
                     </div>
                 </div>
 

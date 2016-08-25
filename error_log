@@ -71,3 +71,4 @@
 [21-Aug-2016 12:46:44 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 56
 [21-Aug-2016 12:50:33 UTC] PHP Fatal error:  Call to a member function all() on array in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 56
 [21-Aug-2016 12:53:24 UTC] PHP Fatal error:  Call to a member function all() on array in /home/sadiesbc/public_html/storage/framework/views/b68d2aa46d30a39e382383f8dc001b41ff5337f3.php on line 56
+[25-Aug-2016 00:07:30 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/ProductsController.php on line 108

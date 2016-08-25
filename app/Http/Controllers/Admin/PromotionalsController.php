@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
-use DateTime;
 
 class PromotionalsController extends Controller
 {

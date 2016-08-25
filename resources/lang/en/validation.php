@@ -128,6 +128,10 @@ return [
         'referid' => 'Sponsor',
         'pagename' => 'Page Name',
         'promotionalname' => 'Promotional Ad Name',
+        'productname' => 'Product Name',
+        'quantity' => 'Quantity',
+        'price' => 'Price',
+        'commission' => 'Commission',
     ],
 
 ];
