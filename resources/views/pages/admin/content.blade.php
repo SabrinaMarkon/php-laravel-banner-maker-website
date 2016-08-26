@@ -43,7 +43,7 @@
 
 @section('content')
 
-    <div id="tiny">
+    <div class="form-page-medium">
 
         <!-- will be used to show any messages -->
         @if (Session::has('message'))

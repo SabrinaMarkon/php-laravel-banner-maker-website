@@ -335,6 +335,9 @@ table th {
     margin-left: 5px;
 }
 
+.ui-sortable tr {
+    cursor:grab;
+}
 
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }

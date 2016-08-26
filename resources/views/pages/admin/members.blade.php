@@ -66,10 +66,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-12">
-                        {{ Form::submit('Add New Member', array('class' => 'btn btn-custom skinny')) }}
+                        <div class="col-sm-12"> <br>
+                        {{ Form::submit('Add New Member', array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}
                         </div>
+                     </div>
         </div>
 
         <div class="table-responsive">

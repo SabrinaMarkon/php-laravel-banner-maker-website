@@ -31,7 +31,7 @@ class PromotionalsController extends Controller
 
         // validate submission.
         $rules = array(
-            'promotionalname' => 'required|max:255|alpha_num|unique:promotional,name',
+            'promotionalname' => 'required|max:255|unique:promotional,name',
         );
         $validator = Validator::make($request->all(), $rules);
 
@@ -81,7 +81,7 @@ class PromotionalsController extends Controller
 
         // validate update submission.
         $rules = array(
-            'promotionalname' => 'required|max:255|alpha_num',
+            'promotionalname' => 'required|max:255',
         );
         $validator = Validator::make($request->all(), $rules);
 

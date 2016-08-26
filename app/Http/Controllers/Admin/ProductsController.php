@@ -31,7 +31,7 @@ class ProductsController extends Controller
 
         // validate submission.
         $rules = array(
-            'productname' => 'required|max:255|alpha_num|unique:products,name',
+            'productname' => 'required|max:255|unique:products,name',
             'quantity' => 'required|min:1|integer',
             'price' => 'required|min:0.01',
             'commission' => 'required|min:0.00',
@@ -85,7 +85,7 @@ class ProductsController extends Controller
 
         // validate update submission.
         $rules = array(
-            'productname' => 'required|max:255|alpha_num',
+            'productname' => 'required|max:255',
             'quantity' => 'required|min:1|integer',
             'price' => 'required|min:0.01',
             'commission' => 'required|min:0.00',
