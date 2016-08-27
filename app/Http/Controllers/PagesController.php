@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Page;
+use App\Models\Faq;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -14,15 +15,47 @@ class PagesController extends Controller
 {
 
     public function index() {
+        $content = Page::where('slug', '=', 'home')->first();
+        Session::flash('page', $content);
         return view('pages.index');
     }
 
     public function home() {
+        $content = Page::where('slug', '=', 'home')->first();
+        Session::flash('page', $content);
         return view('pages.home');
     }
 
     public function about() {
+        $content = Page::where('slug', '=', 'about')->first();
+        Session::flash('page', $content);
         return view('pages.about');
+    }
+
+    public function terms() {
+        $content = Page::where('slug', '=', 'terms')->first();
+        Session::flash('page', $content);
+        return view('pages.terms');
+    }
+
+    public function privacy() {
+        $content = Page::where('slug', '=', 'privacy')->first();
+        Session::flash('page', $content);
+        return view('pages.privacy');
+    }
+
+    public function support() {
+        $content = Page::where('slug', '=', 'support')->first();
+        Session::flash('page', $content);
+        return view('pages.support');
+    }
+
+    public function faqs() {
+        // get the admin's content for the FAQ page if they've written any.
+        $page = Page::where('slug', '=', 'faqs')->first();
+        // get the questions and answers.
+        $faqs = Faq::orderBy('positionnumber', 'asc')->get();
+        return view('pages.faqs', compact('faqs', 'page'));
     }
 
     public function banners() {
@@ -35,22 +68,6 @@ class PagesController extends Controller
 
     public function license() {
         return view('pages.license');
-    }
-
-    public function terms() {
-        return view('pages.terms');
-    }
-
-    public function privacy() {
-        return view('pages.privacy');
-    }
-
-    public function faqs() {
-        return view('pages.faqs');
-    }
-
-    public function support() {
-        return view('pages.support');
     }
 
     public function join() {
@@ -66,6 +83,8 @@ class PagesController extends Controller
     }
 
     public function account() {
+        $content = Page::where('slug', '=', 'account')->first();
+        Session::flash('page', $content);
         return view('pages.account');
     }
 
@@ -78,12 +97,5 @@ class PagesController extends Controller
         Session::flash('page', $content);
         return view("pages.custompage");
     }
-    /*
-     *  Admin pages
-
-    public function showadminpage($page) {
-        return view("pages.admin." . $page);
-    }
-    */
 
 }

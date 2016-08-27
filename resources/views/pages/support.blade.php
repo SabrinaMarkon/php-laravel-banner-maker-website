@@ -22,7 +22,10 @@
 
 @section('content')
 
-        <a href="helpdesk" class="btn btn-custom" role="button" target="_blank">Open Helpdesk</a>
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+        <br><a href="helpdesk" class="btn btn-custom" role="button" target="_blank">Open Helpdesk</a>
+    @endif
 
 @stop
 

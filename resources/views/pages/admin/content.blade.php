@@ -116,17 +116,21 @@
             </div>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2"></div>
                     <div class="col-sm-2">
+                        {{ Form::button('Return', array('class' => 'btn btn-custom', 'onclick' => "parent.location = 'content'")) }}
+                        {{ Form::close() }}
+                    </div>
+                    <div class="col-sm-3">
                         {{ Form::submit('Save Page', array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         {{ Form::open(array('route' => array('admin.content.destroy', Session::get('page')->id), 'method' => 'DELETE')) }}
                         {{ Form::submit('Delete Page', array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}
                     </div>
-                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2"></div>
                 </div>
             </div>
         @else

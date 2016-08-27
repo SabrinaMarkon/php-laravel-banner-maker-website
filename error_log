@@ -76,3 +76,4 @@
 [26-Aug-2016 02:41:50 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Validate' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/FaqsController.php on line 39
 [26-Aug-2016 02:44:59 UTC] PHP Parse error:  syntax error, unexpected '::' (T_PAAMAYIM_NEKUDOTAYIM) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/FaqsController.php on line 48
 [26-Aug-2016 02:45:15 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\Admin\getLast() in /home/sadiesbc/public_html/app/Http/Controllers/Admin/FaqsController.php on line 48
+[27-Aug-2016 06:31:19 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/sadiesbc/public_html/storage/framework/views/4b3385b58aace188f62e58fd68071cd3885a6683.php on line 40

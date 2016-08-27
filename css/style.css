@@ -335,6 +335,10 @@ table th {
     margin-left: 5px;
 }
 
+.panel-faqs {
+    margin-top: 35px;
+}
+
 .ui-sortable tr {
     cursor:grab;
 }

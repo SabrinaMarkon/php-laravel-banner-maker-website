@@ -14,23 +14,36 @@
 
 ////////////////////////// MAIN //////////////////////
 
+/*
+ *  Basic reading
+ */
 Route::get('/', 'PagesController@home');
 
 Route::get('about', 'PagesController@about');
-
-Route::get('banners', 'PagesController@banners');
-
-Route::get('dlb', 'PagesController@dlb');
-
-Route::get('license', 'PagesController@license');
 
 Route::get('terms', 'PagesController@terms');
 
 Route::get('privacy', 'PagesController@privacy');
 
+Route::get('support', 'PagesController@support');
+
+Route::get('logout', 'PagesController@home');
+
+
+/*
+ *  Basic reading and display of database data
+ */
 Route::get('faqs', 'PagesController@faqs');
 
-Route::get('support', 'PagesController@support');
+
+/*
+ *  Complex database functionality
+ */
+Route::get('banners', 'PagesController@banners');
+
+Route::get('dlb', 'PagesController@dlb');
+
+Route::get('license', 'PagesController@license');
 
 Route::get('join', 'PagesController@join');
 
@@ -42,12 +55,15 @@ Route::get('account', 'PagesController@account');
 
 Route::get('maildownline', 'PagesController@maildownline');
 
-Route::get('logout', 'PagesController@home');
 
 /*
  * Custom pages added by the admin
+ * IMPORTANT: this must be the last route or core pages such as faqs will
+ * be treated as a custom page instead of a core. This causes them to show the
+ * admin's text they add but not any database data.
  */
 Route::get('{page}', 'PagesController@custompage');
+
 
 ////////////////////////// MEMBERS //////////////////////
 

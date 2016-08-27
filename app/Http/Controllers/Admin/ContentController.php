@@ -103,7 +103,7 @@ class ContentController extends Controller
             $page->htmlcode = $request->get('pagecontent');
             $page->save();
             Session::flash('message', 'Successfully saved the ' . $page->name . ' page!');
-            return Redirect::to('admin/content')->withInput($request->all());
+            return Redirect::to('admin/content');
         }
 
     }

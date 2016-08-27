@@ -10,26 +10,20 @@
 
     About Us
 
-    @stop
+@stop
 
 
 @section('content')
 
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-        <p>Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing
-            testing  Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing
-            Testing testing Testing testing Testing testing Testing testing Testing testing Testing testing</p>
-        </div>
-        <div class="col-sm-2"></div>
-    </div>
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
 
-    @stop
+@stop
 
 
 @section('footer')
 
 
 
-    @stop
+@stop
