@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Page;
 use App\Models\Faq;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -70,6 +71,14 @@ class PagesController extends Controller
         return view('pages.license');
     }
 
+    public function products() {
+        // get the admin's content for the product sales page if they've written any.
+        $page = Page::where('slug', '=', 'products')->first();
+        // get the questions and answers.
+        $products = Product::all();
+        return view('pages.products', compact('products', 'page'));
+    }
+
     public function join() {
         return view('pages.join');
     }
@@ -86,6 +95,12 @@ class PagesController extends Controller
         $content = Page::where('slug', '=', 'account')->first();
         Session::flash('page', $content);
         return view('pages.account');
+    }
+
+    public function profile() {
+        $content = Page::where('slug', '=', 'profile')->first();
+        Session::flash('page', $content);
+        return view('pages.profile');
     }
 
     public function maildownline() {

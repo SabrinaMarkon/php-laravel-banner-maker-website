@@ -45,6 +45,8 @@ Route::get('dlb', 'PagesController@dlb');
 
 Route::get('license', 'PagesController@license');
 
+Route::get('products', 'PagesController@products');
+
 Route::get('join', 'PagesController@join');
 
 Route::get('login', 'PagesController@login');

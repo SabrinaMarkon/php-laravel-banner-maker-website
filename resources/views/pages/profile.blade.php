@@ -8,7 +8,7 @@
 
 @section('pagetitle')
 
-    Welcome to Sadie's!
+    Update Account
 
 @stop
 
@@ -18,6 +18,8 @@
     @if(Session::has('page'))
         {!! Session::get('page')->htmlcode !!}
     @endif
+
+
 
 @stop
 

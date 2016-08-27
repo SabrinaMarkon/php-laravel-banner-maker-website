@@ -335,8 +335,14 @@ table th {
     margin-left: 5px;
 }
 
-.panel-faqs {
+.panel-faqs, .panel-products {
     margin-top: 35px;
+}
+.panel-title {
+    padding-top: 16px;
+}
+.btn-product {
+    margin-bottom: 12px;
 }
 
 .ui-sortable tr {
