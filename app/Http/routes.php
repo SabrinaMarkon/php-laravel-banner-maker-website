@@ -127,6 +127,10 @@ Route::get('{page}', 'PagesController@custompage');
      */
         Route::resource('admin/products', 'Admin\ProductsController');
     /*
+    *  LIcenses
+    */
+    Route::resource('admin/licenses', 'Admin\LicensesController');
+    /*
      *  Transactions
      */
         Route::resource('admin/transactions', 'Admin\TransactionsController');

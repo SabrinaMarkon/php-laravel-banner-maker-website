@@ -33,7 +33,15 @@
                             <label for="{{ $setting->name }}" class="control-label">{{ $setting->description }}</label>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="{{ $setting->name }}" id="{{ $setting->name }}" placeholder="{{ $setting->setting }}" value="{{ $setting->setting }}">
+                            @if ($setting->name == 'licensepriceinterval')
+                               <select class="form-control" name="{{ $setting->name }}" id="{{ $setting->name }}">
+                                    <option value="lifetime" @if($setting->setting == 'lifetime') selected="selected" @endif>Lifetime</option>
+                                    <option value="monthly" @if($setting->setting == 'monthly') selected="selected" @endif>Monthly</option>
+                                    <option value="annually" @if($setting->setting == 'annually') selected="selected" @endif>Annually</option>
+                                </select>
+                            @else
+                                <input type="text" class="form-control" name="{{ $setting->name }}" id="{{ $setting->name }}" placeholder="{{ $setting->setting }}" value="{{ $setting->setting }}">
+                            @endif
                         </div>
                         <div class="col-sm-2"></div>
                     </div>

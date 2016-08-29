@@ -45,8 +45,13 @@ class CreateSettingsTable extends Migration
             array('name'    =>    'downlinemailhowoften',
                 'setting'    =>    '24',
                 'description'    =>    'Hours Between Mailing Downline'),
-        ));
-
+            array('name'    =>    'licenseprice',
+                'setting'    =>    '9.99',
+                'description'    =>    'License Price to Remove Banner Watermark'),
+            array('name'    =>    'licensepriceinterval',
+                'setting'    =>    'lifetime',
+                'description'    =>    'How Often to Pay for License'),
+            ));
     }
 
     /**

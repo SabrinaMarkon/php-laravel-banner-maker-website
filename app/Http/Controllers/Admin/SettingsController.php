@@ -20,13 +20,13 @@ class SettingsController extends Controller
     }
 
     public function store(Request $request) {
-        $input = $request->all();
+        $input = $request->except(['_method', '_token']); // expect method because there is an error if we try to save the token as if it were a setting.
         foreach ($input as $key => $val) {
-           // echo $key . "-" . $val ."<br>";
-            DB::table('settings')->where('name', $key)->update(['setting' => $val]);
-            Session::flash('message', 'Successfully updated the site settings!');
-            return Redirect::to('admin/settings');
+           //echo $key . "-" . $val ."<br>";
+            Setting::query()->where('name', $key)->update(array('setting' => $val));
         }
+        Session::flash('message', 'Successfully updated the site settings!');
+        return Redirect::to('admin/settings');
     }
 
 

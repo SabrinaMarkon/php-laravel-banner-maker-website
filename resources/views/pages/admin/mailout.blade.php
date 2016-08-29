@@ -45,23 +45,82 @@
 
     <div class="form-page-medium">
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-           <div class="col-sm-10 text-left">
-               <p>Please use the personalization substitution below anywhere in your subject or message, typed EXACTLY as shown (cAsE sEnSiTiVe):</p><br />
-           </div>
-            <div class="col-sm-10 text-center">
-               <div class="row" style="padding-bottom:5px;"><div class="col-sm-2"></div><div class="col-sm-4"><u><strong>Type This:</strong></u></div><div class="col-sm-4"><u><strong>To Substitute:</strong></u></div><div class="col-sm-2"></div></div>
-               <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~USERID~</div><div class="col-sm-4">Member's UserID</div><div class="col-sm-2"></div></div>
-               <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~FULLNAME~</div><div class="col-sm-5">Member's First and Last Name</div><div class="col-sm-1"></div></div>
-               <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~FIRSTNAME~</div><div class="col-sm-4">Member's First Name</div><div class="col-sm-2"></div></div>
-               <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~LASTNAME~</div><div class="col-sm-4">Member's Last Name</div><div class="col-sm-2"></div></div>
-               <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~EMAIL~</div><div class="col-sm-4">Member's Email Address</div><div class="col-sm-2"></div></div>
-               <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~AFFILIATE_URL~</div><div class="col-sm-4">Member's Affiliate URL</div><div class="col-sm-2"></div></div>
-            </div>
-            <div class="col-sm-1"></div>
-        </div><br />
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+            {{-- SELECT EMAIL TO SEND OR EDIT FORM --}}
+            @if (count($contents) > 0)
+                {{ Form::open(array('url' => 'admin/mailout/show', 'method' => 'GET', 'class' => 'form-horizontal')) }}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-2">{{ Form::label('id', 'Send or Edit Email: ', array('class' => 'control-label')) }}</div>
+                        <div class="col-sm-6">
+                            <select name="id" class="form-control">
+                                <option value="" disabled selected>Select email</option>
+                                @foreach($contents as $content)
+                                    @if (Session::has('mail') && Session::get('mail')->id == $content->id)
+                                        <option value="{{ $content->id }}" selected>{{ $content->subject }}</option>
+                                    @else
+                                        <option value="{{ $content->id }}">{{ $content->subject }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-2">{{ Form::submit('Edit', array('class' => 'btn btn-custom skinny')) }}</div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+                {{ Form::close() }}
+            @endif
+
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 text-left">
+                    <p>Please use the personalization substitution below anywhere in your subject or message, typed EXACTLY as shown (cAsE sEnSiTiVe):</p><br />
+                </div>
+                <div class="col-sm-10 text-center">
+                    <div class="row" style="padding-bottom:5px;"><div class="col-sm-2"></div><div class="col-sm-4"><u><strong>Type This:</strong></u></div><div class="col-sm-4"><u><strong>To Substitute:</strong></u></div><div class="col-sm-2"></div></div>
+                    <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~USERID~</div><div class="col-sm-4">Member's UserID</div><div class="col-sm-2"></div></div>
+                    <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~FULLNAME~</div><div class="col-sm-5">Member's First and Last Name</div><div class="col-sm-1"></div></div>
+                    <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~FIRSTNAME~</div><div class="col-sm-4">Member's First Name</div><div class="col-sm-2"></div></div>
+                    <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~LASTNAME~</div><div class="col-sm-4">Member's Last Name</div><div class="col-sm-2"></div></div>
+                    <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~EMAIL~</div><div class="col-sm-4">Member's Email Address</div><div class="col-sm-2"></div></div>
+                    <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~AFFILIATE_URL~</div><div class="col-sm-4">Member's Affiliate URL</div><div class="col-sm-2"></div></div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div><br />
+
+        @if (Session::has('mail'))
+            {{-- EDIT OR SEND EMAIL FORM --}}
+
+
+
+        @else
+             {{-- CREATE NEW EMAIL FORM --}}
+
+
+                $table->string('userid', 255)->nullable();
+                $table->string('subject', 255);
+                $table->longText('message');
+                $table->string('url', 255);
+                $table->dateTime('approved')->nullable();
+                $table->dateTime('sent')->nullable();
+                $table->integer('clicks');
+                $table->char('save', 1)->default(0);
+
+            
         <form class="form-horizontal" role="form">
 
             <div class="form-group">
@@ -127,6 +186,9 @@
             </div>
 
         </form>
+
+        @endif
+
     </div>
 
 @stop
