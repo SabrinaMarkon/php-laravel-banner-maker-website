@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Models\Page;
 use App\Models\Faq;
 use App\Models\Product;
+use App\Models\Promotional;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -101,6 +102,14 @@ class PagesController extends Controller
         $content = Page::where('slug', '=', 'profile')->first();
         Session::flash('page', $content);
         return view('pages.profile');
+    }
+
+    public function promote() {
+        // get the admin's content for the FAQ page if they've written any.
+        $page = Page::where('slug', '=', 'promote')->first();
+        // get the questions and answers.
+        $promotes = Promotional::orderBy('type')->get();
+        return view('pages.promote', compact('promotes', 'page'));
     }
 
     public function maildownline() {

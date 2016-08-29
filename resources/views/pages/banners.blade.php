@@ -43,6 +43,7 @@ Background Color: <select id="pickbgcolor">
 </select>
 
 Background Image: <select id="pickbgimage">
+        
 </select>
 
 Border Width: <select id="pickborderwidth">

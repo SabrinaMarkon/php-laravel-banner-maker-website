@@ -27,7 +27,7 @@
 
                 <div class="panel panel-default text-left">
                     <div class="panel-heading">
-                        <h4 class="panel-title">
+                        <h4 class="panel-title panel-toppadding">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $product->id }}">{{ $product->name }}</a>
                              <button class="btn btn-custom skinny pull-right btn-product">Order for ${!! $product->price !!}</button>
                             <div class="clearfix"></div>

@@ -335,18 +335,31 @@ table th {
     margin-left: 5px;
 }
 
+/* faq and product panels */
 .panel-faqs, .panel-products {
     margin-top: 35px;
 }
-.panel-title {
+.panel-toppadding {
     padding-top: 16px;
 }
 .btn-product {
     margin-bottom: 12px;
 }
 
+/* faq sorting */
 .ui-sortable tr {
     cursor:grab;
+}
+
+/* promotional tabs */
+.tab-pane {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-top: 0;
+}
+.border1px {
+    border: 1px solid #ccc;
 }
 
 /* media */

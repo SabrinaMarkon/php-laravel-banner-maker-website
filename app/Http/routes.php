@@ -35,6 +35,7 @@ Route::get('logout', 'PagesController@home');
  */
 Route::get('faqs', 'PagesController@faqs');
 
+Route::get('promote', 'PagesController@promote');
 
 /*
  *  Complex database functionality

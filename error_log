@@ -78,3 +78,4 @@
 [26-Aug-2016 02:45:15 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\Admin\getLast() in /home/sadiesbc/public_html/app/Http/Controllers/Admin/FaqsController.php on line 48
 [27-Aug-2016 06:31:19 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/sadiesbc/public_html/storage/framework/views/4b3385b58aace188f62e58fd68071cd3885a6683.php on line 40
 [27-Aug-2016 10:35:52 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Product' not found in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 77
+[29-Aug-2016 04:11:05 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Promotional' not found in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 110
