@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
+use DateTime;
 
 class MailsController extends Controller
 {
@@ -21,7 +22,7 @@ class MailsController extends Controller
      * @return Response
      */
     public function index() {
-        $contents = Mail::orderBy('subject', 'asc')->get();
+        $contents = Mail::where('userid', 'admin')->orderBy('subject', 'asc')->get();
         return view('pages.admin.mailout', compact('contents'));
     }
 
@@ -46,13 +47,23 @@ class MailsController extends Controller
         } else {
             // create new email.
             $mail = new Mail;
+            $mail->userid = 'admin';
             $mail->subject = $request->get('subject');
             $mail->message = $request->get('message');
             $mail->url = $request->get('url');
-            $mail->approved = 1;
-            $mail->save = $request->get('save');
+            $approvedate = new DateTime();
+            $approvedate = $approvedate->format('Y-m-d H:i:sP');
+            $mail->approved = $approvedate;
+            $mail->save = 1;
+            if ($request->get('send')) {
+                // send the newly created email right after saving.
+                $mail->needtosend = 1;
+                Session::flash('message', 'Successfully sent email!');
+            } else{
+                // just create the email without sending.
+                Session::flash('message', 'Successfully created new email');
+            }
             $mail->save();
-            Session::flash('message', 'Successfully created new email');
             return Redirect::to('admin/mailout');
         }
 
@@ -67,7 +78,7 @@ class MailsController extends Controller
      */
     public function show($id, Request $request) {
 
-        // get the item information for this product.
+        // get the item information for this email.
         $id = $request->get('id');
         $mail = Mail::find($id);
         Session::flash('mail', $mail);
@@ -101,13 +112,23 @@ class MailsController extends Controller
         } else {
             // update the record in the database.
             $mail = Mail::find($id);
+            $mail->userid = 'admin';
             $mail->subject = $request->get('subject');
             $mail->message = $request->get('message');
             $mail->url = $request->get('url');
-            $mail->approved = 1;
-            $mail->save = $request->get('save');
+            $approvedate = new DateTime();
+            $approvedate = $approvedate->format('Y-m-d H:i:sP');
+            $mail->approved = $approvedate;
+            $mail->save = 1;
+            if ($request->get('send')) {
+                // send the existing email right after saving.
+                $mail->needtosend = 1;
+                Session::flash('message', 'Successfully sent email!');
+            } else{
+                // just save the existing email without sending it at this time.
+                Session::flash('message', 'Successfully saved email');
+            }
             $mail->save();
-            Session::flash('message', 'Successfully saved email');
             return Redirect::to('admin/mailout');
         }
 
@@ -129,20 +150,5 @@ class MailsController extends Controller
 
     }
 
-
-    /**
-     * Send email.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function send($id, Request $request) {
-
-        $mail = Mail::find($id);
-        $mail->mailOut($id);
-        Session::flash('message', 'Successfully sent email message');
-        return Redirect::to('admin/mailout');
-
-    }
 
 }

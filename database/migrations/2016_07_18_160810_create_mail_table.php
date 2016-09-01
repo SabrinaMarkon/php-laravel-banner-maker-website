@@ -20,6 +20,7 @@ class CreateMailTable extends Migration
             $table->longText('message');
             $table->string('url', 255);
             $table->dateTime('approved')->nullable();
+            $table->char('needtosend', 1)->default(0);
             $table->dateTime('sent')->nullable();
             $table->integer('clicks');
             $table->char('save', 1)->default(0);

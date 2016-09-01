@@ -4,7 +4,7 @@
 
 <head>
     @include('includes.head')
-    @yield('heading')
+    @yield('header')
 </head>
 
 <body>

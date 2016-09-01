@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-1"></div>
-                        <div class="col-sm-2">{{ Form::label('id', 'Send or Edit Email: ', array('class' => 'control-label')) }}</div>
+                        <div class="col-sm-3">{{ Form::label('id', 'Send or Edit Email: ', array('class' => 'control-label')) }}</div>
                         <div class="col-sm-6">
                             <select name="id" class="form-control">
                                 <option value="" disabled selected>Select email</option>
@@ -78,7 +78,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-sm-2">{{ Form::submit('Edit', array('class' => 'btn btn-custom skinny')) }}</div>
+                        <div class="col-sm-1">{{ Form::submit('Edit', array('class' => 'btn btn-custom skinny')) }}</div>
                         <div class="col-sm-1"></div>
                     </div>
                 </div>
@@ -100,92 +100,121 @@
                     <div class="row"><div class="col-sm-2"></div><div class="col-sm-4">~AFFILIATE_URL~</div><div class="col-sm-4">Member's Affiliate URL</div><div class="col-sm-2"></div></div>
                 </div>
                 <div class="col-sm-1"></div>
-            </div><br />
+            </div><br /><br />
 
         @if (Session::has('mail'))
             {{-- EDIT OR SEND EMAIL FORM --}}
-
-
+                {{ Form::open(array('route' => array('admin.mailout.update', Session::get('mail')->id), 'method' => 'PATCH')) }}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-2">
+                            {{ Form::label('subject', 'Subject: ', array('class' => 'control-label')) }}
+                        </div>
+                        <div class="col-sm-8">
+                            {{ Form::text('subject', Session::get('mail')->subject, array('placeholder' => 'subject', 'class' => 'form-control')) }}
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-2">
+                            {{ Form::label('url', 'URL: ', array('class' => 'control-label')) }}
+                        </div>
+                        <div class="col-sm-8">
+                            {{ Form::text('url', Session::get('mail')->url, array('placeholder' => 'url', 'class' => 'form-control')) }}
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10 text-left">
+                            {{ Form::label('message', 'Message: ', array('class' => 'control-label')) }}
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            {{ Form::textarea('message', Session::get('mail')->message, ['size' => '55x30']) }}
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            {{ Form::button('Return', array('class' => 'btn btn-custom', 'onclick' => "parent.location = 'mailout'")) }}
+                        </div>
+                        <div class="col-sm-2">
+                            {{ Form::submit('Save Email', array('name' => 'save', 'class' => 'btn btn-custom')) }}
+                        </div>
+                        <div class="col-sm-2">
+                            {{ Form::submit('Send Email', array('name' => 'send', 'class' => 'btn btn-custom')) }}
+                            {{ Form::close() }}
+                        </div>
+                        <div class="col-sm-2">
+                            {{ Form::open(array('route' => array('admin.mailout.destroy', Session::get('mail')->id), 'method' => 'DELETE')) }}
+                            {{ Form::submit('Delete Email', array('class' => 'btn btn-custom')) }}
+                            {{ Form::close() }}
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
 
         @else
              {{-- CREATE NEW EMAIL FORM --}}
-
-
-                $table->string('userid', 255)->nullable();
-                $table->string('subject', 255);
-                $table->longText('message');
-                $table->string('url', 255);
-                $table->dateTime('approved')->nullable();
-                $table->dateTime('sent')->nullable();
-                $table->integer('clicks');
-                $table->char('save', 1)->default(0);
-
-            
-        <form class="form-horizontal" role="form">
-
+            {{ Form::open(array('route' => array('admin.mailout.store'), 'method' => 'POST')) }}
             <div class="form-group">
-
                 <div class="row">
-                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1"></div>
                     <div class="col-sm-2">
-                        <label for="subject" class="control-label">Subject:</label>
+                        {{ Form::label('subject', 'Subject: ', array('class' => 'control-label')) }}
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" value="{{ old('subject') }}">
+                    <div class="col-sm-8">
+                        {{ Form::text('subject', old('subject'), array('placeholder' => 'subject', 'class' => 'form-control')) }}
                     </div>
-                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1"></div>
                 </div>
-
                 <div class="row">
-                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1"></div>
                     <div class="col-sm-2">
-                        <label for="url" class="control-label">URL:</label>
+                        {{ Form::label('url', 'URL: ', array('class' => 'control-label')) }}
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" value="{{ old('url') }}">
+                    <div class="col-sm-8">
+                        {{ Form::text('url', old('url'), array('placeholder' => 'url', 'class' => 'form-control')) }}
                     </div>
-                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1"></div>
                 </div>
-
                 <div class="row">
-                    <div class="col-sm-12">
-                         <label for="message" class="control-label">Message:</label>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10 text-left">
+                        {{ Form::label('message', 'Message: ', array('class' => 'control-label')) }}
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <textarea  name="message" id="message">{{ old('message') }}</textarea>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="form-group">
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label class="checkbox inline">
-                                <input type="checkbox" aria-label="Save This Message" id="save">Save This Message
-                            </label>
-                        </div>
+                        {{ Form::textarea('message', old('message'), ['size' => '55x30']) }}
                     </div>
                     <div class="col-sm-1"></div>
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-custom">Send</button>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        {{ Form::submit('Save Email', array('name' => 'save', 'class' => 'btn btn-custom')) }}
                     </div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        {{ Form::submit('Send Email', array('name' => 'send', 'class' => 'btn btn-custom')) }}
+                        {{ Form::close() }}
+                    </div>
+                    <div class="col-sm-3"></div>
                 </div>
             </div>
-
-        </form>
 
         @endif
 

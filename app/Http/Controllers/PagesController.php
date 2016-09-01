@@ -112,10 +112,6 @@ class PagesController extends Controller
         return view('pages.promote', compact('promotes', 'page'));
     }
 
-    public function maildownline() {
-        return view('pages.maildownline');
-    }
-
     public function custompage($page) {
         $content = Page::where('slug', '=', $page)->first();
         Session::flash('page', $content);
