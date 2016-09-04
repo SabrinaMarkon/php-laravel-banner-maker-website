@@ -33,6 +33,7 @@
         @endif
 
         {{-- CREATE NEW FAQ FORM --}}
+        <h2>Create New FAQ</h2>
         {{ Form::open(array('route' => array('admin.faqs.store'), 'method' => 'POST')) }}
         <div class="form-group">
             <div class="row">
@@ -68,6 +69,7 @@
 
         {{-- ALL FAQs --}}
         <div class="table-responsive">
+            <h2>Existing FAQ List</h2>
             <table class="table table-hover table-condensed table-bordered text-center">
                 <thead>
                 <tr>

@@ -45,6 +45,9 @@ body {
 #main {
     background-color: #ffffff;
 }
+h2 {
+    padding-bottom: 20px;
+}
 .fa {
     padding: 3px;
 }

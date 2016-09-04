@@ -34,6 +34,7 @@
 
         <div class="table-responsive">
                 <!-- Registration Form -->
+                    <h2>Create New Member Account</h2>
                 {{ Form::open(array('route' => array('admin.members.store'), 'method' => 'POST', 'class' => 'form-horizontal form-page-small')) }}
                     <div class="form-group">
                          {{ Form::label('userid', 'UserID', array('class' => 'col-sm-2 control-label')) }}
@@ -74,6 +75,7 @@
         </div>
 
         <div class="table-responsive">
+            <h2>Member Accounts</h2>
             <table class="table table-hover table-condensed table-bordered text-center">
                 <thead>
                 <tr>

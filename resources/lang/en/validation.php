@@ -133,6 +133,7 @@ return [
         'price' => 'Price',
         'commission' => 'Commission',
         'question' => 'Question',
+        'name' => 'Name',
     ],
 
 ];

@@ -15,7 +15,7 @@ class CreateBuilderCatTable extends Migration
         Schema::create('builder_cat', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->integer('order');
+            $table->integer('positionnumber')->default(0);
             $table->timestamps();
         });
     }
