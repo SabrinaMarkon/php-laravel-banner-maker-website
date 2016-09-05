@@ -16,18 +16,26 @@ trait BuildersTrait {
      *
      * @return mixed
      */
-    public function getLast() {
-        $last = DB::table('builder_cat')->max('positionnumber');
+    public function getLast($which) {
+        if ($which == "category") {
+            $last = DB::table('builder_cat')->max('positionnumber');
+        } else {
+            $last = DB::table('builder_sites')->max('positionnumber');
+        }
         return $last+1;
     }
 
-    public function saveOrder($builders_id_order) {
+    public function saveOrder($which, $builders_id_order) {
         $builder_id_array = explode('&', $builders_id_order);
         $counter = 1;
         foreach ($builder_id_array as $builder_id) {
             $builder_id_array = explode('=', $builder_id);
             $id = $builder_id_array[1];
-            DB::table('builder_cat')->where('id', $id)->update(['positionnumber' => $counter]);
+            if ($which == "category") {
+                DB::table('builder_cat')->where('id', $id)->update(['positionnumber' => $counter]);
+            } else {
+                DB::table('builder_sites')->where('id', $id)->update(['positionnumber' => $counter]);
+            }
             $counter++;
         };
     }
