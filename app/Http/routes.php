@@ -42,8 +42,6 @@ Route::get('promote', 'PagesController@promote');
  */
 Route::get('banners', 'PagesController@banners');
 
-Route::get('dlb', 'PagesController@dlb');
-
 Route::get('license', 'PagesController@license');
 
 Route::get('products', 'PagesController@products');
@@ -58,6 +56,7 @@ Route::get('account', 'PagesController@account');
 
 Route::resource('maildownline', 'MailsController');
 
+Route::resource('dlb', 'BuildersController');
 
 /*
  * Custom pages added by the admin

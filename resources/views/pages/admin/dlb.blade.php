@@ -117,6 +117,23 @@
             </div>
             <div class="row">
                 <div class="col-sm-1"></div>
+                <div class="col-sm-3">{{ Form::label('bold', 'Bold: ', array('class' => 'control-label')) }}</div>
+                <div class="col-sm-7 text-left">
+                    {{ Form::checkbox('bold', '1', old('bold')) }}
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">{{ Form::label('color', 'Color: ', array('class' => 'control-label')) }}</div>
+                <div class="col-sm-7">
+                    {{ Form::select('color', array('black' => 'Black', 'red' => 'Red', 'blue' => 'Blue', 'green' => 'Green', 'purple' => 'Purple', 'orange' => 'Orange', 'pink' => 'Pink'),
+                    old('color'), array('class' => 'form-control')) }}
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-3">{{ Form::label('desc', 'Description: ', array('class' => 'control-label')) }}</div>
                 <div class="col-sm-7">
                     {{ Form::textarea('desc', old('desc'), array('placeholder' => 'program description', 'size' => '45x5', 'class' => 'form-control')) }}
@@ -150,7 +167,7 @@
             {{--  EXISTING PROGRAMS --}}
             <div class="table-responsive">
                 <h2>Existing Downline Builder Programs</h2>
-                <div>In the members area, programs are shown from lowest to highest "Order" under their own category.</div><br><br>
+                <div>In the members area, programs are shown from the lowest to highest "Order" under their own category.</div><br><br>
                 <table class="table table-hover table-condensed table-bordered text-center">
                     <thead>
                     <tr>
@@ -159,6 +176,8 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>URL</th>
+                        <th>Bold</th>
+                        <th>Color</th>
                         <th>Category</th>
                         <th>Order</th>
                         <th>Edit</th>
@@ -174,8 +193,11 @@
                             <td><i class="fa fa-reorder"></i></td>
                             <td>{{ $program->id }}</td>
                             <td>{{ Form::text('name' . $program->id, $program->name, array('placeholder' => 'program name', 'class' => 'form-control')) }} </td>
-                            <td>{{ Form::textarea('desc' . $program->id, $program->desc, array('placeholder' => 'program description', 'size' => '35x3', 'class' => 'form-control')) }} </td>
+                            <td>{{ Form::textarea('desc' . $program->id, $program->desc, array('placeholder' => 'program description', 'size' => '30x3', 'class' => 'form-control')) }} </td>
                             <td>{{ Form::text('url' . $program->id, $program->url, array('placeholder' => 'http://', 'class' => 'form-control')) }} </td>
+                            <td>{{ Form::checkbox('bold' . $program->id, '1', $program->bold) }}</td>
+                            <td>{{ Form::select('color' . $program->id, array('black' => 'Black', 'red' => 'Red', 'blue' => 'Blue', 'green' => 'Green', 'purple' => 'Purple', 'orange' => 'Orange', 'pink' => 'Pink'),
+                        $program->color, array('class' => 'form-control')) }} </td>
                             <td>
                                 <select name="category{{ $program->id }}" class="form-control">
                                     @foreach($categories as $category)

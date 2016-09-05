@@ -64,10 +64,6 @@ class PagesController extends Controller
         return view('pages.banners');
     }
 
-    public function dlb() {
-        return view('pages.dlb');
-    }
-
     public function license() {
         return view('pages.license');
     }

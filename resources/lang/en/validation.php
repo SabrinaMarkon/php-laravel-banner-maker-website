@@ -134,6 +134,7 @@ return [
         'commission' => 'Commission',
         'question' => 'Question',
         'name' => 'Name',
+        'category' => 'Category',
     ],
 
 ];

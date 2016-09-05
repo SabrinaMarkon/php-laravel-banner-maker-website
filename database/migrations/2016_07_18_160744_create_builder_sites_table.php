@@ -18,6 +18,8 @@ class CreateBuilderSitesTable extends Migration
             $table->string('name', 255);
             $table->text('desc');
             $table->string('url', 255);
+            $table->char('bold', 1)->default(0);
+            $table->string('color', 255);
             $table->integer('positionnumber')->default(0);
             $table->integer('category');
             $table->foreign('category')->references('id')->on('builder_cat');

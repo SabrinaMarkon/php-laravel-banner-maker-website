@@ -82,3 +82,4 @@
 [01-Sep-2016 05:44:17 UTC] PHP Fatal error:  Call to undefined method Illuminate\Database\Schema\Blueprint::chr() in /home/sadiesbc/public_html/database/migrations/2016_07_18_160810_create_mail_table.php on line 23
 [01-Sep-2016 05:44:41 UTC] PHP Fatal error:  Call to undefined method Illuminate\Database\Schema\Blueprint::chr() in /home/sadiesbc/public_html/database/migrations/2016_07_18_160810_create_mail_table.php on line 23
 [01-Sep-2016 06:33:16 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth' not found in /home/sadiesbc/public_html/app/Http/Controllers/MailsController.php on line 23
+[05-Sep-2016 04:35:25 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\Admin\App\Http\Controllers\BuildersTrait' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BuildersController.php on line 17

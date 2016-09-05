@@ -60,7 +60,7 @@ class BuildersController extends Controller
 
             if ($validator->fails()) {
                 Session::flash('errors', $validator->errors());
-                return Redirect::to('admin/dlb');
+                return Redirect::to('admin/dlb')->withInput($request->all());
             } else {
                 $builder = new Builder_cat;
                 $builder->name = $request->get('name');
@@ -80,12 +80,18 @@ class BuildersController extends Controller
 
             if ($validator->fails()) {
                 Session::flash('errors', $validator->errors());
-                return Redirect::to('admin/dlb');
+                return Redirect::to('admin/dlb')->withInput($request->all());
             } else {
                 $builder = new Builder_site;
                 $builder->name = $request->get('name');
                 $builder->desc = $request->get('desc');
                 $builder->url = $request->get('url');
+                if ($request->get('bold') == 1) {
+                    $builder->bold = 1;
+                } else {
+                    $builder->bold = 0;
+                }
+                $builder->color = $request->get('color');
                 $builder->category = $request->get('category');
                 $builder->positionnumber = $this->getlast('program');
                 $builder->save();
@@ -116,7 +122,7 @@ class BuildersController extends Controller
 
             if ($validator->fails()) {
                 Session::flash('errors', $validator->errors());
-                return Redirect::to('admin/dlb');
+                return Redirect::to('admin/dlb')->withInput($request->all());
             } else {
                 $builder = Builder_cat::find($id);
                 $builder->name = $request->get('name' . $id);
@@ -138,12 +144,18 @@ class BuildersController extends Controller
 
             if ($validator->fails()) {
                 Session::flash('errors', $validator->errors());
-                return Redirect::to('admin/dlb');
+                return Redirect::to('admin/dlb')->withInput($request->all());
             } else {
                 $builder = Builder_site::find($id);
                 $builder->name = $request->get('name' . $id);
                 $builder->desc = $request->get('desc' . $id);
                 $builder->url = $request->get('url' . $id);
+                if ($request->get('bold' . $id) == 1) {
+                    $builder->bold = 1;
+                } else {
+                    $builder->bold = 0;
+                }
+                $builder->color = $request->get('color');
                 $builder->category = $request->get('category' . $id);
                 $builder_id_order = $request->get('positionnumber' . $id);
                 $this->saveOrder('program', $builder_id_order);
