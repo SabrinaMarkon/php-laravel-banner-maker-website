@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Mail;
+use App\Models\Member;
 use App\Http\Controllers\Controller;
-use DB;
 
 trait MailsTrait {
 
     /**
      * Get an email and send it out.
      *
+     * @param  mail   mail object
      * @return mixed
      */
     public function mailOut(Mail $mail) {

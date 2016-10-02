@@ -15,7 +15,7 @@
 
 @section('content')
 
-    <div class="form-page-medium">
+    <div class="form-page-large">
 
         <!-- will be used to show any messages -->
         @if (Session::has('message'))
@@ -39,7 +39,12 @@
             <div class="form-group">
                 {{ Form::label('userid', 'UserID', array('class' => 'col-sm-2 control-label')) }}
                 <div class="col-sm-10">
-                    {{ Form::text('userid', old('userid'), array('placeholder' => 'username')) }}
+                    <select name="userid" class="form-control">
+                        <option value="" disabled selected>Select UserID</option>
+                        @foreach ($userids as $userid)
+                            <option value="{{ $userid->userid }}">{{ $userid->userid }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
              <div class="form-group">
@@ -93,12 +98,28 @@
                     $licensestartdate = $licensestartdate->format('Y-m-d');
                     $licenseenddate = new DateTime($license->licenseenddate);
                     $licenseenddate = $licenseenddate->format('Y-m-d');
+                    $now = new DateTime();
+                    $now = $now->format('Y-m-d');
                     ?>
                     <tr>
-                        {{ Form::open(array('route' => array('admin.licenses.update', $member->id), 'method' => 'PATCH', 'class' => 'form-horizontal')) }}
-                        <td>{{ $license->id }} </td>
-                        <td>{{ Form::text('userid', $license->userid) }} </td>
-                        <td>{{ Form::text('licenseenddate', $licenseenddate) }} </td>
+                        {{ Form::open(array('route' => array('admin.licenses.update', $license->id), 'method' => 'PATCH', 'class' => 'form-horizontal')) }}
+                        @if ($now < $licenseenddate)
+                            <td class="bg-success">{{ $license->id }} </td>
+                        @else
+                            <td class="bg-danger">{{ $license->id }} </td>
+                        @endif
+                        <td>
+                            <select name="userid" class="form-control">
+                                @foreach($userids as $userid)
+                                    @if($license->userid == $userid->userid)
+                                        <option value="{{ $userid->userid }}" selected="selected">{{ $userid->userid }}</option>
+                                    @else
+                                        <option value="{{ $userid->userid }}">{{ $userid->userid }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ Form::text('licensepaiddate', $licensepaiddate) }} </td>
                         <td>{{ Form::text('licensestartdate', $licensestartdate) }} </td>
                         <td>{{ Form::text('licenseenddate', $licenseenddate) }} </td>
                         <td>{{ Form::submit('Save', array('class' => 'btn btn-custom skinny')) }}</td>

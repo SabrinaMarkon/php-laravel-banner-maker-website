@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\Page;
 use App\Models\Faq;
+use App\Models\Member;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\Promotional;
 use App\Http\Controllers\Controller;
@@ -65,13 +66,15 @@ class PagesController extends Controller
     }
 
     public function license() {
-        return view('pages.license');
+        // get the admin's content for the license sales page if they've written any.
+        $page = Page::where('slug', '=', 'license')->first();
+        return view('pages.license', compact('page'));
     }
 
     public function products() {
         // get the admin's content for the product sales page if they've written any.
         $page = Page::where('slug', '=', 'products')->first();
-        // get the questions and answers.
+        // get the products.
         $products = Product::all();
         return view('pages.products', compact('products', 'page'));
     }
@@ -92,12 +95,6 @@ class PagesController extends Controller
         $content = Page::where('slug', '=', 'account')->first();
         Session::flash('page', $content);
         return view('pages.account');
-    }
-
-    public function profile() {
-        $content = Page::where('slug', '=', 'profile')->first();
-        Session::flash('page', $content);
-        return view('pages.profile');
     }
 
     public function promote() {

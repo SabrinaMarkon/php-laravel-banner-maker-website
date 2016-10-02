@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\License;
+use App\Models\Member;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -21,8 +22,9 @@ class LicensesController extends Controller
      */
     public function index()
     {
-        $licenses = License::all();
-        return view('pages.admin.licenses', compact('licenses'));
+        $licenses = License::orderBy('licenseenddate', 'desc')->orderBy('id', 'desc')->get();
+        $userids = Member::orderBy('userid', 'asc')->get();
+        return view('pages.admin.licenses', compact('licenses', 'userids'));
     }
 
     /**
@@ -48,15 +50,9 @@ class LicensesController extends Controller
             // create new license.
             $license = new License;
             $license->userid = $request->get('userid');
-            $licensepaiddate = new DateTime();
-            $licensepaiddate = $licensepaiddate->format('Y-m-d H:i:sP');
-            $license->licensepaiddate = $licensepaiddate;
-            $licensestartdate = new DateTime();
-            $licensestartdate = $licensestartdate->format('Y-m-d H:i:sP');
-            $license->licensestartdate = $licensestartdate;
-            $licenseenddate = new DateTime();
-            $licenseenddate = $licenseenddate->format('Y-m-d H:i:sP');
-            $license->licenseenddate = $licenseenddate;
+            $license->licensepaiddate = $request->get('licensepaiddate');
+            $license->licensestartdate = $request->get('licensestartdate');
+            $license->licenseenddate = $request->get('licenseenddate');
             $license->save();
             Session::flash('message', 'Successfully created new license for UserID ' . $license->userid);
             return Redirect::to('admin/licenses');
@@ -110,7 +106,7 @@ class LicensesController extends Controller
 
         $license = License::find($id);
         $license->delete();
-        Session::flash('message', 'Successfully deleted License ID: ' . $license->id);
+        Session::flash('message', 'Successfully deleted License');
         return Redirect::to('admin/licenses');
 
     }

@@ -54,6 +54,8 @@ Route::get('forgot', 'PagesController@forgot');
 
 Route::get('account', 'PagesController@account');
 
+Route::resource('profile', 'MembersController');
+
 Route::resource('maildownline', 'MailsController');
 
 Route::resource('dlb', 'BuildersController');

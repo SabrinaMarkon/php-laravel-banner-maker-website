@@ -20,7 +20,7 @@ class MailsController extends Controller
      */
     public function index()
     {
-        $contents = Mail::where('userid', 'admin')->orderBy('subject', 'asc')->get(); // ahange 'admin' to userid when I get that working.
+        $contents = Mail::where('userid', 'admin')->orderBy('subject', 'asc')->get(); // change 'admin' to userid when I get that working.
         return view('pages.maildownline', compact('contents'));
     }
 

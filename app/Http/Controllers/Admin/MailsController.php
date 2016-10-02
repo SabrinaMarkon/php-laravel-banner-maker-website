@@ -14,8 +14,6 @@ use DateTime;
 class MailsController extends Controller
 {
 
-    use MailsTrait;
-
     /**
      * Show form to create new emails.
      *

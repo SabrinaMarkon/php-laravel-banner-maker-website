@@ -120,3 +120,24 @@
 [26-Sep-2016 03:08:26 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 24
 [26-Sep-2016 03:22:39 UTC] PHP Fatal error:  Call to undefined function get() in /home/sadiesbc/public_html/app/Http/routes.php on line 94
 [02-Oct-2016 02:11:27 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/LicensesController.php on line 114
+[02-Oct-2016 04:01:47 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:02:21 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:02:25 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:03:09 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:03:12 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:03:52 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:03:58 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 04:04:32 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 112
+[02-Oct-2016 04:28:12 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/sadiesbc/public_html/storage/framework/views/7e63b7dfa2111cb2dde10edd5131dd6f0d22cf4a.php on line 111
+[02-Oct-2016 06:50:19 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/sadiesbc/public_html/app/Http/Controllers/MembersController.php on line 82
+[02-Oct-2016 06:50:23 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/sadiesbc/public_html/app/Http/Controllers/MembersController.php on line 82
+[02-Oct-2016 06:51:34 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Page' not found in /home/sadiesbc/public_html/app/Http/Controllers/MembersController.php on line 26
+[02-Oct-2016 09:06:02 UTC] PHP Parse error:  syntax error, unexpected '$request' (T_VARIABLE), expecting '(' in /home/sadiesbc/public_html/app/Http/Controllers/MembersController.php on line 68
+[02-Oct-2016 09:43:33 UTC] PHP Fatal error:  Uncaught exception 'ErrorException' with message 'fwrite(): SSL operation failed with code 1. OpenSSL Error messages:
+error:1409F07F:SSL routines:SSL3_WRITE_PENDING:bad write retry' in /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php:232
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'fwrite(): SSL o...', '/home/sadiesbc/...', 232, Array)
+#1 /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php(232): fwrite(Resource id #331, 'QUIT\r\nQUIT\r\n')
+#2 /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/AbstractFilterableInputStream.php(173): Swift_Transport_StreamBuffer->_commit('QUIT\r\nQUIT\r\n')
+#3 /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/AbstractFilterableInputStream.php(92): Swift_ByteStream_AbstractFilterableInputStream->_doWrite('QUIT\r\nQUIT\r\n')
+#4 /home/sadiesbc/publi in /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php on line 232
