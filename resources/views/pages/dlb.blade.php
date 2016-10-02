@@ -205,6 +205,7 @@
                                                         @endif
                                                 @endif
                                                 </a>
+                                                <a href="{{ $sponsorprogram->url }}" target="_blank" class="pull-right">Click Me!</a>
                                             </h4>
                                         </div>
                                         <div class="panel-body">
@@ -237,6 +238,7 @@
                                                     @endif
                                                 @endif
                                             </a>
+                                            <a href="{{ $adminprogram->url }}" target="_blank" class="pull-right">Click Me!</a>
                                         </h4>
                                     </div>
                                     <div class="panel-body">

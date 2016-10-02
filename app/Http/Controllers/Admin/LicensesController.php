@@ -9,105 +9,110 @@ use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
+use DateTime;
 
 class LicensesController extends Controller
 {
+
     /**
-     * Show all user license records.
+     * Show all licenses.
      *
      * @return Response
      */
-    public function index() {
-        $contents = License::orderBy('userid', 'asc')->get();
-        return view('pages.admin.licenses', compact('contents'));
+    public function index()
+    {
+        $licenses = License::all();
+        return view('pages.admin.licenses', compact('licenses'));
     }
 
     /**
-     * Save user license.
+     * Save record for a new license.
      *
      * @return Response
      */
-    public function store(Request $request) {
-
-        // validate submission.
+    public function store(Request $request)
+    {
+        // form validation.
         $rules = array(
-            'productname' => 'required|max:255|unique:products,name',
-            'quantity' => 'required|min:1|integer',
-            'price' => 'required|min:0.01',
-            'commission' => 'required|min:0.00',
+            'userid' => 'required|max:255|exists:members',
+            'licensepaiddate' => 'required|date_format:Y-m-d',
+            'licensestartdate' => 'required|date_format:Y-m-d',
+            'licenseenddate' => 'required|date_format:Y-m-d',
         );
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             Session::flash('errors', $validator->errors());
-            return Redirect::to('admin/licenses')->withInput($request->all());
+            return Redirect::to('admin/licenses')->withInput($request->all()); // "withInput" sends the "old" values back on error to prepopulate the form.
         } else {
-            // create new item.
+            // create new license.
             $license = new License;
             $license->userid = $request->get('userid');
-
-
+            $licensepaiddate = new DateTime();
+            $licensepaiddate = $licensepaiddate->format('Y-m-d H:i:sP');
+            $license->licensepaiddate = $licensepaiddate;
+            $licensestartdate = new DateTime();
+            $licensestartdate = $licensestartdate->format('Y-m-d H:i:sP');
+            $license->licensestartdate = $licensestartdate;
+            $licenseenddate = new DateTime();
+            $licenseenddate = $licenseenddate->format('Y-m-d H:i:sP');
+            $license->licenseenddate = $licenseenddate;
             $license->save();
-            $userid = $license->userid;
-            Session::flash('message', 'Successfully added new license for member: ' . $userid);
+            Session::flash('message', 'Successfully created new license for UserID ' . $license->userid);
             return Redirect::to('admin/licenses');
         }
 
     }
 
     /**
-     * Update the specified item in the database.
+     * Update license details.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function update($id, Request $request) {
+    public function update($id, Request $request)
+    {
 
-        // validate update submission.
+        // form validation.
         $rules = array(
-            'productname' => 'required|max:255',
-            'quantity' => 'required|min:1|integer',
-            'price' => 'required|min:0.01',
-            'commission' => 'required|min:0.00',
+            'userid' => 'required|max:255|exists:members',
+            'licensepaiddate' => 'required|date_format:Y-m-d',
+            'licensestartdate' => 'required|date_format:Y-m-d',
+            'licenseenddate' => 'required|date_format:Y-m-d',
         );
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            // return to the form with the same data from the same db id to try again.
-            $license = License::find($id);
             Session::flash('errors', $validator->errors());
-            Session::flash('license', $license);
-            return Redirect::to('admin/licenses')->withInput($request->all());
+            return Redirect::to('admin/licenses');
         } else {
-            // update the record in the database.
+            // update record.
             $license = License::find($id);
             $license->userid = $request->get('userid');
-
-
-
+            $license->licensepaiddate = $request->get('licensepaiddate');
+            $license->licensestartdate = $request->get('licensestartdate');
+            $license->licenseenddate = $request->get('licenseenddate');
             $license->save();
-            Session::flash('message', 'Successfully saved license');
+            Session::flash('message', 'Successfully updated License');
             return Redirect::to('admin/licenses');
         }
 
     }
-
 
     /**
      * Delete a license.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id, Request $request) {
+    public function destroy($id, Request $request)
+    {
 
         $license = License::find($id);
         $license->delete();
-        Session::flash('message', 'Successfully deleted license');
+        Session::flash('message', 'Successfully deleted License ID: ' . $license->id);
         return Redirect::to('admin/licenses');
 
     }
-
-
 
 }

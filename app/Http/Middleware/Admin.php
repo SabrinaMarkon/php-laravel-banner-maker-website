@@ -16,9 +16,10 @@ class Admin
     public function handle($request, Closure $next)
     {
         if ( Auth::check() && Auth::user()->isAdmin() ) {
+       #if ($request->user()->isAdmin()) {
             return $next($request);
         }
+        // insufficient admin permissions so return to admin login.;
         return redirect('admin');
-
     }
 }

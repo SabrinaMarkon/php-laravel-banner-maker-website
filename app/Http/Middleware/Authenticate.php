@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
+use Session;
 
 class Authenticate
 {
@@ -22,7 +24,9 @@ class Authenticate
                 return response('Unauthorized.', 401);
             }
 
-            return redirect()->guest('login');
+         // return redirect()->guest('login');
+            Session::flash('message', 'Incorrect Login');
+            return Redirect::back(); // use instead to redirect to the login page we are coming from.
         }
 
         return $next($request);

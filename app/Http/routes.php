@@ -58,15 +58,6 @@ Route::resource('maildownline', 'MailsController');
 
 Route::resource('dlb', 'BuildersController');
 
-/*
- * Custom pages added by the admin
- * IMPORTANT: this must be the last route or core pages such as faqs will
- * be treated as a custom page instead of a core. This causes them to show the
- * admin's text they add but not any database data.
- */
-Route::get('{page}', 'PagesController@custompage');
-
-
 ////////////////////////// MEMBERS //////////////////////
 
 
@@ -76,7 +67,8 @@ Route::get('{page}', 'PagesController@custompage');
 /*
  * Admin login page
  */
-Route::match(['get', 'post'], 'admin', array('uses' => 'Admin\AdminLoginController@home'));
+//Route::match(['get', 'post'], 'admin', array('uses' => 'Admin\AdminLoginController@home'));
+Route::get('admin', 'Admin\AdminLoginController@index');
 
 /*
  * Admin forgot login
@@ -84,15 +76,26 @@ Route::match(['get', 'post'], 'admin', array('uses' => 'Admin\AdminLoginControll
 Route::get('admin/forgot', 'Admin\AdminLoginController@forgot');
 
 /*
-Routes for Authenticated Admin Area
+* Admin Logout
 */
-// Route::group(array('middleware' => 'admin'), function() {
-//Route::group(array('middleware' => 'auth'), function() {
+Route::get('admin/logout', 'Admin\AdminLoginController@logout');
+
+/*
+Routes for Authenticated Admin Area
+// IMPORTANT: The middleware name ('admin') has to match the name specified in the Kernel.php file!
+*/
+#Route::group(array('middleware' => ['auth', 'admin']), function() {
 
 /*
  *  Main Admin Area
  */
-Route::get('admin/main', array('uses' => 'Admin\MainAdminController@index'));
+    Route::post('admin', 'Admin\AdminLoginController@main');
+    Route::get('admin/main', array('uses' => 'Admin\MainAdminController@index'));
+/*
+Route::get('admin/main', ['middleware' => ['auth', 'admin'], function() {
+    return "this page requires that you be logged in and an Admin";
+}]);
+*/
 /*
 *  Members
 */
@@ -108,42 +111,47 @@ Route::get('admin/main', array('uses' => 'Admin\MainAdminController@index'));
 /*
  *  Mail
  */
-Route::resource('admin/mailout', 'Admin\MailsController');
+    Route::resource('admin/mailout', 'Admin\MailsController');
 /*
 *  Settings
 */
-Route::resource('admin/settings', 'Admin\SettingsController');
+    Route::resource('admin/settings', 'Admin\SettingsController');
 /*
 *  Banners
 */
-Route::resource('admin/banners', 'Admin\BannersController');
+    Route::resource('admin/banners', 'Admin\BannersController');
 /*
 *  Edit Pages
 */
-Route::resource('admin/content', 'Admin\ContentController');
+    Route::resource('admin/content', 'Admin\ContentController');
 /*
 *  Products
 */
-Route::resource('admin/products', 'Admin\ProductsController');
+    Route::resource('admin/products', 'Admin\ProductsController');
 /*
 *  LIcenses
 */
-Route::resource('admin/licenses', 'Admin\LicensesController');
+    Route::resource('admin/licenses', 'Admin\LicensesController');
 /*
  *  Transactions
  */
-Route::resource('admin/transactions', 'Admin\TransactionsController');
+    Route::resource('admin/transactions', 'Admin\TransactionsController');
 /*
 *  Promotional
 */
-Route::resource('admin/promotionals', 'Admin\PromotionalsController');
-/*
-*  Logout
-*/
-Route::get('admin/logout', 'Admin\AdminLoginController@home');
+    Route::resource('admin/promotionals', 'Admin\PromotionalsController');
 
-//});
+#});
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+/*
+ * Custom pages added by the admin
+ * IMPORTANT: this must be the last route or core pages such as faqs will
+ * be treated as a custom page instead of a core. This causes them to show the
+ * admin's text they add but not any database data.
+ */
+Route::get('{page}', 'PagesController@custompage');
+

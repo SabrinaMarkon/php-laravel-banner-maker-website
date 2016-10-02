@@ -155,7 +155,7 @@ class BuildersController extends Controller
                 } else {
                     $builder->bold = 0;
                 }
-                $builder->color = $request->get('color');
+                $builder->color = $request->get('color' . $id);
                 $builder->category = $request->get('category' . $id);
                 $builder_id_order = $request->get('positionnumber' . $id);
                 $this->saveOrder('program', $builder_id_order);

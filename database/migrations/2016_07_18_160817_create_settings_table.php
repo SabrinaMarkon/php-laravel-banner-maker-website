@@ -51,6 +51,9 @@ class CreateSettingsTable extends Migration
             array('name'    =>    'licensepriceinterval',
                 'setting'    =>    'lifetime',
                 'description'    =>    'How Often to Pay for License'),
+            array('name'    =>    'licensecommission',
+                'setting'    =>    '0.00',
+                'description'    =>  'Commission for Referral Purchasing License'),
             ));
     }
 

@@ -83,3 +83,40 @@
 [01-Sep-2016 05:44:41 UTC] PHP Fatal error:  Call to undefined method Illuminate\Database\Schema\Blueprint::chr() in /home/sadiesbc/public_html/database/migrations/2016_07_18_160810_create_mail_table.php on line 23
 [01-Sep-2016 06:33:16 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth' not found in /home/sadiesbc/public_html/app/Http/Controllers/MailsController.php on line 23
 [05-Sep-2016 04:35:25 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\Admin\App\Http\Controllers\BuildersTrait' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BuildersController.php on line 17
+[25-Sep-2016 05:19:56 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Redirect' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/AdminLoginController.php on line 21
+[25-Sep-2016 05:28:54 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[25-Sep-2016 10:44:28 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 10:46:02 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 10:53:01 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 11:35:34 UTC] PHP Fatal error:  Call to undefined method App\Http\Middleware\Admin::user() in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 11:36:09 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 11:45:18 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[25-Sep-2016 11:46:43 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[25-Sep-2016 23:12:12 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[25-Sep-2016 23:12:50 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 23:12:58 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 19
+[25-Sep-2016 23:15:02 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[25-Sep-2016 23:40:18 UTC] PHP Fatal error:  Call to undefined function post() in /home/sadiesbc/public_html/app/Http/routes.php on line 93
+[25-Sep-2016 23:49:03 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[25-Sep-2016 23:57:58 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[26-Sep-2016 00:02:00 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[26-Sep-2016 00:02:28 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Redirect' not found in /home/sadiesbc/public_html/app/Http/Middleware/Authenticate.php on line 26
+[26-Sep-2016 00:02:42 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Redirect' not found in /home/sadiesbc/public_html/app/Http/Middleware/Authenticate.php on line 26
+[26-Sep-2016 00:08:13 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Session' not found in /home/sadiesbc/public_html/app/Http/Middleware/Authenticate.php on line 27
+[26-Sep-2016 00:08:30 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 28
+[26-Sep-2016 00:09:43 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 31
+[26-Sep-2016 00:10:00 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 31
+[26-Sep-2016 00:10:06 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 31
+[26-Sep-2016 00:11:00 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 27
+[26-Sep-2016 00:11:05 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 27
+[26-Sep-2016 00:11:53 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 27
+[26-Sep-2016 00:11:57 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 27
+[26-Sep-2016 00:12:36 UTC] PHP Fatal error:  Call to a member function has() on string in /home/sadiesbc/public_html/storage/framework/views/48265ce93c8d1bf03e4006db60980474e484f3da.php on line 26
+[26-Sep-2016 00:37:08 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[26-Sep-2016 02:35:28 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[26-Sep-2016 02:35:34 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[26-Sep-2016 03:02:31 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Auth' not found in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 18
+[26-Sep-2016 03:05:16 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 24
+[26-Sep-2016 03:08:26 UTC] PHP Fatal error:  Call to a member function isAdmin() on null in /home/sadiesbc/public_html/app/Http/Middleware/Admin.php on line 24
+[26-Sep-2016 03:22:39 UTC] PHP Fatal error:  Call to undefined function get() in /home/sadiesbc/public_html/app/Http/routes.php on line 94
+[02-Oct-2016 02:11:27 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/LicensesController.php on line 114

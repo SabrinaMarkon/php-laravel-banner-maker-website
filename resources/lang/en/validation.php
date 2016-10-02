@@ -135,6 +135,9 @@ return [
         'question' => 'Question',
         'name' => 'Name',
         'category' => 'Category',
+        'licensepaiddate' => 'Date Paid',
+        'licensestartdate' => 'Start Date',
+        'licenseenddate' => 'End Date',
     ],
 
 ];
