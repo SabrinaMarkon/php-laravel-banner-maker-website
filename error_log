@@ -141,3 +141,28 @@ Stack trace:
 #2 /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/AbstractFilterableInputStream.php(173): Swift_Transport_StreamBuffer->_commit('QUIT\r\nQUIT\r\n')
 #3 /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/AbstractFilterableInputStream.php(92): Swift_ByteStream_AbstractFilterableInputStream->_doWrite('QUIT\r\nQUIT\r\n')
 #4 /home/sadiesbc/publi in /home/sadiesbc/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php on line 232
+[03-Oct-2016 04:17:48 UTC] PHP Fatal error:  Class 'App\Providers\View' not found in /home/sadiesbc/public_html/app/Providers/AppServiceProvider.php on line 16
+[03-Oct-2016 04:46:00 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Setting' not found in /home/sadiesbc/public_html/app/Http/Controllers/BaseController.php on line 18
+[03-Oct-2016 04:55:24 UTC] PHP Fatal error:  Class 'App\Providers\Auth' not found in /home/sadiesbc/public_html/app/Providers/AppServiceProvider.php on line 18
+[03-Oct-2016 04:55:35 UTC] PHP Fatal error:  Class 'App\Providers\Setting' not found in /home/sadiesbc/public_html/app/Providers/AppServiceProvider.php on line 19
+[03-Oct-2016 04:55:38 UTC] PHP Fatal error:  Class 'App\Providers\Setting' not found in /home/sadiesbc/public_html/app/Providers/AppServiceProvider.php on line 19
+[03-Oct-2016 05:06:41 UTC] PHP Parse error:  syntax error, unexpected 'Collective' (T_STRING), expecting ']' in /home/sadiesbc/public_html/config/app.php on line 161
+[03-Oct-2016 05:07:02 UTC] PHP Parse error:  syntax error, unexpected 'Collective' (T_STRING), expecting ']' in /home/sadiesbc/public_html/config/app.php on line 161
+[03-Oct-2016 05:07:17 UTC] PHP Parse error:  syntax error, unexpected 'Collective' (T_STRING), expecting ']' in /home/sadiesbc/public_html/config/app.php on line 161
+[03-Oct-2016 05:07:36 UTC] PHP Fatal error:  Class 'App\Providers\ComposerServiceProvider' not found in /home/sadiesbc/public_html/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 146
+[03-Oct-2016 05:31:43 UTC] PHP Fatal error:  Class 'App\Providers\Setting' not found in /home/sadiesbc/public_html/app/Providers/ComposerServiceProvider.php on line 19
+[03-Oct-2016 05:32:10 UTC] PHP Fatal error:  Class 'App\Providers\Setting' not found in /home/sadiesbc/public_html/app/Providers/ComposerServiceProvider.php on line 20
+[03-Oct-2016 06:27:28 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 35
+[03-Oct-2016 06:27:30 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 35
+[03-Oct-2016 06:42:16 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ';' or '{' in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 38
+[03-Oct-2016 07:01:43 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/sadiesbc/public_html/storage/framework/views/cc731caa01d26209c661383f60103cfe9a3c28f9.php on line 111
+[03-Oct-2016 07:02:30 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/sadiesbc/public_html/storage/framework/views/cc731caa01d26209c661383f60103cfe9a3c28f9.php on line 111
+[03-Oct-2016 07:03:04 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/sadiesbc/public_html/storage/framework/views/cc731caa01d26209c661383f60103cfe9a3c28f9.php on line 111
+[03-Oct-2016 08:02:21 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 27
+[03-Oct-2016 08:02:57 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 27
+[03-Oct-2016 08:03:01 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 27
+[03-Oct-2016 08:03:23 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 27
+[03-Oct-2016 08:03:40 UTC] PHP Fatal error:  Call to a member function all() on string in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 27
+[03-Oct-2016 08:07:53 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 38
+[03-Oct-2016 08:22:29 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 48
+[03-Oct-2016 08:26:06 UTC] PHP Fatal error:  Call to a member function count() on null in /home/sadiesbc/public_html/app/Http/Controllers/Admin/AdminLoginController.php on line 31

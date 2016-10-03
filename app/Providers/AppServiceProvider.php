@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Using view composer to set following variables globally
+        view()->composer('*',function($view) {
+            $settings = Setting::all();
+           // $view->with('user', Auth::user());
+          $view->with('settings', Setting::all());
+        });
     }
 
     /**

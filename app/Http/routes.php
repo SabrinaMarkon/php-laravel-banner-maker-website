@@ -17,14 +17,17 @@
 /*
  *  Basic reading
  */
-Route::get('/', 'PagesController@home');
 
+Route::get('about/{referid}', 'PagesController@about');
 Route::get('about', 'PagesController@about');
 
+Route::get('terms/{referid}', 'PagesController@terms');
 Route::get('terms', 'PagesController@terms');
 
+Route::get('privacy/{referid}', 'PagesController@privacy');
 Route::get('privacy', 'PagesController@privacy');
 
+Route::get('support/{referid}', 'PagesController@support');
 Route::get('support', 'PagesController@support');
 
 Route::get('logout', 'PagesController@home');
@@ -33,25 +36,37 @@ Route::get('logout', 'PagesController@home');
 /*
  *  Basic reading and display of database data
  */
+Route::get('faqs/{referid}', 'PagesController@faqs');
 Route::get('faqs', 'PagesController@faqs');
 
+Route::get('promote/{referid}', 'PagesController@promote');
 Route::get('promote', 'PagesController@promote');
 
 /*
  *  Complex database functionality
  */
+Route::get('banners/{referid}', 'PagesController@banners');
 Route::get('banners', 'PagesController@banners');
 
+Route::get('license/{referid}', 'PagesController@license');
 Route::get('license', 'PagesController@license');
 
+Route::get('products/{referid}', 'PagesController@products');
 Route::get('products', 'PagesController@products');
 
+Route::get('join/{referid}', 'PagesController@join');
 Route::get('join', 'PagesController@join');
+Route::post('join', 'PagesController@join');
 
+Route::get('login/{referid}', 'PagesController@login');
 Route::get('login', 'PagesController@login');
+Route::post('login', 'PagesController@login');
 
+Route::get('forgot/{referid}', 'PagesController@forgot');
 Route::get('forgot', 'PagesController@forgot');
+Route::post('forgot', 'PagesController@emaillogin');
 
+Route::get('account/{referid}', 'PagesController@account');
 Route::get('account', 'PagesController@account');
 
 Route::resource('profile', 'MembersController');
@@ -76,6 +91,7 @@ Route::get('admin', 'Admin\AdminLoginController@index');
  * Admin forgot login
  */
 Route::get('admin/forgot', 'Admin\AdminLoginController@forgot');
+Route::post('admin/forgot', 'Admin\AdminLoginController@emaillogin');
 
 /*
 * Admin Logout
@@ -145,9 +161,13 @@ Route::get('admin/main', ['middleware' => ['auth', 'admin'], function() {
 
 #});
 
-Route::auth();
+//Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+/*
+ * ORDER BELOW IS IMPORTANT!
+ */
 
 /*
  * Custom pages added by the admin
@@ -155,5 +175,13 @@ Route::get('/home', 'HomeController@index');
  * be treated as a custom page instead of a core. This causes them to show the
  * admin's text they add but not any database data.
  */
-Route::get('{page}', 'PagesController@custompage');
+Route::get('{page}/{referid}', 'PagesController@custompage');
+
+/*
+ * home page with optional referid. These are the last routes so they aren't used when the route is say,
+ * /about (where the 'about' would be misinterpreted as the referid).
+ */
+Route::get('/{referid}', 'PagesController@home');
+Route::get('/', 'PagesController@home');
+
 
