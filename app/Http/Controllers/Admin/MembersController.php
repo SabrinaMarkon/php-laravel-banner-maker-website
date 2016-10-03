@@ -35,7 +35,7 @@ class MembersController extends Controller
              'firstname' => 'required|max:255',
              'lastname' => 'required|max:255',
              'userid' => 'required|max:255|unique:members',
-             'password' => 'required|min:6|max:255',
+             'password' => 'required|min:6|max:255|confirmed',
              'email' => 'required|email|max:255|unique:members',
              'referid' => 'exists:members,userid, NULL',
          );
@@ -54,7 +54,7 @@ class MembersController extends Controller
              $member->email = $request->get('email');
             $member->referid = $request->get('referid');
              $signupdate = new DateTime();
-             $signupdate = $signupdate->format('Y-m-d H:i:sP');
+             $signupdate = $signupdate->format('Y-m-d');
              $member->signupdate = $signupdate;
              $member->ip = $_SERVER['REMOTE_ADDR'];
              $member->referringsite = $_SERVER['HTTP_REFERER'];
@@ -75,9 +75,10 @@ class MembersController extends Controller
 
         // form validation.
         $rules = array(
+            'savepassword' => 'present|min:6|max:255',
             'savefirstname' => 'required|max:255',
             'savelastname' => 'required|max:255',
-            'saveemail' => 'required|email|max:255',
+            'saveemail' => 'required|email|max:255|unique:members,email,'.$id,
             'savereferid' => 'exists:members,userid',
             'saveverified' => 'required',
             'savesignupdate' => 'required|date_format:Y-m-d',

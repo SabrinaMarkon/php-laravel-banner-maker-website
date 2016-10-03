@@ -44,8 +44,14 @@
                      </div>
                     <div class="form-group">
                         {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label')) }}
-                         <div class="col-sm-10">
-                        {{ Form::text('password', old('password'), array('placeholder' => 'password')) }}
+                        <div class="col-sm-10 padding5pxtop">
+                            {{ Form::password('password', array('placeholder' => 'password')) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('password_confirmation', 'Confirm', array('class' => 'col-sm-2 control-label')) }}
+                        <div class="col-sm-10 padding5pxtop">
+                            {{ Form::password('password_confirmation', array('placeholder' => 'confirm password')) }}
                         </div>
                     </div>
                      <div class="form-group">

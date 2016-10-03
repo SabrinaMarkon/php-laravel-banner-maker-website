@@ -112,6 +112,7 @@ return [
 
     /* Sabrina - added so validation errors wouldn't say things like "The savefirstname field is required" and also look nicer. */
     'attributes' => [
+        'savepassword' => 'Password',
         'savefirstname' => 'First Name',
         'savelastname' => 'Last Name',
         'saveemail' => 'Email',

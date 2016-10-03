@@ -42,9 +42,10 @@ class MembersController extends Controller
 
         // form validation.
         $rules = array(
+            'password' => 'present|min:6|max:255|confirmed',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:members',
+            'email' => 'required|email|max:255|unique:members,email,'.$id,
         );
         $validator = Validator::make($request->all(), $rules);
 

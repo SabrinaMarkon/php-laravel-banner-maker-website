@@ -43,13 +43,13 @@
         <div class="form-group">
             {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label')) }}
             <div class="col-sm-10 padding5pxtop">
-                {{ Form::text('password', old('password'), array('placeholder' => 'password')) }}
+                {{ Form::password('password', old('password'), array('placeholder' => 'password')) }}
             </div>
         </div>
         <div class="form-group">
             {{ Form::label('password_confirmation', 'Confirm', array('class' => 'col-sm-2 control-label')) }}
             <div class="col-sm-10 padding5pxtop">
-                {{ Form::text('password_confirmation', old('password'), array('placeholder' => 'confirm password')) }}
+                {{ Form::password('password_confirmation', old('password'), array('placeholder' => 'confirm password')) }}
             </div>
         </div>
         <div class="form-group">
