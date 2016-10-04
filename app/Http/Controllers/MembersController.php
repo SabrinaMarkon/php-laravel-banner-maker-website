@@ -24,7 +24,7 @@ class MembersController extends Controller
     public function index()
     {
 
-        $member = Member::where('userid', '=', 'sabrina')->first(); //fix.
+        $member = Member::where('userid', '=', Session::get('user')->userid)->first();
         $content = Page::where('slug', '=', 'profile')->first();
         return view('pages.profile', compact('member', 'content'));
 

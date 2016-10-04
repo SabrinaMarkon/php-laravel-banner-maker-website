@@ -21,6 +21,7 @@
                 <!-- Registration Form -->
                 <form class="register-form" id="register-form" role="form" method="post" action="{{ url('/register') }}">
                     <input type="hidden" name="whichform" id="whichform" value="register">
+                    <input type="hidden" name="referid" id="referid" value="{{ $referid }}">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('userid') ? ' has-error' : '' }}">
                         <input type="text" placeholder="username" name="userid" id="userid" value="{{ old('userid') }}"/>

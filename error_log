@@ -166,3 +166,16 @@ Stack trace:
 [03-Oct-2016 08:07:53 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 38
 [03-Oct-2016 08:22:29 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/sadiesbc/public_html/storage/framework/views/209b93e4d6be9d31d4eef77c098a73d7603d7c1b.php on line 48
 [03-Oct-2016 08:26:06 UTC] PHP Fatal error:  Call to a member function count() on null in /home/sadiesbc/public_html/app/Http/Controllers/Admin/AdminLoginController.php on line 31
+[03-Oct-2016 08:42:44 UTC] PHP Parse error:  syntax error, unexpected ':' in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 121
+[03-Oct-2016 23:34:38 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\Auth\Illuminate\Foundation\Auth\AuthenticatesUsers' not found in /home/sadiesbc/public_html/app/Http/Controllers/Auth/AuthController.php on line 13
+[04-Oct-2016 01:11:33 UTC] PHP Fatal error:  Cannot declare class App\Http\Middleware\Member because the name is already in use in /home/sadiesbc/public_html/app/Http/Middleware/Member.php on line 9
+[04-Oct-2016 01:22:03 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Session' not found in /home/sadiesbc/public_html/app/Http/Middleware/MemberAuth.php on line 19
+[04-Oct-2016 01:22:50 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Redirect' not found in /home/sadiesbc/public_html/app/Http/Middleware/MemberAuth.php on line 27
+[04-Oct-2016 02:21:26 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in /home/sadiesbc/public_html/app/Http/Middleware/MemberAuth.php on line 24
+[04-Oct-2016 02:29:57 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/sadiesbc/public_html/app/Http/Middleware/MemberAuth.php on line 28
+[04-Oct-2016 02:30:44 UTC] PHP Fatal error:  Call to undefined method Illuminate\Http\Response::with() in /home/sadiesbc/public_html/app/Http/Middleware/MemberAuth.php on line 24
+[04-Oct-2016 03:59:08 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\setreferid() in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 101
+[04-Oct-2016 04:03:20 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sadiesbc/public_html/app/Providers/ComposerServiceProvider.php on line 28
+[04-Oct-2016 04:12:46 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\setreferid() in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 102
+[04-Oct-2016 06:26:03 UTC] PHP Parse error:  syntax error, unexpected '&&' (T_BOOLEAN_AND) in /home/sadiesbc/public_html/app/Http/Middleware/AdminAuth.php on line 20
+[04-Oct-2016 06:26:19 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Session' not found in /home/sadiesbc/public_html/app/Http/Middleware/AdminAuth.php on line 18

@@ -30,7 +30,7 @@ Route::get('privacy', 'PagesController@privacy');
 Route::get('support/{referid}', 'PagesController@support');
 Route::get('support', 'PagesController@support');
 
-Route::get('logout', 'PagesController@home');
+Route::get('logout', 'PagesController@logout');
 
 
 /*
@@ -39,18 +39,10 @@ Route::get('logout', 'PagesController@home');
 Route::get('faqs/{referid}', 'PagesController@faqs');
 Route::get('faqs', 'PagesController@faqs');
 
-Route::get('promote/{referid}', 'PagesController@promote');
-Route::get('promote', 'PagesController@promote');
 
 /*
  *  Complex database functionality
  */
-Route::get('banners/{referid}', 'PagesController@banners');
-Route::get('banners', 'PagesController@banners');
-
-Route::get('license/{referid}', 'PagesController@license');
-Route::get('license', 'PagesController@license');
-
 Route::get('products/{referid}', 'PagesController@products');
 Route::get('products', 'PagesController@products');
 
@@ -60,32 +52,40 @@ Route::post('join', 'PagesController@join');
 
 Route::get('login/{referid}', 'PagesController@login');
 Route::get('login', 'PagesController@login');
-Route::post('login', 'PagesController@login');
+Route::post('login', 'PagesController@loginpost');
 
 Route::get('forgot/{referid}', 'PagesController@forgot');
 Route::get('forgot', 'PagesController@forgot');
 Route::post('forgot', 'PagesController@emaillogin');
 
-Route::get('account/{referid}', 'PagesController@account');
-Route::get('account', 'PagesController@account');
-
-Route::resource('profile', 'MembersController');
-
-Route::resource('maildownline', 'MailsController');
-
-Route::resource('dlb', 'BuildersController');
 
 ////////////////////////// MEMBERS //////////////////////
 
+// IMPORTANT: The middleware name ('memberauth') has to match the name specified in the Kernel.php file!
+Route::group(array('middleware' => ['memberauth']), function() {
 
+    Route::get('account', 'PagesController@account');
 
+    Route::get('promote', 'PagesController@promote');
+
+    Route::get('license', 'PagesController@license');
+
+    Route::get('banners', 'PagesController@banners');
+
+    Route::resource('profile', 'MembersController');
+
+    Route::resource('maildownline', 'MailsController');
+
+    Route::resource('dlb', 'BuildersController');
+
+});
 
 ////////////////////////// ADMIN //////////////////////
 /*
  * Admin login page
  */
-//Route::match(['get', 'post'], 'admin', array('uses' => 'Admin\AdminLoginController@home'));
 Route::get('admin', 'Admin\AdminLoginController@index');
+Route::post('admin', 'Admin\AdminLoginController@loginpost');
 
 /*
  * Admin forgot login
@@ -100,14 +100,13 @@ Route::get('admin/logout', 'Admin\AdminLoginController@logout');
 
 /*
 Routes for Authenticated Admin Area
-// IMPORTANT: The middleware name ('admin') has to match the name specified in the Kernel.php file!
+// IMPORTANT: The middleware name ('adminauth') has to match the name specified in the Kernel.php file!
 */
-#Route::group(array('middleware' => ['auth', 'admin']), function() {
+Route::group(array('middleware' => ['adminauth']), function() {
 
 /*
  *  Main Admin Area
  */
-    Route::post('admin', 'Admin\AdminLoginController@main');
     Route::get('admin/main', array('uses' => 'Admin\MainAdminController@index'));
 /*
 Route::get('admin/main', ['middleware' => ['auth', 'admin'], function() {
@@ -159,7 +158,7 @@ Route::get('admin/main', ['middleware' => ['auth', 'admin'], function() {
 */
     Route::resource('admin/promotionals', 'Admin\PromotionalsController');
 
-#});
+});
 
 //Route::auth();
 

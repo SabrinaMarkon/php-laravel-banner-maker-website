@@ -33,7 +33,31 @@
                             <div class="col-sm-1"></div>
                             <div class="col-sm-2"><strong>Your URL: </strong></div>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" value="ADD AFFILIATE URL CODE HERE">
+                                <input type="text" class="form-control" value="{{ $domain }}/{{ Session::get('user')->userid }}">
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default text-left">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            Number of Referrals: {{ count($referrals) }}
+                        </h4>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2"><strong>Your Referrals: </strong></div>
+                            <div class="col-sm-8">
+                                @if (count($referrals) > 0)
+                                    @foreach($referrals as $referral)
+                                        {{ $referral->userid }}<br>
+                                    @endforeach
+                                @else
+                                    No referrals yet
+                                @endif
                             </div>
                             <div class="col-sm-1"></div>
                         </div>

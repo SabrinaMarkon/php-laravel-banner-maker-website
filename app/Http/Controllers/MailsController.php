@@ -20,7 +20,7 @@ class MailsController extends Controller
      */
     public function index()
     {
-        $contents = Mail::where('userid', 'admin')->orderBy('subject', 'asc')->get(); // change 'admin' to userid when I get that working.
+        $contents = Mail::where('userid', Session::get('user')->userid)->orderBy('subject', 'asc')->get();
         return view('pages.maildownline', compact('contents'));
     }
 
@@ -47,7 +47,7 @@ class MailsController extends Controller
         } else {
             // create new email.
             $mail = new Mail;
-            $mail->userid = $request->get('userid');
+            $mail->userid = Session::get('user')->userid;
             $mail->subject = $request->get('subject');
             $mail->message = $request->get('message');
             $mail->url = $request->get('url');
@@ -111,7 +111,7 @@ class MailsController extends Controller
         } else {
             // update the record in the database.
             $mail = Mail::find($id);
-            $mail->userid = $request->get('userid');
+            $mail->userid = Session::get('user')->userid;
             $mail->subject = $request->get('subject');
             $mail->message = $request->get('message');
             $mail->url = $request->get('url');

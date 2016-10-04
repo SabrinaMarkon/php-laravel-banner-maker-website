@@ -26,7 +26,7 @@ class Authenticate
 
          // return redirect()->guest('login');
             Session::flash('message', 'Incorrect Login');
-            return Redirect::back(); // use instead to redirect to the login page we are coming from.
+            return Redirect::back(); // sabrina - use instead to redirect to the login page we are coming from.
         }
 
         return $next($request);

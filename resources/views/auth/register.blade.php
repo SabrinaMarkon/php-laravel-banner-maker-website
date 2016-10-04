@@ -21,6 +21,7 @@
                 <!-- Registration Form -->
                 <form class="register-form" role="form" method="post" action="{{ url('/register') }}">
                     {{ csrf_field() }}
+                    <input type="hidden" name="referid" id="referid" value="{{ $referid }}">
                     <div class="form-group{{ $errors->has('userid') ? ' has-error' : '' }}">
                         <input type="text" placeholder="username" name="userid" id="userid" value="{{ old('userid') }}"/>
                         @if ($errors->has('userid'))

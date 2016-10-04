@@ -17,7 +17,7 @@ trait BuildersTrait {
      * @return mixed
      */
     public function getLast() {
-        $last = DB::table('builder')->where('userid', 'sabrina')->max('positionnumber'); //////FIX THIS WHEN WE HAVE A USERID.
+        $last = DB::table('builder')->where('userid', Session::get('user')->userid)->max('positionnumber');
         return $last+1;
     }
 

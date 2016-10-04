@@ -14,6 +14,10 @@
 
 @section('content')
 
+    @if (Session::has('message'))
+        <div class="alert alert-danger">{{ Session::get('message') }}</div>
+    @endif
+
     <div class="thisistheloginpage">
         <div class="form-page-small">
             <div class="form">

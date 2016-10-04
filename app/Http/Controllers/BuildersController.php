@@ -32,7 +32,7 @@ class BuildersController extends Controller
         $categories_id_order = substr($categories_id_order, 0, -1);
 
         // get users own programs
-        $userprograms= Builder::where('userid', 'sabrina')->orderBy('category', 'asc')->orderBy('positionnumber', 'asc')->get(); //////FIX THIS WHEN WE HAVE A USERID.
+        $userprograms= Builder::where('userid', Session::get('user')->userid)->orderBy('category', 'asc')->orderBy('positionnumber', 'asc')->get();
         $userprograms_id_order = "";
         foreach ($userprograms as $userprogram) {
             $userprograms_id_order = $userprograms_id_order . "ID[]=" . $userprogram->id . "&";
@@ -40,7 +40,7 @@ class BuildersController extends Controller
         $userprograms_id_order = substr($userprograms_id_order, 0, -1);
 
         // get users sponsors programs
-        $sponsorprograms= Builder::where('userid', 'sabrina')->orderBy('category', 'asc')->orderBy('positionnumber', 'asc')->get(); //////FIX THIS WHEN WE HAVE A REFERID
+        $sponsorprograms= Builder::where('userid', Session::get('user')->referid)->orderBy('category', 'asc')->orderBy('positionnumber', 'asc')->get();
         $sponsorprograms_id_order = "";
         foreach ($sponsorprograms as $sponsorprogram) {
             $sponsorprograms_id_order = $sponsorprograms_id_order . "ID[]=" . $sponsorprogram->id . "&";
