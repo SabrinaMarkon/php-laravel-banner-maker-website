@@ -179,3 +179,5 @@ Stack trace:
 [04-Oct-2016 04:12:46 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\setreferid() in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 102
 [04-Oct-2016 06:26:03 UTC] PHP Parse error:  syntax error, unexpected '&&' (T_BOOLEAN_AND) in /home/sadiesbc/public_html/app/Http/Middleware/AdminAuth.php on line 20
 [04-Oct-2016 06:26:19 UTC] PHP Fatal error:  Class 'App\Http\Middleware\Session' not found in /home/sadiesbc/public_html/app/Http/Middleware/AdminAuth.php on line 18
+[07-Oct-2016 06:47:04 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Validator' not found in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 116
+[07-Oct-2016 06:49:06 UTC] PHP Fatal error:  Class 'App\Http\Controllers\DateTime' not found in /home/sadiesbc/public_html/app/Http/Controllers/PagesController.php on line 131

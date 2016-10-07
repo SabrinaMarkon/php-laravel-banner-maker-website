@@ -48,7 +48,7 @@ Route::get('products', 'PagesController@products');
 
 Route::get('join/{referid}', 'PagesController@join');
 Route::get('join', 'PagesController@join');
-Route::post('join', 'PagesController@join');
+Route::post('join', 'PagesController@joinpost');
 
 Route::get('login/{referid}', 'PagesController@login');
 Route::get('login', 'PagesController@login');

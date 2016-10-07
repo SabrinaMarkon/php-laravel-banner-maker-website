@@ -44,6 +44,7 @@ class CreatePagesTable extends Migration
             array('name' => 'Products Sales Page', 'slug' => 'products'),
             array('name' => 'Account Main Page', 'slug' => 'account'),
             array('name' => 'Promote Page', 'slug' => 'promote'),
+            array('name' => 'Successful Signup Page', 'slug' => 'success'),
         ));
     }
 

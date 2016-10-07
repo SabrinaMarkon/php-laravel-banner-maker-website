@@ -30,7 +30,7 @@
                     {{ csrf_field() }}
                     <input name='forgotemail' type="text" placeholder="your email" value="{{ old('forgotemail') }}"/>
                     <button>email login</button>
-                    <p class="message"><a href="{{ url('login', $referid) }}">Return</a></p>
+                    <p class="message"><a href="{{ url('login') }}">Return</a></p>
                 </form>
             </div>
     </div>

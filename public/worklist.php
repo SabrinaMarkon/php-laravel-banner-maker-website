@@ -4,8 +4,7 @@
 - member/admin session variables!!!
 -email login - code to send the email only now!!! same for admin and member (adminlogincontroller, membercontroller)
 - email validation
-
-- referid isn't tracked..add to session somehow - change to cookies because I hate it.
+- referid isn't tracked properly I hate how this works right now. Awkward.
 
 - banner image collection
 - banner page

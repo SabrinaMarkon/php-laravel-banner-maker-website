@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use View;
+use Validator;
+use DateTime;
 
 class PagesController extends Controller
 {
@@ -102,6 +104,39 @@ class PagesController extends Controller
     public function join($referid = null) {
         $this->setreferid($referid);
         return view('pages.join', compact('referid'));
+    }
+    public function joinpost(Request $request, $referid = null) {
+        $this->setreferid($referid);
+        // form validation.
+        $rules = array(
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'userid' => 'required|max:255|unique:members',
+            'password' => 'required|min:6|max:255|confirmed',
+            'email' => 'required|email|max:255|unique:members',
+        );
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            Session::flash('errors', $validator->errors());
+            return Redirect::to('join')->withInput($request->all());
+        } else {
+            // create new member.
+            $member = new Member;
+            $member->userid = $request->get('userid');
+            $member->password = bcrypt($request->get('password'));
+            $member->firstname = $request->get('firstname');
+            $member->lastname = $request->get('lastname');
+            $member->email = $request->get('email');
+            $member->referid = $request->get('referid');
+            $signupdate = new DateTime();
+            $signupdate = $signupdate->format('Y-m-d');
+            $member->signupdate = $signupdate;
+            $member->ip = $_SERVER['REMOTE_ADDR'];
+            $member->referringsite = $_SERVER['HTTP_REFERER'];
+            $member->save();
+            return Redirect::to('success');
+        }
     }
 
     public function login($referid = null) {
