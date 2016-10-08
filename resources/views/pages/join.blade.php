@@ -28,7 +28,7 @@
             </ul>
         </div>
     @endif
-    
+
     <div class="thisistheregisterpage">
             <div class="form-page-small">
                 <div class="form">
