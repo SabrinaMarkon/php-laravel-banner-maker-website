@@ -41,15 +41,15 @@
             </div>
         </div>
         <div class="form-group">
-            {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label')) }}
+            {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label', 'autocomplete' => 'off')) }}
             <div class="col-sm-10 padding5pxtop">
-                {{ Form::password('password', '', array('placeholder' => 'password')) }}
+                {{ Form::password('password', '') }}
             </div>
         </div>
         <div class="form-group">
             {{ Form::label('password_confirmation', 'Confirm', array('class' => 'col-sm-2 control-label')) }}
             <div class="col-sm-10 padding5pxtop">
-                {{ Form::password('password_confirmation', '', array('placeholder' => 'confirm password')) }}
+                {{ Form::password('password_confirmation', '') }}
             </div>
         </div>
         <div class="form-group">
@@ -85,8 +85,13 @@
 
     </div>
 
-@stop
+    <script>
+        $(window).load(function() {
+            $("input[type=password]").val('');
+        });
+    </script>
 
+@stop
 
 @section('footer')
 

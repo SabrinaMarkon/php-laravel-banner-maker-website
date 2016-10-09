@@ -50,6 +50,9 @@ Route::get('join/{referid}', 'PagesController@join');
 Route::get('join', 'PagesController@join');
 Route::post('join', 'PagesController@joinpost');
 
+Route::get('verify/{code}', 'PagesController@verify');
+Route::get('verify', 'PagesController@verify');
+
 Route::get('login/{referid}', 'PagesController@login');
 Route::get('login', 'PagesController@login');
 Route::post('login', 'PagesController@loginpost');

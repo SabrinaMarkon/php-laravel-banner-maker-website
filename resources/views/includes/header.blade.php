@@ -11,7 +11,11 @@
         <div class="navbar-collapse collapse text-center" id="main_navbar">
             @if (Session::has('user'))
                 <ul class="nav navbar-nav">
-                    <li><a href="/"><i class="fa fa-home"></i>home</a></li>
+                    @if (Session::get('user')->admin == 1)
+                        <li><a href="/admin" target="_blank"><i class="fa fa-home"></i>admin</a></li>
+                    @else
+                        <li><a href="/"><i class="fa fa-home"></i>home</a></li>
+                    @endif
                     <li><a href="/account">account</a></li>
                     <li><a href="/profile">profile</a></li>
                     <li><a href="/promote">promote</a></li>

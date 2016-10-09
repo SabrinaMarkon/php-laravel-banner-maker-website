@@ -134,10 +134,48 @@ class PagesController extends Controller
             $member->signupdate = $signupdate;
             $member->ip = $_SERVER['REMOTE_ADDR'];
             $member->referringsite = $_SERVER['HTTP_REFERER'];
+
+            // validation email:
+            $verification_code = str_random(30);
+            $member->verification_code = $verification_code;
+            $html = "Dear ".$member->firstname.",<br><br>"
+                ."Welcome to " . $request->get('sitename') . "!<br><br>"
+                ."Your Username: " . $member->userid . "<br>"
+                ."Your Password: " . $request->get('password') . "<br>"
+                ."Login URL: <a href="
+                .$request->get('domain')."/login>"
+                .$request->get('domain')."/login</a><br><br>"
+                ."Please verify your email address by clicking this link:<br><br><a href="
+                .$request->get('domain')."/verify/".$verification_code.">"
+                .$request->get('domain')."/verify/".$verification_code."</a><br><br>"
+                ."Thank you!<br><br>"
+                .$request->get('sitename')." Admin<br>"
+                ."".$request->get('domain')."<br><br><br>";
+
+            Mail::send(array(), array(), function ($message) use ($html, $request) {
+                $message->to($request->get('email'), $request->get('firstname') . ' ' . $request->get('lastname'))
+                    ->subject($request->get('sitename') . ' Welcome Verification')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
+            });
+            // end validation email
+
             $member->save();
             return Redirect::to('success');
         }
     }
+    public function verify(Request $request, $code = null) {
+            $user = Member::where('verification_code', '=', $code)->where('verified', '=', 0)->first();
+            if ($user) {
+                Session::flush();
+                Member::where('verification_code', '=', $code)->update(['verified' => 1]);
+                return view('pages.verify');
+            } else {
+                Session::flash('message', 'Invalid Verification Link');
+                return view('pages.verify');
+            }
+    }
+
 
     public function login($referid = null) {
         $this->setreferid($referid);

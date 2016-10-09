@@ -22,6 +22,7 @@ class CreateMembersTable extends Migration
             $table->string('firstname', 255);
             $table->string('lastname', 255);
             $table->string('email', 255)->unique();
+            $table->string('verification_code', 255)->nullable();
             $table->char('verified', 1)->default(0);
             $table->dateTime('signupdate');
             $table->string('ip', 255);
@@ -36,7 +37,7 @@ class CreateMembersTable extends Migration
         });
              //$2y$10$xYPBLs.4tSRSu6iV3IODb.dM0RJu.Nz45er5n47IPuUefSgL5APTe
              $now = new \DateTime();
-             $password = 'testtest';
+             $password = '111111';
              $hashedPassword = Hash::make($password);
 
             DB::table('members')->insert(array(

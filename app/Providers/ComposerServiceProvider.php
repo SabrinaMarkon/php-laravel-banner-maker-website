@@ -20,7 +20,8 @@ class ComposerServiceProvider extends ServiceProvider
             // main site settings.
             $settings = Setting::all();
             foreach($settings as $setting) {
-                $view->with($setting->name, $setting->setting);
+               $view->with($setting->name, $setting->setting);
+                //View::share($setting->name, $setting->value);
             }
 
         });

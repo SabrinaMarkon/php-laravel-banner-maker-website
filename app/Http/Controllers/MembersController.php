@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Member;
 use App\Models\Page;
+use App\Models\Setting;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
 use DateTime;
 use Mail;
+use View;
 
 class MembersController extends Controller
 {
-
     /**
      * Show all members.
      *
@@ -65,11 +66,23 @@ class MembersController extends Controller
                 $member->email = $request->get('email');
                 // email was changed so send validation email and reset to unverified.
                 $member->verified = 0;
-                $body = "I love Lucas";
-                Mail::raw($body, function ($message) use ($request) {
-                    $message->from('test@sadiesbannercreator.com', 'Lucas Markon');
+
+                // validation email:
+                $verification_code = str_random(30);
+                $member->verification_code = $verification_code;
+                $html = "Dear ".$member->firstname.",<br><br>"
+                    ."Please verify your email address by clicking this link:<br><br><a href="
+                    .$request->get('domain')."/verify/".$verification_code.">"
+                    .$request->get('domain')."/verify/".$verification_code."</a><br><br>"
+                    ."Thank you!<br><br>"
+                    .$request->get('sitename')." Admin<br>"
+                    ."".$request->get('domain')."<br><br><br>";
+
+                Mail::send(array(), array(), function ($message) use ($html, $request) {
                     $message->to($request->get('email'), $request->get('firstname') . ' ' . $request->get('lastname'))
-                     ->subject('Email Verification');
+                    ->subject($request->get('sitename') . ' Verification')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
                 });
 
                 Session::flash('message', 'Successfully updated your account!<br>You changed your email address, so will need to verify it before logging in again');
