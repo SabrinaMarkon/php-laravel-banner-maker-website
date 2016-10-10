@@ -38,6 +38,7 @@ class SendEmails extends Command
      * Execute the console command.
      * Can be run manually from the command line with:    php artisan emails:send
      * Cronjob set up in protected function schedule()  in kernel.php
+     * Don't forget the one server cronjob: * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
      *
      * @return mixed
      */
@@ -60,7 +61,7 @@ class SendEmails extends Command
         // get all mails that are marked as pending mailout.
         $mails = Mail::where('needtosend', '=', 1)->where('sent', '=', NULL)->orderBy('id', 'asc')->get();
         // get all members that are verified.
-        $members = Member::where('verified', '=', 1)->where('vacation', '=', 0)->where('userid', '=', 'sabrina')->orderBy('id', 'asc')->get();
+        $members = Member::where('verified', '=', 1)->where('vacation', '=', 0)->orderBy('id', 'asc')->get();
 
         if ($mails) {
             // there are emails to send

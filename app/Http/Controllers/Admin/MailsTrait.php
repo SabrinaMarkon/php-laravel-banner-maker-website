@@ -16,6 +16,8 @@ trait MailsTrait {
      */
     public function mailOut(Mail $mail) {
 
+        // NOT ACTUALLY USING THIS YET
+
         // figure this out..we want to send the mail to all members in the background...
        /// ???
         $id = $mail->id;  // id is present even for newly created emails, as it is assigned to the last insert id.

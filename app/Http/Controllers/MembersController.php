@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Builder;
+use App\Models\License;
+use App\Models\Mail;
 use App\Models\Member;
 use App\Models\Page;
 use App\Models\Setting;
@@ -12,7 +15,6 @@ use Session;
 use Redirect;
 use Validator;
 use DateTime;
-use Mail;
 use View;
 
 class MembersController extends Controller
@@ -61,6 +63,12 @@ class MembersController extends Controller
             }
             $member->firstname = $request->get('firstname');
             $member->lastname = $request->get('lastname');
+            $member->vacation = $request->get('vacation');
+            if ($member->vacation == 1) {
+                $vacationdate = new DateTime();
+                $vacationdate = $vacationdate->format('Y-m-d');
+                $member->vacationdate = $vacationdate;
+            }
             $oldemail = Member::where('email', '=', $request->get('email'))->first();
             if ($oldemail === null) {
                 $member->email = $request->get('email');
@@ -78,7 +86,7 @@ class MembersController extends Controller
                     .$request->get('sitename')." Admin<br>"
                     ."".$request->get('domain')."<br><br><br>";
 
-                Mail::send(array(), array(), function ($message) use ($html, $request) {
+                \Mail::send(array(), array(), function ($message) use ($html, $request) {
                     $message->to($request->get('email'), $request->get('firstname') . ' ' . $request->get('lastname'))
                     ->subject($request->get('sitename') . ' Verification')
                     ->from($request->get('adminemail'), $request->get('adminname'))
@@ -103,7 +111,13 @@ class MembersController extends Controller
      */
     public function destroy($id, Request $request)
     {
+
         $member = Member::find($id);
+        $userid = $member->userid;
+        // delete from other tables.
+        Builder::where('userid', '=', $userid)->delete();
+        License::where('userid', '=', $userid)->delete();
+        Mail::where('userid', '=', $userid)->delete();
         $member->delete();
         Session::set('user', null);
         return Redirect::to('delete');

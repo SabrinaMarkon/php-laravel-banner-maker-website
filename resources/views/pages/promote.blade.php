@@ -49,6 +49,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-1"></div>
+                            <div class="col-sm-2"><strong>Your Earnings: </strong></div>
+                            <div class="col-sm-8">${{ Session::get('user')->commission }}</div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
                             <div class="col-sm-2"><strong>Your Referrals: </strong></div>
                             <div class="col-sm-8">
                                 @if (count($referrals) > 0)

@@ -71,9 +71,22 @@
             </div>
         </div>
         <div class="form-group">
+            {{ Form::label('vacation', 'Vacation', array('class' => 'col-sm-2 control-label')) }}
+            <div class="col-sm-10 padding5pxtop">
+                <select name="vacation">
+                    <option value="1" @if($member->vacation == 1) selected @endif>Yes</option>
+                    <option value="0" @if($member->vacation != 1) selected @endif>No</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             {{ Form::label('', 'Sponsor', array('class' => 'col-sm-2 control-label')) }}
             <div class="col-sm-10 padding5pxtop">
+                @if($member->referid == '')
+                    admin
+                @else
                 {{ $member->referid }}
+                @endif
             </div>
         </div>
         <div class="form-group">

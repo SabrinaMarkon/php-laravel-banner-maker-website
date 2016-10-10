@@ -150,6 +150,10 @@ class MembersController extends Controller
 
         $member = Member::find($id);
         $userid = $member->userid;
+        // delete from other tables.
+        Builder::where('userid', '=', $userid)->delete();
+        License::where('userid', '=', $userid)->delete();
+        Mail::where('userid', '=', $userid)->delete();
         $member->delete();
         Session::flash('message', 'Successfully deleted member UserID: ' . $userid);
         return Redirect::to('admin/members');

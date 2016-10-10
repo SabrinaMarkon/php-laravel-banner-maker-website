@@ -19,6 +19,8 @@
 
         <div class="table-responsive">
 
+            <img src="/images/SadieReading.jpg" border="0"><br><br><br>
+
             @if($page)
                 {!! $page->htmlcode !!}
             @endif
@@ -34,6 +36,12 @@
         </div>
 
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.sadie').hide();
+        });
+    </script>
 
 @stop
 

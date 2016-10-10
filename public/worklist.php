@@ -1,5 +1,4 @@
 - paypal button code + IPN for products and licenses
-- bulk mailer
 
 - member/admin session variables!!! - so irritating..weak in this. Seemed to work with the Providers\ComposerServiceProvider but didn't get passed to verification emails (domain, from field, etc.) So
 created GlobalConfig middleware which I got to work. Both exist though still.
@@ -12,8 +11,12 @@ created GlobalConfig middleware which I got to work. Both exist though still.
 - banner page
 - banner color palette - css circles <div style="circle with color" id="colorvalue"></div>
 
-- delete member (admin and members area) - remove all instances of userid from all tables.
 - need "are you sure" and button in profile
+
+
+vacation mode
+delete member from all tables
+
 
 - files with temporary default stuff:
     #MembersController.php (members area) - has lucas test email
