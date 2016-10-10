@@ -24,7 +24,18 @@
 
     @if(Session::has('page'))
         {!! Session::get('page')->htmlcode !!}
-        <br><a href="helpdesk" class="btn btn-custom" role="button" target="_blank">Open Helpdesk</a>
+        <br>
+
+        <div class="helpdeskbox">
+            <a href="helpdesk" class="btn btn-custom" role="button" target="_blank">Open Helpdesk</a><img src="/images/SadieOnThePhone.jpg" border="0">
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $('.sadie').hide();
+            });
+        </script>
+
     @endif
 
 @stop

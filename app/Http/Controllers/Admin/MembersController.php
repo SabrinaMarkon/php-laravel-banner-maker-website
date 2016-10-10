@@ -83,7 +83,7 @@ class MembersController extends Controller
                      ->setBody($html, 'text/html');
              });
              // end validation email
-             
+
              $member->save();
              Session::flash('message', 'Successfully created new member with UserID ' . $member->userid);
              return Redirect::to('admin/members');

@@ -15,6 +15,7 @@ use Redirect;
 use View;
 use Validator;
 use DateTime;
+use Mail;
 
 class PagesController extends Controller
 {
@@ -175,7 +176,11 @@ class PagesController extends Controller
                 return view('pages.verify');
             }
     }
-
+    public function success() {
+        $content = Page::where('slug', '=', 'success')->first();
+        Session::flash('page', $content);
+        return view('pages.success');
+    }
 
     public function login($referid = null) {
         $this->setreferid($referid);

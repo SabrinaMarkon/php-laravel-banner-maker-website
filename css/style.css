@@ -24,8 +24,17 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.sadie {
+    position: fixed;
+    width: 216px;
+    height: 500px;
+    margin-top: 80px;
+    background-color: #fff;
+    background-image: url('/images/Sadie.jpg');
+}
 .content {
     margin: 0 auto;
+    margin-left: 216px;
     text-align: center;
     display: inline-block;
     padding-top: 5em;
@@ -53,6 +62,10 @@ h2 {
 }
 
 /* Top Navbar */
+.navbar-default {
+    background: #E2F4BE;
+    box-shadow: 0 0 2px #006C00;
+}
 .navbar-nav {
     float: none;
     text-align: center;
@@ -60,6 +73,7 @@ h2 {
 .navbar-default .navbar-brand {
     font-family: 'Luckiest Guy', cursive;
     color: #FFC125;
+    text-shadow: 1px 1px 6px #fff;
 }
 .navbar-default .navbar-brand:hover {
     color: #FF7256;
@@ -69,7 +83,7 @@ h2 {
     display: inline-block;
 }
 .navbar-nav li:hover {
-    box-shadow: 0 0 2px #d3d3d3;
+    box-shadow: 0 0 2px #006C00;
 }
 
 /* Page headings */
@@ -106,7 +120,9 @@ h2 {
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background-color: #efefef;
+   /* background-color: #efefef; */
+    background-color: #E2F4BE;
+    box-shadow: 0 0 2px #006C00;
     text-align: center;
 }
 .footer a {
@@ -369,6 +385,12 @@ table th {
     padding-top: 5px;
 }
 
+/* helpdesk box */
+.helpdeskbox {
+    padding-left: 25px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
 /* media */
 @media (min-width: 0px) { body { padding-top: 60px; } }
 @media (min-width: 0px) { #sidebar { padding-top: 70px; } }
@@ -381,3 +403,15 @@ table th {
 @media (min-width: 761px) { body { padding-top: 60px; } }
 @media (min-width: 761px) { #sidebar { padding-top: 0px; } }
 @media (min-width: 1200px) { body { padding-top: 0; } }
+
+@media (max-width:608px) {
+    .sadie {
+        display: none;
+    }
+    .content {
+        margin-left: 0px;
+    }
+    .title {
+        font-size: 18px;
+    }
+}
