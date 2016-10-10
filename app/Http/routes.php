@@ -63,6 +63,8 @@ Route::get('forgot/{referid}', 'PagesController@forgot');
 Route::get('forgot', 'PagesController@forgot');
 Route::post('forgot', 'PagesController@emaillogin');
 
+Route::get('reset/{code}', 'PagesController@reset');
+Route::get('reset', 'PagesController@reset');
 
 ////////////////////////// MEMBERS //////////////////////
 

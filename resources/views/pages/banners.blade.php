@@ -434,6 +434,12 @@ Text Color: <select id="picktextcolor">
 
 </script>
 
+    <script>
+        $(document).ready(function(){
+            $('.sadie').css("background-image", "url('/images/SadiePeace.png')");
+        });
+    </script>
+
 @stop
 
 

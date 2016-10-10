@@ -27,9 +27,10 @@ body {
 .sadie {
     position: fixed;
     width: 216px;
-    height: 500px;
+    height: 520px;
     margin-top: 80px;
     background-color: #fff;
+    background-repeat: no-repeat;
     background-image: url('/images/Sadie.jpg');
 }
 .content {
@@ -393,6 +394,10 @@ table th {
 }
 
 /* media */
+.scale {
+    max-width: 100%;
+    height: auto;
+}
 @media (min-width: 0px) { body { padding-top: 60px; } }
 @media (min-width: 0px) { #sidebar { padding-top: 70px; } }
 @media (min-width: 0px) { .thisistheloginpage { width: 100px; } }

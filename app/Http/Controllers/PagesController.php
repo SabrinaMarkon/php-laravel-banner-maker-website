@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Models\Faq;
 use App\Models\Member;
 use App\Models\Page;
+use App\Models\PasswordReset;
 use App\Models\Product;
 use App\Models\Promotional;
 use App\Http\Controllers\Controller;
@@ -216,13 +217,49 @@ class PagesController extends Controller
         $forgotemail = $request->get('forgotemail');
         $found = Member::where('email', $forgotemail)->first();
         if ($found !== null) {
-            // CODE TO EMAIL LOGIN?!?!
+
+            // forgotten password link email:
+            $forgot_code = str_random(30);
+            $html = "Dear ".$found->firstname.",<br><br>";
+            $html .= "Please click here to reset your password: <a href=\"" . $request->get('domain') . "/reset/" . $forgot_code . "\">" . $request->get('domain') . "/reset/" . $forgot_code . "</a>";
+            $html .=  "<br><br>" . $request->get('sitename') . " Admin<br>" . $request->get('domain') . "<br><br><br>";
+
+            Mail::send(array(), array(), function ($message) use ($html, $request, $forgotemail, $found) {
+                $message->to($forgotemail, $found->firstname . ' ' . $found->lastname)
+                    ->subject($request->get('sitename') . ' Password Reset')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
+            });
+            // forgotten password link email
+            $passwordreset = new PasswordReset();
+            $passwordreset->email = $forgotemail;
+            $passwordreset->token = $forgot_code;
+            $passwordreset->save();
             Session::flash('message', ' Check your email, ' . $found->email . ', for a link to reset your password!');
         } else {
             Session::flash('errors', 'That email address was not found');
         }
         return Redirect::to('forgot');
+    }
+    public function reset(Request $request, $code = null) {
+        $resetpass = PasswordReset::where('token', '=', $code)->first();
+        if ($resetpass) {
+            Session::flush();
+            $member = Member::where('email', '=', $resetpass->email)->first();
+            if ($member) {
 
+                // need a form for the member to reset the password.
+
+
+                return view('pages.reset');
+            } else {
+                Session::flash('message', 'Invalid Link');
+                return view('pages.reset');
+            }
+        } else {
+            Session::flash('message', 'Invalid Link');
+            return view('pages.reset');
+        }
     }
 
     public function account() {

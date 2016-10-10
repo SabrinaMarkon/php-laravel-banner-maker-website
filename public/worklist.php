@@ -4,6 +4,8 @@
 created GlobalConfig middleware which I got to work. Both exist though still.
 
 -email login - code to send the email only now!!! same for admin and member (adminlogincontroller, membercontroller)
+reset.blade etc., pagescontroller etc needs finishing.
+
 
 - referid isn't tracked properly I hate how this works right now. Awkward.
 
