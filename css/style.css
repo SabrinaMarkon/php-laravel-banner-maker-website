@@ -136,12 +136,13 @@ h2 {
 /* Admin Area Sidebar Menu */
 #sidebar {
     margin-top: 52px;
-    background-color: #F3F3F3;
+    background-color: #D0E1AA;
     padding: 0;
     position:absolute;
     top: 0;
     bottom: 0;
     left: 0; width: 10em;
+    box-shadow: 0 0 3px #006C00;
 }
 #sidebar a {
     color: #333333;

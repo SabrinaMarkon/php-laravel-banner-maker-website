@@ -103,11 +103,9 @@ class MembersController extends Controller
      */
     public function destroy($id, Request $request)
     {
-
         $member = Member::find($id);
-        $userid = $member->userid;
         $member->delete();
-        Session::flash('message', 'Your account was successfully deleted');
+        Session::set('user', null);
         return Redirect::to('delete');
 
     }

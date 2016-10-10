@@ -12,6 +12,8 @@ created GlobalConfig middleware which I got to work. Both exist though still.
 - banner page
 - banner color palette - css circles <div style="circle with color" id="colorvalue"></div>
 
+- delete member (admin and members area) - remove all instances of userid from all tables.
+- need "are you sure" and button in profile
 
 - files with temporary default stuff:
     #MembersController.php (members area) - has lucas test email
