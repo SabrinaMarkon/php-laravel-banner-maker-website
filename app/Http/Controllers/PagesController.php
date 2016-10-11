@@ -218,10 +218,15 @@ class PagesController extends Controller
         $found = Member::where('email', $forgotemail)->first();
         if ($found !== null) {
 
+            // forgotten password link email
+            $passwordreset = new PasswordReset();
+            $passwordreset->email = $forgotemail;
+            $passwordreset->token = str_random(30);
+            $passwordreset->save();
+
             // forgotten password link email:
-            $forgot_code = str_random(30);
             $html = "Dear ".$found->firstname.",<br><br>";
-            $html .= "Please click here to reset your password: <a href=\"" . $request->get('domain') . "/reset/" . $forgot_code . "\">" . $request->get('domain') . "/reset/" . $forgot_code . "</a>";
+            $html .= "Please click here to reset your password: <a href=\"" . $request->get('domain') . "/reset/" . $passwordreset->token . "\">" . $request->get('domain') . "/reset/" . $passwordreset->token . "</a>";
             $html .=  "<br><br>" . $request->get('sitename') . " Admin<br>" . $request->get('domain') . "<br><br><br>";
 
             Mail::send(array(), array(), function ($message) use ($html, $request, $forgotemail, $found) {
@@ -230,11 +235,7 @@ class PagesController extends Controller
                     ->from($request->get('adminemail'), $request->get('adminname'))
                     ->setBody($html, 'text/html');
             });
-            // forgotten password link email
-            $passwordreset = new PasswordReset();
-            $passwordreset->email = $forgotemail;
-            $passwordreset->token = $forgot_code;
-            $passwordreset->save();
+
             Session::flash('message', ' Check your email, ' . $found->email . ', for a link to reset your password!');
         } else {
             Session::flash('errors', 'That email address was not found');
@@ -244,21 +245,38 @@ class PagesController extends Controller
     public function reset(Request $request, $code = null) {
         $resetpass = PasswordReset::where('token', '=', $code)->first();
         if ($resetpass) {
-            Session::flush();
             $member = Member::where('email', '=', $resetpass->email)->first();
             if ($member) {
-
-                // need a form for the member to reset the password.
-
-
-                return view('pages.reset');
+                return view('pages.reset', compact('code'));
             } else {
-                Session::flash('message', 'Invalid Link');
-                return view('pages.reset');
+                $message = 'Invalid Link';
+                return view('pages.reset', compact('code', 'message'));
             }
         } else {
-            Session::flash('message', 'Invalid Link');
-            return view('pages.reset');
+            $message = 'Invalid Link';
+            return view('pages.reset', compact('code', 'message'));
+        }
+    }
+    public function resetpost(Request $request) {
+        $code = $request->code;
+        $rules = array(
+            'password' => 'required|min:6|max:255|confirmed',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return view('pages.reset', compact('code', 'errors'));
+        } else {
+            $resetpass = PasswordReset::where('token', '=', $code)->first();
+            if ($resetpass) {
+                $newpassword = bcrypt($request->get('password'));
+                $member = Member::where('email', '=', $resetpass->email)->update(['password' => $newpassword]);
+                Session::flash('message', 'resetsuccess');
+                return Redirect::to('login');
+            } else {
+                $message = 'Invalid Link';
+                return view('pages.reset', compact('code', 'message'));
+            }
         }
     }
 

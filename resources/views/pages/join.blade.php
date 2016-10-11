@@ -92,6 +92,12 @@
         @section('footer')
 
             <script>
+                $(document).ready(function(){
+                    $('.sadie').css("background-image", "url('/images/SadiePeace.png')");
+                });
+            </script>
+
+            <script>
                 $('.message a').click(function(){
                     $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
                     if ($('.title').text() == 'Member Login' ? $('.title').text('Join Us!') : $('.title').text('Member Login'));

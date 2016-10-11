@@ -65,6 +65,7 @@ Route::post('forgot', 'PagesController@emaillogin');
 
 Route::get('reset/{code}', 'PagesController@reset');
 Route::get('reset', 'PagesController@reset');
+Route::post('reset', 'PagesController@resetpost');
 
 ////////////////////////// MEMBERS //////////////////////
 

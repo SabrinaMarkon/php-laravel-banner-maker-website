@@ -15,7 +15,11 @@
 @section('content')
 
     @if (Session::has('message'))
-        <div class="alert alert-danger">{{ Session::get('message') }}</div>
+        @if (Session::get('message' ) == 'resetsuccess')
+            <div class="alert alert-success">Your password was updated successfully!</div>
+        @else
+            <div class="alert alert-danger">{{ Session::get('message') }}</div>
+        @endif
     @endif
 
     @if (count($errors) > 0)

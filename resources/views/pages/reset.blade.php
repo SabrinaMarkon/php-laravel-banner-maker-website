@@ -12,8 +12,8 @@
 
 @section('content')
 
-    @if (Session::has('message'))
-        <div class="alert alert-danger">{{ Session::get('message') }}</div>
+    @if (isset($message))
+        <div class="alert alert-danger">{{ $message }}</div>
     @endif
 
     @if (count($errors) > 0)
@@ -38,6 +38,7 @@
                 <div class="form-group">
                     <input type="password" placeholder="confirm password" name="password_confirmation" id="password_confirm"/>
                 </div>
+                <input type="hidden" name="code" id="code" value="{{ $code }}"/>
                 <button>save</button>
             </form>
         </div>

@@ -15,11 +15,6 @@ reset.blade etc., pagescontroller etc needs finishing.
 
 - need "are you sure" and button in profile
 
-
-vacation mode
-delete member from all tables
-
-
 - files with temporary default stuff:
     #MembersController.php (members area) - has lucas test email
     MailTrait.php (not sure what to do with this for sure)
