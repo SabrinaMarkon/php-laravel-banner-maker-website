@@ -20,9 +20,13 @@
         <div class="form">
 
             @if (Session::has('message'))
-                <div class="alert alert-danger">{{ Session::get('message') }}</div>
+                @if (Session::get('message' ) == 'resetsuccess')
+                    <div class="alert alert-success">Your password was updated successfully!</div>
+                @else
+                    <div class="alert alert-danger">{{ Session::get('message') }}</div>
+                @endif
             @endif
-            
+
             <!-- Login Form -->
             <form class="login-form" role="form" id="login-form" method="post" action="{{ url('admin') }}">
                 <input type="hidden" name="whichform" id="whichform" value="login">

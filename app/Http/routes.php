@@ -100,6 +100,9 @@ Route::post('admin', 'Admin\AdminLoginController@loginpost');
  */
 Route::get('admin/forgot', 'Admin\AdminLoginController@forgot');
 Route::post('admin/forgot', 'Admin\AdminLoginController@emaillogin');
+Route::get('admin/reset/{code}', 'Admin\AdminLoginController@reset');
+Route::get('admin/reset', 'Admin\AdminLoginController@reset');
+Route::post('admin/reset', 'Admin\AdminLoginController@resetpost');
 
 /*
 * Admin Logout

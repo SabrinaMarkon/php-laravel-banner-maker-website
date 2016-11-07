@@ -60,8 +60,6 @@ class SendEmails extends Command
         }
         // get all mails that are marked as pending mailout.
         $mails = Mail::where('needtosend', '=', 1)->where('sent', '=', NULL)->orderBy('id', 'asc')->get();
-        // get all members that are verified.
-        $members = Member::where('verified', '=', 1)->where('vacation', '=', 0)->orderBy('id', 'asc')->get();
 
         if ($mails) {
             // there are emails to send
@@ -70,6 +68,13 @@ class SendEmails extends Command
                 $sent = new Datetime();
                 $sent = $sent->format('Y-m-d');
                 $senderuserid = $mail->userid;
+                if ($senderuserid == 'admin') {
+                    // get all members that are verified.
+                    $members = Member::where('verified', '=', 1)->where('vacation', '=', 0)->orderBy('id', 'asc')->get();
+                } else {
+                    // get all members in the sender's downline.
+                    $members = Member::where('verified', '=', 1)->where('vacation', '=', 0)->where('referid', '=', $senderuserid)->orderBy('id', 'asc')->get();
+                }
                 $subject = $mail->subject;
                 $html = $mail->message; // has to be set to $html so that $message below for sending the mail is not confused with this variable name.
                 $url = $mail->url;

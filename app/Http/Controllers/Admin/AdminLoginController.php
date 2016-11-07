@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
-use Redirect;
+use App\Models\PasswordReset;
 use Session;
+use Redirect;
+use Validator;
+use DateTime;
+use Mail;
 
 class AdminLoginController extends Controller
 {
@@ -58,15 +62,74 @@ class AdminLoginController extends Controller
         $forgotemail = $request->get('forgotemail');
         $found = Member::where('email', $forgotemail)->first();
         if ($found !== null) {
-            // CODE TO EMAIL LOGIN?!?!
+
+            // forgotten password link email
+            $passwordreset = new PasswordReset();
+            $passwordreset->email = $forgotemail;
+            $passwordreset->token = str_random(30);
+            $passwordreset->save();
+
+            // forgotten password link email:
+            $html = "Dear ".$found->firstname.",<br><br>";
+            $html .= "Please click here to reset your " . $request->get('sitename') . " admin password:<br>";
+            $html .= "<a href=\"" . $request->get('domain') . "/admin/reset/" . $passwordreset->token . "\">" . $request->get('domain') . "/admin/reset/" . $passwordreset->token . "</a>";
+            $html .=  "<br><br><br>";
+
+            Mail::send(array(), array(), function ($message) use ($html, $request, $forgotemail, $found) {
+                $message->to($forgotemail, $found->firstname . ' ' . $found->lastname)
+                    ->subject($request->get('sitename') . ' Password Reset')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
+            });
 
             Session::flash('message', ' Check your email, ' . $found->email . ', for a link to reset your password!');
         } else {
             Session::flash('errors', 'That email address was not found');
         }
         return Redirect::to('admin/forgot');
-
     }
+
+    // reset admin password code check and reset form.
+    public function reset(Request $request, $code = null) {
+        $resetpass = PasswordReset::where('token', '=', $code)->first();
+        if ($resetpass) {
+            $member = Member::where('email', '=', $resetpass->email)->first();
+            if ($member) {
+                return view('pages.admin.reset', compact('code'));
+            } else {
+                $message = 'Invalid Link';
+                return view('pages.admin.reset', compact('code', 'message'));
+            }
+        } else {
+            $message = 'Invalid Link';
+            return view('pages.admin.reset', compact('code', 'message'));
+        }
+    }
+
+    // reset admin password.
+    public function resetpost(Request $request) {
+        $code = $request->code;
+        $rules = array(
+            'password' => 'required|min:6|max:255|confirmed',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return view('pages.admin.reset', compact('code', 'errors'));
+        } else {
+            $resetpass = PasswordReset::where('token', '=', $code)->first();
+            if ($resetpass) {
+                $newpassword = bcrypt($request->get('password'));
+                $member = Member::where('email', '=', $resetpass->email)->update(['password' => $newpassword]);
+                Session::flash('message', 'resetsuccess');
+                return Redirect::to('admin');
+            } else {
+                $message = 'Invalid Link';
+                return view('pages.admin.reset', compact('code', 'message'));
+            }
+        }
+    }
+
 
 
 }
