@@ -84,10 +84,6 @@ class PagesController extends Controller
         return view('pages.faqs', compact('faqs', 'page'));
     }
 
-    public function banners() {
-        return view('pages.banners');
-    }
-
     public function license() {
         // get the admin's content for the license sales page if they've written any.
         $page = Page::where('slug', '=', 'license')->first();

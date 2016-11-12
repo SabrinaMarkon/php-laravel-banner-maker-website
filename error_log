@@ -3,3 +3,4 @@
 [05-Nov-2016 16:22:47 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
 [05-Nov-2016 16:23:28 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
 [05-Nov-2016 16:23:31 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
+[12-Nov-2016 14:32:01 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Response' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 48
