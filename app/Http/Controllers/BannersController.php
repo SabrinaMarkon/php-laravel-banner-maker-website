@@ -33,7 +33,6 @@ class BannersController extends Controller
         $img_val = $request->get('img_val');
 
         $filteredData = substr($img_val, strpos($img_val, ",")+1);
-
         //Decode the string
         $unencodedData = base64_decode($filteredData);
 
@@ -42,14 +41,17 @@ class BannersController extends Controller
         $dlfileshort = substr($dlfilelong, 0, 12);
         $today = date("YmdHis");
         $dlfile = $today . $dlfileshort . ".png";
-        $dlfilepath = "mybanners/" . $today . $dlfileshort . ".png";
-
-        ///////// FIX FILE - it isn't writing the file properly (corrupt) Maybe a better folder name too.
+        $dlfilepath = 'mybanners/' . $dlfile;
 
         // write the file to the server.
         file_put_contents('mybanners/' . $dlfile, $unencodedData);
 
         // save image into the banners database table.
+        $banner = new Banner();
+        $banner->userid = Session::get('user')->userid;
+        $banner->htmlcode = trim($request->get('htmlcode'));
+        $banner->filename = $dlfile;
+        $banner->save();
 
         // open a download open/save dialog box for the user to download the file.
         $headers = array('Content-Type: image/png');

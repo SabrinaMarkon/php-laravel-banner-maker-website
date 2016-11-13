@@ -39,7 +39,8 @@
                     <div class="controlbuttons text-center">
                         <button id="undo" class="btn btn-yellow">UNDO</button>
                         <button id="clear" class="btn btn-yellow">CLEAR ALL</button>
-                        <button id="save" class="btn btn-yellow">SAVE</button>
+                        <div style="height: 5px;"></div>
+                        <button id="preview" class="btn btn-yellow">PREVIEW</button>
                     </div>
                     <div style="height: 10px;"></div>
                     <div class="panel-group" id="accordion">
@@ -52,7 +53,7 @@
                             </div>
                             <div id="collapse1" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Banner Width: <input type="number" id="bannerwidth" value="600" class="editorinput"><span id="bannerwidtherror">
+                                    Banner Width: <input type="number" id="bannerwidth" value="1000" class="editorinput"><span id="bannerwidtherror">
                     <span class="glyphicon glyphicon-exclamation-sign has-error" aria-hidden="true"></span><span class="has-error">Please enter an integer between 1 and 1000</span></span>
                                     <div style="height: 10px;"></div>
                                     Banner Height: <input type="number" id="bannerheight" value="300" class="editorinput"><span id="bannerheighterror">
@@ -251,7 +252,8 @@
                         <form method="post" enctype="multipart/form-data" action="{{ url('/banners/getbanner') }}" id="downloadform">
                             {{ csrf_field() }}
                             <input type="hidden" name="img_val" id="img_val" value="">
-                            <button id="downloadbutton" class="btn btn-yellow">DOWNLOAD</button>
+                            <input type="hidden" name="htmlcode" id="htmlcode" value="">
+                            <button id="downloadbutton" class="btn btn-yellow">SAVE AND DOWNLOAD</button>
                         </form>
                     </div>
                     <div style="height: 20px;"></div>

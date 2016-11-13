@@ -230,8 +230,8 @@ $(function() {
         $('#downloadbuttondiv').hide();
     });
 
-    // SAVE IMAGE:
-    $("#save").click(function() {
+    // PREVIEW IMAGE:
+    $("#preview").click(function() {
         $('#savediv').empty();
         // is there a background image?
         var bg = '';
@@ -260,6 +260,8 @@ $(function() {
                 $('#downloadbuttondiv').show();
                 //Set hidden field's value to image data (base-64 string)
                 $('#img_val').val(canvas.toDataURL("image/png"));
+                // htmlcode field to save into the database.
+                document.getElementById('htmlcode').value = document.getElementById('canvascontainer').innerHTML;
             }
         });
     });

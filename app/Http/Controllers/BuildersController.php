@@ -79,7 +79,7 @@ class BuildersController extends Controller
                 return Redirect::to('dlb')->withInput($request->all());
             } else {
                 $builder = new Builder;
-                $builder->userid = "sabrina"; //////FIX THIS WHEN WE HAVE A USERID.
+                $builder->userid = Session::get('user')->userid;
                // $builder->userid = $request->get('userid');
                 $builder->name = $request->get('name');
                 $builder->desc = $request->get('desc');
