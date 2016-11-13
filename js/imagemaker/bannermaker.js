@@ -144,7 +144,7 @@ $(function() {
         //   }));
 
         $('#canvascontainer').append($('<div id="' + newid + '"  class="ui-widget-content canvaslayer" style="' + textstyle + '">' + text + '</div>')
-            .draggable({ containment : "#canvascontainer" }));
+            .draggable({ containment : "#body" }));
     });
 
 

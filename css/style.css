@@ -1,6 +1,7 @@
 * {
     margin: 0;
 }
+
 html, body {
     height: 100%;
 }
@@ -330,6 +331,7 @@ main {
     margin: auto;
     margin-top: 20px;
     width: 468px;
+    min-width: 100px;
     height: 60px;
     background: transparent url('/images/canvasbg.gif');
 }
