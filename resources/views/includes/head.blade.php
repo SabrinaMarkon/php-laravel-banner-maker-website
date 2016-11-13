@@ -12,6 +12,7 @@
 <!-- jQuery UI CSS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="/js/html2canvas/html2canvas.min.js"></script>
+{{--<script src="/js/html2canvas/html2canvas.js"></script>--}}
 <script src="https://use.fontawesome.com/5eb2577710.js"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>

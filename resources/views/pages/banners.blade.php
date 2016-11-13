@@ -107,18 +107,20 @@
                                     <div style="height: 10px;"></div>
                                     Border Width: <input type="number" id="pickborderwidth" value="14" class="editorinput"><span id="borderwidtherror">
                     <span class="glyphicon glyphicon-exclamation-sign has-error" aria-hidden="true"></span><span class="has-error">Please enter an integer between 0 and 20</span></span>
-                                    <div style="height: 10px;"></div>
-                                    Border Style: <select id="pickborderstyle" class="editorinput">
-                                        <option value="none" selected="selected">None</option>
-                                        <option value="solid">solid</option>
-                                        <option value="dotted">dotted</option>
-                                        <option value="dashed">dashed</option>
-                                        <option value="double">double</option>
-                                        <option value="groove">groove</option>
-                                        <option value="ridge">ridge</option>
-                                        <option value="inset">inset</option>
-                                        <option value="outset">outset</option>
-                                    </select>
+                                    <input type="hidden" id="pickborderstyle" value="solid">
+                                    {{-- uncomment below instead of the above once html2canvas has support for border styles other than solid. --}}
+                                    {{--<div style="height: 10px;"></div>--}}
+                                    {{--Border Style: <select id="pickborderstyle" class="editorinput">--}}
+                                        {{--<option value="none" selected="selected">None</option>--}}
+                                        {{--<option value="solid">solid</option>--}}
+                                        {{--<option value="dotted">dotted</option>--}}
+                                        {{--<option value="dashed">dashed</option>--}}
+                                        {{--<option value="double">double</option>--}}
+                                        {{--<option value="groove">groove</option>--}}
+                                        {{--<option value="ridge">ridge</option>--}}
+                                        {{--<option value="inset">inset</option>--}}
+                                        {{--<option value="outset">outset</option>--}}
+                                    {{--</select>--}}
                                     <div style="height: 10px;"></div>
                                     <button id="borderadd" class="btn btn-yellow">ADD BORDER</button>&nbsp;<button id="borderdelete" class="btn btn-yellow">CLEAR</button>
                                 </div>
