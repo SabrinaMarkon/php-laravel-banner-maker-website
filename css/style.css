@@ -387,6 +387,7 @@ main {
 }
 
 #maineditpane {
+    width: 1000px;
     background-color: #E2F4BE;
 }
 

@@ -115,13 +115,15 @@ $(function() {
     // ADD TEXT:
     $('#textadd').on('click', function() {
         var text = document.getElementById('texttoadd').value;
+        // spaces in text result in undesireable word wrapping sometimes so we can do css white-space: nowrap or replace spaces with nbsp;
+        text = text.split(" ").join("&nbsp;");
         var fontcolor = document.getElementById('picktextcolor').value;
         var fontfamily = document.getElementById('picktextfont').value;
         var fontsize = document.getElementById('picktextsize').value;
         var bold = document.getElementById('bold').checked;
         var italic = document.getElementById('italic').checked;
         var underline = document.getElementById('underline').checked;
-        var textstyle = "color: " + fontcolor + "; font-family: " + fontfamily + "; font-size: " + fontsize + "px; background: none; border: 0px;";
+        var textstyle = "white-space: nowrap;  color: " + fontcolor + "; font-family: " + fontfamily + "; font-size: " + fontsize + "px; background: none; border: 0px;";
         if (bold) { textstyle += " font-weight: bold;"; } else { textstyle += " font-weight: normal;"; }
         if (italic) { textstyle += " font-style: italic;"; } else { textstyle += " font-style: normal;"; }
         if (underline) { textstyle += " text-decoration: underline;"; } else { textstyle += " text-decoration: none;"; }
