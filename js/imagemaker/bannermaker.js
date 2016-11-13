@@ -216,6 +216,7 @@ $(function() {
         if ($('#canvascontainer').find('.canvaslayer').length) {
             canvascontainer.removeChild(canvascontainer.lastChild);
             $('#savediv').empty();
+            $('#downloadbuttondiv').hide();
         }
     });
 
@@ -224,6 +225,7 @@ $(function() {
         document.getElementById('canvascontainer').innerHTML = '';
         $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
         $('#savediv').empty();
+        $('#downloadbuttondiv').hide();
     });
 
     // SAVE IMAGE:
