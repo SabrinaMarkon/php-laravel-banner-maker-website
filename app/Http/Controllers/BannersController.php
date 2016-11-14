@@ -10,6 +10,7 @@ use Session;
 use Redirect;
 use Validator;
 use Response;
+use File;
 
 class BannersController extends Controller
 {
@@ -19,7 +20,12 @@ class BannersController extends Controller
      * @return Response
      */
     public function index() {
-        return view('pages.banners');
+
+        $directory = "images/editorimages";
+        $tree = $this->fileTree($directory);
+//echo $tree;
+//exit;
+        return view('pages.banners', compact('tree'));
     }
 
     /**
@@ -58,4 +64,38 @@ class BannersController extends Controller
         return Response::download($dlfilepath, $dlfile, $headers);
     }
 
+    /**
+     * Build the directory and file tree for the image library.
+     *
+     * @param $directory  the top root directory folder.
+     * @return $tree  The tree structure to use in the view.
+     */
+    public function fileTree($directory) {
+        $tree = '';
+        // get all top level folders:
+        $directories = File::directories($directory);
+        foreach ($directories as $directory_fullpath) {
+            $directory_fullpath_array = explode("/", $directory_fullpath);
+            $directory = end($directory_fullpath_array);
+            $tree .= '<div class="imagefolder">' . $directory . '</div>';
+            // get subdirectories and files recursively that are in the top folder:
+            $tree .= $this->fileTree($directory_fullpath);
+            // get all files in the top folder(directory);
+            $files = File::allFiles($directory_fullpath);
+            foreach($files as $file_fullpath) {
+                $extension = File::extension($file_fullpath);
+                if ($extension === 'gif' || $extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
+                    $file_fullpath_array = explode("/", $file_fullpath);
+                    $file = end($file_fullpath_array);
+                    //$tree .= '<li>' . $file . '</li>';
+                    $tree .= '<div class="imagename"><img src="' . $file_fullpath . '" style="width: 50px;"></div>';
+                }
+            }
+            $tree .= '</ul>';
+        }
+        $tree .= rtrim($tree, ',');
+        return $tree;
+    }
 }
+
+

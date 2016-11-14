@@ -223,6 +223,10 @@
                                             SQY05ME36U.jpg</option>
                                     </select>
                                     <div style="height: 10px;"></div>
+                                    <div id="tree2">
+
+                                    </div>
+                                    <div style="height: 10px;"></div>
                                     <button id="imageadd" class="btn btn-yellow">ADD IMAGE</button>
                                     <div style="height: 15px;"></div>
                                     Show Resize Handles: <select id="imagehandles" class="editorinput">
@@ -242,6 +246,7 @@
                     </div>
                 </div>
                 <div id="maineditpane" class="col-sm-8">
+
                     <div id="canvascontainer">
 
                     </div>
@@ -279,6 +284,6 @@
 
 @section('footer')
 
-
+    <script src="/js/imagemaker/bootstrap-treeview.js"></script>
 
 @stop

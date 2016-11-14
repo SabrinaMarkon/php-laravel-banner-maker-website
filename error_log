@@ -5,3 +5,18 @@
 [05-Nov-2016 16:23:31 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
 [12-Nov-2016 14:32:01 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Response' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 48
 [13-Nov-2016 10:09:05 UTC] PHP Parse error:  syntax error, unexpected '$filteredData' (T_VARIABLE) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 35
+[14-Nov-2016 04:42:10 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Storage' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 24
+[14-Nov-2016 04:52:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 25
+[14-Nov-2016 04:55:01 UTC] PHP Parse error:  syntax error, unexpected '$directory' (T_VARIABLE), expecting identifier (T_STRING) or function (T_FUNCTION) or const (T_CONST) or \\ (T_NS_SEPARATOR) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 13
+[14-Nov-2016 04:55:33 UTC] PHP Parse error:  syntax error, unexpected '$directory' (T_VARIABLE), expecting identifier (T_STRING) or function (T_FUNCTION) or const (T_CONST) or \\ (T_NS_SEPARATOR) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 13
+[14-Nov-2016 04:55:36 UTC] PHP Parse error:  syntax error, unexpected '$directory' (T_VARIABLE), expecting identifier (T_STRING) or function (T_FUNCTION) or const (T_CONST) or \\ (T_NS_SEPARATOR) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 13
+[14-Nov-2016 04:57:30 UTC] PHP Fatal error:  Call to a member function all() on array in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 37
+[14-Nov-2016 05:34:46 UTC] PHP Fatal error:  Call to undefined method Symfony\Component\Finder\SplFileInfo::extension() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 32
+[14-Nov-2016 06:39:31 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\fileTree() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 25
+[14-Nov-2016 06:41:02 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\fileTree() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 51
+[14-Nov-2016 06:41:04 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\fileTree() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 51
+[14-Nov-2016 07:02:35 UTC] PHP Parse error:  syntax error, unexpected 'var' (T_VAR) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 74
+[14-Nov-2016 07:03:40 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 74
+[14-Nov-2016 08:13:41 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 16970689 bytes) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 107
+[14-Nov-2016 08:14:07 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 16970689 bytes) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 107
+[14-Nov-2016 08:14:08 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 16970689 bytes) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 107
