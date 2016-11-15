@@ -17,6 +17,8 @@ class CreateBannersTable extends Migration
             $table->string('userid', 255);
             $table->string('filename', 255)->unique();
             $table->longText('htmlcode');
+            $table->integer('width')->default(1000);
+            $table->integer('height')->default(300);
             $table->foreign('userid')->references('userid')->on('members');
             $table->timestamps();
         });

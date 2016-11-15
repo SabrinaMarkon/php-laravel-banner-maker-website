@@ -260,6 +260,9 @@ $(function() {
                 $('#downloadbuttondiv').show();
                 //Set hidden field's value to image data (base-64 string)
                 $('#img_val').val(canvas.toDataURL("image/png"));
+                // set hidden fieldsto image width and height:
+                $('#img_width').val($('#bannerwidth').val());
+                $('#img_height').val($('#bannerheight').val());
                 // htmlcode field to save into the database.
                 document.getElementById('htmlcode').value = document.getElementById('canvascontainer').innerHTML;
             }
@@ -271,6 +274,24 @@ $(function() {
         document.getElementById("downloadform").submit();
     });
 
+    // EDIT OR DELETE IMAGE:
+    $("#savedimageslist li").each(function(e) {
+        var id = $(this).attr('id').split('-')[1];
+        // EDIT SAVED IMAGE:
+        $('#edit-' + id).click(function() {
+                alert(id);
+
+
+
+
+        });
+        // DELETE SAVED IMAGE:
+        $('#delete-' + id).click(function(e) {
+            alert(id);
+
+
+        });
+    });
 
     // SUPPORTING FUNCTIONS:
 

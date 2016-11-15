@@ -21,11 +21,15 @@ class BannersController extends Controller
      */
     public function index() {
 
+        // Get the user's saved images.
+        $savedimages = Banner::where('userid', Session::get('user')->userid)->orderBy('id', 'asc')->get();
+
+        // Get the image library tree.
         $directory = "images/editorimages";
         $tree = $this->fileTree($directory);
 //echo $tree;
 //exit;
-        return view('pages.banners', compact('tree'));
+        return view('pages.banners', compact('tree', 'savedimages'));
     }
 
     /**
@@ -57,6 +61,8 @@ class BannersController extends Controller
         $banner->userid = Session::get('user')->userid;
         $banner->htmlcode = trim($request->get('htmlcode'));
         $banner->filename = $dlfile;
+        $banner->width =$request->get('img_width');
+        $banner->height =$request->get('img_height');
         $banner->save();
 
         // open a download open/save dialog box for the user to download the file.
@@ -96,6 +102,20 @@ class BannersController extends Controller
         $tree .= rtrim($tree, ',');
         return $tree;
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id, Request $request)
+    {
+        $banner = Banner::find($id);
+        $banner->delete();
+    }
+
+
 }
 
 

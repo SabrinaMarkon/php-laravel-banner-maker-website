@@ -247,6 +247,44 @@
                 </div>
                 <div id="maineditpane" class="col-sm-8">
 
+                    @if(count($savedimages) > 0)
+                    <div id="savedimagesdiv">
+                        <div class="panel-group" id="accordion2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapsesaved">
+                                            Your Saved Banners</a>
+                                    </h4>
+                                </div>
+                                <div id="collapsesaved" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul id="savedimageslist" class="editorinput list-unstyled">
+                                            @foreach($savedimages as $savedimage)
+                                                <li id="banner-{{ $savedimage->id }}">
+                                                    <div>
+                                                        @if($savedimage->width > 300)
+                                                            <img src="/mybanners/{{ $savedimage->filename }}" width="300">
+                                                        @elseif($savedimage->height > 300)
+                                                            <img src="/mybanners/{{ $savedimage->filename }}" height="300">
+                                                        @else
+                                                            <img src="/mybanners/{{ $savedimage->filename }}">
+                                                        @endif
+                                                    </div>
+                                                    <div>
+                                                        <button id="edit-{{ $savedimage->id }}" class="btn btn-yellow">Edit</button>&nbsp;<button id="delete-{{ $savedimage->id }}" class="btn btn-yellow">Delete</button>
+                                                    </div>
+                                                    <div style="height: 20px;"></div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                     <div id="canvascontainer">
 
                     </div>
@@ -257,6 +295,8 @@
                         <form method="post" enctype="multipart/form-data" action="{{ url('/banners/getbanner') }}" id="downloadform">
                             {{ csrf_field() }}
                             <input type="hidden" name="img_val" id="img_val" value="">
+                            <input type="hidden" name="img_width" id="img_width" value="">
+                            <input type="hidden" name="img_height" id="img_height" value="">
                             <input type="hidden" name="htmlcode" id="htmlcode" value="">
                             <button id="downloadbutton" class="btn btn-yellow">SAVE AND DOWNLOAD</button>
                         </form>
@@ -268,11 +308,6 @@
     </main>
 
     <script>
-        //  remove Sadie graphic.
-//        $(document).ready(function(){
-//            $('.sadie').css({ "background-image" : "", "width" : 0 });
-//        });
-        // with Sadie graphic on left
         $(document).ready(function(){
             $('.sadie').css("background-image", "url('/images/SadiePeace.png')");
         });
