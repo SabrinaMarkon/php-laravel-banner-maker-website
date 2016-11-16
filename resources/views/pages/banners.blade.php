@@ -37,10 +37,11 @@
                 <div id="lefteditpane" class="col-sm-4">
                     <div style="height: 10px;"></div>
                     <div class="controlbuttons text-center">
+                        <button id="new" class="btn btn-yellow">NEW</button>
+                        <button id="preview" class="btn btn-yellow">PREVIEW</button>
+                        <div style="height: 5px;"></div>
                         <button id="undo" class="btn btn-yellow">UNDO</button>
                         <button id="clear" class="btn btn-yellow">CLEAR ALL</button>
-                        <div style="height: 5px;"></div>
-                        <button id="preview" class="btn btn-yellow">PREVIEW</button>
                     </div>
                     <div style="height: 10px;"></div>
                     <div class="panel-group" id="accordion">
@@ -272,7 +273,14 @@
                                                         @endif
                                                     </div>
                                                     <div>
-                                                        <button id="edit-{{ $savedimage->id }}" class="btn btn-yellow">Edit</button>&nbsp;<button id="delete-{{ $savedimage->id }}" class="btn btn-yellow">Delete</button>
+                                                        {!!  Form::open(array('route' => array('banners.show', $savedimage->id), 'method' => 'GET', 'class' => 'form-horizontal form-page-small')) !!}
+                                                        {!!  Form::hidden('id', $savedimage->id) !!}
+                                                        {!! Form::button('EDIT', array('id' => 'edit-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
+                                                        {!! Form::close() !!}
+                                                        {!!  Form::open(array('route' => array('banners.destroy', $savedimage->id), 'method' => 'DELETE', 'class' => 'form-horizontal form-page-small')) !!}
+                                                        {!!  Form::hidden('id', $savedimage->id) !!}
+                                                        {!! Form::button('DELETE', array('id' => 'delete-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
+                                                        {!! Form::close() !!}
                                                     </div>
                                                     <div style="height: 20px;"></div>
                                                 </li>
@@ -294,9 +302,15 @@
                     <div id="downloadbuttondiv">
                         <form method="post" enctype="multipart/form-data" action="{{ url('/banners/getbanner') }}" id="downloadform">
                             {{ csrf_field() }}
+                            <input type="hidden" name="editingexistingimageid" id="editingexistingimageid" value="">
                             <input type="hidden" name="img_val" id="img_val" value="">
                             <input type="hidden" name="img_width" id="img_width" value="">
                             <input type="hidden" name="img_height" id="img_height" value="">
+                            <input type="hidden" name="img_bgcolor" id="img_bgcolor" value="">
+                            <input type="hidden" name="img_bgimage" id="img_bgimage" value="">
+                            <input type="hidden" name="img_bordercolor" id="img_bordercolor" value="">
+                            <input type="hidden" name="img_borderwidth" id="img_borderwidth" value="">
+                            <input type="hidden" name="img_borderstyle" id="img_borderstyle" value="">
                             <input type="hidden" name="htmlcode" id="htmlcode" value="">
                             <button id="downloadbutton" class="btn btn-yellow">SAVE AND DOWNLOAD</button>
                         </form>

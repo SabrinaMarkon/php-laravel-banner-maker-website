@@ -63,6 +63,11 @@ class BannersController extends Controller
         $banner->filename = $dlfile;
         $banner->width =$request->get('img_width');
         $banner->height =$request->get('img_height');
+        $banner->bgcolor = $request->get('img_bgcolor');
+        $banner->bgimage = $request->get('img_bgimage');
+        $banner->bordercolor = $request->get('img_bordercolor');
+        $banner->borderwidth = $request->get('img_borderwidth');
+        $banner->borderstyle = $request->get('img_borderstyle');
         $banner->save();
 
         // open a download open/save dialog box for the user to download the file.
@@ -97,10 +102,34 @@ class BannersController extends Controller
                     $tree .= '<div class="imagename"><img src="' . $file_fullpath . '" style="width: 50px;"></div>';
                 }
             }
-            $tree .= '</ul>';
         }
         $tree .= rtrim($tree, ',');
         return $tree;
+    }
+
+    /**
+     * Display the specified image.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id, Request $request)
+    {
+        // get the page content for this id.
+        $banner = Banner::find($id);
+        return $banner;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id, Request $request)
+    {
+        $banner = Banner::find($id);
+        return "update function";
     }
 
     /**
@@ -112,7 +141,13 @@ class BannersController extends Controller
     public function destroy($id, Request $request)
     {
         $banner = Banner::find($id);
+        // delete the file:
+        $filename = $banner->filename;
+        $filepath = 'mybanners/' . $filename;
+        File::delete($filepath);
+        // delete the record:
         $banner->delete();
+        return $banner;
     }
 
 

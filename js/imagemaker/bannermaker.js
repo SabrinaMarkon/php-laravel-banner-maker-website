@@ -227,8 +227,18 @@ $(function() {
         document.getElementById('canvascontainer').innerHTML = '';
         $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
         $('#savediv').empty();
+        $('#imgobj').empty();
         $('#downloadbuttondiv').hide();
     });
+
+    // START A NEW IMAGE:
+    $('#new').on('click', function() {
+        document.getElementById('canvascontainer').innerHTML = '';
+        $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
+        $('#savediv').empty();
+        //$('#imgobj').empty();
+        $('#downloadbuttondiv').hide();
+    })
 
     // PREVIEW IMAGE:
     $("#preview").click(function() {
@@ -239,7 +249,7 @@ $(function() {
             var sub = $('#canvascontainer').css('background-image');
             // is it the default background?
             if (sub.substr(sub.length - 14) === 'canvasbg.gif")') {
-                bg = '';
+                bg = 'undefined';
             } else {
                 bg = sub;
             }
@@ -260,9 +270,16 @@ $(function() {
                 $('#downloadbuttondiv').show();
                 //Set hidden field's value to image data (base-64 string)
                 $('#img_val').val(canvas.toDataURL("image/png"));
+
+              //  var imgobj = '';
                 // set hidden fieldsto image width and height:
                 $('#img_width').val($('#bannerwidth').val());
                 $('#img_height').val($('#bannerheight').val());
+                // $('#img_bgcolor').val($('#bannerwidth').val());
+                // $('#img_bgimage').val($('#bannerheight').val());
+                // $('#img_bordercolor').val($('#bannerheight').val());
+                // $('#img_borderwidth').val($('#bannerheight').val());
+                // $('#img_borderstyle').val($('#bannerheight').val());
                 // htmlcode field to save into the database.
                 document.getElementById('htmlcode').value = document.getElementById('canvascontainer').innerHTML;
             }
@@ -279,16 +296,38 @@ $(function() {
         var id = $(this).attr('id').split('-')[1];
         // EDIT SAVED IMAGE:
         $('#edit-' + id).click(function() {
-                alert(id);
+                //alert(id);
+            $.ajax({
+                url: 'banners/' + id,
+                type: "get",
+                data: { 'id' : id, '_token': $('input[name=_token]').val(), '_method': 'GET' },
+                success: function(data){
+                   // alert(data);
+                    // update the display to show the chosen database object (in data variable):
 
-
-
-
+                    $('#canvascontainer').html(data.htmlcode);
+                    $('#editingexistingimageid').val(data.id);
+                }
+            });
         });
         // DELETE SAVED IMAGE:
         $('#delete-' + id).click(function(e) {
-            alert(id);
-
+            // alert(id);
+            $.ajax({
+                url: 'banners/' + id,
+                type: "delete",
+                data: { 'id' : id, '_token': $('input[name=_token]').val(), '_method': 'DELETE' },
+                success: function(data){
+                    // alert(data);
+                    // update the display:
+                    $('#banner-' + id).remove();
+                    // if that was the last banner, hide the div for the saved banners entirely:
+                    if ($('#savedimageslist li').length < 1) {
+                        // remove the block with the saved banners until we have some:
+                        $('#savedimagesdiv').remove();
+                    }
+                }
+            });
 
         });
     });

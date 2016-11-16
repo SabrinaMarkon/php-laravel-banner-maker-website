@@ -19,6 +19,11 @@ class CreateBannersTable extends Migration
             $table->longText('htmlcode');
             $table->integer('width')->default(1000);
             $table->integer('height')->default(300);
+            $table->string('bgcolor', 255)->default('transparent');
+            $table->string('bgimage', 255)->default('none');
+            $table->string('bordercolor', 255)->default('transparent');
+            $table->integer('borderwidth')->default(0);
+            $table->string('borderstyle', 12)->default('solid');
             $table->foreign('userid')->references('userid')->on('members');
             $table->timestamps();
         });
