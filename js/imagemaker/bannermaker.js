@@ -218,6 +218,8 @@ $(function() {
         if ($('#canvascontainer').find('.canvaslayer').length) {
             canvascontainer.removeChild(canvascontainer.lastChild);
             $('#savediv').empty();
+            $('#img_val').empty();
+            $('#img_obj').empty();
             $('#downloadbuttondiv').hide();
         }
     });
@@ -227,7 +229,8 @@ $(function() {
         document.getElementById('canvascontainer').innerHTML = '';
         $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
         $('#savediv').empty();
-        $('#imgobj').empty();
+        $('#img_val').empty();
+        $('#img_obj').empty();
         $('#downloadbuttondiv').hide();
     });
 
@@ -236,7 +239,8 @@ $(function() {
         document.getElementById('canvascontainer').innerHTML = '';
         $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
         $('#savediv').empty();
-        //$('#imgobj').empty();
+        $('#img_val').empty();
+        $('#img_obj').empty();
         $('#downloadbuttondiv').hide();
     })
 
@@ -268,18 +272,19 @@ $(function() {
                 $('#savediv').append(canvas);
                 //Show the download button.
                 $('#downloadbuttondiv').show();
-                //Set hidden field's value to image data (base-64 string)
+                // Set hidden field's value to image data (base-64 string)
                 $('#img_val').val(canvas.toDataURL("image/png"));
+                // Put other settings for the image in an object and assign to img_obj hidden field.
+                var img_obj = new Object();
+                img_obj.width = $("#bannerwidth").val();
+                img_obj.height = $("#bannerheight").val();
+                img_obj.bgcolor = $("#canvascontainer").css("background-color");
+                img_obj.bgimage = $("#canvascontainer").css("background-image");
+                img_obj.bordercolor = $("#canvascontainer").css("border-color");
+                img_obj.borderwidth = $("#canvascontainer").css("border-width");
+                img_obj.borderstyle = $("#canvascontainer").css("border-style");
 
-              //  var imgobj = '';
-                // set hidden fieldsto image width and height:
-                $('#img_width').val($('#bannerwidth').val());
-                $('#img_height').val($('#bannerheight').val());
-                // $('#img_bgcolor').val($('#bannerwidth').val());
-                // $('#img_bgimage').val($('#bannerheight').val());
-                // $('#img_bordercolor').val($('#bannerheight').val());
-                // $('#img_borderwidth').val($('#bannerheight').val());
-                // $('#img_borderstyle').val($('#bannerheight').val());
+                $('#img_obj').val(JSON.stringify(img_obj));
                 // htmlcode field to save into the database.
                 document.getElementById('htmlcode').value = document.getElementById('canvascontainer').innerHTML;
             }

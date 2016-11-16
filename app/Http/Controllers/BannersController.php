@@ -56,18 +56,25 @@ class BannersController extends Controller
         // write the file to the server.
         file_put_contents('mybanners/' . $dlfile, $unencodedData);
 
+        // get the background and border setting values from img_obj
+        $img_obj = $request->get('img_obj');
+        //var_dump(json_decode($img_obj));
+        $img_obj = json_decode($img_obj);
+//        echo $img_obj->width;
+//        exit;
         // save image into the banners database table.
         $banner = new Banner();
         $banner->userid = Session::get('user')->userid;
         $banner->htmlcode = trim($request->get('htmlcode'));
         $banner->filename = $dlfile;
-        $banner->width =$request->get('img_width');
-        $banner->height =$request->get('img_height');
-        $banner->bgcolor = $request->get('img_bgcolor');
-        $banner->bgimage = $request->get('img_bgimage');
-        $banner->bordercolor = $request->get('img_bordercolor');
-        $banner->borderwidth = $request->get('img_borderwidth');
-        $banner->borderstyle = $request->get('img_borderstyle');
+        // save the fields in the object img_obj:
+        $banner->width = $img_obj->width;
+        $banner->height = $img_obj->height;
+        $banner->bgcolor = $img_obj->bgcolor;
+        $banner->bgimage = $img_obj->bgimage;
+        $banner->bordercolor = $img_obj->bordercolor;
+        $banner->borderwidth = $img_obj->borderwidth;
+        $banner->borderstyle = $img_obj->borderstyle;
         $banner->save();
 
         // open a download open/save dialog box for the user to download the file.

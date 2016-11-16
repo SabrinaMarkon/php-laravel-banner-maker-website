@@ -273,14 +273,22 @@
                                                         @endif
                                                     </div>
                                                     <div>
-                                                        {!!  Form::open(array('route' => array('banners.show', $savedimage->id), 'method' => 'GET', 'class' => 'form-horizontal form-page-small')) !!}
-                                                        {!!  Form::hidden('id', $savedimage->id) !!}
-                                                        {!! Form::button('EDIT', array('id' => 'edit-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
-                                                        {!! Form::close() !!}
-                                                        {!!  Form::open(array('route' => array('banners.destroy', $savedimage->id), 'method' => 'DELETE', 'class' => 'form-horizontal form-page-small')) !!}
-                                                        {!!  Form::hidden('id', $savedimage->id) !!}
-                                                        {!! Form::button('DELETE', array('id' => 'delete-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
-                                                        {!! Form::close() !!}
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-1">
+                                                            {!!  Form::open(array('route' => array('banners.show', $savedimage->id), 'method' => 'GET', 'class' => 'form-horizontal form-page-small')) !!}
+                                                            {!!  Form::hidden('id', $savedimage->id) !!}
+                                                            {!! Form::button('EDIT', array('id' => 'edit-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
+                                                            {!! Form::close() !!}
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                            {!!  Form::open(array('route' => array('banners.destroy', $savedimage->id), 'method' => 'DELETE', 'class' => 'form-horizontal form-page-small')) !!}
+                                                            {!!  Form::hidden('id', $savedimage->id) !!}
+                                                            {!! Form::button('DELETE', array('id' => 'delete-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
+                                                            {!! Form::close() !!}
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
                                                     </div>
                                                     <div style="height: 20px;"></div>
                                                 </li>
@@ -304,13 +312,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="editingexistingimageid" id="editingexistingimageid" value="">
                             <input type="hidden" name="img_val" id="img_val" value="">
-                            <input type="hidden" name="img_width" id="img_width" value="">
-                            <input type="hidden" name="img_height" id="img_height" value="">
-                            <input type="hidden" name="img_bgcolor" id="img_bgcolor" value="">
-                            <input type="hidden" name="img_bgimage" id="img_bgimage" value="">
-                            <input type="hidden" name="img_bordercolor" id="img_bordercolor" value="">
-                            <input type="hidden" name="img_borderwidth" id="img_borderwidth" value="">
-                            <input type="hidden" name="img_borderstyle" id="img_borderstyle" value="">
+                            <input type="hidden" name="img_obj" id="img_obj" value="">
                             <input type="hidden" name="htmlcode" id="htmlcode" value="">
                             <button id="downloadbutton" class="btn btn-yellow">SAVE AND DOWNLOAD</button>
                         </form>
