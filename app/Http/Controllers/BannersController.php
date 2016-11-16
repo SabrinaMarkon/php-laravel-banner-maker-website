@@ -33,7 +33,7 @@ class BannersController extends Controller
     }
 
     /**
-     * Download banner.
+     * Save banner.
      *
      * @return Response
      */
@@ -76,9 +76,19 @@ class BannersController extends Controller
         $banner->borderwidth = $img_obj->borderwidth;
         $banner->borderstyle = $img_obj->borderstyle;
         $banner->save();
+        Session::flash('message', 'Successfully saved your banner!');
+        return Redirect::to('banners');
+    }
 
+    /**
+     * Download banner.
+     *
+     * @return Response
+     */
+    public function downloadbanner(Request $request, $dlfile) {
         // open a download open/save dialog box for the user to download the file.
         $headers = array('Content-Type: image/png');
+        $dlfilepath = 'mybanners/' . $dlfile;
         return Response::download($dlfilepath, $dlfile, $headers);
     }
 

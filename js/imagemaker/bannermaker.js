@@ -291,10 +291,15 @@ $(function() {
         });
     });
 
-    // DOWNLOAD IMAGE:
-    $("#downloadbutton").on('click', function() {
-        document.getElementById("downloadform").submit();
+    // SAVE IMAGE:
+    $("#savebutton").on('click', function() {
+        document.getElementById("saveform").submit();
     });
+
+    // // DOWNLOAD IMAGE:
+    // $("#downloadbutton").on('click', function() {
+    //     document.getElementById("downloadform").submit();
+    // });
 
     // EDIT OR DELETE IMAGE:
     $("#savedimageslist li").each(function(e) {
@@ -309,7 +314,13 @@ $(function() {
                 success: function(data){
                    // alert(data);
                     // update the display to show the chosen database object (in data variable):
-
+                    $("#canvascontainer").css( { 'width' : data.width });
+                    $("#canvascontainer").css( { 'height' : data.height });
+                    $("#canvascontainer").css( { 'background-color' : data.bgcolor });
+                    $("#canvascontainer").css( { 'background-image' : data.bgimage });
+                    $("#canvascontainer").css( { 'border-color' : data.bordercolor });
+                    $("#canvascontainer").css( { 'border-width' : data.borderwidth });
+                    $("#canvascontainer").css( { 'border-style' : data.borderstyle });
                     $('#canvascontainer').html(data.htmlcode);
                     $('#editingexistingimageid').val(data.id);
                 }

@@ -307,13 +307,13 @@
 
                     </div>
                     <div id="downloadbuttondiv">
-                        <form method="post" enctype="multipart/form-data" action="{{ url('/banners/getbanner') }}" id="downloadform">
+                        <form method="post" enctype="multipart/form-data" action="{{ url('/banners/getbanner') }}" id="saveform">
                             {{ csrf_field() }}
                             <input type="hidden" name="editingexistingimageid" id="editingexistingimageid" value="">
                             <input type="hidden" name="img_val" id="img_val" value="">
                             <input type="hidden" name="img_obj" id="img_obj" value="">
                             <input type="hidden" name="htmlcode" id="htmlcode" value="">
-                            <button id="downloadbutton" class="btn btn-yellow">SAVE AND DOWNLOAD</button>
+                            <button id="savebutton" class="btn btn-yellow">SAVE BANNER</button>
                         </form>
                     </div>
                     <div style="height: 20px;"></div>

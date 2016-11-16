@@ -79,7 +79,6 @@ Route::group(array('middleware' => ['memberauth']), function() {
     Route::get('license', 'PagesController@license');
 
     Route::resource('banners', 'BannersController');
-
     Route::post('banners/getbanner', 'BannersController@getbanner');
 
     Route::resource('profile', 'MembersController');
