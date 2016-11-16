@@ -272,23 +272,22 @@
                                                             <img src="/mybanners/{{ $savedimage->filename }}">
                                                         @endif
                                                     </div>
-                                                    <div>
-                                                        <div class="row">
-                                                            <div class="col-sm-3"></div>
-                                                            <div class="col-sm-1">
-                                                            {!!  Form::open(array('route' => array('banners.show', $savedimage->id), 'method' => 'GET', 'class' => 'form-horizontal form-page-small')) !!}
-                                                            {!!  Form::hidden('id', $savedimage->id) !!}
-                                                            {!! Form::button('EDIT', array('id' => 'edit-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
-                                                            {!! Form::close() !!}
-                                                            </div>
-                                                            <div class="col-sm-1">
-                                                            {!!  Form::open(array('route' => array('banners.destroy', $savedimage->id), 'method' => 'DELETE', 'class' => 'form-horizontal form-page-small')) !!}
-                                                            {!!  Form::hidden('id', $savedimage->id) !!}
-                                                            {!! Form::button('DELETE', array('id' => 'delete-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
-                                                            {!! Form::close() !!}
-                                                            </div>
-                                                            <div class="col-sm-3"></div>
+                                                    <div style="height: 10px;"></div>
+                                                    <div class="row">
+                                                        <div class="col-sm-5"></div>
+                                                        <div class="col-sm-1 text-center">
+                                                        {!!  Form::open(array('route' => array('banners.show', $savedimage->id), 'method' => 'GET', 'class' => 'form-horizontal')) !!}
+                                                        {!!  Form::hidden('id', $savedimage->id) !!}
+                                                        {!! Form::button('EDIT', array('id' => 'edit-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
+                                                        {!! Form::close() !!}
                                                         </div>
+                                                        <div class="col-sm-1 text-center">
+                                                        {!!  Form::open(array('route' => array('banners.destroy', $savedimage->id), 'method' => 'DELETE', 'class' => 'form-horizontal')) !!}
+                                                        {!!  Form::hidden('id', $savedimage->id) !!}
+                                                        {!! Form::button('DELETE', array('id' => 'delete-' .  $savedimage->id, 'class' => 'btn btn-yellow')) !!}
+                                                        {!! Form::close() !!}
+                                                        </div>
+                                                        <div class="col-sm-5"></div>
                                                     </div>
                                                     <div style="height: 20px;"></div>
                                                 </li>

@@ -461,13 +461,6 @@ main {
 .btn-yellow:active {
     box-shadow: none;
 }
-.btn-left {
-    float: left;
-}
-.btn-right {
-    float: left;
-    clear: right;
-}
 
 /* faq and product panels */
 .panel-faqs, .panel-products {
