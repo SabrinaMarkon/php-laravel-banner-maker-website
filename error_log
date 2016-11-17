@@ -32,3 +32,7 @@
 [15-Nov-2016 17:31:02 UTC] PHP Fatal error:  Call to a member function delete() on null in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 126
 [15-Nov-2016 17:31:03 UTC] PHP Fatal error:  Call to a member function delete() on null in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 126
 [15-Nov-2016 17:34:52 UTC] PHP Fatal error:  Call to a member function delete() on null in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 126
+[17-Nov-2016 06:27:39 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BannersController.php on line 28
+[17-Nov-2016 06:28:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Banners' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BannersController.php on line 16
+[17-Nov-2016 06:31:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BannersController.php on line 25
+[17-Nov-2016 07:02:39 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 287

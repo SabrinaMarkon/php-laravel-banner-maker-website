@@ -376,7 +376,7 @@ main {
     max-height: 200px;
 }
 
-#downloadbuttondiv {
+#savebuttondiv {
     display: none;
     text-align: center;
     padding: 0;

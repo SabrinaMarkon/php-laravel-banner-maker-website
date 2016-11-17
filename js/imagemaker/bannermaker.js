@@ -220,7 +220,7 @@ $(function() {
             $('#savediv').empty();
             $('#img_val').empty();
             $('#img_obj').empty();
-            $('#downloadbuttondiv').hide();
+            $('#savebuttondiv').hide();
         }
     });
 
@@ -240,7 +240,7 @@ $(function() {
         $('#pickbordercolor').css({ 'background' : 'transparent' });
         $("#pickborderwidth").val('14');
         $("#pickborderstyle").val('solid');
-        $('#downloadbuttondiv').hide();
+        $('#savebuttondiv').hide();
     });
 
     // START A NEW IMAGE:
@@ -259,7 +259,7 @@ $(function() {
         $('#pickbordercolor').css({ 'background' : 'transparent' });
         $("#pickborderwidth").val('14');
         $("#pickborderstyle").val('solid');
-        $('#downloadbuttondiv').hide();
+        $('#savebuttondiv').hide();
     })
 
     // PREVIEW IMAGE:
@@ -289,7 +289,7 @@ $(function() {
                 $('#savediv').append('<h3>Your Image:</h3>')
                 $('#savediv').append(canvas);
                 //Show the download button.
-                $('#downloadbuttondiv').show();
+                $('#savebuttondiv').show();
                 // Set hidden field's value to image data (base-64 string)
                 $('#img_val').val(canvas.toDataURL("image/png"));
                 // Put other settings for the image in an object and assign to img_obj hidden field.
@@ -313,11 +313,6 @@ $(function() {
     $("#savebutton").on('click', function() {
         document.getElementById("saveform").submit();
     });
-
-    // // DOWNLOAD IMAGE:
-    // $("#downloadbutton").on('click', function() {
-    //     document.getElementById("downloadform").submit();
-    // });
 
     // EDIT OR DELETE IMAGE:
     $("#savedimageslist li").each(function(e) {

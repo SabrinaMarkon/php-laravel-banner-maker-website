@@ -15,7 +15,7 @@
 
 @section('content')
 
-    Stuff
+    Welcome {{ $adminname }}
 
 @stop
 

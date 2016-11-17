@@ -83,18 +83,6 @@ class BannersController extends Controller
     }
 
     /**
-     * Download banner.
-     *
-     * @return tree  the ul tree struction of the image library folder.
-     */
-    public function downloadbanner(Request $request, $dlfile) {
-        // open a download open/save dialog box for the user to download the file.
-        $headers = array('Content-Type: image/png');
-        $dlfilepath = 'mybanners/' . $dlfile;
-        return Response::download($dlfilepath, $dlfile, $headers);
-    }
-
-    /**
      * Build the directory and file tree for the image library.
      *
      * @param $directory  the top root directory folder.
