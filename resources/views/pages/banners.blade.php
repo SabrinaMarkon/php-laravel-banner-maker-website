@@ -206,6 +206,8 @@
                                 <div class="panel-body">
                                     <div id="imagepreview"></div>
                                     <div style="height: 10px;"></div>
+                                    {{--Select Category:--}}
+                                        {{--{!! $imagedirectories !!}--}}
                                     Select Image: <select id="pickimage" class="editorinput">
                                         <option value="none">None</option>
                                         <option value="/images/editorimages/CHSQY94U6T.jpg">
@@ -223,10 +225,6 @@
                                         <option value="/images/editorimages/SQY05ME36U.jpg">
                                             SQY05ME36U.jpg</option>
                                     </select>
-                                    <div style="height: 10px;"></div>
-                                    <div id="tree2">
-
-                                    </div>
                                     <div style="height: 10px;"></div>
                                     <button id="imageadd" class="btn btn-yellow">ADD IMAGE</button>
                                     <div style="height: 15px;"></div>

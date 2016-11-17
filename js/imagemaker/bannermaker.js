@@ -231,6 +231,15 @@ $(function() {
         $('#savediv').empty();
         $('#img_val').empty();
         $('#img_obj').empty();
+        $("#bannerwidth").val('1000');
+        $("#bannerheight").val('300');
+        $('#pickbgcolor').val('transparent');
+        $('#pickbgcolor').css({ 'background' : 'transparent' });
+        $('#pickbgimage').val('none');
+        $('#pickbordercolor').val('transparent');
+        $('#pickbordercolor').css({ 'background' : 'transparent' });
+        $("#pickborderwidth").val('14');
+        $("#pickborderstyle").val('solid');
         $('#downloadbuttondiv').hide();
     });
 
@@ -241,6 +250,15 @@ $(function() {
         $('#savediv').empty();
         $('#img_val').empty();
         $('#img_obj').empty();
+        $("#bannerwidth").val('1000');
+        $("#bannerheight").val('300');
+        $('#pickbgcolor').val('transparent');
+        $('#pickbgcolor').css({ 'background' : 'transparent' });
+        $('#pickbgimage').val('none');
+        $('#pickbordercolor').val('transparent');
+        $('#pickbordercolor').css({ 'background' : 'transparent' });
+        $("#pickborderwidth").val('14');
+        $("#pickborderstyle").val('solid');
         $('#downloadbuttondiv').hide();
     })
 
@@ -278,11 +296,11 @@ $(function() {
                 var img_obj = new Object();
                 img_obj.width = $("#bannerwidth").val();
                 img_obj.height = $("#bannerheight").val();
-                img_obj.bgcolor = $("#canvascontainer").css("background-color");
-                img_obj.bgimage = $("#canvascontainer").css("background-image");
-                img_obj.bordercolor = $("#canvascontainer").css("border-color");
-                img_obj.borderwidth = $("#canvascontainer").css("border-width");
-                img_obj.borderstyle = $("#canvascontainer").css("border-style");
+                img_obj.bgcolor = $("#pickbgcolor").val();
+                img_obj.bgimage = $("#pickbgimage").val();
+                img_obj.bordercolor = $("#pickbordercolor").val();
+                img_obj.borderwidth = $("#pickborderwidth").val();
+                img_obj.borderstyle = $("#pickborderstyle").val();
 
                 $('#img_obj').val(JSON.stringify(img_obj));
                 // htmlcode field to save into the database.
@@ -316,11 +334,33 @@ $(function() {
                     // update the display to show the chosen database object (in data variable):
                     $("#canvascontainer").css( { 'width' : data.width });
                     $("#canvascontainer").css( { 'height' : data.height });
-                    $("#canvascontainer").css( { 'background-color' : data.bgcolor });
-                    $("#canvascontainer").css( { 'background-image' : data.bgimage });
-                    $("#canvascontainer").css( { 'border-color' : data.bordercolor });
+                    $("#canvascontainer").css( { 'background' : data.bgcolor });
+                    if (data.bgimage === 'none') {
+                        $('#canvascontainer').css({ 'background' : data.bgcolor });
+                        $('#pickbgcolor').css({ 'background' : data.bgcolor });
+                        $('#pickbgcolor').val(data.bgcolor);
+                        $('#pickbgimage').val('none');
+                    } else {
+                        $('#canvascontainer').css({ 'background' : 'url("' + data.bgimage + '")', 'background-size' : '100% 100%', 'background-size' : '100% 100%' });
+                        $('#pickbgcolor').css({ 'background' : '' });
+                        $('#pickbgcolor').val('transparent');
+                        $('#pickbgimage').val(data.bgimage);
+                    }
+                    if (data.bordercolor === 'none') {
+                        $('#canvascontainer').css({ 'border-color' : '' });
+                        $('#pickbordercolor').val('transparent');
+                        $('#pickbordercolor').css({ 'background' : '' });
+                    } else {
+                        $('#canvascontainer').css({ 'border-color' : data.bordercolor });
+                        $('#pickbordercolor').val(data.bordercolor);
+                        $('#pickbordercolor').css({ 'background' : data.bordercolor });
+                    }
                     $("#canvascontainer").css( { 'border-width' : data.borderwidth });
                     $("#canvascontainer").css( { 'border-style' : data.borderstyle });
+                    $("#bannerwidth").val(data.width);
+                    $("#bannerheight").val(data.height);
+                    $("#pickborderwidth").val(data.borderwidth);
+                    $("#pickborderstyle").val(data.borderstyle);
                     $('#canvascontainer').html(data.htmlcode);
                     $('#editingexistingimageid').val(data.id);
                 }
@@ -349,6 +389,20 @@ $(function() {
     });
 
     // SUPPORTING FUNCTIONS:
+
+    // CONVERT RGB COLORS TO HEXIDECIMAL:
+    var hexDigits = new Array
+    ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+//Function to convert hex format to a rgb color
+    function rgb2hex(rgb) {
+        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
+
+    function hex(x) {
+        return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+    }
 
     // GET CONTRASTING TEXT COLOR FOR BACKGROUNDS:
     function idealTextColor(bgColor) {

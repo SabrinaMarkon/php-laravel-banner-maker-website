@@ -26,10 +26,12 @@ class BannersController extends Controller
 
         // Get the image library tree.
         $directory = "images/editorimages";
-        $tree = $this->fileTree($directory);
+       // $tree = $this->fileTree($directory);
 //echo $tree;
+        $imagedirectories = $this->getImageDirectories($directory);
 //exit;
-        return view('pages.banners', compact('tree', 'savedimages'));
+        //return view('pages.banners', compact('tree', 'savedimages'));
+        return view('pages.banners', compact('imagedirectories', 'savedimages'));
     }
 
     /**
@@ -83,7 +85,7 @@ class BannersController extends Controller
     /**
      * Download banner.
      *
-     * @return Response
+     * @return tree  the ul tree struction of the image library folder.
      */
     public function downloadbanner(Request $request, $dlfile) {
         // open a download open/save dialog box for the user to download the file.
@@ -115,13 +117,32 @@ class BannersController extends Controller
                 if ($extension === 'gif' || $extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
                     $file_fullpath_array = explode("/", $file_fullpath);
                     $file = end($file_fullpath_array);
-                    //$tree .= '<li>' . $file . '</li>';
                     $tree .= '<div class="imagename"><img src="' . $file_fullpath . '" style="width: 50px;"></div>';
                 }
             }
         }
         $tree .= rtrim($tree, ',');
         return $tree;
+    }
+
+    /**
+     * Get the options for the select box of image library directories.
+     *
+     * @param $directory  the top root directory folder.
+     * @return $imagedirectories  All image folders and subfolders in the library.
+     */
+    public function getImageDirectories($directory) {
+        $imagedirectories = '';
+        // get all top level folders:
+        $directories = File::directories($directory);
+        foreach ($directories as $directory_fullpath) {
+            $directory_fullpath_array = explode("/", $directory_fullpath);
+            $directory = end($directory_fullpath_array);
+            $imagedirectories .= '<div class="imagefolder">' . $directory . '</div>';
+            // get subdirectories and files recursively that are in the top folder:
+            $imagedirectories .= $this->fileTree($directory_fullpath);
+        }
+        return $imagedirectories;
     }
 
     /**
