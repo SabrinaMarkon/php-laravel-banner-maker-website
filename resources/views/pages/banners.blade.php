@@ -73,7 +73,9 @@
                                 <div class="panel-body">
                                     Background Color: <select id="pickbgcolor" class="editorinput"></select>
                                     <div style="height: 10px;"></div>
-                                    <div id="bgimagepreview"></div>
+                                    Select Category:<select id="pickbgimagefolder" class="editorinput">
+                                        {!! $foldertree !!}
+                                    </select>
                                     <div style="height: 10px;"></div>
                                     Background Image: <select id="pickbgimage" class="editorinput">
                                         <option value="none">None</option>
@@ -204,10 +206,10 @@
                             </div>
                             <div id="collapse5" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div id="imagepreview"></div>
+                                    Select Category:<select id="pickimagefolder" class="editorinput">
+                                        {!! $foldertree !!}
+                                        </select>
                                     <div style="height: 10px;"></div>
-                                    {{--Select Category:--}}
-                                        {{--{!! $imagedirectories !!}--}}
                                     Select Image: <select id="pickimage" class="editorinput">
                                         <option value="none">None</option>
                                         <option value="/images/editorimages/CHSQY94U6T.jpg">
@@ -290,7 +292,7 @@
                                                         </div>
                                                         <div class="col-sm-4"></div>
                                                     </div>
-                                                    <div style="height: 20px;"></div>
+                                                    <div style="height: 40px;"></div>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -335,6 +337,6 @@
 
 @section('footer')
 
-    <script src="/js/imagemaker/bootstrap-treeview.js"></script>
+    {{--<script src="/js/imagemaker/bootstrap-treeview.js"></script>--}}
 
 @stop

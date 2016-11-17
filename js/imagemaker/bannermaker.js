@@ -37,17 +37,6 @@ $(function() {
         }
     });
 
-    // BACKGROUND PREVIEW:
-    $('#pickbgimage').mouseenter(function(){
-        var bgimagepreview = document.getElementById('pickbgimage').value;
-        if (bgimagepreview !== 'none') {
-            var imgstyle = "max-width: 100%; max-height: 100%; background: none; margin: auto;";
-            $('#bgimagepreview').html('<img src="' + bgimagepreview + '" style="' + imgstyle + '">');
-        } else {
-            $('#bgimagepreview').css({ 'display' : 'block' });
-        }
-    });
-
     // BACKGROUND IMAGE:
     $('#pickbgimage').on('change', function() {
         if (this.value === 'none') {
@@ -169,17 +158,6 @@ $(function() {
             $('#textcount').css('font-style', 'italic');
         } else {
             $('#textcount').css('font-style', 'normal');
-        }
-    });
-
-    // IMAGE PREVIEW:
-    $('#pickimage option').hover(function(){
-        var imagepreview = document.getElementById('pickimage').value;
-        if (imagepreview !== 'none') {
-            var imgstyle = "max-width: 100%; max-height: 100%; background: none; margin: auto;";
-            $('#imagepreview').html('<img src="' + imagepreview + '" style="' + imgstyle + '">');
-        } else {
-            $('#imagepreview').css({ 'display' : 'block' });
         }
     });
 

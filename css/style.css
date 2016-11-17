@@ -451,6 +451,7 @@ main {
     border: 1px solid grey;
     box-shadow: 2px 2px teal;
     cursor: pointer;
+    color: #000;
 }
 .btn-yellow:hover {
     background-color: yellow;
@@ -460,6 +461,9 @@ main {
 }
 .btn-yellow:active {
     box-shadow: none;
+}
+a .btn-yellow {
+    color: #000;
 }
 
 /* faq and product panels */

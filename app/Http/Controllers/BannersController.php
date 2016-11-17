@@ -26,12 +26,8 @@ class BannersController extends Controller
 
         // Get the image library tree.
         $directory = "images/editorimages";
-       // $tree = $this->fileTree($directory);
-//echo $tree;
-        $imagedirectories = $this->getImageDirectories($directory);
-//exit;
-        //return view('pages.banners', compact('tree', 'savedimages'));
-        return view('pages.banners', compact('imagedirectories', 'savedimages'));
+        $foldertree = $this->folderTree($directory);
+        return view('pages.banners', compact('foldertree', 'savedimages'));
     }
 
     /**
@@ -111,6 +107,41 @@ class BannersController extends Controller
         }
         $tree .= rtrim($tree, ',');
         return $tree;
+    }
+
+    /**
+     * Get any subfolders of the folder.
+     *
+     * @param $topdir  the top root directory.
+     * @return $subdirs  The subdirectories of the topdir root directory.
+     */
+    public function getSubdirectories($topdir) {
+        $subdirs = File::directories($topdir);
+        return $subdirs;
+    }
+
+    /**
+     * Build the list of directories for the image library folder select box.
+     *
+     * @param $directory  the top root directory.
+     * @return $foldertree  the list of all directories in root with their subdirectories for the select box.
+     */
+    public function folderTree($directory) {
+        $foldertree = '';
+        $dirs = $this->getSubdirectories($directory);
+        foreach ($dirs as $dir) {
+            $show_dir_array = explode('editorimages/', $dir);
+            $show_dir = $show_dir_array[1];
+            $foldertree .= '<option value="' . $show_dir . '">' . $show_dir . '</option>';
+            // get any subdirs of dir:
+            $dirs2 = $this->getSubdirectories($dir);
+            foreach ($dirs2 as $dir2) {
+                $show_dir_array2 = explode('editorimages/', $dir2);
+                $show_dir2 = $show_dir_array2[1];
+                $foldertree .=  '<option value="' . $show_dir2 . '">' . $show_dir2 . '</option>';
+            }
+        }
+         return $foldertree;
     }
 
     /**

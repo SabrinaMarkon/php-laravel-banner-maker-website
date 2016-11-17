@@ -36,3 +36,6 @@
 [17-Nov-2016 06:28:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Banners' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BannersController.php on line 16
 [17-Nov-2016 06:31:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/BannersController.php on line 25
 [17-Nov-2016 07:02:39 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/sadiesbc/public_html/storage/framework/views/7765332773127aca3a393e6f8a1a81b04c89f22b.php on line 287
+[17-Nov-2016 07:53:07 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\folderTree() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 126
+[17-Nov-2016 07:56:21 UTC] PHP Parse error:  syntax error, unexpected 'Array' (T_ARRAY) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 118
+[17-Nov-2016 08:01:32 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\getSubdirectories() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 123
