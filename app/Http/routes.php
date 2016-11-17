@@ -80,6 +80,7 @@ Route::group(array('middleware' => ['memberauth']), function() {
 
     Route::resource('banners', 'BannersController');
     Route::post('banners/getbanner', 'BannersController@getbanner');
+    Route::post('banners/filetree/{folder}', 'BannersController@fileTree');
 
     Route::resource('profile', 'MembersController');
 

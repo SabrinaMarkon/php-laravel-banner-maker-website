@@ -161,6 +161,22 @@ $(function() {
         }
     });
 
+    // SELECT IMAGE CATEGORY / DIRECTORY:
+    $('#pickimagefolder').on('change', function() {
+        var folder = this.value;
+        $.ajax({
+            url: 'banners/filetree/' + folder,
+            type: "post",
+            data: { 'folder' : folder, '_token': $('input[name=_token]').val(), '_method': 'POST' },
+            success: function(data){
+                //alert(data);
+                // update the display to show the chosen images in pickimage div:
+                $('#pickimage').empty();
+                $('#pickimage').append(data);
+            }
+        });
+    });
+
     // ADD IMAGE:
     $('#imageadd').on('click', function() {
         var pickimage = document.getElementById('pickimage').value;

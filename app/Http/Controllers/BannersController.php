@@ -27,7 +27,81 @@ class BannersController extends Controller
         // Get the image library tree.
         $directory = "images/editorimages";
         $foldertree = $this->folderTree($directory);
-        return view('pages.banners', compact('foldertree', 'savedimages'));
+
+        // Get all the files in all the subdirectories recursively.
+        // Build array and preload list.
+        $filetree = File::allFiles($directory);
+        $preloadimages = '';
+        foreach ($filetree as $file)
+        {
+            $preloadimages .= '<img src="' . (string)$file . '">';
+        }
+        return view('pages.banners', compact('savedimages', 'foldertree', 'preloadimages'));
+    }
+
+    /**
+     * Get any subfolders of the folder.
+     *
+     * @param $topdir  the top root directory.
+     * @return $subdirs  The subdirectories of the topdir root directory.
+     */
+    public function getSubdirectories($topdir) {
+        $subdirs = File::directories($topdir);
+        return $subdirs;
+    }
+
+    /**
+     * Build the list of directories for the image library folder select box.
+     *
+     * @param $directory  the top root directory.
+     * @return $foldertree  the list of all directories in root with their subdirectories for the select box.
+     */
+    public function folderTree($directory) {
+        $foldertree = '';
+        $dirs = $this->getSubdirectories($directory);
+        foreach ($dirs as $dir) {
+            $show_dir_array = explode('editorimages/', $dir);
+            $show_dir = $show_dir_array[1];
+            $foldertree .= '<option value="' . $show_dir . '">' . $show_dir . '</option>';
+            // get any subdirs of dir:
+            $dirs2 = $this->getSubdirectories($dir);
+            foreach ($dirs2 as $dir2) {
+                $show_dir_array2 = explode('editorimages/', $dir2);
+                $show_dir2 = $show_dir_array2[1];
+                $foldertree .=  '<option value="' . $show_dir2 . '">' . $show_dir2 . '</option>';
+            }
+        }
+        return $foldertree;
+    }
+
+    /**
+     * Get the list of files for the image library chooser depending on which category (folder) was chosen.
+     *
+     * @param $imagedirectory  the chosen image folder.
+     * @return $filetree  the list of all files in the chosen directory.
+     */
+    public function fileTree(Request $request, $folder = null) {
+        $folder = "images/editorimages/" . $folder;
+        $filetree = '';
+        $resize = '';
+        $files = File::allFiles($folder);
+        foreach ($files as $file)
+        {
+            // make sure the file is an image.
+            $extension = File::extension($file);
+            if ($extension === 'gif' || $extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
+                $file_fullpath_array = explode("/", $file);
+                $filename = end($file_fullpath_array);
+                $filedata = getimagesize($file);
+                $width = $filedata[0];
+                $height = $filedata[1];
+                if ($width > 200) {
+                    $resize = 'class="previewshrink"';
+                }
+                $filetree .= '<div class="imagepreviewdiv" id="' . $filename . '"><img ' . $resize . ' src="' . (string)$file . '"></div><div style="height:10px;"></div>';
+            }
+        }
+        return $filetree;
     }
 
     /**
@@ -76,92 +150,6 @@ class BannersController extends Controller
         $banner->save();
         Session::flash('message', 'Successfully saved your banner!');
         return Redirect::to('banners');
-    }
-
-    /**
-     * Build the directory and file tree for the image library.
-     *
-     * @param $directory  the top root directory folder.
-     * @return $tree  The tree structure to use in the view.
-     */
-    public function fileTree($directory) {
-        $tree = '';
-        // get all top level folders:
-        $directories = File::directories($directory);
-        foreach ($directories as $directory_fullpath) {
-            $directory_fullpath_array = explode("/", $directory_fullpath);
-            $directory = end($directory_fullpath_array);
-            $tree .= '<div class="imagefolder">' . $directory . '</div>';
-            // get subdirectories and files recursively that are in the top folder:
-            $tree .= $this->fileTree($directory_fullpath);
-            // get all files in the top folder(directory);
-            $files = File::allFiles($directory_fullpath);
-            foreach($files as $file_fullpath) {
-                $extension = File::extension($file_fullpath);
-                if ($extension === 'gif' || $extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
-                    $file_fullpath_array = explode("/", $file_fullpath);
-                    $file = end($file_fullpath_array);
-                    $tree .= '<div class="imagename"><img src="' . $file_fullpath . '" style="width: 50px;"></div>';
-                }
-            }
-        }
-        $tree .= rtrim($tree, ',');
-        return $tree;
-    }
-
-    /**
-     * Get any subfolders of the folder.
-     *
-     * @param $topdir  the top root directory.
-     * @return $subdirs  The subdirectories of the topdir root directory.
-     */
-    public function getSubdirectories($topdir) {
-        $subdirs = File::directories($topdir);
-        return $subdirs;
-    }
-
-    /**
-     * Build the list of directories for the image library folder select box.
-     *
-     * @param $directory  the top root directory.
-     * @return $foldertree  the list of all directories in root with their subdirectories for the select box.
-     */
-    public function folderTree($directory) {
-        $foldertree = '';
-        $dirs = $this->getSubdirectories($directory);
-        foreach ($dirs as $dir) {
-            $show_dir_array = explode('editorimages/', $dir);
-            $show_dir = $show_dir_array[1];
-            $foldertree .= '<option value="' . $show_dir . '">' . $show_dir . '</option>';
-            // get any subdirs of dir:
-            $dirs2 = $this->getSubdirectories($dir);
-            foreach ($dirs2 as $dir2) {
-                $show_dir_array2 = explode('editorimages/', $dir2);
-                $show_dir2 = $show_dir_array2[1];
-                $foldertree .=  '<option value="' . $show_dir2 . '">' . $show_dir2 . '</option>';
-            }
-        }
-         return $foldertree;
-    }
-
-    /**
-     * Get the options for the select box of image library directories.
-     *
-     * @param $directory  the top root directory folder.
-     * @return $imagedirectories  All image folders and subfolders in the library.
-     */
-    public function getImageDirectories($directory) {
-        $imagedirectories = '';
-        // get all top level folders:
-        $directories = File::directories($directory);
-        foreach ($directories as $directory_fullpath) {
-            $directory_fullpath_array = explode("/", $directory_fullpath);
-            $directory = end($directory_fullpath_array);
-            $imagedirectories .= '<div class="imagefolder">' . $directory . '</div>';
-            // get subdirectories and files recursively that are in the top folder:
-            $imagedirectories .= $this->fileTree($directory_fullpath);
-        }
-        return $imagedirectories;
     }
 
     /**

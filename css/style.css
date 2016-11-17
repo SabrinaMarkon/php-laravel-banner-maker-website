@@ -466,6 +466,23 @@ a .btn-yellow {
     color: #000;
 }
 
+/* preload the image library */
+.preloaddiv {
+    display: none;
+}
+
+/* image library selection */
+#pickimage {
+    overflow-y:scroll;
+    overflow-x:auto;
+    height:400px;
+    background: transparent url('/images/canvasbg.gif');
+}
+
+.imagepreviewdiv .previewshrink {
+    width: 200px;
+}
+
 /* faq and product panels */
 .panel-faqs, .panel-products {
     margin-top: 35px;
@@ -530,18 +547,4 @@ a .btn-yellow {
     .title {
         font-size: 18px;
     }
-}
-
-/* preload image selector images */
-#preloadedImages {
-    width: 0px;
-    height: 0px;
-    display: inline;
-    background-image: url('/images/editorimages/CHSQY94U6T.jpg');
-    background-image: url('/images/editorimages/DHK577B552.jpg');
-    background-image: url('/images/editorimages/IUVI2VVDXJ.jpg');
-    background-image: url('/images/editorimages/O4DWC2WG2U.jpg');
-    background-image: url('/images/editorimages/QMA508CSJ4.jpg');
-    background-image: url('/images/editorimages/S3XBRRS2D9.jpg');
-    background-image: url('/images/editorimages/SQY05ME36U.jpg');
 }

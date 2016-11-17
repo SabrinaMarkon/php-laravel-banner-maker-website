@@ -207,26 +207,14 @@
                             <div id="collapse5" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     Select Category:<select id="pickimagefolder" class="editorinput">
+                                        <option value="none">None</option>
                                         {!! $foldertree !!}
                                         </select>
                                     <div style="height: 10px;"></div>
-                                    Select Image: <select id="pickimage" class="editorinput">
-                                        <option value="none">None</option>
-                                        <option value="/images/editorimages/CHSQY94U6T.jpg">
-                                            CHSQY94U6T.jpg</option>
-                                        <option value="/images/editorimages/DHK577B552.jpg">
-                                            DHK577B552.jpg</option>
-                                        <option value="/images/editorimages/IUVI2VVDXJ.jpg">
-                                            IUVI2VVDXJ.jpg</option>
-                                        <option value="/images/editorimages/O4DWC2WG2U.jpg">
-                                            O4DWC2WG2U.jpg</option>
-                                        <option value="/images/editorimages/QMA508CSJ4.jpg">
-                                            QMA508CSJ4.jpg</option>
-                                        <option value="/images/editorimages/S3XBRRS2D9.jpg">
-                                            S3XBRRS2D9.jpg</option>
-                                        <option value="/images/editorimages/SQY05ME36U.jpg">
-                                            SQY05ME36U.jpg</option>
-                                    </select>
+                                    Select Image: (TESTING)
+                                    <div style="height: 5px;"></div>
+                                    <div id="pickimage" class="editorinput">
+                                    </div>
                                     <div style="height: 10px;"></div>
                                     <button id="imageadd" class="btn btn-yellow">ADD IMAGE</button>
                                     <div style="height: 15px;"></div>
@@ -329,7 +317,6 @@
         $(document).ready(function(){
             $('.sadie').css("background-image", "url('/images/SadiePeace.png')");
         });
-
     </script>
 
 @stop
@@ -337,6 +324,6 @@
 
 @section('footer')
 
-    {{--<script src="/js/imagemaker/bootstrap-treeview.js"></script>--}}
+    <div class="preloaddiv">{!!  $preloadimages !!} </div>
 
 @stop
