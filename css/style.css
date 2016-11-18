@@ -471,15 +471,29 @@ a .btn-yellow {
     display: none;
 }
 
-/* image library selection */
-#pickimage {
+/* image library  */
+#pickimage, #pickbgimage {
     overflow-y:scroll;
     overflow-x:auto;
     height:400px;
     background: transparent url('/images/canvasbg.gif');
 }
-
-.imagepreviewdiv .previewshrink {
+#pickimage  .ui-selecting, #pickbgimage .ui-selecting {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px #FFC125;
+}
+#pickimage  .ui-selected, #pickbgimage .ui-selected {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px #FF7256;
+}
+.imagepreviewdiv {
+    margin: 6px;
+}
+.imagepreviewdiv:hover {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px #FFC125;
+}
+.imagepreviewdiv.previewshrink {
     width: 200px;
 }
 

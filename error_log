@@ -39,3 +39,5 @@
 [17-Nov-2016 07:53:07 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\folderTree() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 126
 [17-Nov-2016 07:56:21 UTC] PHP Parse error:  syntax error, unexpected 'Array' (T_ARRAY) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 118
 [17-Nov-2016 08:01:32 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\getSubdirectories() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 123
+[17-Nov-2016 17:31:33 UTC] PHP Parse error:  syntax error, unexpected 'img_val' (T_STRING) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 115
+[17-Nov-2016 17:31:39 UTC] PHP Parse error:  syntax error, unexpected 'img_val' (T_STRING) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 115

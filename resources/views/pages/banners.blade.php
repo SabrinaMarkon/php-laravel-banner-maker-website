@@ -74,27 +74,15 @@
                                     Background Color: <select id="pickbgcolor" class="editorinput"></select>
                                     <div style="height: 10px;"></div>
                                     Select Category:<select id="pickbgimagefolder" class="editorinput">
+                                        <option value="none">None</option>
                                         {!! $foldertree !!}
                                     </select>
                                     <div style="height: 10px;"></div>
-                                    Background Image: <select id="pickbgimage" class="editorinput">
-                                        <option value="none">None</option>
-                                        <option value="/images/editorimages/CHSQY94U6T.jpg">
-                                            CHSQY94U6T.jpg</option>
-                                        <option value="/images/editorimages/DHK577B552.jpg">
-                                            DHK577B552.jpg</option>
-                                        <option value="/images/editorimages/IUVI2VVDXJ.jpg">
-                                            IUVI2VVDXJ.jpg</option>
-                                        <option value="/images/editorimages/O4DWC2WG2U.jpg">
-                                            O4DWC2WG2U.jpg</option>
-                                        <option value="/images/editorimages/QMA508CSJ4.jpg">
-                                            QMA508CSJ4.jpg</option>
-                                        <option value="/images/editorimages/S3XBRRS2D9.jpg">
-                                            S3XBRRS2D9.jpg</option>
-                                        <option value="/images/editorimages/SQY05ME36U.jpg">
-                                            SQY05ME36U.jpg</option>
-                                    </select>
-
+                                    Select Image:
+                                    <div style="height: 5px;"></div>
+                                    <div id="pickbgimage" class="editorinput">
+                                    </div>
+                                    <div style="height: 10px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +199,7 @@
                                         {!! $foldertree !!}
                                         </select>
                                     <div style="height: 10px;"></div>
-                                    Select Image: (TESTING)
+                                    Select Image:
                                     <div style="height: 5px;"></div>
                                     <div id="pickimage" class="editorinput">
                                     </div>

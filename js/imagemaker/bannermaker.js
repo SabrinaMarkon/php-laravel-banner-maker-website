@@ -161,39 +161,60 @@ $(function() {
         }
     });
 
-    // SELECT IMAGE CATEGORY / DIRECTORY:
+    //  SELECT IMAGE DIRECTORY FROM SELECT ELEMENT. LOAD FILE SELECTION BOX WiTH FILES FROM THIS DIRECTORY:
     $('#pickimagefolder').on('change', function() {
-        var folder = this.value;
-        $.ajax({
-            url: 'banners/filetree/' + folder,
-            type: "post",
-            data: { 'folder' : folder, '_token': $('input[name=_token]').val(), '_method': 'POST' },
-            success: function(data){
-                //alert(data);
-                // update the display to show the chosen images in pickimage div:
-                $('#pickimage').empty();
-                $('#pickimage').append(data);
+        //var which = this.id; // gives the id of the select box - pickimagefolder
+        var folder = this.value; // gives the id value of the SELECTED image directory in the selection box.
+        if (folder === 'none') {
+            $('#pickimage').empty();
+        } else {
+            $.ajax({
+                url: 'banners/filetree/' + folder,
+                type: "post",
+                data: { 'folder' : folder, '_token': $('input[name=_token]').val(), '_method': 'POST' },
+                success: function(data){
+                    // update the display to show the chosen images in pickimage div:
+                    $('#pickimage').empty();
+                    $('#pickimage').append(data);
+                }
+            });
+        }
+    });
+
+    // MAKE IMAGE FILES IN THE FILE SELECTION BOX SELECTABLE:
+    $("#pickimage").selectable({
+        selected: function(event, ui) {
+            $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+            var chosenfile = $(ui.selected).attr('id');
+            //alert(chosenfile);
+        },
+        selecting: function(event, ui){
+            if( $(".ui-selected, .ui-selecting").length > 1){
+                $(ui.selecting).removeClass("ui-selecting");
             }
-        });
+        },
+        cancel: 'a'
     });
 
     // ADD IMAGE:
     $('#imageadd').on('click', function() {
-        var pickimage = document.getElementById('pickimage').value;
-        if (pickimage !== 'none') {
+        var pickimage_filename = $('#pickimage > .ui-selected').attr('id'); // pickimage_filename is the id of the selected image.
+        //alert(pickimage_filename);
+
+        if (pickimage_filename !== 'none' && pickimage_filename !== undefined && pickimage_filename !== '') {
             var canvascontainer = document.getElementById("canvascontainer");
-            var imgstyle = "max-width: 100%; max-height: 100%; background: none;";
-
+            //var imgstyle = "max-width: 100%; max-height: 100%; background: none;";
+            var imgstyle = "background: none;";
             var newid = $("#canvascontainer > div").length + 1;
-
-            $('#canvascontainer').append($('<div id="' + newid + '" class="canvaslayer picture"><img class="ui-widget-content" src="' + pickimage + '" style="' + imgstyle + '"></div>')
-                .draggable({ containment : "body" })
-                .resizable({
-                    //containment : "#maineditpane",
-                    handles: "nw, ne, sw, se",
-                    aspectRatio: false
-                })
-            );
+            var pickimage_folder = $('#pickimagefolder').val();
+            var pickimage_path = 'images/editorimages/' + pickimage_folder + '/' + pickimage_filename;
+            var elem = $('<div id="' + newid + '" class="canvaslayer picture"><img class="ui-widget-content" src="' + pickimage_path + '" style="' + imgstyle + '"></div>');
+            $('#canvascontainer').append(elem);
+            elem.draggable();
+            elem.find('.ui-widget-content:first').resizable({
+                handles: "nw, ne, sw, se",
+                aspectRatio: false
+            });
         }
     });
 

@@ -96,9 +96,9 @@ class BannersController extends Controller
                 $width = $filedata[0];
                 $height = $filedata[1];
                 if ($width > 200) {
-                    $resize = 'class="previewshrink"';
+                    $resize = ' previewshrink';
                 }
-                $filetree .= '<div class="imagepreviewdiv" id="' . $filename . '"><img ' . $resize . ' src="' . (string)$file . '"></div><div style="height:10px;"></div>';
+                $filetree .= '<img  id="' . $filename . '" class="imagepreviewdiv ui-widget-content' . $resize . '" src="' . (string)$file . '"><br>';
             }
         }
         return $filetree;
