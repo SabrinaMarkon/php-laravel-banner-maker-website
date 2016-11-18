@@ -37,13 +37,46 @@ $(function() {
         }
     });
 
-    // BACKGROUND IMAGE:
-    $('#pickbgimage').on('change', function() {
-        if (this.value === 'none') {
-            $('#canvascontainer').css({ 'background' : '' });
+    //  SELECT BACKGROUND IMAGE DIRECTORY FROM SELECT ELEMENT. LOAD BACKGROUND FILE SELECTION BOX WiTH FILES FROM THIS DIRECTORY:
+    $('#pickbgimagefolder').on('change', function() {
+        //var which = this.id; // gives the id of the select box - pickbgimagefolder
+        var folder = this.value; // gives the id value of the SELECTED image directory in the selection box.
+        if (folder === 'none') {
+            $('#pickbgimage').empty();
         } else {
-            $('#canvascontainer').css({ 'background' : 'url("' + this.value + '")', 'background-size' : '100% 100%' });
+            $.ajax({
+                url: 'banners/filetree/' + folder,
+                type: "post",
+                data: { 'folder' : folder, '_token': $('input[name=_token]').val(), '_method': 'POST' },
+                success: function(data){
+                    // update the display to show the chosen images in pickbgimage div:
+                    $('#pickbgimage').empty();
+                    $('#pickbgimage').append(data);
+                }
+            });
         }
+    });
+
+    // MAKE BACKGROUND IMAGE FILES IN THE BACKGROUND FILE SELECTION BOX SELECTABLE. ADD BACKGROUND IMAGE:
+    $("#pickbgimage").selectable({
+        selected: function(event, ui) {
+            $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+            var pickbgimage_filename = $(ui.selected).attr('id');
+            //alert(pickbgimage_filename);
+            if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '') {
+                var pickbgimage_folder = $('#pickbgimagefolder').val();
+                var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder + '/' + pickbgimage_filename;
+                $('#canvascontainer').css({ 'background' : 'url("' + pickbgimage_path + '")', 'background-size' : '100% 100%' });
+            } else {
+                $('#canvascontainer').css({ 'background' : '' });
+            }
+        },
+        selecting: function(event, ui){
+            // if( $(".ui-selected, .ui-selecting").length > 1){
+            //     $(ui.selecting).removeClass("ui-selecting");
+            // }
+        },
+        cancel: 'a'
     });
 
     // BORDER COLOR:
@@ -138,7 +171,6 @@ $(function() {
             .draggable({ containment : "#body" }));
     });
 
-
     // TEXT BOLD:
     $('#bold').click(function(){
         $('#texttoadd').toggleClass('bold');
@@ -189,9 +221,9 @@ $(function() {
             //alert(chosenfile);
         },
         selecting: function(event, ui){
-            if( $(".ui-selected, .ui-selecting").length > 1){
-                $(ui.selecting).removeClass("ui-selecting");
-            }
+            // if( $(".ui-selected, .ui-selecting").length > 1){
+            //     $(ui.selecting).removeClass("ui-selecting");
+            // }
         },
         cancel: 'a'
     });
