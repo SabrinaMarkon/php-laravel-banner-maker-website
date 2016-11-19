@@ -344,10 +344,19 @@ $(function() {
                 img_obj.width = $("#bannerwidth").val();
                 img_obj.height = $("#bannerheight").val();
                 img_obj.bgcolor = $("#pickbgcolor").val();
-                img_obj.bgimage = $("#pickbgimage").val();
                 img_obj.bordercolor = $("#pickbordercolor").val();
                 img_obj.borderwidth = $("#pickborderwidth").val();
                 img_obj.borderstyle = $("#pickborderstyle").val();
+                // get img_obj.bgimage if there is one:
+                var pickbgimage_filename = $('#pickbgimage > .ui.selected').attr('id');
+                alert(pickbgimage_filename);
+                if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '') {
+                    var pickbgimage_folder = $('#pickbgimagefolder').val();
+                    var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder + '/' + pickbgimage_filename;
+                    img_obj.bgimage = pickbgimage_path;
+                } else {
+                    img_obj.bgimage = 'none';
+                }
 
                 $('#img_obj').val(JSON.stringify(img_obj));
                 // htmlcode field to save into the database.

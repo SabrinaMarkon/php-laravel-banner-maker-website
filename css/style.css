@@ -497,6 +497,12 @@ a .btn-yellow {
     width: 200px;
 }
 
+/* saved banners panel is scrollable */
+#savedimageslist {
+    height: 300px;
+    overflow: auto;
+}
+
 /* faq and product panels */
 .panel-faqs, .panel-products {
     margin-top: 35px;
