@@ -239,6 +239,8 @@
                                         <ul id="savedimageslist" class="editorinput list-unstyled">
                                             @foreach($savedimages as $savedimage)
                                                 <li id="banner-{{ $savedimage->id }}">
+                                                    <div><a  href="{{ $domain }}/mybanners/{{ $savedimage->filename }}" target="_blank">{{ $domain }}/mybanners/{{ $savedimage->filename }}</a></div>
+                                                    <div style="height: 10px;"></div>
                                                     <div>
                                                         @if($savedimage->width > 300)
                                                             <img src="/mybanners/{{ $savedimage->filename }}" width="300">
@@ -268,7 +270,7 @@
                                                         </div>
                                                         <div class="col-sm-4"></div>
                                                     </div>
-                                                    <div style="height: 40px;"></div>
+                                                    <hr>
                                                 </li>
                                             @endforeach
                                         </ul>

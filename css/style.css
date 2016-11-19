@@ -500,7 +500,7 @@ a .btn-yellow {
 /* saved banners panel is scrollable */
 #savedimageslist {
     height: 300px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 /* faq and product panels */
