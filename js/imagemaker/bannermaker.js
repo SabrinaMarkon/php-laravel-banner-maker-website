@@ -43,7 +43,13 @@ $(function() {
         var folder = this.value; // gives the id value of the SELECTED image directory in the selection box.
         if (folder === 'none') {
             $('#pickbgimage').empty();
-            $('#canvascontainer').css({ 'background' : 'transparent url("/images/canvasbg.gif")' });
+            var pickbgcolor = $('#pickbgcolor').val();
+            if (pickbgcolor === 'transparent') {
+                $('#canvascontainer').css({ 'background' : 'transparent url("/images/canvasbg.gif")' });
+            } else {
+                $('#canvascontainer').css({ 'background' : pickbgcolor });
+            }
+
         } else {
             // if we have a subfolder, replace the slash temporarily:
             if (folder.indexOf('/') !== -1) {
@@ -357,8 +363,8 @@ $(function() {
                 img_obj.borderwidth = $("#pickborderwidth").val();
                 img_obj.borderstyle = $("#pickborderstyle").val();
                 // get img_obj.bgimage if there is one:
-                var pickbgimage_filename = $('#pickbgimage > .ui.selected').attr('id');
-                alert(pickbgimage_filename);
+                var pickbgimage_filename = $('.ui-selected').attr('id');
+                //alert(pickbgimage_filename);
                 if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '') {
                     var pickbgimage_folder = $('#pickbgimagefolder').val();
                     var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder + '/' + pickbgimage_filename;
@@ -384,7 +390,7 @@ $(function() {
         var id = $(this).attr('id').split('-')[1];
         // EDIT SAVED IMAGE:
         $('#edit-' + id).click(function() {
-                //alert(id);
+                // alert(id);
             $.ajax({
                 url: 'banners/' + id,
                 type: "get",
