@@ -81,6 +81,10 @@ class BannersController extends Controller
      * @return $filetree  the list of all files in the chosen directory.
      */
     public function fileTree(Request $request, $folder = null) {
+        // if we have a subfolder, replace the substituted tilde with a slash:
+        if (strpos($folder,'~') !== false) {
+            $folder = str_replace('~', '/', $folder);
+        }
         $folder = "images/editorimages/" . $folder;
         $filetree = '';
         $resize = '';

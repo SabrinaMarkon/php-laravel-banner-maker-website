@@ -43,7 +43,12 @@ $(function() {
         var folder = this.value; // gives the id value of the SELECTED image directory in the selection box.
         if (folder === 'none') {
             $('#pickbgimage').empty();
+            $('#canvascontainer').css({ 'background' : 'transparent url("/images/canvasbg.gif")' });
         } else {
+            // if we have a subfolder, replace the slash temporarily:
+            if (folder.indexOf('/') !== -1) {
+                folder = folder.replace('/', '~');
+            }
             $.ajax({
                 url: 'banners/filetree/' + folder,
                 type: "post",
@@ -200,6 +205,10 @@ $(function() {
         if (folder === 'none') {
             $('#pickimage').empty();
         } else {
+            // if we have a subfolder, replace the slash temporarily:
+            if (folder.indexOf('/') !== -1) {
+                folder = folder.replace('/', '~');
+            }
             $.ajax({
                 url: 'banners/filetree/' + folder,
                 type: "post",
