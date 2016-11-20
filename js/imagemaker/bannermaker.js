@@ -414,7 +414,19 @@ $(function() {
                     $("#bannerheight").val(data.height);
                     $("#pickborderwidth").val(data.borderwidth);
                     $("#pickborderstyle").val(data.borderstyle);
-                    $('#canvascontainer').html(data.htmlcode);
+                    // data.htmlcode needs to be added to the canvascontainer one div at a time (????)
+                    var htmlcode = data.htmlcode;
+                    $(htmlcode + '> .canvaslayer[id]').each(function() {
+                        var elem = $(this);
+                        $('#canvascontainer').append(elem);
+                        elem.draggable();
+                        if (elem.hasClass('picture')) { // it is an image so needs to be resizable.
+                            elem.find('.ui-widget-content:first').resizable({
+                                handles: "nw, ne, sw, se",
+                                aspectRatio: false
+                            });
+                        }
+                    });
                     $('#editingexistingimageid').val(data.id);
                 }
             });
