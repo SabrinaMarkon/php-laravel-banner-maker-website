@@ -390,7 +390,6 @@ $(function() {
         var id = $(this).attr('id').split('-')[1];
         // EDIT SAVED IMAGE:
         $('#edit-' + id).click(function() {
-                // alert(id);
             $.ajax({
                 url: 'banners/' + id,
                 type: "get",
@@ -434,13 +433,11 @@ $(function() {
         });
         // DELETE SAVED IMAGE:
         $('#delete-' + id).click(function(e) {
-            // alert(id);
             $.ajax({
                 url: 'banners/' + id,
                 type: "delete",
                 data: { 'id' : id, '_token': $('input[name=_token]').val(), '_method': 'DELETE' },
                 success: function(data){
-                    // alert(data);
                     // update the display:
                     $('#banner-' + id).remove();
                     // if that was the last banner, hide the div for the saved banners entirely:
@@ -455,20 +452,6 @@ $(function() {
     });
 
     // SUPPORTING FUNCTIONS:
-
-    // CONVERT RGB COLORS TO HEXIDECIMAL:
-    var hexDigits = new Array
-    ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
-
-//Function to convert hex format to a rgb color
-    function rgb2hex(rgb) {
-        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-    }
-
-    function hex(x) {
-        return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
-    }
 
     // GET CONTRASTING TEXT COLOR FOR BACKGROUNDS:
     function idealTextColor(bgColor) {
@@ -493,7 +476,7 @@ $(function() {
         };
     }
 
-    // COLORS
+     // COLORS
     var colorNames = [
         "Black", "White", "Radical Red", "Wild Watermelon", "Outrageous Orange", "Atomic Tangerine", "Neon Carrot", "Sunglow",
         "Laser Lemon", "Unmellow Yellow", "Electric Lime", "Screamin' Green", "Magic Mint", "Blizzard Blue", "Shocking Pink",
