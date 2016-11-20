@@ -49,19 +49,14 @@ $(function() {
             } else {
                 $('#canvascontainer').css({ 'background' : pickbgcolor });
             }
-
         } else {
-            // if we have a subfolder, replace the slash temporarily:
-            if (folder.indexOf('/') !== -1) {
-                folder = folder.replace('/', '~');
-            }
+            $('#pickbgimage').empty();
             $.ajax({
                 url: 'banners/filetree/' + folder,
                 type: "post",
                 data: { 'folder' : folder, '_token': $('input[name=_token]').val(), '_method': 'POST' },
                 success: function(data){
                     // update the display to show the chosen images in pickbgimage div:
-                    $('#pickbgimage').empty();
                     $('#pickbgimage').append(data);
                 }
             });
@@ -211,17 +206,13 @@ $(function() {
         if (folder === 'none') {
             $('#pickimage').empty();
         } else {
-            // if we have a subfolder, replace the slash temporarily:
-            if (folder.indexOf('/') !== -1) {
-                folder = folder.replace('/', '~');
-            }
+            $('#pickimage').empty();
             $.ajax({
                 url: 'banners/filetree/' + folder,
                 type: "post",
                 data: { 'folder' : folder, '_token': $('input[name=_token]').val(), '_method': 'POST' },
                 success: function(data){
                     // update the display to show the chosen images in pickimage div:
-                    $('#pickimage').empty();
                     $('#pickimage').append(data);
                 }
             });
@@ -250,7 +241,6 @@ $(function() {
 
         if (pickimage_filename !== 'none' && pickimage_filename !== undefined && pickimage_filename !== '') {
             var canvascontainer = document.getElementById("canvascontainer");
-            //var imgstyle = "max-width: 100%; max-height: 100%; background: none;";
             var imgstyle = "background: none;";
             var newid = $("#canvascontainer > div").length + 1;
             var pickimage_folder = $('#pickimagefolder').val();
@@ -272,8 +262,7 @@ $(function() {
         } else {
             $(".ui-resizable-handle").show();
         }
-
-    })
+    });
 
     // UNDO ONE BY ONE:
     $('#undo').on('click', function() {
@@ -343,7 +332,6 @@ $(function() {
         $(".ui-resizable-handle").hide();
         html2canvas($("#canvascontainer"), {
             background: bg,
-            proxy: 'https://cdn.hyperdev.com',
             logging: true,
             allowTaint: true,
             onrendered: function(canvas) {
@@ -447,7 +435,6 @@ $(function() {
                     }
                 }
             });
-
         });
     });
 

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Banner;
@@ -11,7 +9,6 @@ use Redirect;
 use Validator;
 use Response;
 use File;
-
 class BannersController extends Controller
 {
     /**
@@ -20,25 +17,24 @@ class BannersController extends Controller
      * @return Response
      */
     public function index() {
-
         // Get the user's saved images.
         $savedimages = Banner::where('userid', Session::get('user')->userid)->orderBy('id', 'asc')->get();
-
         // Get the image library tree.
         $directory = "images/editorimages";
         $foldertree = $this->folderTree($directory);
-
         // Get all the files in all the subdirectories recursively.
         // Build array and preload list.
         $filetree = File::allFiles($directory);
         $preloadimages = '';
         foreach ($filetree as $file)
         {
-            $preloadimages .= '<img src="' . (string)$file . '">';
+            $extension = File::extension($file);
+            if ($extension === 'gif' || $extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
+                $preloadimages .= '<img src="' . (string)$file . '">';
+            }
         }
         return view('pages.banners', compact('savedimages', 'foldertree', 'preloadimages'));
     }
-
     /**
      * Get any subfolders of the folder.
      *
@@ -49,7 +45,6 @@ class BannersController extends Controller
         $subdirs = File::directories($topdir);
         return $subdirs;
     }
-
     /**
      * Build the list of directories for the image library folder select box.
      *
@@ -63,17 +58,16 @@ class BannersController extends Controller
             $show_dir_array = explode('editorimages/', $dir);
             $show_dir = $show_dir_array[1];
             $foldertree .= '<option value="' . $show_dir . '">' . $show_dir . '</option>';
-            // get any subdirs of dir:
-            $dirs2 = $this->getSubdirectories($dir);
-            foreach ($dirs2 as $dir2) {
-                $show_dir_array2 = explode('editorimages/', $dir2);
-                $show_dir2 = $show_dir_array2[1];
-                $foldertree .=  '<option value="' . $show_dir2 . '">' . $show_dir2 . '</option>';
-            }
+//            // get any subdirs of dir:
+//            $dirs2 = $this->getSubdirectories($dir);
+//            foreach ($dirs2 as $dir2) {
+//                $show_dir_array2 = explode('editorimages/', $dir2);
+//                $show_dir2 = $show_dir_array2[1];
+//                $foldertree .=  '<option value="' . $show_dir2 . '">' . $show_dir2 . '</option>';
+//            }
         }
         return $foldertree;
     }
-
     /**
      * Get the list of files for the image library chooser depending on which category (folder) was chosen.
      *
@@ -81,14 +75,10 @@ class BannersController extends Controller
      * @return $filetree  the list of all files in the chosen directory.
      */
     public function fileTree(Request $request, $folder = null) {
-        // if we have a subfolder, replace the substituted tilde with a slash:
-        if (strpos($folder,'~') !== false) {
-            $folder = str_replace('~', '/', $folder);
-        }
         $folder = "images/editorimages/" . $folder;
         $filetree = '';
         $resize = '';
-        $files = File::allFiles($folder);
+        $files = File::files($folder);
         foreach ($files as $file)
         {
             // make sure the file is an image.
@@ -107,37 +97,29 @@ class BannersController extends Controller
         }
         return $filetree;
     }
-
     /**
      * Save banner.
      *
      * @return Response
      */
     public function getbanner(Request $request) {
-
         //Get the base-64 string from data
         $img_val = $request->get('img_val');
-
         $filteredData = substr($img_val, strpos($img_val, ",")+1);
         //Decode the string
         $unencodedData = base64_decode($filteredData);
-
         //Save the image with a random filename.
         $dlfilelong = md5(rand(0,9999999));
         $dlfileshort = substr($dlfilelong, 0, 12);
         $today = date("YmdHis");
         $dlfile = $today . $dlfileshort . ".png";
         $dlfilepath = 'mybanners/' . $dlfile;
-
         // write the file to the server.
         file_put_contents('mybanners/' . $dlfile, $unencodedData);
-
         // get the background and border setting values from img_obj
         $img_obj = $request->get('img_obj');
         //var_dump(json_decode($img_obj));
         $img_obj = json_decode($img_obj);
-//        echo $img_obj->width;
-//        exit;
         // save image into the banners database table.
         $banner = new Banner();
         $banner->userid = Session::get('user')->userid;
@@ -155,7 +137,6 @@ class BannersController extends Controller
         Session::flash('message', 'Successfully saved your banner!');
         return Redirect::to('banners');
     }
-
     /**
      * Display the specified image.
      *
@@ -168,7 +149,6 @@ class BannersController extends Controller
         $banner = Banner::find($id);
         return $banner;
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -180,7 +160,6 @@ class BannersController extends Controller
         $banner = Banner::find($id);
         return "update function";
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -198,8 +177,4 @@ class BannersController extends Controller
         $banner->delete();
         return $banner;
     }
-
-
 }
-
-
