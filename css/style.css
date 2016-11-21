@@ -402,9 +402,9 @@ main {
 }
 
 /* resizing and dragging of images and text on the canvas */
-.ui-wrapper {
-    position: relative;
-}
+/*.ui-wrapper {*/
+    /*position: relative;*/
+/*}*/
 .ui-resizable-handle {
     width: 9px !important;
     height: 9px !important;

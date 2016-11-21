@@ -155,7 +155,7 @@
                         <td>{{ Form::submit('Save', array('name' => 'saveprogram','class' => 'btn btn-custom skinny')) }}</td>
                         {{ Form::close() }}
                         <td>
-                            {{ Form::open(array('route' => array('admin.dlb.destroy', $userprogram->id), 'method' => 'DELETE', 'class' => 'form-horizontal')) }}
+                            {{ Form::open(array('route' => array('dlb.destroy', $userprogram->id), 'method' => 'DELETE', 'class' => 'form-horizontal')) }}
                             {{ Form::submit('Delete', array('name' => 'deleteprogram','class' => 'btn btn-custom skinny')) }}
                             {{ Form::close() }}
                         </td>

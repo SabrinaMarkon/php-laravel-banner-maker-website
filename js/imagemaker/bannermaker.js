@@ -249,8 +249,7 @@ $(function() {
             $('#canvascontainer').append(elem);
             elem.draggable();
             elem.find('.ui-widget-content:first').resizable({
-                handles: "nw, ne, sw, se",
-                aspectRatio: false
+                handles: "nw, ne, sw, se"
             });
         }
     });
@@ -420,13 +419,19 @@ $(function() {
                     $('#canvascontainer').empty();
                     $(htmlcode + ' .canvaslayer[id]').each(function() {
                         var elem = $(this);
+                        // var reposition = '';
                         $('#canvascontainer').append(elem); // seems to be appending too much!
                         elem.draggable();
                         if (elem.hasClass('picture')) { // it is an image so needs to be resizable.
-                            elem.find('.ui-widget-content:first').resizable({
-                                handles: "nw, ne, sw, se",
-                                aspectRatio: false
-                            });
+                            elem.resizable({
+                               handles: "nw, ne, sw, se"
+                                // resize: function(event, ui){
+                                //     reposition = ui.position;
+                                //     var leftpos = $('.left').position();
+                                //     $('#resizer').css('left', $('.left').width() + 'px');
+                                //     $('.right').css('left', (leftpos.left + $('.left').width() + $('#resizer').width()) + 'px');
+                                // }
+                        });
                         }
                     });
                     $('#editingexistingimageid').val(data.id);
