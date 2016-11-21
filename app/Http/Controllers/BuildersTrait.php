@@ -7,6 +7,7 @@ use App\Models\Builder_cat;
 use App\Models\Builder_site;
 use App\Http\Controllers\Controller;
 use DB;
+use Session;
 
 // Position ordering for downline builder categories.
 trait BuildersTrait {

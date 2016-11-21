@@ -44,3 +44,6 @@
 [19-Nov-2016 08:49:09 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
 [19-Nov-2016 08:50:11 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
 [20-Nov-2016 07:17:44 UTC] PHP Parse error:  syntax error, unexpected 'display' (T_STRING) in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 49
+[20-Nov-2016 13:27:54 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\Builder' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 154
+[21-Nov-2016 04:41:35 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Session' not found in /home/sadiesbc/public_html/app/Http/Controllers/BuildersTrait.php on line 20
+[21-Nov-2016 06:37:12 UTC] PHP Fatal error:  Class 'App\Http\Controllers\DOMDocument' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 128

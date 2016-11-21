@@ -123,6 +123,7 @@ class BannersController extends Controller
         // save image into the banners database table.
         $banner = new Banner();
         $banner->userid = Session::get('user')->userid;
+        // remove resize handles from htmlcode:
         $banner->htmlcode = trim($request->get('htmlcode'));
         $banner->filename = $dlfile;
         // save the fields in the object img_obj:

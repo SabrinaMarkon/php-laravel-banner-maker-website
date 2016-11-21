@@ -360,7 +360,6 @@ $(function() {
                 } else {
                     img_obj.bgimage = 'none';
                 }
-
                 $('#img_obj').val(JSON.stringify(img_obj));
                 // htmlcode field to save into the database.
                 document.getElementById('htmlcode').value = document.getElementById('canvascontainer').innerHTML;
@@ -416,9 +415,12 @@ $(function() {
                     $("#pickborderstyle").val(data.borderstyle);
                     // data.htmlcode needs to be added to the canvascontainer one div at a time (????)
                     var htmlcode = data.htmlcode;
-                    $(htmlcode + '> .canvaslayer[id]').each(function() {
+                    htmlcode = htmlcode.replace(/hidden/g, 'visible');
+                    htmlcode = htmlcode.replace(/ui-resizable-handle/g, '');
+                    $('#canvascontainer').empty();
+                    $(htmlcode + ' .canvaslayer[id]').each(function() {
                         var elem = $(this);
-                        $('#canvascontainer').append(elem);
+                        $('#canvascontainer').append(elem); // seems to be appending too much!
                         elem.draggable();
                         if (elem.hasClass('picture')) { // it is an image so needs to be resizable.
                             elem.find('.ui-widget-content:first').resizable({
