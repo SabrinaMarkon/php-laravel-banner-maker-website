@@ -10,6 +10,10 @@
 
 @section('pagetitle')
 
+    <script type="text/javascript">
+        $.blockUI({ message: '<div id="preloader" style="font-size: 2em; font-family: Luckiest Guy, cursive;  color: #FF7256; padding: 30px;"><img src="/images/loading.gif" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Banner Library . . !</div>' });
+    </script>
+
     Your Banners
 
 @stop
@@ -316,5 +320,9 @@
 
 @section('footer')
 
+    <script src="/js/imagemaker/bannermaker.js"></script>
+    <script type="text/javascript">
+       $.unblockUI();
+    </script>
 
 @stop

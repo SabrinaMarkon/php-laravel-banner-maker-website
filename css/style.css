@@ -469,6 +469,12 @@ a .btn-yellow {
 .preloaddiv {
     display: none;
 }
+#preloader {
+    font-family: 'Luckiest Guy', cursive;
+    color: #FFC125;
+    font-size: 2em;
+    padding: 50px;
+}
 
 /* image library  */
 #pickimage, #pickbgimage {
