@@ -249,7 +249,8 @@ $(function() {
             $('#canvascontainer').append(elem);
             elem.draggable();
             elem.find('.ui-widget-content:first').resizable({
-                handles: "nw, ne, sw, se"
+                handles: "nw, ne, sw, se",
+                aspectRatio: false
             });
         }
     });
@@ -415,23 +416,17 @@ $(function() {
                     // data.htmlcode needs to be added to the canvascontainer one div at a time (????)
                     var htmlcode = data.htmlcode;
                     htmlcode = htmlcode.replace(/hidden/g, 'visible');
-                    htmlcode = htmlcode.replace(/ui-resizable-handle/g, '');
+                    //htmlcode = htmlcode.replace(/ui-resizable-handle/g, '');
                     $('#canvascontainer').empty();
                     $(htmlcode + ' .canvaslayer[id]').each(function() {
                         var elem = $(this);
-                        // var reposition = '';
                         $('#canvascontainer').append(elem); // seems to be appending too much!
                         elem.draggable();
                         if (elem.hasClass('picture')) { // it is an image so needs to be resizable.
-                            elem.resizable({
-                               handles: "nw, ne, sw, se"
-                                // resize: function(event, ui){
-                                //     reposition = ui.position;
-                                //     var leftpos = $('.left').position();
-                                //     $('#resizer').css('left', $('.left').width() + 'px');
-                                //     $('.right').css('left', (leftpos.left + $('.left').width() + $('#resizer').width()) + 'px');
-                                // }
-                        });
+                            elem.find('.ui-widget-content:first').resizable({
+                                handles: "nw, ne, sw, se",
+                                aspectRatio: false
+                            });
                         }
                     });
                     $('#editingexistingimageid').val(data.id);

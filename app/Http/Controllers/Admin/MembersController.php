@@ -10,6 +10,7 @@ use Session;
 use Redirect;
 use Validator;
 use DateTime;
+use Mail;
 
 class MembersController extends Controller
 {

@@ -402,14 +402,10 @@ main {
 }
 
 /* resizing and dragging of images and text on the canvas */
-/*.ui-wrapper {*/
-    /*position: relative;*/
-/*}*/
 .ui-resizable-handle {
     width: 9px !important;
     height: 9px !important;
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    background-color: rgba(0,0,0,.75);
     position: absolute;
 }
 .ui-resizable-nw
