@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Builder;
+use App\Models\LIcense;
+use App\Models\Mail;
 use App\Models\Member;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
 use DateTime;
-use Mail;
 
 class MembersController extends Controller
 {
@@ -77,7 +79,7 @@ class MembersController extends Controller
                  .$request->get('sitename')." Admin<br>"
                  ."".$request->get('domain')."<br><br><br>";
 
-             Mail::send(array(), array(), function ($message) use ($html, $request) {
+             \Mail::send(array(), array(), function ($message) use ($html, $request) {
                  $message->to($request->get('email'), $request->get('firstname') . ' ' . $request->get('lastname'))
                      ->subject($request->get('sitename') . ' Welcome Verification')
                      ->from($request->get('adminemail'), $request->get('adminname'))

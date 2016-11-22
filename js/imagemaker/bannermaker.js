@@ -241,17 +241,17 @@ $(function() {
 
         if (pickimage_filename !== 'none' && pickimage_filename !== undefined && pickimage_filename !== '') {
             var canvascontainer = document.getElementById("canvascontainer");
-            var imgstyle = "background: none;";
+            var imgstyle = "background: none; display:inline-block; width: 100%; height: 100%;";
             var newid = $("#canvascontainer > div").length + 1;
             var pickimage_folder = $('#pickimagefolder').val();
             var pickimage_path = 'images/editorimages/' + pickimage_folder + '/' + pickimage_filename;
-            var elem = $('<div id="' + newid + '" class="canvaslayer picture"><img class="ui-widget-content" src="' + pickimage_path + '" style="' + imgstyle + '"></div>');
+            var elem = $('<div id="' + newid + '" class="ui-widget-content canvaslayer picture"><img src="' + pickimage_path + '" style="' + imgstyle + '"></div>');
             $('#canvascontainer').append(elem);
-            elem.draggable();
-            elem.find('.ui-widget-content:first').resizable({
+            elem.resizable({
                 handles: "nw, ne, sw, se",
                 aspectRatio: false
             });
+            elem.draggable();
         }
     });
 
