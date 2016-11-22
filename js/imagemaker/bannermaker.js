@@ -416,23 +416,24 @@ $(function() {
                     // data.htmlcode needs to be added to the canvascontainer one div at a time (????)
                     var htmlcode = data.htmlcode;
                     htmlcode = htmlcode.replace(/hidden/g, 'visible');
-                    //htmlcode = htmlcode.replace(/ui-resizable-handle/g, '');
                     $('#canvascontainer').empty();
                     $(htmlcode + ' .canvaslayer[id]').each(function() {
                         var elem = $(this);
-                        $('#canvascontainer').append(elem); // seems to be appending too much!
-                        elem.draggable();
+                        $('#canvascontainer').append(elem);
                         if (elem.hasClass('picture')) { // it is an image so needs to be resizable.
-                            elem.find('.ui-widget-content:first').resizable({
+                            elem.resizable({
                                 handles: "nw, ne, sw, se",
                                 aspectRatio: false
                             });
+                            $('.ui-resizable-handle').css({ 'display' : 'block' });
                         }
+                        elem.draggable();
                     });
                     $('#editingexistingimageid').val(data.id);
                 }
             });
         });
+
         // DELETE SAVED IMAGE:
         $('#delete-' + id).click(function(e) {
             $.ajax({

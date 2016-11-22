@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Builder;
-use App\Models\LIcense;
+use App\Models\License;
 use App\Models\Mail;
 use App\Models\Member;
 use App\Http\Controllers\Controller;
