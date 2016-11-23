@@ -319,7 +319,7 @@ $(function() {
     });
 
     // UNDO ALL OR START A NEW IMAGE:
-    var UndoAllOrStartNew = function(e){
+    var UndoAllOrStartNew = function(){
         $('#canvascontainer').contents().filter(function () {
             return this.id != "watermark";
         }).remove();
@@ -339,10 +339,7 @@ $(function() {
         $('#savebuttondiv').hide();
         $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
     }
-    // UNDO ALL:
-    $('#clear').on('click', UndoAllOrStartNew);
-    // START A NEW IMAGE:
-    $('#new').on('click', UndoAllOrStartNew);
+    $('#clear, #new').on('click', UndoAllOrStartNew);
 
     // PREVIEW IMAGE:
     $("#preview").click(function() {
