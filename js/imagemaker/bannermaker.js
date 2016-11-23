@@ -2,6 +2,47 @@
 
 $(function() {
 
+    // ADD WATERMARK IF USER IS UNLICENSED:
+    var userid = $('#userid').val();
+    $.ajax({
+        url: 'banners/licensecheck/' + userid,
+        type: 'post',
+        data: { 'userid' : userid, '_token' : $('input[name=_token]').val(), '_method' : 'POST' },
+        success: function(data) {
+            // data = yes if a watermark is needed.
+            if (data === 'no') {
+                var textstyle = "color: #000000; font-family: Roboto, sans-serif; font-size: 1em; background: #ffffff; border: 1px solid #000000; z-index: 2000;";
+                $('#canvascontainer').append($('<div id="watermark"  class="ui-widget-content"></div>')
+                    .draggable({ containment : "#canvascontainer" }));
+            } else {
+                $('#canvascontainer').append($('<div id="watermark"  class="ui-widget-content">SadiesBannerCreator.com</div>')
+                    .draggable({ containment : "#canvascontainer" }));
+            }
+            $('#watermark').css({
+                'background' : '#fff',
+                'border' : '1px solid #000',
+                'color' : '#000',
+                'font-family' : 'Roboto, sans-serif',
+                'font-size' : '1em',
+                'z-index' : '1001',
+                'padding' : '2px',
+                'cursor' : 'pointer',
+                'position' : 'absolute',
+                'right' : '0',
+                'bottom' : '0'
+            });
+            if (data === 'no') {
+                $('#watermark').css({
+                    'display' : 'none'
+                });
+            } else {
+                $('#watermark').css({
+                    'display' : 'inline-block'
+                });
+            }
+        }
+    });
+
     // BANNER WIDTH: // PROBLEM STILL - text added shows outside if banner is smaller.
     $('#bannerwidth').on('keyup mouseup', function() {
         var value = $(this).val();
@@ -267,51 +308,87 @@ $(function() {
     // UNDO ONE BY ONE:
     $('#undo').on('click', function() {
         if ($('#canvascontainer').find('.canvaslayer').length) {
-            canvascontainer.removeChild(canvascontainer.lastChild);
-            $('#savediv').empty();
-            $('#img_val').empty();
-            $('#img_obj').empty();
-            $('#savebuttondiv').hide();
+            if (canvascontainer.lastChild.id !== 'watermark') {
+                canvascontainer.removeChild(canvascontainer.lastChild);
+                $('#savediv').empty();
+                $('#img_val').empty();
+                $('#img_obj').empty();
+                $('#savebuttondiv').hide();
+            }
         }
     });
 
+    // UNDO ALL OR START A NEW IMAGE:
+    var UndoAllOrStartNew = function(e){
+        $('#canvascontainer').contents().filter(function () {
+            return this.id != "watermark";
+        }).remove();
+        $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
+        $('#savediv').empty();
+        $('#img_val').empty();
+        $('#img_obj').empty();
+        $("#bannerwidth").val('1000');
+        $("#bannerheight").val('300');
+        $('#pickbgcolor').val('transparent');
+        $('#pickbgcolor').css({ 'background' : 'transparent' });
+        $('#pickbgimage').val('none');
+        $('#pickbordercolor').val('transparent');
+        $('#pickbordercolor').css({ 'background' : 'transparent' });
+        $("#pickborderwidth").val('14');
+        $("#pickborderstyle").val('solid');
+        $('#savebuttondiv').hide();
+        $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
+    }
     // UNDO ALL:
-    $('#clear').on('click', function() {
-        document.getElementById('canvascontainer').innerHTML = '';
-        $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
-        $('#savediv').empty();
-        $('#img_val').empty();
-        $('#img_obj').empty();
-        $("#bannerwidth").val('1000');
-        $("#bannerheight").val('300');
-        $('#pickbgcolor').val('transparent');
-        $('#pickbgcolor').css({ 'background' : 'transparent' });
-        $('#pickbgimage').val('none');
-        $('#pickbordercolor').val('transparent');
-        $('#pickbordercolor').css({ 'background' : 'transparent' });
-        $("#pickborderwidth").val('14');
-        $("#pickborderstyle").val('solid');
-        $('#savebuttondiv').hide();
-    });
-
+    $('#clear').on('click', UndoAllOrStartNew);
     // START A NEW IMAGE:
-    $('#new').on('click', function() {
-        document.getElementById('canvascontainer').innerHTML = '';
-        $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
-        $('#savediv').empty();
-        $('#img_val').empty();
-        $('#img_obj').empty();
-        $("#bannerwidth").val('1000');
-        $("#bannerheight").val('300');
-        $('#pickbgcolor').val('transparent');
-        $('#pickbgcolor').css({ 'background' : 'transparent' });
-        $('#pickbgimage').val('none');
-        $('#pickbordercolor').val('transparent');
-        $('#pickbordercolor').css({ 'background' : 'transparent' });
-        $("#pickborderwidth").val('14');
-        $("#pickborderstyle").val('solid');
-        $('#savebuttondiv').hide();
-    })
+    $('#new').on('click', UndoAllOrStartNew);
+
+    // // UNDO ALL:
+    // $('#clear').on('click', function() {
+    //     //document.getElementById('canvascontainer').innerHTML = '';
+    //     $('#canvascontainer').contents().filter(function () {
+    //         return this.id != "watermark";
+    //     }).remove();
+    //     $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
+    //     $('#savediv').empty();
+    //     $('#img_val').empty();
+    //     $('#img_obj').empty();
+    //     $("#bannerwidth").val('1000');
+    //     $("#bannerheight").val('300');
+    //     $('#pickbgcolor').val('transparent');
+    //     $('#pickbgcolor').css({ 'background' : 'transparent' });
+    //     $('#pickbgimage').val('none');
+    //     $('#pickbordercolor').val('transparent');
+    //     $('#pickbordercolor').css({ 'background' : 'transparent' });
+    //     $("#pickborderwidth").val('14');
+    //     $("#pickborderstyle").val('solid');
+    //     $('#savebuttondiv').hide();
+    //     $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
+    // });
+    //
+    // // START A NEW IMAGE:
+    // $('#new').on('click', function() {
+    //     // document.getElementById('canvascontainer').innerHTML = '';
+    //     $('#canvascontainer').contents().filter(function () {
+    //         return this.id != "watermark";
+    //     }).remove();
+    //     $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
+    //     $('#savediv').empty();
+    //     $('#img_val').empty();
+    //     $('#img_obj').empty();
+    //     $("#bannerwidth").val('1000');
+    //     $("#bannerheight").val('300');
+    //     $('#pickbgcolor').val('transparent');
+    //     $('#pickbgcolor').css({ 'background' : 'transparent' });
+    //     $('#pickbgimage').val('none');
+    //     $('#pickbordercolor').val('transparent');
+    //     $('#pickbordercolor').css({ 'background' : 'transparent' });
+    //     $("#pickborderwidth").val('14');
+    //     $("#pickborderstyle").val('solid');
+    //     $('#savebuttondiv').hide();
+    //     $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
+    // })
 
     // PREVIEW IMAGE:
     $("#preview").click(function() {
@@ -427,7 +504,11 @@ $(function() {
                             });
                             $('.ui-resizable-handle').css({ 'display' : 'block' });
                         }
+                        if (elem.attr('id') === 'watermark') {
+                        elem.draggable({ containment : "#canvascontainer" });
+                        } else {
                         elem.draggable();
+                        }
                     });
                     $('#editingexistingimageid').val(data.id);
                 }

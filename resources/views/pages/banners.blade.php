@@ -43,8 +43,8 @@
                 <div id="lefteditpane" class="col-sm-4">
                     <div style="height: 10px;"></div>
                     <div class="controlbuttons text-center">
-                        <button id="new" class="btn btn-yellow">NEW</button>
-                        <button id="preview" class="btn btn-yellow">PREVIEW</button>
+                        <button id="new" class="btn btn-yellow undoallorstartnew">NEW</button>
+                        <button id="preview" class="btn btn-yellow undoallorstartnew">PREVIEW</button>
                         <div style="height: 5px;"></div>
                         <button id="undo" class="btn btn-yellow">UNDO</button>
                         <button id="clear" class="btn btn-yellow">CLEAR ALL</button>
@@ -294,6 +294,7 @@
 
                     </div>
                     <div id="savebuttondiv">
+                            <input type="hidden" id="userid" value="{{ Session::get('user')->userid }}">
                         <form method="post" enctype="multipart/form-data" action="{{ url('/banners/getbanner') }}" id="saveform">
                             {{ csrf_field() }}
                             <input type="hidden" name="editingexistingimageid" id="editingexistingimageid" value="">

@@ -79,8 +79,9 @@ Route::group(array('middleware' => ['memberauth']), function() {
     Route::get('license', 'PagesController@license');
 
     Route::resource('banners', 'BannersController');
-    Route::post('banners/getbanner', 'BannersController@getbanner');
-    Route::post('banners/filetree/{folder}', 'BannersController@fileTree');
+    Route::post('banners/getbanner', 'BannersController@getbanner'); // make and save the banner file. Save html to the database to edit later if desired.
+    Route::post('banners/filetree/{folder}', 'BannersController@fileTree'); // get image files for the selected folder.
+    Route::post('banners/licensecheck/{userid}', 'BannersController@licenseCheck');  // check if the userid has a valid license to decide whether to watermark images or not.
 
     Route::resource('profile', 'MembersController');
 

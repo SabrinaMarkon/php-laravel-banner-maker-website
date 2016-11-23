@@ -3,12 +3,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Banner;
+use App\Models\License;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Validator;
 use Response;
 use File;
+use DateTime;
+
 class BannersController extends Controller
 {
     /**
@@ -71,7 +74,7 @@ class BannersController extends Controller
     /**
      * Get the list of files for the image library chooser depending on which category (folder) was chosen.
      *
-     * @param $imagedirectory  the chosen image folder.
+     * @param $folder  the chosen image folder.
      * @return $filetree  the list of all files in the chosen directory.
      */
     public function fileTree(Request $request, $folder = null) {
@@ -138,6 +141,28 @@ class BannersController extends Controller
         Session::flash('message', 'Successfully saved your banner!');
         return Redirect::to('banners');
     }
+
+    /**
+     * Check to see if the user has purchased the license or not. If not, their banners should be watermarked.
+     *
+     * @param  string  $userid  the username we want to look up licenses for.
+     * @return Response  whether the userid has a license for unwatermarked images.
+     */
+    public function licenseCheck(Request $request, $userid = null)
+    {
+        $license = License::where('userid', '=', $userid)->where('licenseenddate', '>=', new DateTime('now'))->orderBy('id', 'desc')->first();
+        $watermark = 'yes'; // default is to have a watermark.
+        if ($license) {
+            // the user has a license so no watermark on images.
+            $watermark = 'no';
+        } else {
+            // the user doesn't have an active license, so images they create need the watermark.
+            $watermark = 'yes';
+        }
+        return $watermark;
+    }
+
+
     /**
      * Display the specified image.
      *
@@ -150,17 +175,7 @@ class BannersController extends Controller
         $banner = Banner::find($id);
         return $banner;
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id, Request $request)
-    {
-        $banner = Banner::find($id);
-        return "update function";
-    }
+
     /**
      * Remove the specified resource from storage.
      *
