@@ -344,52 +344,6 @@ $(function() {
     // START A NEW IMAGE:
     $('#new').on('click', UndoAllOrStartNew);
 
-    // // UNDO ALL:
-    // $('#clear').on('click', function() {
-    //     //document.getElementById('canvascontainer').innerHTML = '';
-    //     $('#canvascontainer').contents().filter(function () {
-    //         return this.id != "watermark";
-    //     }).remove();
-    //     $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
-    //     $('#savediv').empty();
-    //     $('#img_val').empty();
-    //     $('#img_obj').empty();
-    //     $("#bannerwidth").val('1000');
-    //     $("#bannerheight").val('300');
-    //     $('#pickbgcolor').val('transparent');
-    //     $('#pickbgcolor').css({ 'background' : 'transparent' });
-    //     $('#pickbgimage').val('none');
-    //     $('#pickbordercolor').val('transparent');
-    //     $('#pickbordercolor').css({ 'background' : 'transparent' });
-    //     $("#pickborderwidth").val('14');
-    //     $("#pickborderstyle").val('solid');
-    //     $('#savebuttondiv').hide();
-    //     $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
-    // });
-    //
-    // // START A NEW IMAGE:
-    // $('#new').on('click', function() {
-    //     // document.getElementById('canvascontainer').innerHTML = '';
-    //     $('#canvascontainer').contents().filter(function () {
-    //         return this.id != "watermark";
-    //     }).remove();
-    //     $('#canvascontainer').css({ 'border' : '0 transparent', 'background' : '' });
-    //     $('#savediv').empty();
-    //     $('#img_val').empty();
-    //     $('#img_obj').empty();
-    //     $("#bannerwidth").val('1000');
-    //     $("#bannerheight").val('300');
-    //     $('#pickbgcolor').val('transparent');
-    //     $('#pickbgcolor').css({ 'background' : 'transparent' });
-    //     $('#pickbgimage').val('none');
-    //     $('#pickbordercolor').val('transparent');
-    //     $('#pickbordercolor').css({ 'background' : 'transparent' });
-    //     $("#pickborderwidth").val('14');
-    //     $("#pickborderstyle").val('solid');
-    //     $('#savebuttondiv').hide();
-    //     $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
-    // })
-
     // PREVIEW IMAGE:
     $("#preview").click(function() {
         $('#savediv').empty();
