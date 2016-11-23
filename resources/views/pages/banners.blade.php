@@ -145,7 +145,6 @@
                                         <option value="Cabin" style="font-family: Cabin;">Cabin</option>
                                         <option value="Century Gothic" style="font-family: Century Gothic;">Century Gothic</option>
                                         <option value="Copperplate Gothic Light" style="font-family: Copperplate Gothic Light;">Copperplate / Copperplate Gothic Light</option>
-                                        <option value="Corbel" style="font-family: Corbel;">Corbel</option>
                                         <option value="Courier New" style="font-family: Courier New;">Courier New</option>
                                         <option value="Franchise" style="font-family: Franchise;">Franchise</option>
                                         <option value="Georgia" style="font-family: Georgia;">Georgia</option>

@@ -148,7 +148,6 @@ $(function() {
     }).keyup();
 
     // ADD BORDER:
-
     $('#borderadd').on('click', function() {
         var pickbordercolor = document.getElementById('pickbordercolor').value;
         var pickborderwidth = document.getElementById('pickborderwidth').value;
