@@ -435,7 +435,9 @@ $(function() {
                         $('#pickbordercolor').css({ 'background' : data.bordercolor });
                     }
                     $("#canvascontainer").css( { 'border-width' : data.borderwidth });
-                    $("#canvascontainer").css( { 'border-style' : data.borderstyle });
+                    if (data.bordercolor !== 'transparent') {
+                        $("#canvascontainer").css( { 'border-style' : data.borderstyle });
+                    }
                     $("#bannerwidth").val(data.width);
                     $("#bannerheight").val(data.height);
                     $("#pickborderwidth").val(data.borderwidth);
