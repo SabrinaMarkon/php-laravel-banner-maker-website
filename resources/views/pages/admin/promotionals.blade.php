@@ -187,7 +187,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-1"></div>
-                        <div class="col-sm-2">{{ Form::label('type', 'Ad Type: ', array('class' => 'control-label')) }}</div>
+                        <div class="col-sm-2">{{ Form::label('type', 'Create New Ad Type: ', array('class' => 'control-label')) }}</div>
                         <div class="col-sm-8">
                             {{ Form::select('type', ['email' => 'Email Ad', 'banner' => 'Banner Ad'], old('type'), ['class' => 'form-control', 'onchange' => 'showfields()']) }}
                         </div>
