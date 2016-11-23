@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Banner;
 use App\Models\License;
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -36,6 +38,10 @@ class BannersController extends Controller
                 $preloadimages .= '<img src="' . (string)$file . '">';
             }
         }
+
+        $content = Page::where('slug', '=', 'banners')->first();
+        Session::flash('page', $content);
+
         return view('pages.banners', compact('savedimages', 'foldertree', 'preloadimages'));
     }
     /**

@@ -8,6 +8,10 @@
 
 @section('pagetitle')
 
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
+
     Forgot Your Login?
 
 @stop

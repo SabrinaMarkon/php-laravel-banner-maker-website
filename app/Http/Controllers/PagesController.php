@@ -101,6 +101,8 @@ class PagesController extends Controller
 
     public function join($referid = null) {
         $this->setreferid($referid);
+        $content = Page::where('slug', '=', 'join')->first();
+        Session::flash('page', $content);
         return view('pages.join', compact('referid'));
     }
     public function joinpost(Request $request, $referid = null) {
@@ -167,6 +169,8 @@ class PagesController extends Controller
             if ($user) {
                 Session::flush();
                 Member::where('verification_code', '=', $code)->update(['verified' => 1]);
+                $content = Page::where('slug', '=', 'verify')->first();
+                Session::flash('page', $content);
                 return view('pages.verify');
             } else {
                 Session::flash('message', 'Invalid Verification Link');
@@ -181,6 +185,8 @@ class PagesController extends Controller
 
     public function login($referid = null) {
         $this->setreferid($referid);
+        $content = Page::where('slug', '=', 'login')->first();
+        Session::flash('page', $content);
         return view('pages.login', compact('referid'));
     }
     public function loginpost(Request $request, $referid = null) {
@@ -205,6 +211,8 @@ class PagesController extends Controller
 
     public function forgot($referid = null) {
         $this->setreferid($referid);
+        $content = Page::where('slug', '=', 'forgot')->first();
+        Session::flash('page', $content);
         return view('pages.forgot');
     }
     public function emaillogin(Request $request, $referid = null) {

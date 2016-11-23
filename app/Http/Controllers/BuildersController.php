@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Models\Builder;
 use App\Models\Builder_cat;
 use App\Models\Builder_site;
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -54,6 +55,9 @@ class BuildersController extends Controller
             $adminprograms_id_order = $adminprograms_id_order . "ID[]=" . $adminprogram->id . "&";
         }
         $adminprograms_id_order = substr($adminprograms_id_order, 0, -1);
+
+        $content = Page::where('slug', '=', 'dlb')->first();
+        Session::flash('page', $content);
 
         return view('pages.dlb', compact('categories', 'categories_id_order', 'userprograms', 'userprograms_id_order', 'sponsorprograms', 'sponsorprograms_id_order', 'adminprograms', 'adminprograms_id_order'));
     }

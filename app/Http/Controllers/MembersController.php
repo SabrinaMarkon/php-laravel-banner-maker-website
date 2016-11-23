@@ -29,7 +29,8 @@ class MembersController extends Controller
 
         $member = Member::where('userid', '=', Session::get('user')->userid)->first();
         $content = Page::where('slug', '=', 'profile')->first();
-        return view('pages.profile', compact('member', 'content'));
+        Session::flash('page', $content);
+        return view('pages.profile', compact('member'));
 
     }
 

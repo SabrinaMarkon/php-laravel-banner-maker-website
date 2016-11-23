@@ -43,6 +43,10 @@
 
 @section('content')
 
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
+
     <div class="form-page-medium">
 
         @if (Session::has('message'))

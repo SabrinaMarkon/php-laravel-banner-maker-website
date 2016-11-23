@@ -11,7 +11,6 @@ $(function() {
         success: function(data) {
             // data = yes if a watermark is needed.
             if (data === 'no') {
-                var textstyle = "color: #000000; font-family: Roboto, sans-serif; font-size: 1em; background: #ffffff; border: 1px solid #000000; z-index: 2000;";
                 $('#canvascontainer').append($('<div id="watermark"  class="ui-widget-content"></div>')
                     .draggable({ containment : "#canvascontainer" }));
             } else {

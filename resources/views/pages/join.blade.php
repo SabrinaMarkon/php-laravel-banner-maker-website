@@ -15,6 +15,10 @@
 
 @section('content')
 
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
+
     @if (Session::has('message'))
         <div class="alert alert-danger">{{ Session::get('message') }}</div>
     @endif

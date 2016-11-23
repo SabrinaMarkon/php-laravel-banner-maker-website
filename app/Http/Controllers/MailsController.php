@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Mail;
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
@@ -21,6 +22,8 @@ class MailsController extends Controller
     public function index()
     {
         $contents = Mail::where('userid', Session::get('user')->userid)->orderBy('subject', 'asc')->get();
+        $content = Page::where('slug', '=', 'maildownline')->first();
+        Session::flash('page', $content);
         return view('pages.maildownline', compact('contents'));
     }
 

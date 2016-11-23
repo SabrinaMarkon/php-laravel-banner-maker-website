@@ -14,6 +14,10 @@
 
 @section('content')
 
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
+
     @if (Session::has('message'))
         @if (Session::get('message' ) == 'resetsuccess')
             <div class="alert alert-success">Your password was updated successfully!</div>

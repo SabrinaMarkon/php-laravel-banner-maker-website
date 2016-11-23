@@ -14,8 +14,11 @@
 
 @section('content')
 
-    <div class="form-page-medium">
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
 
+    <div class="form-page-medium">
 
         {{ Form::open(array('route' => array('profile.update', $member->id), 'method' => 'PATCH', 'class' => 'form-horizontal form-page-small')) }}
 

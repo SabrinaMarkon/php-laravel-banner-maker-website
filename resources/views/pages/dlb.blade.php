@@ -15,6 +15,10 @@
 
 @section('content')
 
+    @if(Session::has('page'))
+        {!! Session::get('page')->htmlcode !!}
+    @endif
+
     <div class="form-page-large">
 
         @if (Session::has('message'))
@@ -181,7 +185,7 @@
                 </ul>
                 <div class="tab-content">
                     @foreach($categories as $category)
-                        <div id="page{{ $category->id }}" class="tab-pane fade">
+                        <div id="page{{ $category->id }}" class="tab-pane fade in active">
                         {{-- GET SPONSORS PROGRAMS --}}
                         @foreach($sponsorprograms as $sponsorprogram)
                             @if($sponsorprogram->category == $category->id)

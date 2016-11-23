@@ -84,6 +84,7 @@ Route::group(array('middleware' => ['memberauth']), function() {
     Route::post('banners/licensecheck/{userid}', 'BannersController@licenseCheck');  // check if the userid has a valid license to decide whether to watermark images or not.
 
     Route::resource('profile', 'MembersController');
+    Route::post('delete', 'MembersController@destroy');
 
     Route::resource('maildownline', 'MailsController');
 
