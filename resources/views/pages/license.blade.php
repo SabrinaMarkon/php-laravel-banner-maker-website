@@ -17,6 +17,20 @@
 
     <div class="form-page-medium">
 
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            
         <div class="table-responsive">
 
             <img src="/images/SadieReading.jpg" border="0"><br><br><br>

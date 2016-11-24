@@ -84,12 +84,6 @@ class PagesController extends Controller
         return view('pages.faqs', compact('faqs', 'page'));
     }
 
-    public function license() {
-        // get the admin's content for the license sales page if they've written any.
-        $page = Page::where('slug', '=', 'license')->first();
-        return view('pages.license', compact('page'));
-    }
-
     public function products($referid = null) {
         $this->setreferid($referid);
         // get the admin's content for the product sales page if they've written any.

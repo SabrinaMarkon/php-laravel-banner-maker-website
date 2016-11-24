@@ -53,3 +53,4 @@
 [22-Nov-2016 07:41:06 UTC] PHP Fatal error:  Class 'App\Models\LIcense' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 158
 [23-Nov-2016 06:43:41 UTC] PHP Fatal error:  Class 'Carbon' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 152
 [23-Nov-2016 06:44:03 UTC] PHP Fatal error:  Class 'Carbon' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 152
+[23-Nov-2016 12:33:01 UTC] PHP Fatal error:  Class 'Dotenv\Dotenv' not found in /home/sadiesbc/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/DetectEnvironment.php on line 23

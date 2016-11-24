@@ -11,9 +11,12 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicExample()
-    {
-        $this->visit('/')
-             ->see('Laravel 5');
+    public function testIfTrueEqualsTrue() {
+        $squeebz = true;
+        $this->assertTrue($squeebz);
+    }
+    public function testIfFalseEqualsFalse() {
+        $benji = false;
+        $this->assertFalse($benji);
     }
 }
