@@ -45,7 +45,7 @@
                         {{ Form::hidden('amount', $licenseprice) }}
                         {{ Form::hidden('cmd', '_xclick') }}
                         {{ Form::hidden('business', $adminpaypal) }}
-                        {{ Form::hidden('item_name', $sitename . ' White Label Image License') }}
+                        {{ Form::hidden('item_name', $sitename . ' - White Label Image License') }}
                         {{ Form::hidden('page_style', 'PayPal') }}
                         {{ Form::hidden('no_shipping', '1') }}
                         {{ Form::hidden('return', $domain . '/thankyou') }}

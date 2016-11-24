@@ -518,6 +518,9 @@ a .btn-yellow {
 .btn-product {
     margin-bottom: 12px;
 }
+.productname {
+    float:left;
+}
 
 /* faq sorting */
 .ui-sortable tr {
