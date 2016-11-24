@@ -20,7 +20,7 @@ class LicensesController extends Controller
      * @return Response
      */
     public function index() {
-        // get the admin's content for the license sales page if they've written any.
+        // get the admin's content for the license sales page.
         $page = Page::where('slug', '=', 'license')->first();
         return view('pages.license', compact('page'));
     }

@@ -75,6 +75,12 @@ class PagesController extends Controller
         return view('pages.support');
     }
 
+    public function thankyou() {
+        $content = Page::where('slug', '=', 'thankyou')->first();
+        Session::flash('page', $content);
+        return view('pages.thankyou');
+    }
+
     public function faqs($referid = null) {
         $this->setreferid($referid);
         // get the admin's content for the FAQ page if they've written any.

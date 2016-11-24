@@ -30,6 +30,8 @@ Route::get('privacy', 'PagesController@privacy');
 Route::get('support/{referid}', 'PagesController@support');
 Route::get('support', 'PagesController@support');
 
+Route::get('thankyou', 'PagesController@thankyou'); // return url after user makes a purchase.
+
 Route::get('logout', 'PagesController@logout');
 
 
@@ -38,7 +40,6 @@ Route::get('logout', 'PagesController@logout');
  */
 Route::get('faqs/{referid}', 'PagesController@faqs');
 Route::get('faqs', 'PagesController@faqs');
-
 
 /*
  *  Complex database functionality
@@ -66,6 +67,8 @@ Route::post('forgot', 'PagesController@emaillogin');
 Route::get('reset/{code}', 'PagesController@reset');
 Route::get('reset', 'PagesController@reset');
 Route::post('reset', 'PagesController@resetpost');
+
+Route::post('ipn', 'IPNsController@ipn'); // IPN url for license purchases.
 
 ////////////////////////// MEMBERS //////////////////////
 
