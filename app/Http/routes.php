@@ -79,7 +79,7 @@ Route::group(array('middleware' => ['memberauth']), function() {
 
     Route::get('promote', 'PagesController@promote');
 
-    Route::resource('license', 'LicensesController');
+    Route::get('license', 'LicensesController@index');
 
     Route::resource('banners', 'BannersController');
     Route::post('banners/getbanner', 'BannersController@getbanner'); // make and save the banner file. Save html to the database to edit later if desired.

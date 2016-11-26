@@ -9,9 +9,7 @@ use App\Models\Member;
 use App\Http\Controllers\Controller;
 use Validator;
 use DateTime;
-
-
-///// NEED TO FINISH THIS MESS AND THE LICENSESCONTROLLER
+use DateInterval;
 
 class IPNsController extends Controller
 {
@@ -83,7 +81,29 @@ class IPNsController extends Controller
 
             if ($payment_status === "Completed" && $amount === $licenseprice) {
 
-                
+                // User purchased License upgrade.
+                if ($item === $sitename . ' - White Label Image License') {
+                        // create new license.
+                        $license = new License;
+                        $license->userid = $userid;
+                        $licensepaiddate = new DateTime();
+                        $licensepaiddate = $licensepaiddate->format('Y-m-d');
+                        $license->licensepaiddate = $licensepaiddate;
+                        $license->licensestartdate = $licensepaiddate;
+                        $licenseenddate = new DateTime();
+                        if ($licensepriceinterval === 'monthly') {
+                            $interval = new DateInterval('P1M');
+                            $licenseenddate->add($interval);
+                        } else {
+                            $interval = new DateInterval('P1Y');
+                            $licenseenddate->add($interval);
+                        }
+                        $licenseenddate->format('Y-m-d');
+                        $license->licenseenddate = $licenseenddate;
+                        $license->save();
+                        // email admin.
+
+                }
 
 
             }

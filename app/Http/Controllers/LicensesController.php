@@ -33,35 +33,4 @@ class LicensesController extends Controller
         return view('pages.license', compact('page', 'licenseenddate'));
     }
 
-    /**
-     *  Add a new license for the user.
-     *
-     * @return Response
-     */
-    public function store(Request $request) {
-        // validate
-        $rules = array (
-            'userid' => 'required|max:255|exists:members',
-            'licensepaiddate' => 'required|date_format:Y-m-d',
-            'licensestartdate' => 'required|date_format:Y-m-d',
-            'licenseenddate' => 'required|date_format:Y-m-d',
-        );
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator.fails()) {
-            Session::flash('errors', $validator->errors());
-            return Redirect::to('licenses');
-        } else {
-            // create new license.
-            $license = new License;
-            $license->userid = $request->get('userid');
-            $license->licensepaiddate = $request->get('licensepaiddate');
-            $license->licensestartdate = $request->get('licensestartdate');
-            $license->licenseenddate = $request->get('licenseenddate');
-            $license->save();
-            Session::flash('message', 'Successfully Upgraded Your License!');
-            return Redirect::to('licenses');
-        }
-    }
-
-
 }
