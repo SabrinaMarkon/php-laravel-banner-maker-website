@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\License;
 use App\Models\Member;
+use App\Models\Product;
+use App\Models\Transaction;
 use App\Http\Controllers\Controller;
 use Validator;
 use DateTime;
@@ -75,13 +77,18 @@ class IPNsController extends Controller
             $paypal = $_POST['payer_email'];
             $quantity = $_POST['quantity'];
             $userid = $_POST['option_selection1'];
-            $productid = $_POST['option_selection1'];
-            $referid = $_POST["option_selection2"];
+            $productid = $_POST["option_selection2"];
             $item = $_POST['item_name'];
 
             if ($payment_status === "Completed") {
 
-                if ($amount === $licenseprice) {
+                    $user = Member::where('userid', '=', $userid)->first();
+                    if ($user) {
+                        $referid = $user->referid;
+                    } else {
+                        // user not found.
+                        exit;
+                    }
 
                     // User purchased License upgrade.
                     if ($item === $sitename . ' - White Label Image License') {
@@ -107,7 +114,17 @@ class IPNsController extends Controller
                         // assign commission.
                         $commission = Member::where('referid', $referid)->increment('commission', $licensepriceinterval);
 
+                       // add transaction.
+                        $transaction = new Transaction;
+                        $transaction->userid = $userid;
+                        $transaction->transaction = $txn_id;
+                        $transaction->description = 'White Label Image License';
+                        $transaction->datepaid = $licensepaiddate;
+                        $transaction->amount = $amount;
+
                         // remove watermark from existing banners:
+
+
 
 
                         // email admin.
@@ -118,7 +135,7 @@ class IPNsController extends Controller
                             . "Transaction ID: " . $txn_id . "<br>"
                             . "Sponsor: " . $referid . "<br>"
                             . "Commission: " . $licensecommission . "<br><br>"
-                            . "" . $request->get('domain') . "<br><br><br>";
+                            . "" . $domain . "<br><br><br>";
                         \Mail::send(array(), array(), function ($message) use ($html) {
                             $message->to($adminemail, $adminname)
                                 ->subject($sitename . ' License Upgrade Notification')
@@ -126,10 +143,44 @@ class IPNsController extends Controller
                                 ->setBody($html, 'text/html');
                         });
                     }
-                } else {
-                    // amount paid is not correct so might be fraudulent.
+                    // User purchased a product the admin has set up for sale:
+                    else {
+                        $product = Product::find($productid);
+                        if ($product !== null) {
 
-                }
+                            // assign commission.
+                           $commission = Member::where('referid', $referid)->increment('commission', $product->commission);
+
+                            // add transaction.
+                            $datepaid = new DateTime();
+                            $datepaid = $datepaid->format('Y-m-d');
+                            $transaction = new Transaction;
+                            $transaction->userid = $userid;
+                            $transaction->transaction = $txn_id;
+                            $transaction->description = $product->name;
+                            $transaction->datepaid = $datepaid;
+                            $transaction->amount = $amount;
+
+                            // email admin.
+                            $html = "Dear " . $adminname . ",<br><br>"
+                                . "A new " . $sitename . " product was purchased!<br>"
+                                . "** You will need to now fulfill the order for the customer! **<br>"
+                                . "UserID: " . $userid . "<br>"
+                                . "Product: " . $product->name . "<br>"
+                                . "Quantity: " . $product->quantity . "<br>"
+                                . "Amount: " . $amount . "<br>"
+                                . "Transaction ID: " . $txn_id . "<br>"
+                                . "Sponsor: " . $referid . "<br>"
+                                . "Commission: " . $product->commission . "<br><br>"
+                                . "" . $domain . "<br><br><br>";
+                            \Mail::send(array(), array(), function ($message) use ($html) {
+                                $message->to($adminemail, $adminname)
+                                    ->subject($sitename . ' Product Purchase Notification')
+                                    ->from($adminemail, $adminname)
+                                    ->setBody($html, 'text/html');
+                            });
+                        }
+                    }
             } else {
                 // status is not completed, so see if it is a cancellation.
 

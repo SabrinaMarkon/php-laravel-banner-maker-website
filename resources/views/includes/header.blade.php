@@ -30,7 +30,6 @@
             @else
                 <ul class="nav navbar-nav">
                     <li><a href="/"><i class="fa fa-home"></i>home</a></li>
-                    <li><a href="/products">products</a></li>
                     <li><a href="/about/">about</a></li>
                     <li><a href="/terms/">terms</a></li>
                     <li><a href="/privacy/">privacy</a></li>

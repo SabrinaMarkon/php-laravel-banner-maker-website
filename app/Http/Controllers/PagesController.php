@@ -90,8 +90,7 @@ class PagesController extends Controller
         return view('pages.faqs', compact('faqs', 'page'));
     }
 
-    public function products($referid = null) {
-        $this->setreferid($referid);
+    public function products() {
         // get the admin's content for the product sales page if they've written any.
         $page = Page::where('slug', '=', 'products')->first();
         // get the products.

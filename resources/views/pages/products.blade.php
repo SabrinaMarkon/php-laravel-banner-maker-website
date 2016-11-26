@@ -41,8 +41,10 @@
                             {{ Form::hidden('currency_code', 'USD') }}
                             {{ Form::hidden('lc', 'US') }}
                             {{ Form::hidden('bn', 'PP-BuyNowBF') }}
-                            {{ Form::hidden('on0', 'Product ID') }}
-                            {{ Form::hidden('os0', $product->id) }}
+                            {{ Form::hidden('on0', 'User ID') }}
+                            {{ Form::hidden('os0', Session::get('user')->userid) }}
+                            {{ Form::hidden('on1', 'Product ID') }}
+                            {{ Form::hidden('os1', $product->id) }}
                             {{ Form::hidden('notify_url', $domain . '/ipn') }}
                             {{ Form::submit('Order for $' . $product->price, array('class' => 'btn btn-custom skinny pull-right btn-product')) }}
                             {{ Form::close() }}

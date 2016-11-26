@@ -44,9 +44,6 @@ Route::get('faqs', 'PagesController@faqs');
 /*
  *  Complex database functionality
  */
-Route::get('products/{referid}', 'PagesController@products');
-Route::get('products', 'PagesController@products');
-
 Route::get('join/{referid}', 'PagesController@join');
 Route::get('join', 'PagesController@join');
 Route::post('join', 'PagesController@joinpost');
@@ -93,6 +90,7 @@ Route::group(array('middleware' => ['memberauth']), function() {
 
     Route::resource('dlb', 'BuildersController');
 
+    Route::get('products', 'PagesController@products');
 });
 
 ////////////////////////// ADMIN //////////////////////
