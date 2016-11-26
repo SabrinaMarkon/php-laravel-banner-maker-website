@@ -25,6 +25,8 @@ class LicensesController extends Controller
         if ($license) {
             $licenseenddate = new DateTime($license->licenseenddate);
             $licenseenddate = $licenseenddate->format('Y-m-d');
+        } else {
+            $licenseenddate = '';
         }
         // get the admin's content for the license sales page.
         $page = Page::where('slug', '=', 'license')->first();
