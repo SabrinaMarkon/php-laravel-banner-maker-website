@@ -16,16 +16,14 @@ use DateTime;
 class IPNsController extends Controller
 {
     public function ipn(Request $request) {
-
-        //echo "wtf";
+        //echo "test";
 
         // STEP 1: Read POST data
-
-        // reading posted data from directly from $_POST causes serialization
-        // issues with array data in POST
-        // reading raw POST data from input stream instead.
-              //  $raw_post_data = file_get_contents('php://input');
-                $raw_post_data = $request;
+        // Reading raw POST data from input stream from paypal is the usual approach:
+        //  $raw_post_data = file_get_contents('php://input');
+        // Normally this works but php://input can only be read ONCE and Laravel intercepts it. Therefore,
+        // we have to get the raw post data from the framework with getContent:
+                $raw_post_data = $request->getContent();
                 $raw_post_array = explode('&', $raw_post_data);
                 $myPost = array();
                 foreach ($raw_post_array as $keyval) {
@@ -46,6 +44,7 @@ class IPNsController extends Controller
                     }
                     $req .= "&$key=$value";
                 }
+
         // STEP 2: Post IPN data back to paypal to validate
 
         $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');
@@ -82,8 +81,9 @@ class IPNsController extends Controller
             $specialofferid = $_POST["option_selection3"];
             $item = $_POST['item_name'];
 
-            if ($payment_status == "Completed" && $amount == $licenseprice) {
+            if ($payment_status === "Completed" && $amount === $licenseprice) {
 
+                
 
 
             }
