@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        <div class="table-responsive">
+        <div class="container-fluid">
 
             <img src="/images/SadieReading.jpg" border="0"><br><br><br>
 
@@ -39,8 +39,11 @@
                 {!! $page->htmlcode !!}
             @endif
 
-                <div class="form-group">
+                <div class="form-group row">
                     <div class="col-sm-12"> <br>
+                        @if($licenseenddate)
+                            <br><div class="alert alert-info">You already have an active license that is good until {{ $licenseenddate }}!</div>
+                        @else
                         {{ Form::open(array('url' => 'https://www.paypal.com/cgi-bin/webscr', 'method' => 'POST', 'class' => 'form-horizontal form-page-small')) }}
                         {{ Form::hidden('amount', $licenseprice) }}
                         {{ Form::hidden('cmd', '_xclick') }}
@@ -58,6 +61,7 @@
                         {{ Form::hidden('notify_url', $domain . '/ipn') }}
                         {{ Form::submit('Buy License', array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}
+                        @endif
                     </div>
                 </div>
 

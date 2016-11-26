@@ -1,0 +1,11 @@
+html,
+body,
+ul,
+ol {
+  margin:0;
+  padding: 0;
+}
+
+@mixin greenborder($size) {
+  border: green $size solid;
+}

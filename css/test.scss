@@ -1,0 +1,27 @@
+$color: green;
+$font-stack: Arial bold 28px;
+
+@import 'partial';
+
+.box {
+  padding:20px;
+  background-color:$color;
+  font: $font-stack;
+  @include greenborder(14px);
+}
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}

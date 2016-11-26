@@ -7,8 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "ext-curl": "*",
-        "angelleye/paypal-php-library": "2.0.*"
+        "ext-curl": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

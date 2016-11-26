@@ -20,9 +20,15 @@ class LicensesController extends Controller
      * @return Response
      */
     public function index() {
+        // find out of the user has a current license.
+        $license = License::where('userid', '=', Session::get('user')->userid)->where('licenseenddate', '>=', new DateTime('now'))->orderBy('id', 'desc')->first();
+        if ($license) {
+            $licenseenddate = new DateTime($license->licenseenddate);
+            $licenseenddate = $licenseenddate->format('Y-m-d');
+        }
         // get the admin's content for the license sales page.
         $page = Page::where('slug', '=', 'license')->first();
-        return view('pages.license', compact('page'));
+        return view('pages.license', compact('page', 'licenseenddate'));
     }
 
     /**
