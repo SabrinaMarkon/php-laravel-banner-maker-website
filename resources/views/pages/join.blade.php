@@ -33,7 +33,7 @@
         </div>
     @endif
 
-    <div class="thisistheregisterpage">
+    <div class="thisistheregisterpage text-center">
             <div class="form-page-small">
                 <div class="form">
 

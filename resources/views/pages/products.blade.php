@@ -41,10 +41,8 @@
                             {{ Form::hidden('currency_code', 'USD') }}
                             {{ Form::hidden('lc', 'US') }}
                             {{ Form::hidden('bn', 'PP-BuyNowBF') }}
-                            {{ Form::hidden('on0', 'User ID') }}
-                            {{ Form::hidden('os0', Session::get('user')->userid) }}
-                            {{ Form::hidden('on1', 'Product ID') }}
-                            {{ Form::hidden('os1', $product->id) }}
+                            {{ Form::hidden('on0', 'Product ID') }}
+                            {{ Form::hidden('os0', $product->id) }}
                             {{ Form::hidden('notify_url', $domain . '/ipn') }}
                             {{ Form::submit('Order for $' . $product->price, array('class' => 'btn btn-custom skinny pull-right btn-product')) }}
                             {{ Form::close() }}
@@ -53,9 +51,9 @@
                     </div>
                     @if($product->id == 1)
                         <div class="panel-collapse collapse in" id="collapse{{ $product->id }}">
-                            @else
+                     @else
                                 <div class="panel-collapse collapse" id="collapse{{ $product->id }}">
-                                    @endif
+                    @endif
                                     <div class="panel-body">
                                         <p>{!! $product->description !!}</p>
                                     </div>

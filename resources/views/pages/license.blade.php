@@ -73,6 +73,8 @@
                         {{ Form::hidden('bn', 'PP-BuyNowBF') }}
                         {{ Form::hidden('on0', 'User ID') }}
                         {{ Form::hidden('os0', Session::get('user')->userid) }}
+                        {{ Form::hidden('on1', 'Sponsor ID') }}
+                        {{ Form::hidden('os1', Session::get('user')->referid) }}
                         {{ Form::hidden('notify_url', $domain . '/ipn') }}
                         {{ Form::submit('Buy License - ' . $licenseprice . ' ' . $licensepriceinterval, array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}

@@ -68,7 +68,7 @@ Route::get('reset/{code}', 'PagesController@reset');
 Route::get('reset', 'PagesController@reset');
 Route::post('reset', 'PagesController@resetpost');
 
-Route::post('ipn', 'IPNsController@ipn'); // IPN url for license purchases.
+Route::get('ipn', 'IPNsController@ipn'); // IPN url for license purchases.
 
 ////////////////////////// MEMBERS //////////////////////
 

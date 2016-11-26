@@ -75,14 +75,15 @@ class IPNsController extends Controller
             $paypal = $_POST['payer_email'];
             $quantity = $_POST['quantity'];
             $userid = $_POST['option_selection1'];
-            $amountwithoutfee = $_POST["option_selection2"];
-            $specialofferid = $_POST["option_selection3"];
+            $referid = $_POST["option_selection2"];
             $item = $_POST['item_name'];
 
-            if ($payment_status === "Completed" && $amount === $licenseprice) {
+            if ($payment_status === "Completed") {
 
-                // User purchased License upgrade.
-                if ($item === $sitename . ' - White Label Image License') {
+                if ($amount === $licenseprice) {
+
+                    // User purchased License upgrade.
+                    if ($item === $sitename . ' - White Label Image License') {
                         // create new license.
                         $license = new License;
                         $license->userid = $userid;
@@ -101,15 +102,41 @@ class IPNsController extends Controller
                         $licenseenddate->format('Y-m-d');
                         $license->licenseenddate = $licenseenddate;
                         $license->save();
+
+                        // assign commission.
+                        $commission = Member::where('referid', $referid)->increment('commission', $licensepriceinterval);
+
+                        // remove watermark from existing banners:
+
+
                         // email admin.
+                        $html = "Dear " . $adminname . ",<br><br>"
+                            . "A new " . $sitename . " license was purchased!<br><br>"
+                            . "UserID: " . $userid . "<br>"
+                            . "Amount: " . $amount . " " . $licensepriceinterval . "<br>"
+                            . "Transaction ID: " . $txn_id . "<br>"
+                            . "Sponsor: " . $referid . "<br>"
+                            . "Commission: " . $licensecommission . "<br><br>"
+                            . "" . $request->get('domain') . "<br><br><br>";
+                        \Mail::send(array(), array(), function ($message) use ($html) {
+                            $message->to($adminemail, $adminname)
+                                ->subject($sitename . ' License Upgrade Notification')
+                                ->from($adminemail, $adminname)
+                                ->setBody($html, 'text/html');
+                        });
+                    }
+                } else {
+                    // amount paid is not correct so might be fraudulent.
 
                 }
-
+            } else {
+                // status is not completed, so see if it is a cancellation.
 
             }
-
         } else if (strcmp ($res, "INVALID") == 0) {
-            echo "INVALID";
+            // invalid payment.
+            //  echo "Invalid";
+            exit;
         }
          // no view.
     }
