@@ -36,7 +36,7 @@
         </div>
     @endif
 
-    <div class="thisistheloginpage">
+    <div class="thisistheloginpage center">
         <div class="form-page-small">
             <div class="form">
 

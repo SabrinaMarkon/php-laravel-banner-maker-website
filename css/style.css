@@ -34,6 +34,10 @@ body {
     background-repeat: no-repeat;
     background-image: url('/images/Sadie.jpg');
 }
+.center {
+    margin: auto;
+    text-align: center;
+}
 .content {
     margin: 0 auto;
     margin-left: 216px;

@@ -75,6 +75,7 @@ class IPNsController extends Controller
             $paypal = $_POST['payer_email'];
             $quantity = $_POST['quantity'];
             $userid = $_POST['option_selection1'];
+            $productid = $_POST['option_selection1'];
             $referid = $_POST["option_selection2"];
             $item = $_POST['item_name'];
 
