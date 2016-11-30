@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Banner;
 use App\Models\License;
 use App\Models\Member;
 use App\Models\Product;
@@ -16,7 +17,6 @@ use DateInterval;
 class IPNsController extends Controller
 {
     public function ipn(Request $request) {
-        //echo "test";
 
         // STEP 1: Read POST data
         // Reading raw POST data from input stream from paypal is the usual approach:
@@ -123,9 +123,16 @@ class IPNsController extends Controller
                         $transaction->amount = $amount;
 
                         // remove watermark from existing banners:
+                        $banners = Banner::where('userid', '=', $userid)->get();
+                        for ($banners as $banner) {
+                            $bannercode = $banner->htmlcode;
+                            // remove watermark:
+                            $bannercode = preg_replace('#<div id="watermark"(.*?)</div>#', ' ', $bannercode);
+                            // update file:
 
-
-
+                            // update database with new html and new file name:
+                            Banner::where('id', $banner-id)->update('htmlcode', $bannercode);
+                        }
 
                         // email admin.
                         $html = "Dear " . $adminname . ",<br><br>"
