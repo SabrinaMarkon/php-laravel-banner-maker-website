@@ -33,7 +33,7 @@
                             <label for="{{ $setting->name }}" class="control-label">{{ $setting->description }}</label>
                         </div>
                         <div class="col-sm-4">
-                            @if ($setting->name == 'licensepriceinterval')
+                            @if ($setting->name == 'licensepriceinterval' || $setting->name == 'licensedlbsilverpriceinterval' || $setting->name == 'licensedlbgoldpriceinterval')
                                <select class="form-control" name="{{ $setting->name }}" id="{{ $setting->name }}">
                                     <option value="lifetime" @if($setting->setting == 'lifetime') selected="selected" @endif>Lifetime</option>
                                     <option value="monthly" @if($setting->setting == 'monthly') selected="selected" @endif>Monthly</option>
