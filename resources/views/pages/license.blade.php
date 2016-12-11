@@ -74,7 +74,7 @@
                         {{ Form::hidden('on0', 'User ID') }}
                         {{ Form::hidden('os0', Session::get('user')->userid) }}
                         {{ Form::hidden('notify_url', $domain . '/ipn') }}
-                        {{ Form::submit('Buy License - ' . $licenseprice . ' ' . $licensepriceinterval, array('class' => 'btn btn-custom')) }}
+                        {{ Form::submit('Buy Banner License - ' . $licenseprice . ' ' . $licensepriceinterval, array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}
                         @endif
                     </div>

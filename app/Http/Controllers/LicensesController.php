@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\License;
+use App\Models\LicenseDLB;
 use App\Models\Page;
 use App\Http\Controllers\Controller;
 use Session;
