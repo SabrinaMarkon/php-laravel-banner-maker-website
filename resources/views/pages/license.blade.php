@@ -61,7 +61,7 @@
                             {{ Form::hidden('sra', '1') }}
                         @endif
                         {{ Form::hidden('business', $adminpaypal) }}
-                        {{ Form::hidden('item_name', $sitename . ' - White Label Image License') }}
+                        {{ Form::hidden('item_name', $sitename . ' - White Label Banner License') }}
                         {{ Form::hidden('item_number', $licensepriceinterval) }}
                         {{ Form::hidden('no_note', '1') }}
                         {{ Form::hidden('page_style', 'PayPal') }}
@@ -88,7 +88,7 @@
                     @elseif($licensedlbsilverenddate)
                         {{-- Has medium level silver license --}}
                         <br><div class="alert alert-info">You already have an active Silver license that is good until {{ $licensedlbsilverenddate }}!<br>
-                        BUT you can still upgrade to a Gold license to get an UNLIMITED number of your own programs added to the builder!</div>
+                        Purchase a Gold license to get an UNLIMITED number of your own programs added to the builder!</div>
                         {{--GOLD--}}
                         {{ Form::open(array('url' => 'https://www.paypal.com/cgi-bin/webscr', 'method' => 'POST', 'class' => 'form-horizontal form-page-small')) }}
                         @if ($licensedlbgoldpriceinterval === 'lifetime')
@@ -107,7 +107,7 @@
                             {{ Form::hidden('sra', '1') }}
                         @endif
                         {{ Form::hidden('business', $adminpaypal) }}
-                        {{ Form::hidden('item_name', $sitename . ' - Gold Downline Builder License Upgrade') }}
+                        {{ Form::hidden('item_name', $sitename . ' - Gold Downline Builder License') }}
                         {{ Form::hidden('item_number', $licensedlbgoldpriceinterval) }}
                         {{ Form::hidden('no_note', '1') }}
                         {{ Form::hidden('page_style', 'PayPal') }}
@@ -120,7 +120,7 @@
                         {{ Form::hidden('on0', 'User ID') }}
                         {{ Form::hidden('os0', Session::get('user')->userid) }}
                         {{ Form::hidden('notify_url', $domain . '/ipn') }}
-                        {{ Form::submit('Buy Gold Downline Builder License Upgrade - ' . $licensedlbgoldprice . ' ' . $licensedlbgoldpriceinterval, array('class' => 'btn btn-custom')) }}
+                        {{ Form::submit('Buy Gold Downline Builder License - ' . $licensedlbgoldprice . ' ' . $licensedlbgoldpriceinterval, array('class' => 'btn btn-custom')) }}
                         {{ Form::close() }}
 
                     @else

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Banner;
 use App\Models\License;
+use App\Models\LicenseDLBSilver;
+use App\Models\LicenseDLBGold;
 use App\Models\Member;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -90,8 +92,8 @@ class IPNsController extends Controller
                         exit;
                     }
 
-                    // User purchased License upgrade.
-                    if ($item === $sitename . ' - White Label Image License') {
+                    // User purchased Banner License upgrade.
+                    if ($item === $sitename . ' - White Label Banner License') {
                         // create new license.
                         $license = new License;
                         $license->userid = $userid;
@@ -112,13 +114,13 @@ class IPNsController extends Controller
                         $license->save();
 
                         // assign commission.
-                        $commission = Member::where('referid', $referid)->increment('commission', $licensepriceinterval);
+                        $commission = Member::where('referid', $referid)->increment('commission', $licensecommission);
 
                        // add transaction.
                         $transaction = new Transaction;
                         $transaction->userid = $userid;
                         $transaction->transaction = $txn_id;
-                        $transaction->description = 'White Label Image License';
+                        $transaction->description = 'White Label Banner License';
                         $transaction->datepaid = $licensepaiddate;
                         $transaction->amount = $amount;
 
@@ -146,6 +148,100 @@ class IPNsController extends Controller
                         \Mail::send(array(), array(), function ($message) use ($html) {
                             $message->to($adminemail, $adminname)
                                 ->subject($sitename . ' License Upgrade Notification')
+                                ->from($adminemail, $adminname)
+                                ->setBody($html, 'text/html');
+                        });
+                    }
+                else if ($item === $sitename . ' - Gold Downline Builder License') {
+                    // create new license.
+                    $license = new LicenseDLBGold;
+                    $license->userid = $userid;
+                    $licensepaiddate = new DateTime();
+                    $licensepaiddate = $licensepaiddate->format('Y-m-d');
+                    $license->licensepaiddate = $licensepaiddate;
+                    $license->licensestartdate = $licensepaiddate;
+                    $licenseenddate = new DateTime();
+                    if ($licensedlbgoldpriceinterval === 'monthly') {
+                        $interval = new DateInterval('P1M');
+                        $licenseenddate->add($interval);
+                    } else {
+                        $interval = new DateInterval('P1Y');
+                        $licenseenddate->add($interval);
+                    }
+                    $licenseenddate->format('Y-m-d');
+                    $license->licenseenddate = $licenseenddate;
+                    $license->save();
+
+                    // assign commission.
+                    $commission = Member::where('referid', $referid)->increment('commission', $licensedlbgoldcommission);
+
+                    // add transaction.
+                    $transaction = new Transaction;
+                    $transaction->userid = $userid;
+                    $transaction->transaction = $txn_id;
+                    $transaction->description = 'Gold Downline Builder License';
+                    $transaction->datepaid = $licensepaiddate;
+                    $transaction->amount = $amount;
+
+                        // email admin.
+                        $html = "Dear " . $adminname . ",<br><br>"
+                            . "A new " . $sitename . " GOLD downline builder license was purchased!<br><br>"
+                            . "UserID: " . $userid . "<br>"
+                            . "Amount: " . $amount . " " . $licensedlbgoldpriceinterval . "<br>"
+                            . "Transaction ID: " . $txn_id . "<br>"
+                            . "Sponsor: " . $referid . "<br>"
+                            . "Commission: " . $licensedlbgoldcommission . "<br><br>"
+                            . "" . $domain . "<br><br><br>";
+                        \Mail::send(array(), array(), function ($message) use ($html) {
+                            $message->to($adminemail, $adminname)
+                                ->subject($sitename . ' Gold Downline Builder License Order Notification')
+                                ->from($adminemail, $adminname)
+                                ->setBody($html, 'text/html');
+                        });
+                    }
+                else if ($item === $sitename . ' - Silver Downline Builder License') {
+                    // create new license.
+                    $license = new LicenseDLBSilver;
+                    $license->userid = $userid;
+                    $licensepaiddate = new DateTime();
+                    $licensepaiddate = $licensepaiddate->format('Y-m-d');
+                    $license->licensepaiddate = $licensepaiddate;
+                    $license->licensestartdate = $licensepaiddate;
+                    $licenseenddate = new DateTime();
+                    if ($licensedlbsilverpriceinterval === 'monthly') {
+                        $interval = new DateInterval('P1M');
+                        $licenseenddate->add($interval);
+                    } else {
+                        $interval = new DateInterval('P1Y');
+                        $licenseenddate->add($interval);
+                    }
+                    $licenseenddate->format('Y-m-d');
+                    $license->licenseenddate = $licenseenddate;
+                    $license->save();
+
+                    // assign commission.
+                    $commission = Member::where('referid', $referid)->increment('commission', $licensedlbsilverpriceinterval);
+
+                    // add transaction.
+                    $transaction = new Transaction;
+                    $transaction->userid = $userid;
+                    $transaction->transaction = $txn_id;
+                    $transaction->description = 'Silver Downline Builder License';
+                    $transaction->datepaid = $licensepaiddate;
+                    $transaction->amount = $amount;
+
+                        // email admin.
+                        $html = "Dear " . $adminname . ",<br><br>"
+                            . "A new " . $sitename . " Silver downline builder license was purchased!<br><br>"
+                            . "UserID: " . $userid . "<br>"
+                            . "Amount: " . $amount . " " . $licensedlbsilverpriceinterval . "<br>"
+                            . "Transaction ID: " . $txn_id . "<br>"
+                            . "Sponsor: " . $referid . "<br>"
+                            . "Commission: " . $licensedlbsilvercommission . "<br><br>"
+                            . "" . $domain . "<br><br><br>";
+                        \Mail::send(array(), array(), function ($message) use ($html) {
+                            $message->to($adminemail, $adminname)
+                                ->subject($sitename . ' Silver Downline Builder License Order Notification')
                                 ->from($adminemail, $adminname)
                                 ->setBody($html, 'text/html');
                         });
