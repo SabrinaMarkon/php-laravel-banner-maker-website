@@ -139,7 +139,7 @@ class PagesController extends Controller
             $member->verification_code = $verification_code;
             $html = "Dear ".$member->firstname.",<br><br>"
                 ."Welcome to " . $request->get('sitename') . "!<br><br>"
-                ."Your Username: " . $member->userid . "<br>"
+                ."Your UserID: " . $member->userid . "<br>"
                 ."Your Password: " . $request->get('password') . "<br>"
                 ."Login URL: <a href="
                 .$request->get('domain')."/login>"
@@ -159,6 +159,19 @@ class PagesController extends Controller
             });
             // end validation email
 
+            // email admin.
+            $html = "Dear " . $request->get('adminname') . ",<br><br>"
+                . "A new member just joined" . $request->get('sitename') . "!<br>"
+                ."UserID: " . $member->userid . "<br>"
+                . "Sponsor: " . $member->referid . "<br><br>"
+                . "" . $request->get('domain') . "<br><br><br>";
+            \Mail::send(array(), array(), function ($message) use ($html, $request) {
+                $message->to($request->get('adminemail'), $request->get('adminname'))
+                    ->subject($request->get('sitename') . ' New Member Notification')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
+            });
+            
             $member->save();
             return Redirect::to('success');
         }
