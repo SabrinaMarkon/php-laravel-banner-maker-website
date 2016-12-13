@@ -159,6 +159,19 @@ class PagesController extends Controller
             });
             // end validation email
 
+            // email admin.
+            $html = "Dear " . $request->get('adminname') . ",<br><br>"
+                . "A new member just joined" . $request->get('sitename') . "!<br>"
+                ."UserID: " . $member->userid . "<br>"
+                . "Sponsor: " . $member->referid . "<br><br>"
+                . "" . $request->get('domain') . "<br><br><br>";
+            \Mail::send(array(), array(), function ($message) use ($html, $request) {
+                $message->to($request->get('adminemail'), $request->get('adminname'))
+                    ->subject($request->get('sitename') . ' New Member Notification')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
+            });
+
             $member->save();
             return Redirect::to('success');
         }
