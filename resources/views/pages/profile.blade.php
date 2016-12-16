@@ -97,6 +97,11 @@
                 {{ Form::submit('Save Profile', array('class' => 'btn btn-custom')) }}
                 {{ Form::close() }}
             </div>
+            <div class="col-sm-12"> <br>
+                {{ Form::open(array('route' => array('profile.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal form-page-small', 'id' => 'deleteform')) }}
+                {{ Form::button('Delete Account', array('class' => 'btn btn-custom', 'id' => 'deletebutton')) }}
+                {{ Form::close() }}
+            </div>
         </div>
 
     </div>
@@ -105,6 +110,24 @@
         $(window).load(function() {
             $("input[type=password]").val('');
         });
+        $('#deletebutton').on('click', function(){
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to undo this action!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete my account!'
+            }).then(function () {
+//                swal(
+//                        'Deleted!',
+//                        'Your file has been deleted.',
+//                        'success'
+//                )
+                $('#deleteform').submit();
+            })
+        })
     </script>
 
 @stop

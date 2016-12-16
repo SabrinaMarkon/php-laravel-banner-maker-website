@@ -21,3 +21,6 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <![endif]-->
+<script src="https://cdn.jsdelivr.net/es6-promise/latest/es6-promise.auto.min.js"></script> <!-- IE support -->
+<script src="/js/sweetalert2/sweetalert2.js"></script>
+<link rel="stylesheet" href="/css/sweetalert2.min.css">

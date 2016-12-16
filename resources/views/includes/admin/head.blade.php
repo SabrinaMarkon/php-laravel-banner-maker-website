@@ -20,4 +20,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
+<script src="https://cdn.jsdelivr.net/es6-promise/latest/es6-promise.auto.min.js"></script> <!-- IE support -->
+<script src="../js/sweetalert2/sweetalert2.js"></script>
+<link rel="stylesheet" href="../css/sweetalert2.min.css">
