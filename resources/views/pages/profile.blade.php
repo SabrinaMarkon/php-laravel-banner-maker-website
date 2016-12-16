@@ -120,12 +120,19 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete my account!'
             }).then(function () {
-//                swal(
-//                        'Deleted!',
-//                        'Your file has been deleted.',
-//                        'success'
-//                )
                 $('#deleteform').submit();
+            }, function (dismiss) {
+                // dismiss can be 'cancel', 'overlay',
+                // 'close', and 'timer'
+                if (dismiss === 'cancel') {
+                    swal(
+                            'Cancelled',
+                            'Your account is safe :)',
+                            'error'
+                    ).then(function() {
+                        $('#deletebutton').css({ 'color' : '#ffffff'});
+                    })
+                }
             })
         })
     </script>

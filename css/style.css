@@ -279,14 +279,14 @@ h2 {
     border: 0;
     order-radius:6px;
     padding: 15px;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-size: 14px;
     cursor: pointer;
 }
 .skinny {
     padding: 4px;
 }
-.btn-custom:hover {
+.btn-custom:hover, {
     background: #FFC125;
     color: #FFFFFF;
 }
@@ -294,6 +294,15 @@ h2 {
     color: #FFFFFF;
 }
 .btn-custom:active {
+    color: #FFFFFF;
+}
+.btn-custom:focus {
+    color: #FFFFFF;
+}
+.btn-custom:before {
+     color: #FFFFFF;
+ }
+.btn-custom:after {
     color: #FFFFFF;
 }
 
