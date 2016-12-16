@@ -34,6 +34,7 @@ Route::get('thankyou', 'PagesController@thankyou'); // return url after user mak
 
 Route::get('logout', 'PagesController@logout');
 
+Route::get('delete', 'PagesController@delete');
 
 /*
  *  Basic reading and display of database data
@@ -84,7 +85,7 @@ Route::group(array('middleware' => ['memberauth']), function() {
     Route::post('banners/licensecheck/{userid}', 'BannersController@licenseCheck');  // check if the userid has a valid license to decide whether to watermark images or not.
 
     Route::resource('profile', 'MembersController');
-    Route::post('delete', 'MembersController@destroy');
+//    Route::post('delete', 'MembersController@destroy');
 
     Route::resource('maildownline', 'MailsController');
 

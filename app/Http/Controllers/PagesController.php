@@ -40,6 +40,13 @@ class PagesController extends Controller
         return view('pages.home', compact('referid'));
     }
 
+    public function delete() {
+        Session::set('user', null);
+        $content = Page::where('slug', '=', 'delete')->first();
+        Session::flash('page', $content);
+        return view('pages.delete');
+    }
+
     public function logout() {
         Session::set('user', null);
         $content = Page::where('slug', '=', 'home')->first();
