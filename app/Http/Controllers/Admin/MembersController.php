@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Banner;
 use App\Models\Builder;
 use App\Models\License;
 use App\Models\Mail;
@@ -171,7 +172,15 @@ class MembersController extends Controller
         License::where('userid', '=', $userid)->delete();
         Mail::where('userid', '=', $userid)->delete();
         // delete banner files and records:
-        
+        $banners = Banner::where('userid', '=', $userid)->get();
+        foreach($banners as $banner) {
+            // delete the file:
+            $filename = $banner->filename;
+            $filepath = '../mybanners/' . $filename;
+            File::delete($filepath);
+            // delete the record:
+            $banner->delete();
+        }
         $member->delete();
         Session::flash('message', 'Successfully deleted member UserID: ' . $userid);
         return Redirect::to('admin/members');
