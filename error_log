@@ -55,3 +55,4 @@
 [23-Nov-2016 06:44:03 UTC] PHP Fatal error:  Class 'Carbon' not found in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 152
 [23-Nov-2016 12:33:01 UTC] PHP Fatal error:  Class 'Dotenv\Dotenv' not found in /home/sadiesbc/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/DetectEnvironment.php on line 23
 [26-Nov-2016 11:05:45 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/sadiesbc/public_html/storage/framework/views/2b99d4538b8ecc0a85043d6df67ae702649daeac.php on line 87
+[17-Dec-2016 22:31:26 UTC] PHP Fatal error:  Class 'AddPaypalAndPayzaColumnsToMembersTable' not found in /home/sadiesbc/public_html/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php on line 335
