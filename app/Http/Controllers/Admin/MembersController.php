@@ -170,6 +170,8 @@ class MembersController extends Controller
         Builder::where('userid', '=', $userid)->delete();
         License::where('userid', '=', $userid)->delete();
         Mail::where('userid', '=', $userid)->delete();
+        // delete banner files and records:
+        
         $member->delete();
         Session::flash('message', 'Successfully deleted member UserID: ' . $userid);
         return Redirect::to('admin/members');

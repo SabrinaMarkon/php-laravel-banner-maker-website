@@ -147,8 +147,8 @@
                         <td>{{ Form::submit('Save', array('class' => 'btn btn-custom skinny')) }}</td>
                         {{ Form::close() }}
                         <td>
-                            {{ Form::open(array('route' => array('admin.members.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal')) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-custom skinny')) }}
+                            {{ Form::open(array('route' => array('admin.members.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal', 'id' => 'deleteform')) }}
+                            {{ Form::button('Delete', array('class' => 'btn btn-custom skinny', 'id' => 'deletebutton')) }}
                             {{ Form::close() }}
                         </td>
                     </tr>
@@ -159,6 +159,34 @@
             </table>
         </div>
     </div>
+
+    <script>
+        $('button').on('click', function(){
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to undo this action!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete this account!'
+            }).then(function () {
+                $('#deleteform').submit();
+            }, function (dismiss) {
+                // dismiss can be 'cancel', 'overlay',
+                // 'close', and 'timer'
+                if (dismiss === 'cancel') {
+                    swal(
+                            'Cancelled',
+                            'The account is safe :)',
+                            'error'
+                    ).then(function() {
+                        $(this).css({ 'color' : '#ffffff'});
+                    })
+                }
+            })
+        })
+    </script>
 
 @stop
 

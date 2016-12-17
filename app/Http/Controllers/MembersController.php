@@ -119,6 +119,8 @@ class MembersController extends Controller
         Builder::where('userid', '=', $userid)->delete();
         License::where('userid', '=', $userid)->delete();
         Mail::where('userid', '=', $userid)->delete();
+        // delete banner files and records:
+
         $member->delete();
         Session::set('user', null);
         return Redirect::to('delete');
