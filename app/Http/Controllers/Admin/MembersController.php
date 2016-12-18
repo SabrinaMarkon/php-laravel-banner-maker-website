@@ -43,6 +43,12 @@ class MembersController extends Controller
              'email' => 'required|email|max:255|unique:members',
              'referid' => 'exists:members,userid, NULL',
          );
+         if ($request->get('adminpaypal') !== '') {
+             $rules['paypal'] = 'email|max:255';
+         }
+         if ($request->get('adminpayza')) {
+             $rules['payza'] = 'email|max:255';
+         }
          $validator = Validator::make($request->all(), $rules);
 
          if ($validator->fails()) {
@@ -55,8 +61,14 @@ class MembersController extends Controller
             $member->password = bcrypt($request->get('password'));
             $member->firstname = $request->get('firstname');
             $member->lastname = $request->get('lastname');
-             $member->email = $request->get('email');
-            $member->referid = $request->get('referid');
+            $member->email = $request->get('email');
+             if ($request->get('adminpaypal') !== '') {
+                 $member->paypal = $request->get('paypal');
+             }
+             if ($request->get('adminpayza') !== '') {
+                 $member->payza = $request->get('payza');
+             }
+             $member->referid = $request->get('referid');
              $signupdate = new DateTime();
              $signupdate = $signupdate->format('Y-m-d');
              $member->signupdate = $signupdate;
@@ -128,6 +140,12 @@ class MembersController extends Controller
             'savevacation' => 'required',
             'savecommission' => 'required|regex:/^\d*(\.\d{1,2})?$/',
         );
+        if ($request->get('adminpaypal') !== '') {
+            $rules['savepaypal'] = 'email|max:255';
+        }
+        if ($request->get('adminpayza') !== '') {
+            $rules['savepayza'] = 'email|max:255';
+        }
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
@@ -143,6 +161,12 @@ class MembersController extends Controller
             $member->firstname = $request->get('savefirstname');
             $member->lastname = $request->get('savelastname');
             $member->email = $request->get('saveemail');
+            if ($request->get('adminpaypal') !== '') {
+                $member->paypal = $request->get('savepaypal');
+            }
+            if ($request->get('adminpayza') !== '') {
+                $member->payza = $request->get('savepayza');
+            }
             $member->verified = $request->get('saveverified');
             $member->referid = $request->get('savereferid');
             $member->ip = $request->get('saveip');

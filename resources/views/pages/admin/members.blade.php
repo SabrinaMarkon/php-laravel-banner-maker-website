@@ -15,8 +15,7 @@
 
 @section('content')
 
-    <div class="form-page-large">
-
+    <div class="form-page-small">
         <!-- will be used to show any messages -->
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -31,6 +30,9 @@
                 </ul>
             </div>
         @endif
+    </div>
+    
+    <div class="form-page-large">
 
         <div class="table-responsive">
                 <!-- Registration Form -->
@@ -72,6 +74,22 @@
                         {{ Form::text('email', old('email'), array('placeholder' => 'email')) }}
                         </div>
                     </div>
+                    @if (!empty($adminpaypal))
+                        <div class="form-group">
+                            {{ Form::label('paypal', 'PayPal', array('class' => 'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                {{ Form::text('paypal', old('paypal'), array('placeholder' => 'paypal')) }}
+                            </div>
+                        </div>
+                    @endif
+                    @if (!empty($adminpayza))
+                        <div class="form-group">
+                            {{ Form::label('payza', 'Payza', array('class' => 'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                {{ Form::text('payza', old('payza'), array('placeholder' => 'payza')) }}
+                            </div>
+                        </div>
+                    @endif
                     <div class="form-group">
                         <div class="col-sm-12"> <br>
                         {{ Form::submit('Add New Member', array('class' => 'btn btn-custom')) }}
@@ -93,6 +111,12 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Verified</th>
+                    @if (!empty($adminpaypal))
+                        <th>PayPal</th>
+                    @endif
+                    @if (!empty($adminpayza))
+                        <th>Payza</th>
+                    @endif
                     <th>Sponsor</th>
                     <th>IP</th>
                     <th>Signup Date</th>
@@ -133,6 +157,12 @@
                                 <option value="0" @if($member->verified != 1) selected @endif>No</option>
                             </select>
                         </td>
+                        @if (!empty($adminpaypal))
+                            <td>{{ Form::text('savepaypal', $member->paypal) }} </td>
+                        @endif
+                        @if (!empty($adminpayza))
+                            <td>{{ Form::text('savepayza', $member->payza) }} </td>
+                        @endif
                         <td>{{ Form::text('savereferid', $member->referid) }} </td>
                         <td>{{ Form::text('saveip', $member->ip) }} </td>
                         <td>{{ Form::text('savesignupdate', $signupdate) }} </td>

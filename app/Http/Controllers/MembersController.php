@@ -52,6 +52,12 @@ class MembersController extends Controller
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:members,email,'.$id,
         );
+        if ($request->get('adminpaypal') !== '') {
+            $rules['paypal'] = 'email|max:255';
+        }
+        if ($request->get('adminpayza') !== '') {
+            $rules['payza'] = 'email|max:255';
+        }
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
@@ -65,6 +71,12 @@ class MembersController extends Controller
             }
             $member->firstname = $request->get('firstname');
             $member->lastname = $request->get('lastname');
+            if ($request->get('adminpaypal') !== '') {
+                $member->paypal = $request->get('paypal');
+            }
+            if ($request->get('adminpayza') !== '') {
+                $member->payza = $request->get('payza');
+            }
             $member->vacation = $request->get('vacation');
             if ($member->vacation == 1) {
                 $vacationdate = new DateTime();

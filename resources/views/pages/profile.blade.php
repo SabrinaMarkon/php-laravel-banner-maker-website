@@ -73,6 +73,22 @@
                 {{ Form::text('email', $member->email, array('placeholder' => 'email')) }}
             </div>
         </div>
+            @if (isset($adminpaypal) && $adminpaypal !== '')
+                <div class="form-group">
+                    {{ Form::label('paypal', 'PayPal', array('class' => 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10 padding5pxtop">
+                        {{ Form::text('paypal', $member->paypal, array('placeholder' => 'paypal')) }}
+                    </div>
+                </div>
+            @endif
+            @if (isset($adminpayza) && $adminpayza !== '')
+                <div class="form-group">
+                    {{ Form::label('payza', 'Payza', array('class' => 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10 padding5pxtop">
+                        {{ Form::text('payza', $member->payza, array('placeholder' => 'payza')) }}
+                    </div>
+                </div>
+            @endif
         <div class="form-group">
             {{ Form::label('vacation', 'Vacation', array('class' => 'col-sm-2 control-label')) }}
             <div class="col-sm-10 padding5pxtop">
