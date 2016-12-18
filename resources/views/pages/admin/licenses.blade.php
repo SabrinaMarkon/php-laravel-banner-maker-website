@@ -15,8 +15,7 @@
 
 @section('content')
 
-    <div class="form-page-large">
-
+    <div class="form-page-small">
         <!-- will be used to show any messages -->
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -31,6 +30,9 @@
                 </ul>
             </div>
         @endif
+    </div>
+
+    <div class="form-page-large">
 
         <div class="table-responsive">
             <!-- Registration Form -->
