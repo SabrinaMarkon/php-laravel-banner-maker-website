@@ -88,7 +88,9 @@ Route::group(array('middleware' => ['memberauth']), function() {
 
     Route::resource('maildownline', 'MailsController');
 
-    Route::resource('dlb', 'BuildersController');
+// Builder still works but is DISABLED in routes and nav views to separate to another site as per client request.
+// To re-enable, uncomment twice in routes.php, in views/admin/sidemenu.blade.php and in views/header.blade.php
+//    Route::resource('dlb', 'BuildersController');
 
     Route::get('products', 'PagesController@products');
 });
@@ -137,7 +139,9 @@ Route::get('admin/main', ['middleware' => ['auth', 'admin'], function() {
 /*
  *  Downline Builder
  */
-   Route::resource('admin/dlb', 'Admin\BuildersController');
+// Builder still works but is DISABLED in routes and nav views to separate to another site as per client request.
+// To re-enable, uncomment twice in routes.php, in views/admin/sidemenu.blade.php and in views/header.blade.php
+//   Route::resource('admin/dlb', 'Admin\BuildersController');
 /*
  *  FAQ
  */

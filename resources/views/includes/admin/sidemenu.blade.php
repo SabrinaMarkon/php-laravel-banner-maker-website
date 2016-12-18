@@ -11,7 +11,7 @@
         <li><a href="{{ url('admin/licenses') }}">Licenses</a></li>
         <li><a href="{{ url('admin/transactions') }}">Transactions</a></li>
         <li><a href="{{ url('admin/promotionals') }}">Promotional</a></li>
-        <li><a href="{{ url('admin/dlb') }}">Downline Builder</a></li>
+        {{--<li><a href="{{ url('admin/dlb') }}">Downline Builder</a></li>--}}
         <li><a href="{{ url('admin/faqs') }}">FAQ Editor</a></li>
         <li><a href="../helpdesk" target="_blank">Helpdesk</a></li>
          <li><a href="{{ url('admin/logout') }}">Logout</a></li>
