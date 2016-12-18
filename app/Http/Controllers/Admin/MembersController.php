@@ -124,6 +124,7 @@ class MembersController extends Controller
      * Update member info.
      *
      * @param  int  $id
+     * @param object $request
      * @return Response
      */
     public function update($id, Request $request) {
@@ -182,9 +183,48 @@ class MembersController extends Controller
     }
 
     /**
+     *  Resend member verification email.
+     *
+     * @param  int  $id
+     * @param object $request
+     * @return Response
+     *
+     */
+    public function resend(Request $request, $id = null) {
+        $member = Member::find($id);
+        $email = $member->email;
+        $fullname = $member->firstname . ' ' . $member->lastname;
+        $verified = $member->verified;
+        $verification_code = $member->verification_code;
+        if ($verified === 1) {
+            Session::flash('message', $member->userid . ' is already verified!');
+        } else {
+            // validation email:
+            $html = "Dear ".$member->firstname.",<br><br>"
+                ."Please verify your email address by clicking this link:<br><br><a href="
+                .$request->get('domain')."/verify/".$verification_code.">"
+                .$request->get('domain')."/verify/".$verification_code."</a><br><br>"
+                ."Thank you!<br><br>"
+                .$request->get('sitename')." Admin<br>"
+                ."".$request->get('domain')."<br><br><br>";
+
+            \Mail::send(array(), array(), function ($message) use ($html, $email, $fullname, $request) {
+                $message->to($email, $fullname)
+                    ->subject($request->get('sitename') . ' Verification')
+                    ->from($request->get('adminemail'), $request->get('adminname'))
+                    ->setBody($html, 'text/html');
+            });
+            Session::flash('message', 'Resent validation email to UserID ' . $member->userid);
+        }
+        return Redirect::to('admin/members');
+    }
+
+
+    /**
      * Delete a member.
      *
      * @param  int  $id
+     * @param object $request
      * @return Response
      */
     public function destroy($id, Request $request) {

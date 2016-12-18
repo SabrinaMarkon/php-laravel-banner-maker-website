@@ -133,6 +133,7 @@ Route::get('admin/main', ['middleware' => ['auth', 'admin'], function() {
 *  Members
 */
   Route::resource('admin/members', 'Admin\MembersController');
+  Route::post('admin/members/resend/{id}', 'Admin\MembersController@resend');
 /*
  *  Downline Builder
  */

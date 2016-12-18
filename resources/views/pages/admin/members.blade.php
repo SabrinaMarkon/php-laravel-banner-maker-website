@@ -124,6 +124,7 @@
                     <th>Vacation</th>
                     <th>Commission</th>
                     <th>Edit</th>
+                    <td>Email Verification</td>
                     <th>Delete</th>
                 </tr>
                 </thead>
@@ -174,8 +175,19 @@
                             </select>
                         </td>
                         <td>{{ Form::text('savecommission', $member->commission) }} </td>
-                        <td>{{ Form::submit('Save', array('class' => 'btn btn-custom skinny')) }}</td>
-                        {{ Form::close() }}
+                        <td>
+                            {{ Form::submit('Save', array('class' => 'btn btn-custom skinny')) }}
+                            {{ Form::close() }}
+                        </td>
+                        @if ($member->verified === '1')
+                            <td>Verified</td>
+                        @else
+                            <td>
+                                {{ Form::open(array('url' => 'admin/members/resend/' . $member->id, 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'resendform')) }}
+                                {{ Form::submit('Resend', array('class' => 'btn btn-custom skinny', 'id' => 'resendbutton')) }}
+                                {{ Form::close() }}
+                            </td>
+                        @endif
                         <td>
                             {{ Form::open(array('route' => array('admin.members.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal', 'id' => 'deleteform')) }}
                             {{ Form::button('Delete', array('class' => 'btn btn-custom skinny', 'id' => 'deletebutton')) }}
