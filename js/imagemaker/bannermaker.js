@@ -22,9 +22,10 @@ $(function() {
                 'border' : '1px solid #000',
                 'color' : '#000',
                 'font-family' : 'Roboto, sans-serif',
-                'font-size' : '1em',
+                'padding-left' : '1px',
+                'padding-right' : '1px',
+                'font-size' : '10px',
                 'z-index' : '1001',
-                'padding' : '2px',
                 'cursor' : 'pointer',
                 'position' : 'absolute',
                 'right' : '0',
@@ -42,13 +43,14 @@ $(function() {
         }
     });
 
-    // BANNER WIDTH: // PROBLEM STILL - text added shows outside if banner is smaller.
+    // BANNER WIDTH:
     $('#bannerwidth').on('keyup mouseup', function() {
         var value = $(this).val();
         if ($.isNumeric(value) && Math.floor(value) == +value && (value > 0 && value < 1001 && value !== null)) {
             $('#bannerwidtherror').css({'visibility' : 'hidden', 'display' : 'none'});
             var canvascontainer = document.getElementById("canvascontainer");
             $(canvascontainer).css('width', value);
+            $('#watermark').css({ 'right' : '0', 'bottom' : '0' });
         } else {
             $('#bannerwidtherror').css({'visibility' : '', 'display' : 'block'});
         }
@@ -61,6 +63,8 @@ $(function() {
             $('#bannerheighterror').css({'visibility' : 'hidden', 'display' : 'none'});
             var canvascontainer = document.getElementById("canvascontainer");
             $(canvascontainer).css('height', value);
+            // change below: We want to REMOVE the watermark div then readd in the right position!!!!!!!!!!!!
+            $('#watermark').css({ 'right' : '0', 'bottom' : '0' });
         } else {
             $('#bannerheighterror').css({'visibility' : 'visible', 'display' : 'block'});
         }
