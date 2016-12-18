@@ -118,6 +118,8 @@ return [
         'saveemail' => 'Email',
         'savereferid' => 'Sponsor',
         'saveverified' => 'Verified',
+        'savepaypal' => 'PayPal',
+        'savepayza' => 'Payza',
         'savesignupdate' => 'Signup Date',
         'savevacation' => 'Vacation Mode',
         'savecommission' => 'Commission',

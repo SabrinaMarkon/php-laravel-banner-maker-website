@@ -31,7 +31,7 @@
             </div>
         @endif
     </div>
-    
+
     <div class="form-page-large">
 
         <div class="table-responsive">
@@ -100,7 +100,7 @@
 
         <div class="table-responsive">
             <h2>Member Accounts</h2>
-            <table class="table table-hover table-condensed table-bordered text-center">
+            <table class="table table-striped table-hover table-condensed table-bordered text-center" id="membertable">
                 <thead>
                 <tr>
                     <th>ID</th>
