@@ -41,7 +41,7 @@
                     <!-- Registration Form -->
                     <form class="register-form" id="register-form" role="form" method="post" action="{{ url('/join') }}">
                         <input type="hidden" name="whichform" id="whichform" value="register">
-                        <input type="hidden" name="referid" id="referid" value="{{ $referid }}">
+                        <input type="hidden" name="referid" id="referid" value="{{ Session::get('referid') }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <input type="text" placeholder="username" name="userid" id="userid" value="{{ old('userid') }}"/>

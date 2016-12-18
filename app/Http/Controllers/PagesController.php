@@ -29,12 +29,14 @@ class PagesController extends Controller
     }
 
     public function index($referid = null) {
+        $this->setreferid($referid);
         $content = Page::where('slug', '=', 'home')->first();
         Session::flash('page', $content);
         return view('pages.index', compact('referid'));
     }
 
     public function home($referid = null) {
+        $this->setreferid($referid);
         $content = Page::where('slug', '=', 'home')->first();
         Session::flash('page', $content);
         return view('pages.home', compact('referid'));
