@@ -286,7 +286,7 @@ h2 {
 .skinny {
     padding: 4px;
 }
-.btn-custom:hover, {
+.btn-custom:hover {
     background: #FFC125;
     color: #FFFFFF;
 }
