@@ -77,7 +77,6 @@ class IPNsController extends Controller
             $paypal = $_POST['payer_email'];
             $quantity = $_POST['quantity'];
             $userid = $_POST['option_selection1'];
-            $productid = $_POST["option_selection2"];
             $item = $_POST['item_name'];
 
             if ($payment_status === "Completed") {
@@ -91,7 +90,8 @@ class IPNsController extends Controller
                     }
 
                     // User purchased License upgrade.
-                    if ($item === $sitename . ' - White Label Image License') {
+                    if ($item === $request->get('sitename') . ' - White Label Banner License') {
+                        $licensetype = $_POST["option_selection2"];
                         // create new license.
                         $license = new License;
                         $license->userid = $userid;
@@ -100,58 +100,71 @@ class IPNsController extends Controller
                         $license->licensepaiddate = $licensepaiddate;
                         $license->licensestartdate = $licensepaiddate;
                         $licenseenddate = new DateTime();
-                        if ($licensepriceinterval === 'monthly') {
+                        if ($licensetype === 'monthly') {
+                            $licensecommission = $request->get('licensecommissionmonthly');
                             $interval = new DateInterval('P1M');
                             $licenseenddate->add($interval);
-                        } else {
+                            $licenseenddate->format('Y-m-d');
+                        } else if ($licensetype === 'annually') {
+                            $licensecommission = $request->get('licensecommissionannually');
                             $interval = new DateInterval('P1Y');
                             $licenseenddate->add($interval);
+                            $licenseenddate->format('Y-m-d');
+                        } else {
+                            $licensecommission = $request->get('licensecommissionlifetime');
+                            // licenseenddate should be null if lifeitme.
+                            $licenseenddate = '';
                         }
-                        $licenseenddate->format('Y-m-d');
                         $license->licenseenddate = $licenseenddate;
                         $license->save();
 
                         // assign commission.
-                        $commission = Member::where('referid', $referid)->increment('commission', $licensepriceinterval);
+                        $commission = Member::where('referid', $referid)->increment('commission', $licensecommission);
 
                        // add transaction.
                         $transaction = new Transaction;
                         $transaction->userid = $userid;
                         $transaction->transaction = $txn_id;
-                        $transaction->description = 'White Label Image License';
+                        $transaction->description = 'White Label Banner License';
                         $transaction->datepaid = $licensepaiddate;
                         $transaction->amount = $amount;
 
                         // remove watermark from existing banners:
                         $banners = Banner::where('userid', '=', $userid)->get();
-                        for ($banners as $banner) {
+                        foreach ($banners as $banner) {
                             $bannercode = $banner->htmlcode;
                             // remove watermark:
                             $bannercode = preg_replace('#<div id="watermark"(.*?)</div>#', ' ', $bannercode);
                             // update file:
+
+                            //
+                            //
+                            //
+                            //
 
                             // update database with new html and new file name:
                             Banner::where('id', $banner-id)->update('htmlcode', $bannercode);
                         }
 
                         // email admin.
-                        $html = "Dear " . $adminname . ",<br><br>"
-                            . "A new " . $sitename . " license was purchased!<br><br>"
+                        $html = "Dear " . $request->get('adminname') . ",<br><br>"
+                            . "A new " . $request->get('sitename') . " license was purchased!<br><br>"
                             . "UserID: " . $userid . "<br>"
-                            . "Amount: " . $amount . " " . $licensepriceinterval . "<br>"
+                            . "Amount: " . $amount . " " . $licensetype . "<br>"
                             . "Transaction ID: " . $txn_id . "<br>"
                             . "Sponsor: " . $referid . "<br>"
                             . "Commission: " . $licensecommission . "<br><br>"
-                            . "" . $domain . "<br><br><br>";
-                        \Mail::send(array(), array(), function ($message) use ($html) {
-                            $message->to($adminemail, $adminname)
-                                ->subject($sitename . ' License Upgrade Notification')
-                                ->from($adminemail, $adminname)
+                            . "" . $request->get('domain') . "<br><br><br>";
+                        \Mail::send(array(), array(), function ($message) use ($html, $request) {
+                            $message->to($request->get('adminemail'), $request->get('adminname'))
+                                ->subject($request->get('sitename') . ' License Upgrade Notification')
+                                ->from($request->get('adminemail'), $request->get('adminname'))
                                 ->setBody($html, 'text/html');
                         });
                     }
                     // User purchased a product the admin has set up for sale:
                     else {
+                        $productid = $_POST["option_selection2"];
                         $product = Product::find($productid);
                         if ($product !== null) {
 
@@ -169,8 +182,8 @@ class IPNsController extends Controller
                             $transaction->amount = $amount;
 
                             // email admin.
-                            $html = "Dear " . $adminname . ",<br><br>"
-                                . "A new " . $sitename . " product was purchased!<br>"
+                            $html = "Dear " . $request->get('adminname') . ",<br><br>"
+                                . "A new " . $request->get('sitename') . " product was purchased!<br>"
                                 . "** You will need to now fulfill the order for the customer! **<br>"
                                 . "UserID: " . $userid . "<br>"
                                 . "Product: " . $product->name . "<br>"
@@ -179,13 +192,14 @@ class IPNsController extends Controller
                                 . "Transaction ID: " . $txn_id . "<br>"
                                 . "Sponsor: " . $referid . "<br>"
                                 . "Commission: " . $product->commission . "<br><br>"
-                                . "" . $domain . "<br><br><br>";
-                            \Mail::send(array(), array(), function ($message) use ($html) {
-                                $message->to($adminemail, $adminname)
-                                    ->subject($sitename . ' Product Purchase Notification')
-                                    ->from($adminemail, $adminname)
+                                . "" . $request->get('domain') . "<br><br><br>";
+                            \Mail::send(array(), array(), function ($message) use ($html, $request) {
+                                $message->to($request->get('adminemail'), $request->get('adminname'))
+                                    ->subject($request->get('sitename') . ' Product Purchase Notification')
+                                    ->from($request->get('adminemail'), $request->get('adminname'))
                                     ->setBody($html, 'text/html');
                             });
+
                         }
                     }
             } else {
