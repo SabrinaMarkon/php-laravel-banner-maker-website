@@ -174,11 +174,11 @@ h2 {
 
 /* Form Styles */
 .form-page-small {
-    width: 360px;
-    padding: 1% 0 0;
-    padding-bottom: 35px;
-    margin: auto;
-}
+     width: 360px;
+     padding: 1% 0 0;
+     padding-bottom: 35px;
+     margin: auto;
+ }
 .form-page-medium {
     max-width: 800px;
     padding: 45px;
