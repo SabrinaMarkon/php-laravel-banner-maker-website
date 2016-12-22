@@ -44,6 +44,8 @@
                         @if($licenseenddate)
                             <br><div class="alert alert-info">You already have an active license that is good until {{ $licenseenddate }}!</div>
                         @else
+                            {{--WE NEED PAYZA ALSO--}}
+
                              {{--MONTHLY LICENSE:--}}
                             {{ Form::open(array('url' => 'https://www.paypal.com/cgi-bin/webscr', 'method' => 'POST', 'class' => 'form-horizontal form-page-small')) }}
                             {{ Form::hidden('a3', $licensepricemonthly) }}
