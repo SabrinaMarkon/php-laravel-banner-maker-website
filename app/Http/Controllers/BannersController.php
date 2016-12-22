@@ -24,6 +24,9 @@ class BannersController extends Controller
     public function index() {
         // Get the user's saved images.
         $savedimages = Banner::where('userid', Session::get('user')->userid)->orderBy('id', 'asc')->get();
+        // Date/Time to attach to saved banner img src so they are kept refreshed (without this saved banners may need a manual browser
+        // refresh in order to see changes.
+        $today = date("YmdHis");
         // Get the image library tree.
         $directory = "images/editorimages";
         $foldertree = $this->folderTree($directory);
@@ -42,7 +45,7 @@ class BannersController extends Controller
         $content = Page::where('slug', '=', 'banners')->first();
         Session::flash('page', $content);
 
-        return view('pages.banners', compact('savedimages', 'foldertree', 'preloadimages'));
+        return view('pages.banners', compact('savedimages', 'today', 'foldertree', 'preloadimages'));
     }
     /**
      * Get any subfolders of the folder.

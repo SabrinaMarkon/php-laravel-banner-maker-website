@@ -252,11 +252,11 @@
                                                     <div style="height: 10px;"></div>
                                                     <div>
                                                         @if($savedimage->width > 300)
-                                                            <img src="/mybanners/{{ $savedimage->filename }}" width="300">
+                                                            <img src="/mybanners/{{ $savedimage->filename }}/?{{ $today }}" width="300">
                                                         @elseif($savedimage->height > 300)
-                                                            <img src="/mybanners/{{ $savedimage->filename }}" height="300">
+                                                            <img src="/mybanners/{{ $savedimage->filename }}/?{{ $today }}" height="300">
                                                         @else
-                                                            <img src="/mybanners/{{ $savedimage->filename }}">
+                                                            <img src="/mybanners/{{ $savedimage->filename }}/?{{ $today }}">
                                                         @endif
                                                     </div>
                                                     <div style="height: 10px;"></div>
