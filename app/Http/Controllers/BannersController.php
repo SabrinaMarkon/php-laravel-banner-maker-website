@@ -112,26 +112,42 @@ class BannersController extends Controller
      * @return Response
      */
     public function getbanner(Request $request) {
-        //Get the base-64 string from data
+        // First get the base-64 string from data
         $img_val = $request->get('img_val');
         $filteredData = substr($img_val, strpos($img_val, ",")+1);
         //Decode the string
         $unencodedData = base64_decode($filteredData);
-        //Save the image with a random filename.
-        $dlfilelong = md5(rand(0,9999999));
-        $dlfileshort = substr($dlfilelong, 0, 12);
-        $today = date("YmdHis");
-        $dlfile = $today . $dlfileshort . ".png";
-        $dlfilepath = 'mybanners/' . $dlfile;
-        // write the file to the server.
-        file_put_contents('mybanners/' . $dlfile, $unencodedData);
         // get the background and border setting values from img_obj
         $img_obj = $request->get('img_obj');
         //var_dump(json_decode($img_obj));
         $img_obj = json_decode($img_obj);
-        // save image into the banners database table.
-        $banner = new Banner();
-        $banner->userid = Session::get('user')->userid;
+
+        // Check if this is an existing banner or a new banner:
+        $editingexistingimageid = $request->get('editingexistingimageid');
+        if ($editingexistingimageid !== '') {
+            // existing banner we need to update:
+            // we need to get the existing filename:
+            $banner = Banner::find($editingexistingimageid);
+            $dlfile = $banner->filename;
+            // we need to delete the old copy of the file from the server:
+            $dlfilepath = 'mybanners/' . $dlfile;
+            File::delete($dlfilepath);
+            // we need to create that filename again on the server with the new data:
+            file_put_contents('mybanners/' . $dlfile, $unencodedData);
+        } else {
+            // new banner to create.
+            //Save the image with a random filename.
+            $dlfilelong = md5(rand(0,9999999));
+            $dlfileshort = substr($dlfilelong, 0, 12);
+            $today = date("YmdHis");
+            $dlfile = $today . $dlfileshort . ".png";
+            $dlfilepath = 'mybanners/' . $dlfile;
+            // write the file to the server.
+            file_put_contents('mybanners/' . $dlfile, $unencodedData);
+            $banner = new Banner();
+            $banner->userid = Session::get('user')->userid;
+        }
+
         // remove resize handles from htmlcode:
         $banner->htmlcode = trim($request->get('htmlcode'));
         $banner->filename = $dlfile;
@@ -143,6 +159,7 @@ class BannersController extends Controller
         $banner->bordercolor = $img_obj->bordercolor;
         $banner->borderwidth = $img_obj->borderwidth;
         $banner->borderstyle = $img_obj->borderstyle;
+        // save image into the banners database table.
         $banner->save();
         Session::flash('message', 'Successfully saved your banner!');
         return Redirect::to('banners');
