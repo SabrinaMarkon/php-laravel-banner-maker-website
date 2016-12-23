@@ -340,6 +340,7 @@ $(function() {
         $("#pickborderstyle").val('solid');
         $('#savebuttondiv').hide();
         $('#canvascontainer').css({ 'width' : '1000px', 'height' : '300px' });
+        $('#editingexistingimageid').val();
     }
     $('#clear, #new').on('click', UndoAllOrStartNew);
 
