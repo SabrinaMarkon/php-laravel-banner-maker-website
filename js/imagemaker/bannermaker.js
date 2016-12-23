@@ -384,16 +384,18 @@ $(function() {
                 img_obj.borderwidth = $("#pickborderwidth").val();
                 img_obj.borderstyle = $("#pickborderstyle").val();
                 // get img_obj.bgimage if there is one:
-                var pickbgimage_filename = $('#canvascontainer').css('background-image');
-                pickbgimage_filename = pickbgimage_filename.substring(5, pickbgimage_filename.length - 2); // remove the url('') part of the background-image property.
-                pickbgimage_filename = pickbgimage_filename.substring(pickbgimage_filename.lastIndexOf('/') + 1);
-                //alert(pickbgimage_filename);
-                if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '' && pickbgimage_filename !== 'canvasbg.gif') {
-                    var pickbgimage_folder = $('#pickbgimagefolder').val();
-                    var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder + '/' + pickbgimage_filename;
-                    img_obj.bgimage = pickbgimage_path;
-                } else {
-                    img_obj.bgimage = 'none';
+                var pickbgimage_url = $('#canvascontainer').css('background-image');
+                img_obj.bgimage = 'none'; // by default
+                if (pickbgimage_url !== 'none') {
+                    // chance img_ob.bgimage to file path instead of 'none'.
+                    var pickbgimage_path = pickbgimage_url.substring(5, pickbgimage_url.length - 2); // remove the url('') part of the background-image property.
+                    var pickbgimage_filename = String(pickbgimage_path.split('/').slice(-1)); // get the filename of the background-image property.
+                    var pickbgimage_folder_and_filename = String(pickbgimage_path.split('/').slice(-2). join('/')); // get the folder and filename of the background-image property.
+                    //alert(pickbgimage_filename + ' ' + pickbgimage_folder_and_filename);
+                    if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '' && pickbgimage_filename !== 'canvasbg.gif') {
+                        var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder_and_filename;
+                        img_obj.bgimage = pickbgimage_path;
+                    }
                 }
                 $('#img_obj').val(JSON.stringify(img_obj));
                 // htmlcode field to save into the database.
