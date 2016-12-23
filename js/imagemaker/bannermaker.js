@@ -296,6 +296,7 @@ $(function() {
             });
             elem.draggable();
             $(".ui-resizable-handle").show();
+            $('#imagehandles').val('yes');
         }
     });
 
@@ -383,9 +384,11 @@ $(function() {
                 img_obj.borderwidth = $("#pickborderwidth").val();
                 img_obj.borderstyle = $("#pickborderstyle").val();
                 // get img_obj.bgimage if there is one:
-                var pickbgimage_filename = $('#pickbgimage.ui-selected').attr('id');
-                alert(pickbgimage_filename);
-                if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '') {
+                var pickbgimage_filename = $('#canvascontainer').css('background-image');
+                pickbgimage_filename = pickbgimage_filename.substring(5, pickbgimage_filename.length - 2); // remove the url('') part of the background-image property.
+                pickbgimage_filename = pickbgimage_filename.substring(pickbgimage_filename.lastIndexOf('/') + 1);
+                //alert(pickbgimage_filename);
+                if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '' && pickbgimage_filename !== 'canvasbg.gif') {
                     var pickbgimage_folder = $('#pickbgimagefolder').val();
                     var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder + '/' + pickbgimage_filename;
                     img_obj.bgimage = pickbgimage_path;
