@@ -459,7 +459,7 @@ $(function() {
                     $(htmlcode + ' .canvaslayer[id]').each(function() {
                         var elem = $(this);
                         $('#canvascontainer').append(elem);
-                        if (elem.hasClass('picture')) { // it is an image so needs to be resizable.
+                        *-if (elem.hasClass('picture')) { // it is an image so needs to be resizable.9999
                             elem.resizable({
                                 handles: "nw, ne, sw, se",
                                 aspectRatio: false
