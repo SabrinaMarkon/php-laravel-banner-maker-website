@@ -113,6 +113,26 @@ class MembersController extends Controller
                      ->setBody($html, 'text/html');
              });
 
+             // email sponsor.
+             $referid = Member::where('userid', '=', $member->referid)->first();
+             if ($referid) {
+                 $refemail = $referid->email;
+                 $refname = $referid->firstname . ' ' . $referid->lastname;
+             } else {
+                 $refemail = $request->get('adminemail');
+                 $refname = $request->get('adminname');
+             }
+             $html = "Dear " . $refname . ",<br><br>"
+                 . "A new referral just joined under you in " . $request->get('sitename') . "!<br>"
+                 ."UserID: " . $member->userid . "<br><br>"
+                 . "" . $request->get('domain') . "<br><br><br>";
+             \Mail::send(array(), array(), function ($message) use ($html, $refemail, $refname, $request) {
+                 $message->to($refemail, $refname)
+                     ->subject(' You Have a New Referral at ' . $request->get('sitename'))
+                     ->from($request->get('adminemail'), $request->get('adminname'))
+                     ->setBody($html, 'text/html');
+             });
+
              $member->save();
              Session::flash('message', 'Successfully created new member with UserID ' . $member->userid);
              return Redirect::to('admin/members');
