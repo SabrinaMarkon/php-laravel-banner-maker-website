@@ -59,7 +59,7 @@ class SendEmails extends Command
             if ($setting->name == "adminname") { $adminname = $setting->setting; }
         }
         // get all mails that are marked as pending mailout.
-        $mails = Mail::where('needtosend', '=', 1)->where('sent', '=', NULL)->orderBy('id', 'asc')->get();
+        $mails = Mail::where('needtosend', '=', 1)->orderBy('id', 'asc')->get();
 
         if ($mails) {
             // there are emails to send
