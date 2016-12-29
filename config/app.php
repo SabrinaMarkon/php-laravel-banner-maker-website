@@ -160,6 +160,10 @@ return [
         App\Providers\ComposerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+        /*
+         * Intervention Image for image thumbnails.
+         */
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -208,6 +212,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        /*
+         * Intervention Image for image thumbnails.
+         */
+        'Image' => Intervention\Image\Facades\Image::class,
+
     ],
 
 ];
