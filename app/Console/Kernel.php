@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
 
         // $schedule->command('CreateThumbnails')->monthlyOn(1, '01:00')->withoutOverlapping(); where CreateThumbnails is the name of the class, OR the below.
         // withoutOverlapping prevents another command from starting before the first is completed.
-        $schedule->command('thumbnails:create')->monthlyOn(1, '04:00')->withoutOverlapping();
+        $schedule->command('thumbnails:create')->weekly()->mondays()->at('01:00')->withoutOverlapping();
 
     }
 }

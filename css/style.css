@@ -478,14 +478,11 @@ a .btn-yellow {
     color: #000;
 }
 
-/* preload the image library */
-.preloaddiv {
-    display: none;
-}
+/* page preloader*/
 #preloader {
     font-family: 'Luckiest Guy', cursive;
     color: #FFC125;
-    font-size: 2em;
+    font-size: 1em;
     padding: 50px;
 }
 

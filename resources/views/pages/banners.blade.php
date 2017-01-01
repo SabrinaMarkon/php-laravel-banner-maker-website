@@ -21,8 +21,6 @@
 
 @section('content')
 
-    {{--<div class="preloaddiv">{!!  $preloadimages !!} </div>--}}
-
     @if(Session::has('page'))
         {!! Session::get('page')->htmlcode !!}
     @endif

@@ -30,22 +30,10 @@ class BannersController extends Controller
         // Get the image library tree.
         $directory = "images/thumbnails";
         $foldertree = $this->folderTree($directory);
-        // Get all the files in all the subdirectories recursively.
-        // Build array and preload list.
-        $filetree = File::allFiles($directory);
-        $preloadimages = '';
-        foreach ($filetree as $file)
-        {
-            $extension = File::extension($file);
-            if ($extension === 'gif' || $extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
-                $preloadimages .= '<img src="' . (string)$file . '">';
-            }
-        }
-
         $content = Page::where('slug', '=', 'banners')->first();
         Session::flash('page', $content);
 
-        return view('pages.banners', compact('savedimages', 'today', 'foldertree', 'preloadimages'));
+        return view('pages.banners', compact('savedimages', 'today', 'foldertree'));
     }
     /**
      * Get any subfolders of the folder.
