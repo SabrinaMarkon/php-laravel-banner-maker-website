@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-//use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManager;
 use File;
 
 class CreateThumbnails extends Command
@@ -51,23 +51,31 @@ class CreateThumbnails extends Command
         // 1) get all subdirectories in the main images folder (editorimages)
         $subdirs = File::directories($directory_main);
 
-        // 2) for each subdirectory, check if it exists in thumbnails folder. If it doesn't, create it.
-        foreach ($subdirs as $subdir) {
+        foreach ($subdirs as $subdirpath) {
+
+            // 2) $subdirpath for each subdir includes the main folder and subdir like editorimages/subdir, so we have to just get the subdir name out of that.
+            $subdir_array = explode('editorimages/', $subdirpath);
+            $subdir = $subdir_array[1];
+
+            // 3) for each subdirectory, check if it also exists in thumbnails folder. If it doesn't, create it.
             $mainsubdir = $directory_main . '/' . $subdir;
             $thumbnailsubdir = $directory_thumbs . '/' . $subdir;
             if (!File::exists($thumbnailsubdir)) {
                 // the subdir DOESN'T exist in the the thumbnail library, so create it:
                 File::MakeDirectory($thumbnailsubdir);
             }
-            // 3) Get each file in the MAIN folder's  subdir now. If it doesn't already exist in the THUMBNAIL folder's subdir, copy it over from the MAIN folder's subdir.
+            // 4) Get each file in the MAIN folder's  subdir now. If it doesn't already exist in the THUMBNAIL folder's subdir, copy it over from the MAIN folder's subdir.
             $files = File::files($mainsubdir);
-            foreach ($files as $file) {
+            foreach ($files as $filepath) {
+                // 5) $filepath for each file includes the full path but we just want the file name.
+                $file_fullpath_array = explode("/", $filepath);
+                $file = end($file_fullpath_array);
                 $thumbnailpath = $thumbnailsubdir . '/' . $file;
                 if (!File::exists($thumbnailpath)) {
-                    // 4) The thumbnail copy DOESN'T exist yet. Copy the image over, then resize it:
+                    // 6) The thumbnail copy DOESN'T exist yet. Copy the image over, then resize it:
                     $mainfilepath = $mainsubdir . '/' . $file;
                     if (File::copy($mainfilepath, $thumbnailpath)) {
-                        // 5) After copying the image over, resize it with Invervention Image and constrain aspect ratio (auto height):
+                        // 7) After copying the image over, resize it with Invervention Image and constrain aspect ratio (auto height):
                         $img = Image::make($thumbnailpath)->resize(300, null, function($constraint) {
                             $constraint->aspectRatio();
                         });

@@ -58,3 +58,4 @@
 [17-Dec-2016 22:31:26 UTC] PHP Fatal error:  Class 'AddPaypalAndPayzaColumnsToMembersTable' not found in /home/sadiesbc/public_html/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php on line 335
 [19-Dec-2016 01:08:02 UTC] PHP Parse error:  syntax error, unexpected '')); ?>' (T_CONSTANT_ENCAPSED_STRING) in /home/sadiesbc/public_html/storage/framework/views/191896308611294987216dfb2e70bb7398c3d819.php on line 155
 [22-Dec-2016 06:38:43 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\alert() in /home/sadiesbc/public_html/app/Http/Controllers/BannersController.php on line 143
+[01-Jan-2017 05:56:52 UTC] PHP Fatal error:  Class 'App\Console\Commands\Image' not found in /home/sadiesbc/public_html/app/Console/Commands/CreateThumbnails.php on line 79
