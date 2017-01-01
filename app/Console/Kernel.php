@@ -27,9 +27,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        // $schedule->command('SendEmails')->everyFiveMinutes(); OR the below
+        // $schedule->command('SendEmails')->everyFiveMinutes(); where SendEmails is the name of the class, OR the below:
         $schedule->command('emails:send')
-            ->everyFiveMinutes();
+            ->everyFiveMinutes()->withoutOverlapping();
+
+        // $schedule->command('CreateThumbnails')->monthlyOn(1, '01:00')->withoutOverlapping(); where CreateThumbnails is the name of the class, OR the below.
+        // withoutOverlapping prevents another command from starting before the first is completed.
+        $schedule->command('thumbnails:create')->monthlyOn(1, '01:00')->withoutOverlapping();
 
     }
 }
