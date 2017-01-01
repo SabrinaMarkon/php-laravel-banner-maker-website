@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Intervention\Image\ImageManager;
+//use Intervention\Image\ImageManager;
+use Intervention\Image\Facades\Image;
 use File;
 
 class CreateThumbnails extends Command
@@ -74,11 +75,28 @@ class CreateThumbnails extends Command
                 if (!File::exists($thumbnailpath)) {
                     // 6) The thumbnail copy DOESN'T exist yet. Copy the image over, then resize it:
                     $mainfilepath = $mainsubdir . '/' . $file;
-                    if (File::copy($mainfilepath, $thumbnailpath)) {
-                        // 7) After copying the image over, resize it with Invervention Image and constrain aspect ratio (auto height):
-                        $img = Image::make($thumbnailpath)->resize(300, null, function($constraint) {
-                            $constraint->aspectRatio();
-                        });
+                    // 7) Make sure the file is gif, png, or jpg.
+                    $extension = File::extension($mainfilepath);
+                    if ($extension === 'jpg' || $extension === 'png' || $extension === 'gif' || $extension === 'jpeg') {
+                        if (File::copy($mainfilepath, $thumbnailpath)) {
+                            // 8) After copying the image over, get its existing width and height to see if it should be resized:
+                            $filedata = getimagesize($thumbnailpath);
+                            $width = $filedata[0];
+                            $height = $filedata[1];
+                            if ($width > 200) {
+                                // 9a) The image is too wide for a thumnail, so resize it with Invervention Image and constrain aspect ratio (auto height):
+//                                $img = Image::make($thumbnailpath)->resize(200, null, function($constraint) {
+//                                    $constraint->aspectRatio();
+//                                });
+                                echo $thumbnailpath . " is wider than 200\n";
+                            } elseif ($height > 200 && $width > 50) {
+                                // 9b) The image is too tall for a thumnail, and is wide enough that resizing it won't narrow it down to nothing, so resize it with Invervention Image and constrain aspect ratio (auto width):
+//                                $img = Image::make($thumbnailpath)->resize(null, 200, function($constraint) {
+//                                    $constraint->aspectRatio();
+//                                });
+                                echo $thumbnailpath . " is taller than 200\n";
+                            }
+                        }
                     }
                 }
             }
