@@ -28,7 +28,7 @@ class BannersController extends Controller
         // refresh in order to see changes.
         $today = date("YmdHis");
         // Get the image library tree.
-        $directory = "images/editorimages";
+        $directory = "images/thumbnails";
         $foldertree = $this->folderTree($directory);
         // Get all the files in all the subdirectories recursively.
         // Build array and preload list.
@@ -67,13 +67,13 @@ class BannersController extends Controller
         $foldertree = '';
         $dirs = $this->getSubdirectories($directory);
         foreach ($dirs as $dir) {
-            $show_dir_array = explode('editorimages/', $dir);
+            $show_dir_array = explode('thumbnails/', $dir);
             $show_dir = $show_dir_array[1];
             $foldertree .= '<option value="' . $show_dir . '">' . $show_dir . '</option>';
 //            // get any subdirs of dir:
 //            $dirs2 = $this->getSubdirectories($dir);
 //            foreach ($dirs2 as $dir2) {
-//                $show_dir_array2 = explode('editorimages/', $dir2);
+//                $show_dir_array2 = explode('thumbnails/', $dir2);
 //                $show_dir2 = $show_dir_array2[1];
 //                $foldertree .=  '<option value="' . $show_dir2 . '">' . $show_dir2 . '</option>';
 //            }
@@ -87,7 +87,7 @@ class BannersController extends Controller
      * @return $filetree  the list of all files in the chosen directory.
      */
     public function fileTree(Request $request, $folder = null) {
-        $folder = "images/editorimages/" . $folder;
+        $folder = "images/thumbnails/" . $folder;
         $filetree = '';
         $resize = '';
         $files = File::files($folder);

@@ -115,6 +115,7 @@ $(function() {
             //alert(pickbgimage_filename);
             if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '') {
                 var pickbgimage_folder = $('#pickbgimagefolder').val();
+                // apply the full sized image from editorimages image library, rather than the thumbnail.
                 var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder + '/' + pickbgimage_filename;
                 $('#canvascontainer').css({ 'background' : 'url("' + pickbgimage_path + '")', 'background-size' : '100% 100%' });
             } else {
@@ -287,6 +288,7 @@ $(function() {
             var imgstyle = "background: none; display:inline-block; width: 100%; height: 100%;";
             var newid = $("#canvascontainer > div").length + 1;
             var pickimage_folder = $('#pickimagefolder').val();
+            // apply the full sized image from editorimages image library, rather than the thumbnail.
             var pickimage_path = 'images/editorimages/' + pickimage_folder + '/' + pickimage_filename;
             var elem = $('<div id="' + newid + '" class="ui-widget-content canvaslayer picture"><img src="' + pickimage_path + '" style="' + imgstyle + '"></div>');
             $('#canvascontainer').append(elem);
@@ -393,6 +395,7 @@ $(function() {
                     var pickbgimage_folder_and_filename = String(pickbgimage_path.split('/').slice(-2). join('/')); // get the folder and filename of the background-image property.
                     //alert(pickbgimage_filename + ' ' + pickbgimage_folder_and_filename);
                     if (pickbgimage_filename !== 'none' && pickbgimage_filename !== undefined && pickbgimage_filename !== '' && pickbgimage_filename !== 'canvasbg.gif') {
+                        // apply the full sized image from editorimages image library, rather than the thumbnail.
                         var pickbgimage_path = 'images/editorimages/' + pickbgimage_folder_and_filename;
                         img_obj.bgimage = pickbgimage_path;
                     }

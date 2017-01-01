@@ -11,7 +11,7 @@
 @section('pagetitle')
 
     <script type="text/javascript">
-        $.blockUI({ message: '<div id="preloader" style="font-size: 2em; font-family: Luckiest Guy, cursive;  color: #FFC125; padding: 30px;"><img src="/images/loading.gif" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Banner Library . . !</div>' });
+        $.blockUI({ message: '<div id="preloader" style="font-size: 1em; font-family: Luckiest Guy, cursive;  color: #FFC125; padding: 30px;"><img src="/images/loading.gif" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Banner Library . . !</div>' });
     </script>
 
     Your Banners
@@ -21,7 +21,7 @@
 
 @section('content')
 
-    <div class="preloaddiv">{!!  $preloadimages !!} </div>
+    {{--<div class="preloaddiv">{!!  $preloadimages !!} </div>--}}
 
     @if(Session::has('page'))
         {!! Session::get('page')->htmlcode !!}
