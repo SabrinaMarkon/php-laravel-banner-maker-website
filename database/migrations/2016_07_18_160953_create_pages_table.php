@@ -44,6 +44,7 @@ class CreatePagesTable extends Migration
             array('name' => 'Successful Verification Page', 'slug' => 'verify'),
             array('name' => 'Successfully Deleted Account Page', 'slug' => 'delete'),
             array('name' => 'Successful Purchase Page', 'slug' => 'thankyou'),
+            array('name' => 'Splash Page', 'slug' => 'splash'),
         ));
     }
 

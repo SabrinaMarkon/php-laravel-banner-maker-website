@@ -84,6 +84,14 @@ class PagesController extends Controller
         return view('pages.support');
     }
 
+    public function splash($referid = null) {
+        $this->setreferid($referid);
+        $content = Page::where('slug', '=', 'splash')->first();
+        $content = str_replace('~REFERID~', $referid, $content->htmlcode);
+        Session::flash('page', $content);
+        return view('pages.splash');
+    }
+
     public function thankyou() {
         $content = Page::where('slug', '=', 'thankyou')->first();
         Session::flash('page', $content);

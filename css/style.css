@@ -20,10 +20,12 @@ body {
     min-height: 100%;
     display: table;
     font-weight: 100;
-    /* font-family: 'Lato', sans-serif; */
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+body.splashpage {
+    background: navy !important;
 }
 .sadie {
     position: fixed;

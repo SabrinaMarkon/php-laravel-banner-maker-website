@@ -30,6 +30,9 @@ Route::get('privacy', 'PagesController@privacy');
 Route::get('support/{referid}', 'PagesController@support');
 Route::get('support', 'PagesController@support');
 
+Route::get('splash/{referid}', 'PagesController@splash');
+Route::get('splash', 'PagesController@splash');
+
 Route::get('thankyou', 'PagesController@thankyou'); // return url after user makes a purchase.
 
 Route::get('logout', 'PagesController@logout');

@@ -64,3 +64,6 @@
 [01-Jan-2017 06:17:37 UTC] PHP Fatal error:  Class 'App\Console\Commands\Image' not found in /home/sadiesbc/public_html/app/Console/Commands/CreateThumbnails.php on line 92
 [01-Jan-2017 06:34:01 UTC] PHP Parse error:  syntax error, unexpected 'a' (T_STRING) in /home/sadiesbc/public_html/app/Console/Commands/CreateThumbnails.php on line 87
 [01-Jan-2017 06:34:04 UTC] PHP Parse error:  syntax error, unexpected 'a' (T_STRING) in /home/sadiesbc/public_html/app/Console/Commands/CreateThumbnails.php on line 87
+[05-Jan-2017 07:33:00 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 264
+[08-Jan-2017 22:55:15 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 264
+[17-Jan-2017 03:53:36 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/sadiesbc/public_html/storage/framework/views/790eab785df8676777a5d3930d35caa40b036cba.php on line 10
