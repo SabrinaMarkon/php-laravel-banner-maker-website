@@ -503,10 +503,18 @@ $(function() {
     // DRAG AND DROP TEXT OR IMAGE LAYER TO TRASHCAN:
     $( ".draggable" ).draggable();
     $( "#trashcandiv" ).droppable({
+        over: function(event, ui) {
+
+            $(this).css('opacity', 0.8);
+            
+        },
         drop: function(event, ui) {
 
             var draggableId = ui.draggable.attr("id"); // get id of the item being dropped in the trash
             var droppableId = $(this).attr("id"); // get id of the trashcan (trashcandiv)
+
+            $(this).css({'opacity' : 1.0, 'cursor' : 'pointer'});
+
             //alert('dropped ' + draggableId);
             $('#' + draggableId).remove();
             // ui.draggable.remove();  // works this way too

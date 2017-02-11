@@ -357,11 +357,7 @@ main {
     height: 135px;
 }
 #trashcandiv:hover {
-    opacity: 0.8;
     cursor: pointer;
-}
-#trashcandiv #trashcan {
-
 }
 
 
