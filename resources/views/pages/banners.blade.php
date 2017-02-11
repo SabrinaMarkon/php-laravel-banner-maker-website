@@ -291,6 +291,9 @@
                     <div id="canvascontainer">
 
                     </div>
+                    <div id="trashcandiv">
+                        <img src="/images/trashcan.png" class="img-responsive" id="trashcan">
+                    </div>
                     <div id="savediv">
 
                     </div>

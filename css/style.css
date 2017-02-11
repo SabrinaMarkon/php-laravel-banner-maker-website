@@ -274,15 +274,13 @@ h2 {
     display: none;
 }
 .btn-custom {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
+    font-family: $headingfont;
     outline: 0;
     background: #FF7256;
     border: 0;
     order-radius:6px;
     padding: 15px;
     color: #FFFFFF !important;
-    font-size: 14px;
     cursor: pointer;
 }
 .skinny {
@@ -350,6 +348,15 @@ main {
     height: 60px;
     background: transparent url('/images/canvasbg.gif');
 }
+#trashcandiv {
+    position: relative;
+    margin: auto;
+}
+#trashcandiv #trashcan {
+    float: right;
+    margin: 10px;
+}
+
 #savediv {
     position: relative;
     margin: auto;
