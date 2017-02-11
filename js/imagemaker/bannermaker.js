@@ -203,7 +203,7 @@ $(function() {
         var newid = $("#canvascontainer > div").length + 1;
 
         // RESIZABLE TEXT (commented out because between this and the images, there are too many resize handles and font size can be specified beforehand)
-        // $('#canvascontainer').append($('<div id="' + newid + '"  class="ui-widget-content canvaslayer" style="' + textstyle + '">' + text + '</div>')
+        // $('#canvascontainer').append($('<div id="' + newid + '"  class="ui-widget-content canvaslayer draggable" style="' + textstyle + '">' + text + '</div>')
         //     .draggable({ containment : "#canvascontainer" })
         //     .resizable({
         //       containment: "#canvascontainer",
@@ -217,7 +217,7 @@ $(function() {
         //       }
         //   }));
 
-        $('#canvascontainer').append($('<div id="' + newid + '"  class="ui-widget-content canvaslayer" style="' + textstyle + '">' + text + '</div>')
+        $('#canvascontainer').append($('<div id="' + newid + '"  class="ui-widget-content canvaslayer draggable" style="' + textstyle + '">' + text + '</div>')
             .draggable({ containment : "#body" }));
     });
 
@@ -290,7 +290,7 @@ $(function() {
             var pickimage_folder = $('#pickimagefolder').val();
             // apply the full sized image from editorimages image library, rather than the thumbnail.
             var pickimage_path = 'images/editorimages/' + pickimage_folder + '/' + pickimage_filename;
-            var elem = $('<div id="' + newid + '" class="ui-widget-content canvaslayer picture"><img src="' + pickimage_path + '" style="' + imgstyle + '"></div>');
+            var elem = $('<div id="' + newid + '" class="ui-widget-content canvaslayer picture draggable"><img src="' + pickimage_path + '" style="' + imgstyle + '"></div>');
             $('#canvascontainer').append(elem);
             elem.resizable({
                 handles: "nw, ne, sw, se",
@@ -480,6 +480,7 @@ $(function() {
             });
         });
 
+
         // DELETE SAVED IMAGE:
         $('#delete-' + id).click(function(e) {
             $.ajax({
@@ -497,6 +498,20 @@ $(function() {
                 }
             });
         });
+    });
+
+    // DRAG AND DROP TEXT OR IMAGE LAYER TO TRASHCAN:
+    $( ".draggable" ).draggable();
+    $( "#trashcandiv" ).droppable({
+        drop: function(event, ui) {
+
+            var draggableId = ui.draggable.attr("id"); // get id of the item being dropped in the trash
+            var droppableId = $(this).attr("id"); // get id of the trashcan (trashcandiv)
+            //alert('dropped ' + draggableId);
+            $('#' + draggableId).remove();
+            // ui.draggable.remove();  // works this way too
+
+        }
     });
 
     // SUPPORTING FUNCTIONS:

@@ -348,14 +348,22 @@ main {
     height: 60px;
     background: transparent url('/images/canvasbg.gif');
 }
+
 #trashcandiv {
     position: relative;
-    margin: auto;
-}
-#trashcandiv #trashcan {
     float: right;
     margin: 10px;
+    width: 125px;
+    height: 135px;
 }
+#trashcandiv:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+#trashcandiv #trashcan {
+
+}
+
 
 #savediv {
     position: relative;
