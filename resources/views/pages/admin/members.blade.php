@@ -189,8 +189,8 @@
                             </td>
                         @endif
                         <td>
-                            {{ Form::open(array('route' => array('admin.members.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal', 'id' => 'deleteform')) }}
-                            {{ Form::button('Delete', array('class' => 'btn btn-custom skinny', 'id' => 'deletebutton')) }}
+                            {{ Form::open(array('route' => array('admin.members.destroy', $member->id), 'method' => 'DELETE', 'class' => 'form-horizontal', 'id' => 'deleteform' . $member->id)) }}
+                            {{ Form::button('Delete', array('class' => 'btn btn-custom skinny', 'id' => $member->id)) }}
                             {{ Form::close() }}
                         </td>
                     </tr>
@@ -204,6 +204,7 @@
 
     <script>
         $('button').on('click', function(){
+            var deleteid = $(this).attr('id');
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to undo this action!",
@@ -213,7 +214,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete this account!'
             }).then(function () {
-                $('#deleteform').submit();
+                $('#deleteform' + deleteid).submit();
             }, function (dismiss) {
                 // dismiss can be 'cancel', 'overlay',
                 // 'close', and 'timer'

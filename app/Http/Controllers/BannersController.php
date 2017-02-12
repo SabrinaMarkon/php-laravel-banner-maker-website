@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Banner;
 use App\Models\License;
+use App\Models\Member;
 use App\Models\Page;
 use App\Http\Controllers\Controller;
 use Session;
@@ -170,8 +171,15 @@ class BannersController extends Controller
             // the user has a license so no watermark on images.
             $watermark = 'no';
         } else {
-            // the user doesn't have an active license, so images they create need the watermark.
-            $watermark = 'yes';
+            // is the user an admin?
+            $admin = Member::where('userid', '=', $request->get('userid'))->where('admin', '=', 1)->first();
+            if ($admin) {
+                // admin doesn't have a watermark:
+                $watermark = 'no';
+            } else {
+                // the user doesn't have an active license and is not an admin, so images they create need the watermark.
+                $watermark = 'yes';
+            }
         }
         return $watermark;
     }
