@@ -25,7 +25,7 @@ class MembersController extends Controller
      * @return Response
      */
     public function index() {
-        $members = Member::all();
+        $members = Member::orderBy('admin', 'desc')->orderBy('userid', 'asc')->get();
         return view('pages.admin.members', compact('members'));
     }
 
