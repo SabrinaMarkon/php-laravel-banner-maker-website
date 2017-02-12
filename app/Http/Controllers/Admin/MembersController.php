@@ -14,6 +14,7 @@ use Session;
 use Redirect;
 use Validator;
 use DateTime;
+use File;
 
 class MembersController extends Controller
 {

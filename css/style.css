@@ -356,10 +356,6 @@ main {
     width: 125px;
     height: 135px;
 }
-#trashcandiv:hover {
-    cursor: pointer;
-}
-
 
 #savediv {
     position: relative;

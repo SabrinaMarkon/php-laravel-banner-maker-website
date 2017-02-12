@@ -69,3 +69,4 @@
 [17-Jan-2017 03:53:36 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/sadiesbc/public_html/storage/framework/views/790eab785df8676777a5d3930d35caa40b036cba.php on line 10
 [27-Jan-2017 09:47:39 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 264
 [08-Feb-2017 14:11:08 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 264
+[11-Feb-2017 10:29:26 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Admin\File' not found in /home/sadiesbc/public_html/app/Http/Controllers/Admin/MembersController.php on line 264
