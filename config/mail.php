@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'forest.sadiesbannercreator.com'),
+    'host' => env('MAIL_HOST', 'YOUR_MAIL_HOST'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'test@sadiesbannercreator.com', 'name' => 'TESTING'],
+    'from' => ['address' => 'YOUR_SENDING_EMAIL', 'name' => 'FROM FIELD NAME'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'username' => env('test@sadiesbannercreator.com'),
+    'username' => env('YOUR_SMTP_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('1F3L1n31'),
+    'password' => env('YOUR_SMTP_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
