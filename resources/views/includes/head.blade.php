@@ -2,7 +2,7 @@
 <meta name="description" content="">
 <meta name="author" content="Sabrina Markon PHPSiteScripts.com">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sadie's Banner Creator</title>
+<title>Your Site Title</title>
 {{--<meta name="csrf-token" content="{{ csrf_token() }}">--}}
 <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Roboto:300|Tangerine|League+Gothic|Cabin|Bebas+Neue|Ubuntu|Lobster|Franchise|PT+Serif" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">

@@ -90,7 +90,7 @@ class IPNsController extends Controller
                     }
 
                     // User purchased License upgrade.
-                    if ($item === $request->get('sitename') . ' - White Label Banner License') {
+                    if ($item === $request->get('sitename') . ' - Watermark Removal License') {
                         $licensetype = $_POST["option_selection2"];
                         // create new license.
                         $license = new License;
@@ -125,7 +125,7 @@ class IPNsController extends Controller
                         $transaction = new Transaction;
                         $transaction->userid = $userid;
                         $transaction->transaction = $txn_id;
-                        $transaction->description = 'White Label Banner License';
+                        $transaction->description = 'Watermark Removal License';
                         $transaction->datepaid = $licensepaiddate;
                         $transaction->amount = $amount;
 

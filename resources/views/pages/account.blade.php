@@ -8,7 +8,7 @@
 
 @section('pagetitle')
 
-    Welcome to Sadie's!
+    Welcome to Your Site Name!
 
 @stop
 

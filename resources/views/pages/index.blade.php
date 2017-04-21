@@ -10,7 +10,7 @@
 
     <div class="title title-home">Welcome To</div>
 
-    <div class="title title-big">Sadie's Banner Creator!!!!!!</div>
+    <div class="title title-big">Your Site Name!</div>
 
 @stop
 

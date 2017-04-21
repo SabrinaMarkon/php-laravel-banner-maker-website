@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Sadie's Banner Creator</a>
+            <a class="navbar-brand" href="/">Your Brand</a>
         </div>
         <div class="navbar-collapse collapse text-center" id="main_navbar">
             @if (Session::has('user'))

@@ -8,7 +8,7 @@
 
 @section('pagetitle')
 
-    Sadie's Special White Label License
+    Watermark Removal License
 
 @stop
 
@@ -55,7 +55,7 @@
                             {{ Form::hidden('src', '1') }}
                             {{ Form::hidden('sra', '1') }}
                             {{ Form::hidden('business', $adminpaypal) }}
-                            {{ Form::hidden('item_name', $sitename . ' - White Label Banner License') }}
+                            {{ Form::hidden('item_name', $sitename . ' - Watermark Removal License') }}
                             {{ Form::hidden('item_number', 'banner-monthly') }}
                             {{ Form::hidden('no_note', '1') }}
                             {{ Form::hidden('page_style', 'PayPal') }}
@@ -82,7 +82,7 @@
                             {{ Form::hidden('src', '1') }}
                             {{ Form::hidden('sra', '1') }}
                             {{ Form::hidden('business', $adminpaypal) }}
-                            {{ Form::hidden('item_name', $sitename . ' - White Label Banner License') }}
+                            {{ Form::hidden('item_name', $sitename . ' - Watermark Removal License') }}
                             {{ Form::hidden('item_number', 'banner-annually') }}
                             {{ Form::hidden('no_note', '1') }}
                             {{ Form::hidden('page_style', 'PayPal') }}
@@ -105,7 +105,7 @@
                             {{ Form::hidden('amount', $licensepricelifetime) }}
                             {{ Form::hidden('cmd', '_xclick') }}
                             {{ Form::hidden('business', $adminpaypal) }}
-                            {{ Form::hidden('item_name', $sitename . ' - White Label Banner License') }}
+                            {{ Form::hidden('item_name', $sitename . ' - Watermark Removal License') }}
                             {{ Form::hidden('item_number', 'banner-lifetime') }}
                             {{ Form::hidden('no_note', '1') }}
                             {{ Form::hidden('page_style', 'PayPal') }}

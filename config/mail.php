@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'YOUR_MAIL_HOST'),
+    'host' => env('MAIL_HOST', '96.43.136.186'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'YOUR_SENDING_EMAIL', 'name' => 'FROM FIELD NAME'],
+    'from' => ['address' => 'test@bannermaker.phpsitescripts.com', 'name' => 'PHPSS Banner Maker'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'username' => env('YOUR_SMTP_USERNAME'),
+    'username' => env('test@bannermaker.phpsitescripts.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('YOUR_SMTP_PASSWORD'),
+    'password' => env('G[ZJ(5KTwK)$'),
 
     /*
     |--------------------------------------------------------------------------

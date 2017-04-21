@@ -25,13 +25,13 @@ class CreateSettingsTable extends Migration
 
         DB::table('settings')->insert(array(
             array('name'    =>    'adminname',
-            'setting'    =>    'Terry Joudry',
+            'setting'    =>    'Your Name',
             'description'    =>    'Admin Name'),
             array('name'    =>    'domain',
-                'setting'    =>    'http://sadiesbannercreator.com',
+                'setting'    =>    'http://bannermaker.phpsitescripts.com',
                 'description'    =>    'Website Main Domain URL (with http:// and NO trailing slash)'),
             array('name'    =>    'sitename',
-                'setting'    =>    "Sadie's Banner Creator",
+                'setting'    =>    "Your Site Name",
                 'description'    =>    'Website Name'),
             array('name'    =>    'adminemail',
                 'setting'    =>    'phpsitescripts@outlook.com',

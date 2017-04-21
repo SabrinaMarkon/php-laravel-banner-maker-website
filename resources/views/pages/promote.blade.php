@@ -7,7 +7,7 @@
 
 @section('pagetitle')
 
-    Promote Sadie's
+    Promote
 
 @stop
 
