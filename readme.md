@@ -1,4 +1,4 @@
-PHPSS Online Banner Maker Script
+Online Banner Maker Website
 
 Membership site that allows members to create their own banners and images
 ------------------------------------------------------------------------------------
@@ -43,4 +43,3 @@ Membership site that allows members to create their own banners and images
 
 - Admin should be able to create and add promotional material to the members area for members to use.
 
-Example: http://bannermaker.phpsitescripts.com
